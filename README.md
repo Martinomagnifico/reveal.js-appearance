@@ -38,9 +38,9 @@ It is easy to set up your HTML structure for Appearance.js:
 
 ```html
 <ul>
-		<li class="animated bounceInLeft">Add it to any text element</li>
-		<li class="animated bounceInLeft">Like list items, or headers.</li>
-		<li class="animated bounceInLeft">It adds some attention.</li>
+	<li class="animated bounceInLeft">Add it to any text element</li>
+	<li class="animated bounceInLeft">Like list items, or headers.</li>
+	<li class="animated bounceInLeft">It adds some attention.</li>
 </ul>
 ```
 
