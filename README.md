@@ -25,11 +25,16 @@ Reveal.initialize({
 	]
 });
 ```
+Also, copy the appearance.css file and make a reference to it:
+```html
+<link rel="stylesheet" href="assets/css/appearance.css">
+```
+
 
 
 ## Setup
 
-It is easy to set up your HTML structure for Simplemenu: 
+It is easy to set up your HTML structure for Appearance.js: 
 
 ```html
 <ul>
