@@ -6,7 +6,7 @@ In Powerpoint you can make slides with items that appear automatically with effe
 
 [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
 
-Because the animations need to be kicked in, we wait for the slide transition to end. Reveal.js has no "slidechanged" event, so a listener for 'transitionend' is used. Pull requests are gladly accepted (my js is not so good).
+Because the animations need to be kicked in, we wait for the slide transition to end. Reveal.js has no "slidechangecomplete" event, so a listener for 'transitionend' is used. Pull requests are gladly accepted (my js is not so good).
 
 
 
