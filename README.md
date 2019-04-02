@@ -77,16 +77,16 @@ Reveal.initialize({
 It is easy to change the effects for Appearance.js. Here's how to change the delay per-element: 
 
 ```html
-	<img class="animated fadeInDown" data-src="1.jpg" data-delay="200">
-	<img class="animated fadeInDown" data-src="2.jpg" data-delay="160">
-	<img class="animated fadeInDown" data-src="3.jpg" data-delay="120">
+<img class="animated fadeInDown" data-src="1.jpg" data-delay="200">
+<img class="animated fadeInDown" data-src="2.jpg" data-delay="160">
+<img class="animated fadeInDown" data-src="3.jpg" data-delay="120">
 ```
 or the speed of each animation, using the tempo classes from Animate.css:
 ```html
-	<img class="animated fadeInDown slower" data-src="1.jpg">
-	<img class="animated fadeInDown slow" data-src="2.jpg">
-	<img class="animated fadeInDown fast" data-src="3.jpg">
-	<img class="animated fadeInDown faster" data-src="4.jpg">
+<img class="animated fadeInDown slower" data-src="1.jpg">
+<img class="animated fadeInDown slow" data-src="2.jpg">
+<img class="animated fadeInDown fast" data-src="3.jpg">
+<img class="animated fadeInDown faster" data-src="4.jpg">
 ```
 
 ## Like it?
