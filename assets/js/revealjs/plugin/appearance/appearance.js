@@ -1,122 +1,96 @@
 /*****************************************************************
- * Author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
+ * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Appearance.js for Reveal.js 1.0.0
+ * Appearance.js for Reveal.js 1.0.1
  *
  * @license 
  * MIT licensed
  *
- * Credits:
+ * Thanks to:
  *  - Hakim El Hattab, Reveal.js
  *  - Daniel Eden, Animate.css
 ******************************************************************/
 
-const Appearance = window.Appearance || (function () {
+const Appearance = window.Appearance || (function(){
 
-	const defaultoptions = {
+	let options = Reveal.getConfig().appearance || {};
+
+	let defaultOptions = {
 		baseclass: 'animated',
 		visibleclass: 'in',
 		hideagain: true,
 		delay: 300
+	};
+
+	const defaults = function (options, defaultOptions) {
+		for ( var i in defaultOptions ) {
+			if ( !options.hasOwnProperty( i ) ) {
+				options[i] = defaultOptions[i];
+			}
+		}
 	}
-
-	let config = Reveal.getConfig();
-	let useroptions = config.appearance || {};
-	let baseClass = useroptions.baseclass || defaultoptions.baseclass;
-	let visibleClass = useroptions.visibleclass || defaultoptions.visibleclass;
-	let hideAgain = (useroptions.hideagain === false) ? false : true;
-	let delay = useroptions.delay || defaultoptions.delay;
-
-
+	
 	const loopAppearances = function (appearances, appearancesInFragment) {
 		let time = 0;
 		appearances.filter(element => {
 			if (!appearancesInFragment.includes(element)) {
-				timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : delay);
+				timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
 				setTimeout((function () {
-					element.classList.add(visibleClass);
+					element.classList.add(options.visibleclass);
 				}), time);
 				time += timeincrement;
 			}
 		});
 	};
 
-
-	const slideAppear = function (event) {
-
-		let parent = document.querySelector(".slides");
-		if (event.currentSlide) {
-			parent = event.currentSlide.parentNode;
-		}
-
-		const showAppearances = function (slide) {
-			let appearances = slide.querySelectorAll(`:scope .${baseClass}`);
-			let appearancesInFragment = slide.querySelectorAll(`:scope .fragment .${baseClass}`);
-
-			appearances = Array.prototype.slice.call(appearances);
-			appearancesInFragment = Array.prototype.slice.call(appearancesInFragment);
-			loopAppearances(appearances, appearancesInFragment);
-
-		};
-
-
-		const slideChanged = function () {
-			let thisSlide = Reveal.getCurrentSlide();
-			showAppearances(thisSlide);
-			thisSlide.parentNode.removeEventListener('transitionend', waitForFadeOut);
-		};
-		const waitForFadeOut = function (newevent) {
-			if (newevent.target.tagName == "SECTION" && newevent.propertyName == "transform") {
-				slideChanged() ;
-			}
-		};
-		if (event.type == "ready") {
-			slideChanged()
-		}
-
-		if ((hideAgain === true) && event.previousSlide) {
-			let lastslide = event.previousSlide;
-			let disappearances = lastslide.querySelectorAll(`:scope .${baseClass}, .fragment.visible`);
-			let disarr = Array.prototype.slice.call(disappearances);
-
-			disarr.filter(element => {
-				element.classList.remove(
-					element.classList.contains("fragment") ? "visible" : visibleClass
-				);
-			});
-		}
-
-		parent.addEventListener('transitionend', waitForFadeOut);
+	const selectionArray = function (container, selectors) {
+		let selections = container.querySelectorAll(selectors);
+		selectionarray = Array.prototype.slice.call(selections);
+		return selectionarray
 	};
 
-	const fragmentAppear = function (event) {
-
-		let parent = document.querySelector(".fragment");
-
-		if (event.type == "fragmentshown" || event.type == "fragmenthidden") {
-			arent = event.fragment;
+	const showAppearances = function (container) {
+		let appearances = selectionArray(container, `:scope .${options.baseclass}`);
+		let appearancesInFragment = selectionArray(container, `:scope .fragment .${options.baseclass}`);
+		loopAppearances(appearances, appearancesInFragment);
+	};
+	
+	const hideAppearances = function (container) {
+		let disappearances = selectionArray(container, `:scope .${options.baseclass},:scope .fragment.visible`);
+		disappearances.filter(element => {
+			element.classList.remove(
+				element.classList.contains("fragment") ? "visible" : options.visibleclass
+			);
+		});
+	};
+	
+	const showHideSlide = function (event) {
+		showAppearances(event.currentSlide);
+		if (event.previousSlide && options.hideagain) {
+			hideAppearances(event.previousSlide);
 		}
-
-		const showAppearances = function (parent) {
-			let appearances = parent.querySelectorAll(`:scope .${baseClass}`);
-			appearances = Array.prototype.slice.call(appearances);
-
-			if (hideAgain && event.type == "fragmenthidden") {
-				appearances.filter(element => {
-					element.classList.remove(visibleClass);
-				});
-			} else {
-				loopAppearances(appearances, '');
-			}
-		};
-		showAppearances(parent);
+	}
+	const showHideFragment = function (event) {
+		console.log(event);
+		if (event.type == 'fragmentshowncomplete'){
+			showAppearances(event.fragment);
+		} else {
+			hideAppearances(event.fragment);
+		}
+	}
+	
+	const init = function () {
+		defaults( options, defaultOptions );
+		window.addEventListener('slidechangecomplete', showHideSlide, false);
+		window.addEventListener('fragmentshowncomplete', showHideFragment, false);
+		window.addEventListener('fragmenthiddencomplete', showHideFragment, false);
 	};
 
-
-	Reveal.addEventListener('slidechanged', slideAppear, false);
-	Reveal.addEventListener('ready', slideAppear), false;
-	Reveal.addEventListener('fragmentshown', fragmentAppear, false);
-	Reveal.addEventListener('fragmenthidden', fragmentAppear, false);
+	return {
+		init: init
+	};
 
 })();
+
+Reveal.registerPlugin('appearance', Appearance);

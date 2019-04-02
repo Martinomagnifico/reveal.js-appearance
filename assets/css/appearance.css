@@ -1,2 +1,372 @@
-.reveal .padded,.reveal i.animated,.reveal span.animated{display:inline-block}.slides{opacity:0;transition:opacity .5s ease}.reveal.ready .slides{opacity:1}.reveal .padded{padding:1rem}.reveal .padded img{border:none;margin:0}.reveal .slides>section,.reveal .slides>section>section{transform-style:preserve-3d;perspective:1000px}@keyframes skidLeft{from{transform:translate3d(-20%,0,0) skewX(0);opacity:0}50%{transform:translate3d(2%,0,0) skewX(-10deg);opacity:1}75%{transform:translate3d(-1%,0,0) skewX(10deg)}to{transform:translate3d(0,0,0) skewX(0)}}@keyframes skidLeftBig{from{transform:translate3d(-100%,0,0) skewX(0);opacity:0}50%{transform:translate3d(2%,0,0) skewX(-10deg);opacity:1}75%{transform:translate3d(-1%,0,0) skewX(10deg)}to{transform:translate3d(0,0,0) skewX(0)}}@keyframes skidRight{from{transform:translate3d(20%,0,0) skewX(0);opacity:0}50%{transform:translate3d(-2%,0,0) skewX(10deg);opacity:1}75%{transform:translate3d(1%,0,0) skewX(-10deg)}to{transform:translate3d(0,0,0) skewX(0)}}@keyframes skidRightBig{from{transform:translate3d(100%,0,0) skewX(0);opacity:0}50%{transform:translate3d(-2%,0,0) skewX(10deg);opacity:1}75%{transform:translate3d(1%,0,0) skewX(-10deg)}to{transform:translate3d(0,0,0) skewX(0)}}@keyframes shrinkIn{from{transform:scale3d(1.3,1.3,1.3);opacity:0}to{opacity:1}}@keyframes shrinkInBlur{from{transform:scale3d(1.3,1.3,1.3);opacity:0;filter:blur(5px)}75%{opacity:1;-webkit-filter:blur(0)}100%{transform:scale3d(1,1,1)}}.reveal .animated{visibility:hidden;transition:visibility .5s ease;animation:none}.in.headShake,.in.heartBeat{animation-timing-function:ease-in-out}.reveal .animated.in{visibility:visible;animation-duration:1s}.reveal .animated.in.fast{animation-duration:.8s}.reveal .animated.in.faster{animation-duration:.5s}.reveal .animated.in.slow{animation-duration:2s}.reveal .animated.in.slower{animation-duration:3s}.in.bounce{animation-name:bounce;transform-origin:center bottom}.in.flash{animation-name:flash}.in.pulse{animation-name:pulse}.in.rubberBand{animation-name:rubberBand}.in.shake{animation-name:shake}.in.headShake{animation-name:headShake}.in.swing{transform-origin:top center;animation-name:swing}.in.tada{animation-name:tada}.in.wobble{animation-name:wobble}.in.jello{animation-name:jello;transform-origin:center}.in.heartBeat{animation-name:heartBeat;animation-duration:1.3s}.in.bounceIn,.in.bounceOut,.in.flipOutX,.in.flipOutY{animation-duration:.75s}.in.bounceIn{animation-name:bounceIn}.in.bounceInDown{animation-name:bounceInDown}.in.bounceInLeft{animation-name:bounceInLeft}.in.bounceInRight{animation-name:bounceInRight}.in.bounceInUp{-webkit-animation-name:bounceInUp;animation-name:bounceInUp}.in.bounceOut{animation-name:bounceOut}.in.bounceOutDown{animation-name:bounceOutDown}.in.bounceOutLeft{animation-name:bounceOutLeft}.in.bounceOutRight{animation-name:bounceOutRight}.in.bounceOutUp{animation-name:bounceOutUp}.in.fadeIn{animation-name:fadeIn}.in.fadeInDown{animation-name:fadeInDown}.in.fadeInDownBig{animation-name:fadeInDownBig}.in.fadeInLeft{animation-name:fadeInLeft}.in.fadeInLeftBig{animation-name:fadeInLeftBig}.in.fadeInRight{animation-name:fadeInRight}.in.fadeInRightBig{animation-name:fadeInRightBig}.in.fadeInUp{animation-name:fadeInUp}.in.fadeInUpBig{animation-name:fadeInUpBig}.in.fadeOut{animation-name:fadeOut}.in.fadeOutDown{animation-name:fadeOutDown}.in.fadeOutDownBig{animation-name:fadeOutDownBig}.in.fadeOutLeft{animation-name:fadeOutLeft}.in.fadeOutLeftBig{animation-name:fadeOutLeftBig}.in.fadeOutRight{animation-name:fadeOutRight}.in.fadeOutRightBig{animation-name:fadeOutRightBig}.in.fadeOutUp{animation-name:fadeOutUp}.in.fadeOutUpBig{animation-name:fadeOutUpBig}.in.animated.flip{backface-visibility:visible;animation-name:flip}.in.flipInX,.in.flipInY,.in.flipOutX,.in.flipOutY{backface-visibility:visible!important}.in.flipInX{animation-name:flipInX}.in.flipInY{animation-name:flipInY}.in.flipOutX{animation-name:flipOutX}.in.flipOutY{animation-name:flipOutY}.in.lightSpeedIn{animation-name:lightSpeedIn;animation-timing-function:ease-out}.in.lightSpeedOut{animation-name:lightSpeedOut;animation-timing-function:ease-in}.in.rotateIn{animation-name:rotateIn}.in.rotateInDownLeft{animation-name:rotateInDownLeft}.in.rotateInDownRight{animation-name:rotateInDownRight}.in.rotateInUpLeft{animation-name:rotateInUpLeft}.in.rotateOut{animation-name:rotateOut}.in.rotateOutDownLeft{animation-name:rotateOutDownLeft}.in.rotateOutDownRight{animation-name:rotateOutDownRight}.in.rotateOutUpLeft{animation-name:rotateOutUpLeft}.in.rotateOutUpRight{animation-name:rotateOutUpRight}.in.hinge{animation-duration:2s;animation-name:hinge}.in.jackInTheBox{animation-name:jackInTheBox}.in.rollIn{animation-name:rollIn}.in.rollOut{animation-name:rollOut}.in.zoomIn{animation-name:zoomIn}.in.zoomInDown{animation-name:zoomInDown}.in.zoomInLeft{animation-name:zoomInLeft}.in.zoomInRight{animation-name:zoomInRight}.in.zoomInUp{animation-name:zoomInUp}.in.zoomOut{animation-name:zoomOut}.in.zoomOutDown{animation-name:zoomOutDown}.in.zoomOutLeft{animation-name:zoomOutLeft}.in.zoomOutRight{animation-name:zoomOutRight}.in.zoomOutUp{animation-name:zoomOutUp}.in.slideInDown{animation-name:slideInDown}.in.slideInLeft{animation-name:slideInLeft}.in.slideInRight{animation-name:slideInRight}.in.slideInUp{animation-name:slideInUp}.in.slideOutDown{animation-name:slideOutDown}.in.slideOutLeft{animation-name:slideOutLeft}.in.slideOutRight{animation-name:slideOutRight}.in.slideOutUp{animation-name:slideOutUp}.in.skidRight{animation-name:skidRight}.in.skidRightBig{animation-name:skidRightBig}.in.skidLeft{animation-name:skidLeft}.in.skidLeftBig{animation-name:skidLeftBig}.in.shrinkIn{animation-name:shrinkIn}.in.shrinkInBlur{animation-name:shrinkInBlur}
-/*# sourceMappingURL=appearance.css.map*/
+.slides {
+  opacity: 0;
+  transition: opacity .5s ease; }
+  .reveal.ready .slides {
+    opacity: 1; }
+
+.reveal .padded {
+  display: inline-block;
+  padding: 1rem; }
+  .reveal .padded img {
+    border: none;
+    margin: 0; }
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  transform-style: preserve-3d;
+  perspective: 1000px; }
+
+/* Custom animation */
+@keyframes skidLeft {
+  from {
+    transform: translate3d(-20%, 0, 0) skewX(0deg);
+    opacity: 0; }
+  50% {
+    transform: translate3d(2%, 0, 0) skewX(-10deg);
+    opacity: 1; }
+  75% {
+    transform: translate3d(-1%, 0, 0) skewX(10deg); }
+  to {
+    transform: translate3d(0, 0, 0) skewX(0deg); } }
+
+@keyframes skidLeftBig {
+  from {
+    transform: translate3d(-100%, 0, 0) skewX(0deg);
+    opacity: 0; }
+  50% {
+    transform: translate3d(2%, 0, 0) skewX(-10deg);
+    opacity: 1; }
+  75% {
+    transform: translate3d(-1%, 0, 0) skewX(10deg); }
+  to {
+    transform: translate3d(0, 0, 0) skewX(0deg); } }
+
+@keyframes skidRight {
+  from {
+    transform: translate3d(20%, 0, 0) skewX(0deg);
+    opacity: 0; }
+  50% {
+    transform: translate3d(-2%, 0, 0) skewX(10deg);
+    opacity: 1; }
+  75% {
+    transform: translate3d(1%, 0, 0) skewX(-10deg); }
+  to {
+    transform: translate3d(0, 0, 0) skewX(0deg); } }
+
+@keyframes skidRightBig {
+  from {
+    transform: translate3d(100%, 0, 0) skewX(0deg);
+    opacity: 0; }
+  50% {
+    transform: translate3d(-2%, 0, 0) skewX(10deg);
+    opacity: 1; }
+  75% {
+    transform: translate3d(1%, 0, 0) skewX(-10deg); }
+  to {
+    transform: translate3d(0, 0, 0) skewX(0deg); } }
+
+@keyframes shrinkIn {
+  from {
+    transform: scale3d(1.3, 1.3, 1.3);
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes shrinkInBlur {
+  from {
+    transform: scale3d(1.3, 1.3, 1.3);
+    opacity: 0;
+    filter: blur(5px); }
+  75% {
+    opacity: 1;
+    -webkit-filter: blur(0px); }
+  100% {
+    transform: scale3d(1, 1, 1); } }
+
+/* Animate.css overrides */
+.reveal .animated {
+  visibility: hidden;
+  transition: visibility .5s ease;
+  animation: none; }
+  .reveal i.animated,
+  .reveal span.animated {
+    display: inline-block; }
+  .reveal .animated.in {
+    visibility: visible;
+    animation-duration: 1s; }
+    .reveal .animated.in.fast {
+      animation-duration: 800ms; }
+    .reveal .animated.in.faster {
+      animation-duration: 500ms; }
+    .reveal .animated.in.slow {
+      animation-duration: 2s; }
+    .reveal .animated.in.slower {
+      animation-duration: 3s; }
+
+.in.bounce {
+  animation-name: bounce;
+  transform-origin: center bottom; }
+
+.in.flash {
+  animation-name: flash; }
+
+.in.pulse {
+  animation-name: pulse; }
+
+.in.rubberBand {
+  animation-name: rubberBand; }
+
+.in.shake {
+  animation-name: shake; }
+
+.in.headShake {
+  animation-timing-function: ease-in-out;
+  animation-name: headShake; }
+
+.in.swing {
+  transform-origin: top center;
+  animation-name: swing; }
+
+.in.tada {
+  animation-name: tada; }
+
+.in.wobble {
+  animation-name: wobble; }
+
+.in.jello {
+  animation-name: jello;
+  transform-origin: center; }
+
+.in.heartBeat {
+  animation-name: heartBeat;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-in-out; }
+
+.in.bounceIn {
+  animation-duration: 0.75s;
+  animation-name: bounceIn; }
+
+.in.bounceInDown {
+  animation-name: bounceInDown; }
+
+.in.bounceInLeft {
+  animation-name: bounceInLeft; }
+
+.in.bounceInRight {
+  animation-name: bounceInRight; }
+
+.in.bounceInUp {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp; }
+
+.in.bounceOut {
+  animation-duration: 0.75s;
+  animation-name: bounceOut; }
+
+.in.bounceOutDown {
+  animation-name: bounceOutDown; }
+
+.in.bounceOutLeft {
+  animation-name: bounceOutLeft; }
+
+.in.bounceOutRight {
+  animation-name: bounceOutRight; }
+
+.in.bounceOutUp {
+  animation-name: bounceOutUp; }
+
+.in.fadeIn {
+  animation-name: fadeIn; }
+
+.in.fadeInDown {
+  animation-name: fadeInDown; }
+
+.in.fadeInDownBig {
+  animation-name: fadeInDownBig; }
+
+.in.fadeInLeft {
+  animation-name: fadeInLeft; }
+
+.in.fadeInLeftBig {
+  animation-name: fadeInLeftBig; }
+
+.in.fadeInRight {
+  animation-name: fadeInRight; }
+
+.in.fadeInRightBig {
+  animation-name: fadeInRightBig; }
+
+.in.fadeInUp {
+  animation-name: fadeInUp; }
+
+.in.fadeInUpBig {
+  animation-name: fadeInUpBig; }
+
+.in.fadeOut {
+  animation-name: fadeOut; }
+
+.in.fadeOutDown {
+  animation-name: fadeOutDown; }
+
+.in.fadeOutDownBig {
+  animation-name: fadeOutDownBig; }
+
+.in.fadeOutLeft {
+  animation-name: fadeOutLeft; }
+
+.in.fadeOutLeftBig {
+  animation-name: fadeOutLeftBig; }
+
+.in.fadeOutRight {
+  animation-name: fadeOutRight; }
+
+.in.fadeOutRightBig {
+  animation-name: fadeOutRightBig; }
+
+.in.fadeOutUp {
+  animation-name: fadeOutUp; }
+
+.in.fadeOutUpBig {
+  animation-name: fadeOutUpBig; }
+
+.in.animated.flip {
+  backface-visibility: visible;
+  animation-name: flip; }
+
+.in.flipInX {
+  backface-visibility: visible !important;
+  animation-name: flipInX; }
+
+.in.flipInY {
+  backface-visibility: visible !important;
+  animation-name: flipInY; }
+
+.in.flipOutX {
+  animation-duration: 0.75s;
+  animation-name: flipOutX;
+  backface-visibility: visible !important; }
+
+.in.flipOutY {
+  animation-duration: 0.75s;
+  backface-visibility: visible !important;
+  animation-name: flipOutY; }
+
+.in.lightSpeedIn {
+  animation-name: lightSpeedIn;
+  animation-timing-function: ease-out; }
+
+.in.lightSpeedOut {
+  animation-name: lightSpeedOut;
+  animation-timing-function: ease-in; }
+
+.in.rotateIn {
+  animation-name: rotateIn; }
+
+.in.rotateInDownLeft {
+  animation-name: rotateInDownLeft; }
+
+.in.rotateInDownRight {
+  animation-name: rotateInDownRight; }
+
+.in.rotateInUpLeft {
+  animation-name: rotateInUpLeft; }
+
+.in.rotateOut {
+  animation-name: rotateOut; }
+
+.in.rotateOutDownLeft {
+  animation-name: rotateOutDownLeft; }
+
+.in.rotateOutDownRight {
+  animation-name: rotateOutDownRight; }
+
+.in.rotateOutUpLeft {
+  animation-name: rotateOutUpLeft; }
+
+.in.rotateOutUpRight {
+  animation-name: rotateOutUpRight; }
+
+.in.hinge {
+  animation-duration: 2s;
+  animation-name: hinge; }
+
+.in.jackInTheBox {
+  animation-name: jackInTheBox; }
+
+.in.rollIn {
+  animation-name: rollIn; }
+
+.in.rollOut {
+  animation-name: rollOut; }
+
+.in.zoomIn {
+  animation-name: zoomIn; }
+
+.in.zoomInDown {
+  animation-name: zoomInDown; }
+
+.in.zoomInLeft {
+  animation-name: zoomInLeft; }
+
+.in.zoomInRight {
+  animation-name: zoomInRight; }
+
+.in.zoomInUp {
+  animation-name: zoomInUp; }
+
+.in.zoomOut {
+  animation-name: zoomOut; }
+
+.in.zoomOutDown {
+  animation-name: zoomOutDown; }
+
+.in.zoomOutLeft {
+  animation-name: zoomOutLeft; }
+
+.in.zoomOutRight {
+  animation-name: zoomOutRight; }
+
+.in.zoomOutUp {
+  animation-name: zoomOutUp; }
+
+.in.slideInDown {
+  animation-name: slideInDown; }
+
+.in.slideInLeft {
+  animation-name: slideInLeft; }
+
+.in.slideInRight {
+  animation-name: slideInRight; }
+
+.in.slideInUp {
+  animation-name: slideInUp; }
+
+.in.slideOutDown {
+  animation-name: slideOutDown; }
+
+.in.slideOutLeft {
+  animation-name: slideOutLeft; }
+
+.in.slideOutRight {
+  animation-name: slideOutRight; }
+
+.in.slideOutUp {
+  animation-name: slideOutUp; }
+
+.in.skidRight {
+  animation-name: skidRight; }
+
+.in.skidRightBig {
+  animation-name: skidRightBig; }
+
+.in.skidLeft {
+  animation-name: skidLeft; }
+
+.in.skidLeftBig {
+  animation-name: skidLeftBig; }
+
+.in.shrinkIn {
+  animation-name: shrinkIn; }
+
+.in.shrinkInBlur {
+  animation-name: shrinkInBlur; }
