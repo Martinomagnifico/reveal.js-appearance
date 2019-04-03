@@ -35,7 +35,7 @@ const Appearance = window.Appearance || (function(){
 		let time = 0;
 		appearances.filter(element => {
 			if (!appearancesInFragment.includes(element)) {
-				timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
+				let timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
 				setTimeout((function () {
 					element.classList.add(options.visibleclass);
 				}), time);
@@ -46,7 +46,7 @@ const Appearance = window.Appearance || (function(){
 
 	const selectionArray = function (container, selectors) {
 		let selections = container.querySelectorAll(selectors);
-		selectionarray = Array.prototype.slice.call(selections);
+		let selectionarray = Array.prototype.slice.call(selections);
 		return selectionarray
 	};
 
@@ -72,7 +72,6 @@ const Appearance = window.Appearance || (function(){
 		}
 	}
 	const showHideFragment = function (event) {
-		console.log(event);
 		if (event.type == 'fragmentshowncomplete'){
 			showAppearances(event.fragment);
 		} else {
