@@ -93,3 +93,4 @@ const Appearance = window.Appearance || (function(){
 })();
 
 Reveal.registerPlugin('appearance', Appearance);
+/* global Reveal */

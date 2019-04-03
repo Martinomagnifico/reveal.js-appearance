@@ -55,12 +55,12 @@ const Transit = window.Transit || (function () {
 		const waitForFadeOut = function (endevent) {
 			if (endevent.target.tagName == "SECTION" && endevent.propertyName == "transform") {
 				slideChanged() ;
-			};
+			}
 		};
 		
 		if (event.type == "ready") {
 			slideChanged()
-		};
+		}
 
 		parent.addEventListener('transitionend', waitForFadeOut);
 
@@ -86,7 +86,7 @@ const Transit = window.Transit || (function () {
 						'fragment': fragment
 					} );
 				}
-			};
+			}
 		};
 		fragment.addEventListener('transitionend', waitForFadeOut);
 	}
@@ -105,3 +105,4 @@ const Transit = window.Transit || (function () {
 })();
 
 Reveal.registerPlugin( 'transit', Transit );
+/* global Reveal */
