@@ -32,22 +32,14 @@ const Appearance = window.Appearance || (function(){
 	}
 	
 	const loopAppearances = function (appearances, appearancesInFragment) {
-		let time = 0;
-		let timeincrement = 0;
+		let delay = 0;
 		appearances.filter((element, i) => {
-			
 			if (!appearancesInFragment.includes(element)) {
-
-				if (i > 0) {
-					timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
-				} else {
-					timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : 0);
-				}
-				time += timeincrement;
-				
+				let delayincrement = parseInt(element.dataset.delay ? element.dataset.delay : i > 0 ? options.delay : 0 )
+				delay += delayincrement;
 				setTimeout((function () {
 					element.classList.add(options.visibleclass);
-				}), time);
+				}), delay);
 			}
 		});
 	};
