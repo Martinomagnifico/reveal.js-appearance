@@ -28,6 +28,12 @@ const Transit = window.Transit || (function () {
 		extend( event, args );
 		parent.dispatchEvent( event );
 	}
+	
+	const selectionArray = function (container, selectors) {
+		let selections = container.querySelectorAll(selectors);
+		let selectionarray = Array.prototype.slice.call(selections);
+		return selectionarray
+	};
 
 	const slideAppear = function (event) {
 
@@ -45,8 +51,14 @@ const Transit = window.Transit || (function () {
 			if (Reveal.getCurrentSlide() == currentSlideBefore) {
 				parent.removeEventListener('transitionend', waitForFadeOut);
 				Reveal.getCurrentSlide().classList.add("done");
+				
 				if (Reveal.getPreviousSlide()) {
-					Reveal.getPreviousSlide().classList.remove("done");
+					let previousSlide = Reveal.getPreviousSlide();
+					previousSlide.classList.remove("done");
+					let fragments = selectionArray(previousSlide, `:scope .fragment`);
+					fragments.filter(fragment => {
+						fragment.classList.remove("done");
+					});
 				}
 				
 				emitSlid(Reveal.getCurrentSlide(), Reveal.getPreviousSlide());

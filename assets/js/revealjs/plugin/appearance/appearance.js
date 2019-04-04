@@ -33,13 +33,21 @@ const Appearance = window.Appearance || (function(){
 	
 	const loopAppearances = function (appearances, appearancesInFragment) {
 		let time = 0;
-		appearances.filter(element => {
+		let timeincrement = 0;
+		appearances.filter((element, i) => {
+			
 			if (!appearancesInFragment.includes(element)) {
-				let timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
+
+				if (i > 0) {
+					timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : options.delay);
+				} else {
+					timeincrement = parseInt(element.dataset.delay ? element.dataset.delay : 0);
+				}
+				time += timeincrement;
+				
 				setTimeout((function () {
 					element.classList.add(options.visibleclass);
 				}), time);
-				time += timeincrement;
 			}
 		});
 	};
@@ -71,6 +79,7 @@ const Appearance = window.Appearance || (function(){
 			hideAppearances(event.previousSlide);
 		}
 	}
+	
 	const showHideFragment = function (event) {
 		if (event.type == 'fragmentshowncomplete'){
 			showAppearances(event.fragment);

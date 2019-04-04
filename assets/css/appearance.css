@@ -83,290 +83,294 @@
   100% {
     transform: scale3d(1, 1, 1); } }
 
-/* Animate.css overrides */
-.reveal .animated {
-  visibility: hidden;
-  transition: visibility .5s ease;
-  animation: none; }
-  .reveal i.animated,
-  .reveal span.animated {
-    display: inline-block; }
-  .reveal .animated.in {
-    visibility: visible;
-    animation-duration: 1s; }
-    .reveal .animated.in.fast {
-      animation-duration: 800ms; }
-    .reveal .animated.in.faster {
-      animation-duration: 500ms; }
-    .reveal .animated.in.slow {
-      animation-duration: 2s; }
-    .reveal .animated.in.slower {
-      animation-duration: 3s; }
-
-.in.bounce {
+.animated.in.bounce {
   animation-name: bounce;
   transform-origin: center bottom; }
 
-.in.flash {
+.animated.in.flash {
   animation-name: flash; }
 
-.in.pulse {
+.animated.in.pulse {
   animation-name: pulse; }
 
-.in.rubberBand {
+.animated.in.rubberBand {
   animation-name: rubberBand; }
 
-.in.shake {
+.animated.in.shake {
   animation-name: shake; }
 
-.in.headShake {
+.animated.in.headShake {
   animation-timing-function: ease-in-out;
   animation-name: headShake; }
 
-.in.swing {
+.animated.in.swing {
   transform-origin: top center;
   animation-name: swing; }
 
-.in.tada {
+.animated.in.tada {
   animation-name: tada; }
 
-.in.wobble {
+.animated.in.wobble {
   animation-name: wobble; }
 
-.in.jello {
+.animated.in.jello {
   animation-name: jello;
   transform-origin: center; }
 
-.in.heartBeat {
+.animated.in.heartBeat {
   animation-name: heartBeat;
   animation-duration: 1.3s;
   animation-timing-function: ease-in-out; }
 
-.in.bounceIn {
+.animated.in.bounceIn {
   animation-duration: 0.75s;
   animation-name: bounceIn; }
 
-.in.bounceInDown {
+.animated.in.bounceInDown {
   animation-name: bounceInDown; }
 
-.in.bounceInLeft {
+.animated.in.bounceInLeft {
   animation-name: bounceInLeft; }
 
-.in.bounceInRight {
+.animated.in.bounceInRight {
   animation-name: bounceInRight; }
 
-.in.bounceInUp {
+.animated.in.bounceInUp {
   -webkit-animation-name: bounceInUp;
   animation-name: bounceInUp; }
 
-.in.bounceOut {
+.animated.in.bounceOut {
   animation-duration: 0.75s;
   animation-name: bounceOut; }
 
-.in.bounceOutDown {
+.animated.in.bounceOutDown {
   animation-name: bounceOutDown; }
 
-.in.bounceOutLeft {
+.animated.in.bounceOutLeft {
   animation-name: bounceOutLeft; }
 
-.in.bounceOutRight {
+.animated.in.bounceOutRight {
   animation-name: bounceOutRight; }
 
-.in.bounceOutUp {
+.animated.in.bounceOutUp {
   animation-name: bounceOutUp; }
 
-.in.fadeIn {
+.animated.in.fadeIn {
   animation-name: fadeIn; }
 
-.in.fadeInDown {
+.animated.in.fadeInDown {
   animation-name: fadeInDown; }
 
-.in.fadeInDownBig {
+.animated.in.fadeInDownBig {
   animation-name: fadeInDownBig; }
 
-.in.fadeInLeft {
+.animated.in.fadeInLeft {
   animation-name: fadeInLeft; }
 
-.in.fadeInLeftBig {
+.animated.in.fadeInLeftBig {
   animation-name: fadeInLeftBig; }
 
-.in.fadeInRight {
+.animated.in.fadeInRight {
   animation-name: fadeInRight; }
 
-.in.fadeInRightBig {
+.animated.in.fadeInRightBig {
   animation-name: fadeInRightBig; }
 
-.in.fadeInUp {
+.animated.in.fadeInUp {
   animation-name: fadeInUp; }
 
-.in.fadeInUpBig {
+.animated.in.fadeInUpBig {
   animation-name: fadeInUpBig; }
 
-.in.fadeOut {
+.animated.in.fadeOut {
   animation-name: fadeOut; }
 
-.in.fadeOutDown {
+.animated.in.fadeOutDown {
   animation-name: fadeOutDown; }
 
-.in.fadeOutDownBig {
+.animated.in.fadeOutDownBig {
   animation-name: fadeOutDownBig; }
 
-.in.fadeOutLeft {
+.animated.in.fadeOutLeft {
   animation-name: fadeOutLeft; }
 
-.in.fadeOutLeftBig {
+.animated.in.fadeOutLeftBig {
   animation-name: fadeOutLeftBig; }
 
-.in.fadeOutRight {
+.animated.in.fadeOutRight {
   animation-name: fadeOutRight; }
 
-.in.fadeOutRightBig {
+.animated.in.fadeOutRightBig {
   animation-name: fadeOutRightBig; }
 
-.in.fadeOutUp {
+.animated.in.fadeOutUp {
   animation-name: fadeOutUp; }
 
-.in.fadeOutUpBig {
+.animated.in.fadeOutUpBig {
   animation-name: fadeOutUpBig; }
 
-.in.animated.flip {
+.animated.in.animated.flip {
   backface-visibility: visible;
   animation-name: flip; }
 
-.in.flipInX {
+.animated.in.flipInX {
   backface-visibility: visible !important;
   animation-name: flipInX; }
 
-.in.flipInY {
+.animated.in.flipInY {
   backface-visibility: visible !important;
   animation-name: flipInY; }
 
-.in.flipOutX {
+.animated.in.flipOutX {
   animation-duration: 0.75s;
   animation-name: flipOutX;
   backface-visibility: visible !important; }
 
-.in.flipOutY {
+.animated.in.flipOutY {
   animation-duration: 0.75s;
   backface-visibility: visible !important;
   animation-name: flipOutY; }
 
-.in.lightSpeedIn {
+.animated.in.lightSpeedIn {
   animation-name: lightSpeedIn;
   animation-timing-function: ease-out; }
 
-.in.lightSpeedOut {
+.animated.in.lightSpeedOut {
   animation-name: lightSpeedOut;
   animation-timing-function: ease-in; }
 
-.in.rotateIn {
+.animated.in.rotateIn {
   animation-name: rotateIn; }
 
-.in.rotateInDownLeft {
+.animated.in.rotateInDownLeft {
   animation-name: rotateInDownLeft; }
 
-.in.rotateInDownRight {
+.animated.in.rotateInDownRight {
   animation-name: rotateInDownRight; }
 
-.in.rotateInUpLeft {
+.animated.in.rotateInUpLeft {
   animation-name: rotateInUpLeft; }
 
-.in.rotateOut {
+.animated.in.rotateOut {
   animation-name: rotateOut; }
 
-.in.rotateOutDownLeft {
+.animated.in.rotateOutDownLeft {
   animation-name: rotateOutDownLeft; }
 
-.in.rotateOutDownRight {
+.animated.in.rotateOutDownRight {
   animation-name: rotateOutDownRight; }
 
-.in.rotateOutUpLeft {
+.animated.in.rotateOutUpLeft {
   animation-name: rotateOutUpLeft; }
 
-.in.rotateOutUpRight {
+.animated.in.rotateOutUpRight {
   animation-name: rotateOutUpRight; }
 
-.in.hinge {
+.animated.in.hinge {
   animation-duration: 2s;
   animation-name: hinge; }
 
-.in.jackInTheBox {
+.animated.in.jackInTheBox {
   animation-name: jackInTheBox; }
 
-.in.rollIn {
+.animated.in.rollIn {
   animation-name: rollIn; }
 
-.in.rollOut {
+.animated.in.rollOut {
   animation-name: rollOut; }
 
-.in.zoomIn {
+.animated.in.zoomIn {
   animation-name: zoomIn; }
 
-.in.zoomInDown {
+.animated.in.zoomInDown {
   animation-name: zoomInDown; }
 
-.in.zoomInLeft {
+.animated.in.zoomInLeft {
   animation-name: zoomInLeft; }
 
-.in.zoomInRight {
+.animated.in.zoomInRight {
   animation-name: zoomInRight; }
 
-.in.zoomInUp {
+.animated.in.zoomInUp {
   animation-name: zoomInUp; }
 
-.in.zoomOut {
+.animated.in.zoomOut {
   animation-name: zoomOut; }
 
-.in.zoomOutDown {
+.animated.in.zoomOutDown {
   animation-name: zoomOutDown; }
 
-.in.zoomOutLeft {
+.animated.in.zoomOutLeft {
   animation-name: zoomOutLeft; }
 
-.in.zoomOutRight {
+.animated.in.zoomOutRight {
   animation-name: zoomOutRight; }
 
-.in.zoomOutUp {
+.animated.in.zoomOutUp {
   animation-name: zoomOutUp; }
 
-.in.slideInDown {
+.animated.in.slideInDown {
   animation-name: slideInDown; }
 
-.in.slideInLeft {
+.animated.in.slideInLeft {
   animation-name: slideInLeft; }
 
-.in.slideInRight {
+.animated.in.slideInRight {
   animation-name: slideInRight; }
 
-.in.slideInUp {
+.animated.in.slideInUp {
   animation-name: slideInUp; }
 
-.in.slideOutDown {
+.animated.in.slideOutDown {
   animation-name: slideOutDown; }
 
-.in.slideOutLeft {
+.animated.in.slideOutLeft {
   animation-name: slideOutLeft; }
 
-.in.slideOutRight {
+.animated.in.slideOutRight {
   animation-name: slideOutRight; }
 
-.in.slideOutUp {
+.animated.in.slideOutUp {
   animation-name: slideOutUp; }
 
-.in.skidRight {
+.animated.in.skidRight {
   animation-name: skidRight; }
 
-.in.skidRightBig {
+.animated.in.skidRightBig {
   animation-name: skidRightBig; }
 
-.in.skidLeft {
+.animated.in.skidLeft {
   animation-name: skidLeft; }
 
-.in.skidLeftBig {
+.animated.in.skidLeftBig {
   animation-name: skidLeftBig; }
 
-.in.shrinkIn {
+.animated.in.shrinkIn {
   animation-name: shrinkIn; }
 
-.in.shrinkInBlur {
+.animated.in.shrinkInBlur {
   animation-name: shrinkInBlur; }
+
+.animated.in.fast {
+  animation-duration: 800ms; }
+
+.animated.in.faster {
+  animation-duration: 500ms; }
+
+.animated.in.slow {
+  animation-duration: 2s; }
+
+.animated.in.slower {
+  animation-duration: 3s; }
+
+/* Animate.css overrides */
+.animated {
+  visibility: hidden;
+  transition: visibility .5s ease;
+  animation: none; }
+  i.animated,
+  span.animated {
+    display: inline-block; }
+  .animated.in {
+    visibility: visible;
+    animation-duration: 1s; }
