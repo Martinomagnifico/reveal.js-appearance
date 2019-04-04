@@ -78,27 +78,29 @@ const Transit = window.Transit || (function () {
 
 	};
 
-	const fragmentAppear = function (event) {
+	const fragmentChange = function (event) {
 
 		let fragment = event.fragment;
 
 		const waitForFadeOut = function (endevent) {
-			if ( endevent.target.classList.contains("fragment") && endevent.propertyName == "opacity"  ) {
+			
+			if (endevent.target == fragment && endevent.propertyName == "opacity" ) {
 
 				fragment.removeEventListener('transitionend', waitForFadeOut);
 				
-				if (endevent.target.classList.contains("visible") ){
-					endevent.target.classList.add("done");
+				if (fragment.classList.contains("visible") ){
+					fragment.classList.add("done");
 					dispatchEvent( 'fragmentshowncomplete', {
 						'fragment': fragment
 					} );
 				} else {
-					endevent.target.classList.remove("done");
+					fragment.classList.remove("done");
 					dispatchEvent( 'fragmenthiddencomplete', {
 						'fragment': fragment
 					} );
 				}
 			}
+			
 		};
 		fragment.addEventListener('transitionend', waitForFadeOut);
 	}
@@ -106,8 +108,8 @@ const Transit = window.Transit || (function () {
 	const init = function () {
 		Reveal.addEventListener('slidechanged', slideAppear, false);
 		Reveal.addEventListener('ready', slideAppear), false;
-		Reveal.addEventListener('fragmentshown', fragmentAppear, false);
-		Reveal.addEventListener('fragmenthidden', fragmentAppear, false);
+		Reveal.addEventListener('fragmentshown', fragmentChange, false);
+		Reveal.addEventListener('fragmenthidden', fragmentChange, false);
 	};
 
 	return {
