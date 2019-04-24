@@ -36,9 +36,9 @@ const Transit = window.Transit || (function () {
 	};
 
 	const slideAppear = function (event) {
-
 		let parent = document.querySelector(".slides");
 		let currentSlideBefore = event.currentSlide;
+		let myOpacity = window.getComputedStyle(currentSlideBefore, null).getPropertyValue("opacity");
 
 		const emitSlid = function (curSlide, prevSlide) {
 			dispatchEvent( 'slidechangecomplete', {
@@ -60,33 +60,36 @@ const Transit = window.Transit || (function () {
 						fragment.classList.remove("done");
 					});
 				}
-				
 				emitSlid(Reveal.getCurrentSlide(), Reveal.getPreviousSlide());
 			}
 		};
+
 		const waitForFadeOut = function (endevent) {
 			if (endevent.target.tagName == "SECTION" && endevent.propertyName == "transform") {
-				slideChanged() ;
+				slideChanged();
 			}
 		};
 		
 		if (event.type == "ready") {
 			slideChanged()
+		} else {
+			if (myOpacity == 1) {
+				slideChanged()
+			} else {
+				parent.addEventListener('transitionend', waitForFadeOut, false);
+			}
 		}
-
-		parent.addEventListener('transitionend', waitForFadeOut);
-
-	};
+	}; 
 
 	const fragmentChange = function (event) {
 
 		let fragment = event.fragment;
 
-		const waitForFadeOut = function (endevent) {
+		const waitForFragment = function (endevent) {
 			
 			if (endevent.target == fragment && endevent.propertyName == "opacity" ) {
 
-				fragment.removeEventListener('transitionend', waitForFadeOut);
+				fragment.removeEventListener('transitionend', waitForFragment);
 				
 				if (fragment.classList.contains("visible") ){
 					fragment.classList.add("done");
@@ -102,12 +105,12 @@ const Transit = window.Transit || (function () {
 			}
 			
 		};
-		fragment.addEventListener('transitionend', waitForFadeOut);
+		fragment.addEventListener('transitionend', waitForFragment);
 	}
-
+	
 	const init = function () {
 		Reveal.addEventListener('slidechanged', slideAppear, false);
-		Reveal.addEventListener('ready', slideAppear), false;
+		Reveal.addEventListener('ready', slideAppear, false);
 		Reveal.addEventListener('fragmentshown', fragmentChange, false);
 		Reveal.addEventListener('fragmenthidden', fragmentChange, false);
 	};
