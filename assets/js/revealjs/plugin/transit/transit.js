@@ -34,11 +34,14 @@ const Transit = window.Transit || (function () {
 		let selectionarray = Array.prototype.slice.call(selections);
 		return selectionarray
 	};
+	
+	const farSlide = function (slide) {
+		return !!( window.getComputedStyle(slide, null).getPropertyValue("opacity") > 0 )
+	}
 
 	const slideAppear = function (event) {
 		let parent = document.querySelector(".slides");
 		let currentSlideBefore = event.currentSlide;
-		let myOpacity = window.getComputedStyle(currentSlideBefore, null).getPropertyValue("opacity");
 
 		const emitSlid = function (curSlide, prevSlide) {
 			dispatchEvent( 'slidechangecomplete', {
@@ -69,16 +72,12 @@ const Transit = window.Transit || (function () {
 				slideChanged();
 			}
 		};
-		
+
 		if (event.type == "ready") {
-			slideChanged()
-		} else {
-			if (myOpacity == 1) {
-				slideChanged()
-			} else {
-				parent.addEventListener('transitionend', waitForFadeOut, false);
-			}
-		}
+			slideChanged();
+		} 
+		parent.addEventListener('transitionend', waitForFadeOut, false);
+
 	}; 
 
 	const fragmentChange = function (event) {
