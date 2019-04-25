@@ -2,7 +2,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Transit.js for Reveal.js 1.0.1
+ * Transit.js for Reveal.js 1.0.2
  *
  * @license 
  * MIT licensed
@@ -13,6 +13,17 @@
 
 
 const Transit = window.Transit || (function () {
+	
+	let options = Reveal.getConfig().transit || {};
+	let defaultOptions = {};
+
+	const defaults = function (options, defaultOptions) {
+		for ( var i in defaultOptions ) {
+			if ( !options.hasOwnProperty( i ) ) {
+				options[i] = defaultOptions[i];
+			}
+		}
+	}
 	
 	// Handy functions from Reveal.js
 	function extend( a, b ) {
@@ -34,10 +45,21 @@ const Transit = window.Transit || (function () {
 		let selectionarray = Array.prototype.slice.call(selections);
 		return selectionarray
 	};
-	
-	const farSlide = function (slide) {
-		return !!( window.getComputedStyle(slide, null).getPropertyValue("opacity") > 0 )
+
+	const farFrom = function (prevSlide) {
+		let lastOpacity = window.getComputedStyle(prevSlide, null).opacity;
+		let lastParentOpacity = window.getComputedStyle(prevSlide.parentNode, null).opacity; 
+
+		if ( lastOpacity != 0 && lastParentOpacity != 0 ){
+			return false
+		} else
+		if ( lastOpacity != 1  && lastParentOpacity == 1 ){
+			return true
+		} else {
+			return false
+		}
 	}
+
 
 	const slideAppear = function (event) {
 		let parent = document.querySelector(".slides");
@@ -48,9 +70,13 @@ const Transit = window.Transit || (function () {
 				'previousSlide': prevSlide,
 				'currentSlide': curSlide
 			} );
+			if (options.debug) {
+				console.log("Slide change complete")
+			}
 		};
 
 		const slideChanged = function () {
+			
 			if (Reveal.getCurrentSlide() == currentSlideBefore) {
 				parent.removeEventListener('transitionend', waitForFadeOut);
 				Reveal.getCurrentSlide().classList.add("done");
@@ -75,9 +101,15 @@ const Transit = window.Transit || (function () {
 
 		if (event.type == "ready") {
 			slideChanged();
-		} 
-		parent.addEventListener('transitionend', waitForFadeOut, false);
-
+		} else if (event.previousSlide) {
+			if ( farFrom(event.previousSlide) == true) {
+				slideChanged();
+			} else {
+				parent.addEventListener('transitionend', waitForFadeOut, false);
+			}
+		} else {
+			parent.addEventListener('transitionend', waitForFadeOut, false);
+		}
 	}; 
 
 	const fragmentChange = function (event) {
@@ -108,6 +140,7 @@ const Transit = window.Transit || (function () {
 	}
 	
 	const init = function () {
+		defaults( options, defaultOptions );
 		Reveal.addEventListener('slidechanged', slideAppear, false);
 		Reveal.addEventListener('ready', slideAppear, false);
 		Reveal.addEventListener('fragmentshown', fragmentChange, false);
