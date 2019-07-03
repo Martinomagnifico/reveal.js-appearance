@@ -89,7 +89,7 @@ const Transit = window.Transit || (function () {
 				if (Reveal.getPreviousSlide()) {
 					let previousSlide = Reveal.getPreviousSlide();
 					previousSlide.classList.remove("done");
-					let fragments = selectionArray(previousSlide, `:scope .fragment`);
+					let fragments = selectionArray(previousSlide, ":scope .fragment");
 	          			fragments.filter(function (fragment) {
             					fragment.classList.remove("done");
           				});
