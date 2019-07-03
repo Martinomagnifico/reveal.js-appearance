@@ -1,8 +1,10 @@
+"use strict";
+
 /*****************************************************************
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Transit.js for Reveal.js 1.0.2
+ * Transit.js for Reveal.js 1.0.3
  *
  * @license 
  * MIT licensed
@@ -13,6 +15,9 @@
 
 
 const Transit = window.Transit || (function () {
+
+	// Scope support polyfill
+	try{document.querySelector(":scope *")}catch(t){!function(t){let e=/:scope(?![\w-])/gi,r=u(t.querySelector);t.querySelector=function(t){return r.apply(this,arguments)};let c=u(t.querySelectorAll);if(t.querySelectorAll=function(t){return c.apply(this,arguments)},t.matches){let n=u(t.matches);t.matches=function(t){return n.apply(this,arguments)}}if(t.closest){let o=u(t.closest);t.closest=function(t){return o.apply(this,arguments)}}function u(t){return function(r){if(r&&e.test(r)){let c="q"+Math.floor(9e6*Math.random())+1e6;arguments[0]=r.replace(e,"["+c+"]"),this.setAttribute(c,"");let n=t.apply(this,arguments);return this.removeAttribute(c),n}return t.apply(this,arguments)}}}(Element.prototype)}
 	
 	let options = Reveal.getConfig().transit || {};
 	let defaultOptions = {};
@@ -85,9 +90,9 @@ const Transit = window.Transit || (function () {
 					let previousSlide = Reveal.getPreviousSlide();
 					previousSlide.classList.remove("done");
 					let fragments = selectionArray(previousSlide, `:scope .fragment`);
-					fragments.filter(fragment => {
-						fragment.classList.remove("done");
-					});
+	          			fragments.filter(function (fragment) {
+            					fragment.classList.remove("done");
+          				});
 				}
 				emitSlid(Reveal.getCurrentSlide(), Reveal.getPreviousSlide());
 			}
