@@ -1,7 +1,6 @@
 # reveal.js-appearance
 An animation plugin for [Reveal.js](https://revealjs.com)
 
-
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. 
 
 [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
@@ -12,7 +11,13 @@ Because the animations need to be kicked in, we wait for the slide transition to
 
 ## Installation
 
-Copy the appearance folder to the plugins folder of the reveal.js folder, like this: `plugin/appearance`. Now add it to the dependencies of Reveal.js:
+Either download the repository and save the content in `plugin/appearance` or add it as a git submodule:
+
+```bash
+git submodule add git@github.com:Martinomagnifico/reveal.js-appearance.git plugin/appearance
+```
+
+Now add it to the dependencies of Reveal.js:
 
 
 ```javascript
@@ -20,8 +25,8 @@ Reveal.initialize({
 	// ...
 	dependencies: [
 		// ... 
-		{ src: 'assets/js/revealjs/plugin/transit/transit.js', async: false },
-		{ src: 'assets/js/revealjs/plugin/appearance/appearance.js', async: false }
+		{ src: 'plugin/appearance/transit.js', async: false },
+		{ src: 'plugin/appearance/appearance.js', async: false }
 		// ... 
 	]
 });
@@ -29,7 +34,7 @@ Reveal.initialize({
 Now copy the appearance.css file and make a reference to it. Note that this example has an "assets" folder for resources. You can use whatever setup for the hierarchy, as long as the references are correct :-)
 
 ```html
-<link rel="stylesheet" href="assets/css/appearance.css">
+<link rel="stylesheet" href="plugin/appearance/css/appearance.css">
 ```
 
 
