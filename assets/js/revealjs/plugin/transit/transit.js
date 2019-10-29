@@ -21,6 +21,7 @@ const Transit = window.Transit || (function () {
 	
 	let options = Reveal.getConfig().transit || {};
 	let defaultOptions = {};
+	const parent = document.querySelector(".slides");
 
 	const defaults = function (options, defaultOptions) {
 		for ( var i in defaultOptions ) {
@@ -42,7 +43,7 @@ const Transit = window.Transit || (function () {
 		var event = document.createEvent( 'HTMLEvents', 1, 2 );
 		event.initEvent( type, true, true );
 		extend( event, args );
-		document.dispatchEvent( event );
+		parent.dispatchEvent( event );
 	}
 	
 	const selectionArray = function (container, selectors) {
@@ -67,7 +68,6 @@ const Transit = window.Transit || (function () {
 
 
 	const slideAppear = function (event) {
-		let parent = document.querySelector(".slides");
 		let currentSlideBefore = event.currentSlide;
 
 		const emitSlid = function (curSlide, prevSlide) {
