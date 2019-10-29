@@ -4,7 +4,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Transit.js for Reveal.js 1.0.3
+ * Transit.js for Reveal.js 1.0.4
  *
  * @license 
  * MIT licensed
@@ -42,7 +42,7 @@ const Transit = window.Transit || (function () {
 		var event = document.createEvent( 'HTMLEvents', 1, 2 );
 		event.initEvent( type, true, true );
 		extend( event, args );
-		parent.dispatchEvent( event );
+		document.dispatchEvent( event );
 	}
 	
 	const selectionArray = function (container, selectors) {
