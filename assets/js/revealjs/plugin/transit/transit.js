@@ -4,7 +4,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Transit.js for Reveal.js 1.0.4
+ * Transit.js for Reveal.js 1.0.5
  *
  * @license 
  * MIT licensed
@@ -99,7 +99,10 @@ const Transit = window.Transit || (function () {
 		};
 
 		const waitForFadeOut = function (endevent) {
-			if (endevent.target.tagName == "SECTION" && endevent.propertyName == "transform") {
+			if (endevent.target.tagName == "SECTION" &&
+				((endevent.propertyName == "transform")
+				|| (endevent.propertyName == "opacity")) )
+			{
 				slideChanged();
 			}
 		};
