@@ -16,7 +16,7 @@
         <section class="center">
           <h2 class="animated flipInX slow">Appearance.js for Reveal.js</h2>
         </section>
-        <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small><br><br><small>Appear.js needs Transit.js, a plugin that makes sure that the slide has completely 'slid' and fragments are completely shown.</small>
+        <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small><br><br><small>We do not want the animations to start during the slide transition, so we wait for the slide transition to end. Reveal versions lower than 4 have no "slidetransitionend" event, so we need the Transit.js plugin that handles that.</small>
           <p>Let's check out what appearance.js does:</p>
         </section>
         <section class="center">

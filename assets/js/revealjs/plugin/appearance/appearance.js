@@ -2,7 +2,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Appearance.js for Reveal.js 1.0.3
+ * Appearance.js for Reveal.js 1.0.4
  *
  * @license 
  * MIT licensed
@@ -48,6 +48,9 @@ const Appearance = window.Appearance || function () {
 		});
 	};
 
+	const semvercompare = function (a, b) {
+		let pa = a.split('.'); let pb = b.split('.'); for (let i = 0; i < 3; i++) { let na = Number(pa[i]); let nb = Number(pb[i]); if (na > nb) return 1; if (nb > na) return -1; if (!isNaN(na) && isNaN(nb)) return 1; if (isNaN(na) && !isNaN(nb)) return -1; } return 0;
+	};
 
 	const selectionArray = function (container, selectors) {
 		let selections = container.querySelectorAll(selectors);
@@ -77,7 +80,7 @@ const Appearance = window.Appearance || function () {
 	};
 
 	const showHideFragment = function (event) {
-		if (event.type == "fragmentshowncomplete") {
+		if (event.type == "fragmentshowncomplete" || event.type == "fragmentshown") {
 			showAppearances(event.fragment);
 		} else {
 			hideAppearances(event.fragment);
@@ -86,9 +89,19 @@ const Appearance = window.Appearance || function () {
 
 	const init = function () {
 		defaults(options, defaultOptions);
-		window.addEventListener("slidechangecomplete", showHideSlide, false);
-		window.addEventListener("fragmentshowncomplete", showHideFragment, false);
-		window.addEventListener("fragmenthiddencomplete", showHideFragment, false);
+
+		if ( semvercompare(Reveal.VERSION, "4" ) > -1 ) {
+			window.addEventListener("ready", showHideSlide, false);
+			window.addEventListener("slidetransitionend", showHideSlide, false);
+			window.addEventListener("fragmentshown", showHideFragment, false);
+			window.addEventListener("fragmenthidden", showHideFragment, false);
+		} else if (Reveal.hasPlugin('transit')) {
+			window.addEventListener("slidechangecomplete", showHideSlide, false);
+			window.addEventListener("fragmentshowncomplete", showHideFragment, false);
+			window.addEventListener("fragmenthiddencomplete", showHideFragment, false);
+		} else {
+			console.log("Appearance needs either Reveal.js version 4 or newer, or the Transit plugin.")
+		}
 	};
 
 	return {

@@ -1,12 +1,12 @@
 # reveal.js-appearance
-An animation plugin for [Reveal.js](https://revealjs.com)
+An animation plugin for Reveal.js
 
 
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. 
 
 [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
 
-Because the animations need to be kicked in, we wait for the slide transition to end. Reveal.js has no "slidechangecomplete" event, so we need the transit.js plugin that handles the events. In a future version of Reveal.js we probably won't need Transit.js.
+We do not want the animations to start during the slide transition, so we wait for the slide transition to end. Reveal versions lower than 4 have no "slidetransitionend" event, so we need the Transit.js plugin that handles that.
 
 
 
