@@ -13,7 +13,9 @@ We do not want the animations to start during the slide transition, so we wait f
 
 ### JavaScript
 
-The Appearance plugin has been rewritten for Reveal.js version 4. It will not work with an older version of Reveal.js.
+The Appearance plugin has been rewritten for Reveal.js version 4.
+
+If you want to use Appearance with an older version of Reveal, use the [1.0.4 version](https://github.com/Martinomagnifico/reveal.js-appearance/releases).
 
 There are two JavaScript files for Appearance, a regular one, `appearance.js`, and a module one, `appearance.esm.js`. You only need one of them:
 
