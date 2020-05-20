@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Appearance.js for Reveal.js</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/reveal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0/css/theme/black.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+    <meta name="author" content="Martinomagnifico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/reveal.css">
+    <link rel="stylesheet" href="assets/css/black.css">
+    <style>
+      .slides {
+      	opacity: 0;
+      	transition: opacity .5s ease;
+      }
+      .reveal.ready .slides {
+      	opacity: 1;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <link rel="stylesheet" href="assets/css/appearance.css">
+    <style>
+      .backgrounds {
+      	background: #1a1626;
+      }
+      
+    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <section class="center">
-          <h2 class="animated flipInX slow">Appearance.js for Reveal.js</h2>
+          <h1 class="animated flipInX slow">Appearance</h1>
+          <h3 class="animated flipInX slow" data-delay="700">for Reveal.js</h3>
         </section>
         <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small><br><br><small>We do not want the animations to start during the slide transition, so we wait for the slide transition to end. Reveal versions lower than 4 have no "slidetransitionend" event, so we need the Transit.js plugin that handles that.</small>
           <p>Let's check out what appearance.js does:</p>
@@ -24,7 +43,7 @@
           <ul>
             <li class="animated bounceInLeft">Add it to any text element</li>
             <li class="animated bounceInLeft">Like list items, or headers.</li>
-            <li class="animated bounceInLeft">It adds some attention.</li>
+            <li class="animated bounceInLeft">It adds some impact.</li>
           </ul>
         </section>
         <section class="center">
@@ -85,7 +104,8 @@
         </section>
       </div>
     </div>
-    <script src="assets/js/revealjs/reveal.js"></script>
+    <script type="text/javascript" src="assets/js/revealjs/reveal.js"></script>
+    <script src="assets/js/revealjs/plugin/appearance/appearance.js"></script>
     <script>
       Reveal.initialize({
       	transition: 'convex',
@@ -97,10 +117,7 @@
       		hideagain: true,
       		delay: 300
       	},
-      	dependencies: [
-      		{ src: 'assets/js/revealjs/plugin/transit/transit.js', async: false },
-      		{ src: 'assets/js/revealjs/plugin/appearance/appearance.js', async: false }
-      	]
+      	plugins: [ RevealAppearance ]
       });
     </script>
   </body>
