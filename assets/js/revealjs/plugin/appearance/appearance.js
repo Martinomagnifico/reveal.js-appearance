@@ -3,7 +3,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * RevealAppearance.js for Reveal.js 
+ * Appearance.js for Reveal.js 
  * Version 1.0.5
  * 
  * @license 
@@ -18,7 +18,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global = global || self, global.RevealAppearance = factory());
+	(global = global || self, global.Appearance = factory());
 }(this, (function () { 'use strict';
 
 	var Plugin = function Plugin() {

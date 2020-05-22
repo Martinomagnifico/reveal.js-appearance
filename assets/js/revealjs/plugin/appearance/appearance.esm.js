@@ -3,7 +3,7 @@
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * RevealAppearance.js for Reveal.js 
+ * Appearance.js for Reveal.js 
  * Version 1.0.5
  * 
  * @license 

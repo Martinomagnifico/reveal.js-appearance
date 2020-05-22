@@ -23,11 +23,13 @@ There are two JavaScript files for Appearance, a regular one, `appearance.js`, a
 If you're not using ES modules, for example, to be able to run your presentation from the filesystem, you can add it like this:
 
 ```html
-<script src="dist/plugin/appearance.js"></script>
+<script type="text/javascript" src="assets/js/revealjs/reveal.js"></script>
+<script src="assets/js/revealjs/plugin/appearance/appearance.js"></script>
 <script>
-  Reveal.initialize({
-    plugins: [ Appearance ]
-  });
+	Reveal.initialize({
+		...
+		plugins: [ Appearance ]
+	});
 </script>
 ```
 #### As a module 
@@ -35,11 +37,13 @@ If you're using ES modules, you can add it like this:
 
 ```html
 <script type="module">
-  import Reveal from 'dist/reveal.esm.js';
-  import Appearance from 'dist/plugin/appearance.esm.js';
-  Reveal.initialize({
-    plugins: [ Appearance ]
-  });
+	// This will need a server
+	import Reveal from './assets/js/revealjs/reveal.esm.js';
+	import Appearance from './assets/js/revealjs/plugin/appearance/appearance.esm.js';
+	Reveal.initialize({
+		...
+		plugins: [ Appearance ]
+	});
 </script>
 ```
 
