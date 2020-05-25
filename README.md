@@ -1,5 +1,5 @@
 # Appearance
-An animation plugin for Reveal.js 4
+A plugin for [Reveal.js](https://revealjs.com) 4 that adds appearance effects to elements.
 
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. 
 
@@ -10,6 +10,8 @@ We do not want the animations to start during the slide transition, so we wait f
 
 
 ## Installation
+
+Copy the appearance folder to the plugins folder of the reveal.js folder, like this: `plugin/appearance`. Now add it to the dependencies of Reveal.js:
 
 ### JavaScript
 
@@ -23,11 +25,11 @@ There are two JavaScript files for Appearance, a regular one, `appearance.js`, a
 If you're not using ES modules, for example, to be able to run your presentation from the filesystem, you can add it like this:
 
 ```html
-<script type="text/javascript" src="assets/js/revealjs/reveal.js"></script>
-<script src="assets/js/revealjs/plugin/appearance/appearance.js"></script>
+<script type="text/javascript" src="dist/reveal.js"></script>
+<script src="plugin/appearance/appearance.js"></script>
 <script>
 	Reveal.initialize({
-		...
+		// ...
 		plugins: [ Appearance ]
 	});
 </script>
@@ -38,10 +40,10 @@ If you're using ES modules, you can add it like this:
 ```html
 <script type="module">
 	// This will need a server
-	import Reveal from './assets/js/revealjs/reveal.esm.js';
-	import Appearance from './assets/js/revealjs/plugin/appearance/appearance.esm.js';
+	import Reveal from './dist/reveal.esm.js';
+	import Appearance from './plugin/appearance/appearance.esm.js';
 	Reveal.initialize({
-		...
+		// ...
 		plugins: [ Appearance ]
 	});
 </script>
@@ -56,7 +58,7 @@ You now need to add TWO stylesheets to your presentation.
 
 ```html
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
-<link rel="stylesheet" href="dist/css/appearance.css">
+<link rel="stylesheet" href="plugin/appearance/appearance.css">
 ```
 
 

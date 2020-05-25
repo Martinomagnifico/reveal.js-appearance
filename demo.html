@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Appearance.js for Reveal.js (4)</title>
+    <title>Appearance.js for Reveal.js</title>
     <meta name="description" content="">
     <meta name="author" content="Martinomagnifico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/reveal.css">
-    <link rel="stylesheet" href="assets/css/black.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
     <style>
       .slides {
       	opacity: 0;
@@ -20,7 +20,7 @@
       }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
-    <link rel="stylesheet" href="assets/css/appearance.css">
+    <link rel="stylesheet" href="plugin/appearance/appearance.css">
     <style>
       .backgrounds {
       	background: #1a1626;
@@ -48,38 +48,38 @@
         </section>
         <section class="center">
           <h3>Let images appear</h3>
-          <div class="padded"><img class="animated flipInX" data-src="assets/img/1.jpg"></div>
-          <div class="padded"><img class="animated flipInX" data-src="assets/img/2.jpg"></div>
-          <div class="padded"><img class="animated flipInX" data-src="assets/img/3.jpg"></div>
-          <div class="padded"><img class="animated flipInX" data-src="assets/img/4.jpg"></div>
-          <div class="padded"><img class="animated flipInX" data-src="assets/img/5.jpg"></div>
+          <div class="padded"><img class="animated flipInX" data-src="img/1.jpg"></div>
+          <div class="padded"><img class="animated flipInX" data-src="img/2.jpg"></div>
+          <div class="padded"><img class="animated flipInX" data-src="img/3.jpg"></div>
+          <div class="padded"><img class="animated flipInX" data-src="img/4.jpg"></div>
+          <div class="padded"><img class="animated flipInX" data-src="img/5.jpg"></div>
         </section>
         <section class="center">
           <h3>Change the delay</h3><small>Use data-delay="*" on each element, where the wildcard is the delay in microseconds</small>
-          <div class="padded"><img class="animated fadeInDown" data-src="assets/img/1.jpg" data-delay="200"></div>
-          <div class="padded"><img class="animated fadeInDown" data-src="assets/img/2.jpg" data-delay="160"></div>
-          <div class="padded"><img class="animated fadeInDown" data-src="assets/img/3.jpg" data-delay="120"></div>
-          <div class="padded"><img class="animated fadeInDown" data-src="assets/img/4.jpg" data-delay="80"></div>
-          <div class="padded"><img class="animated fadeInDown" data-src="assets/img/5.jpg" data-delay="40"></div>
+          <div class="padded"><img class="animated fadeInDown" data-src="img/1.jpg" data-delay="200"></div>
+          <div class="padded"><img class="animated fadeInDown" data-src="img/2.jpg" data-delay="160"></div>
+          <div class="padded"><img class="animated fadeInDown" data-src="img/3.jpg" data-delay="120"></div>
+          <div class="padded"><img class="animated fadeInDown" data-src="img/4.jpg" data-delay="80"></div>
+          <div class="padded"><img class="animated fadeInDown" data-src="img/5.jpg" data-delay="40"></div>
         </section>
         <section>
           <section class="center">
             <h3>Change the animation speed</h3><small>Use the speed classes from Animate.css to change the speed of the animation:</small>
-            <div class="padded"><img class="animated bounceIn slower" data-src="assets/img/1.jpg"><br><small>slower</small></div>
-            <div class="padded"><img class="animated bounceIn slow" data-src="assets/img/2.jpg"><br><small>slow</small></div>
-            <div class="padded"><img class="animated bounceIn" data-src="assets/img/3.jpg"><br><small></small></div>
-            <div class="padded"><img class="animated bounceIn fast" data-src="assets/img/4.jpg"><br><small>fast</small></div>
-            <div class="padded"><img class="animated bounceIn faster" data-src="assets/img/5.jpg"><br><small>faster</small></div>
+            <div class="padded"><img class="animated bounceIn slower" data-src="img/1.jpg"><br><small>slower</small></div>
+            <div class="padded"><img class="animated bounceIn slow" data-src="img/2.jpg"><br><small>slow</small></div>
+            <div class="padded"><img class="animated bounceIn" data-src="img/3.jpg"><br><small></small></div>
+            <div class="padded"><img class="animated bounceIn fast" data-src="img/4.jpg"><br><small>fast</small></div>
+            <div class="padded"><img class="animated bounceIn faster" data-src="img/5.jpg"><br><small>faster</small></div>
           </section>
           <section class="center">
             <h3>Inside fragments</h3>
             <p class="animated fadeIn">Like this <span class="animated fadeInDown faster" style="font-size: .8em">(click next)</span>:</p>
             <div class="fragment">
-              <div class="padded"><img class="animated fadeInDown" data-src="assets/img/1.jpg"></div>
-              <div class="padded"><img class="animated fadeInDown" data-src="assets/img/2.jpg"></div>
-              <div class="padded"><img class="animated fadeInDown" data-src="assets/img/3.jpg"></div>
-              <div class="padded"><img class="animated fadeInDown" data-src="assets/img/4.jpg"></div>
-              <div class="padded"><img class="animated fadeInDown" data-src="assets/img/5.jpg"></div>
+              <div class="padded"><img class="animated fadeInDown" data-src="img/1.jpg"></div>
+              <div class="padded"><img class="animated fadeInDown" data-src="img/2.jpg"></div>
+              <div class="padded"><img class="animated fadeInDown" data-src="img/3.jpg"></div>
+              <div class="padded"><img class="animated fadeInDown" data-src="img/4.jpg"></div>
+              <div class="padded"><img class="animated fadeInDown" data-src="img/5.jpg"></div>
             </div>
           </section>
         </section>
@@ -104,8 +104,8 @@
         </section>
       </div>
     </div>
-    <script type="text/javascript" src="assets/js/revealjs/reveal.js"></script>
-    <script src="assets/js/revealjs/plugin/appearance/appearance.js"></script>
+    <script type="text/javascript" src="dist/reveal.js"></script>
+    <script src="plugin/appearance/appearance.js"></script>
     <script>
       Reveal.initialize({
       	transition: 'convex',
@@ -117,7 +117,7 @@
       		hideagain: true,
       		delay: 300
       	},
-      	plugins: [ RevealAppearance ]
+      	plugins: [ Appearance ]
       });
     </script>
   </body>
