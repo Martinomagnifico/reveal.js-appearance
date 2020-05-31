@@ -1,0 +1,11 @@
+.slides {
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+  -o-transition: opacity .5s ease;
+  transition: opacity .5s ease; }
+
+.reveal.ready .slides {
+  opacity: 1; }
+
+.backgrounds {
+  background: #1a1626; }
