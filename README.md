@@ -14,13 +14,30 @@ We do not want the animations to start during the slide transition, so we wait f
 
 ## Installation
 
-Copy the appearance folder to the plugins folder of the reveal.js folder, like this: `plugin/appearance`. Now add it to the dependencies of Reveal.js:
-
-### JavaScript
-
 The Appearance plugin has been rewritten for Reveal.js version 4.
 
 If you want to use Appearance with an older version of Reveal, use the [1.0.4 version](https://github.com/Martinomagnifico/reveal.js-appearance/releases).
+
+### Regular installation
+
+Copy the appearance folder to the plugins folder of the reveal.js folder, like this: `plugin/appearance`.
+
+### npm installation
+
+This plugin is published to, and can be installed from, npm.
+
+```javascript
+npm install reveal.js-appearance
+```
+The Appearance plugin folder can then be referenced from `node_modules/reveal.js-appearance/plugin/appearance`
+
+
+
+## Setup
+
+### JavaScript
+
+
 
 There are two JavaScript files for Appearance, a regular one, `appearance.js`, and a module one, `appearance.esm.js`. You only need one of them:
 
@@ -66,7 +83,7 @@ You now need to add TWO stylesheets to your presentation.
 
 
 
-## Setup
+### HTML
 
 It is easy to set up your HTML structure for Appearance: 
 
@@ -120,7 +137,9 @@ or the speed of each animation, using the tempo classes from Animate.css:
 ```
 
 ## Like it?
-This is my second Github repo... let me know if you like it.
+If you like it, please star this repo! 
+
+And if you want to show off what you made with it, please do :-)
 
 
 ## License

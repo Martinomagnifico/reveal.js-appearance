@@ -1,0 +1,16 @@
+{
+    "name": "reveal.js-appearance",
+    "version": "1.0.5",
+    "description": "A plugin for Reveal.js 4 that adds appearance effects to elements",
+    "keywords": "reveal, reveal.js, reveal-plugin, plugin, text effects",
+    "homepage": "https://github.com/Martinomagnifico/reveal.js-appearance",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Martinomagnifico/reveal.js-appearance.git"
+    },
+    "peerDependencies": {
+        "reveal.js": "^4.0"
+    },
+    "author": "Martijn De Jongh",
+    "license": "MIT, Copyright (C) 2020 Martijn De Jongh"
+}
