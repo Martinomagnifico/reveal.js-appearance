@@ -594,3 +594,8 @@
     visibility: visible;
     -webkit-animation-duration: 1s;
             animation-duration: 1s; }
+
+.print-pdf {
+  color: black; }
+  .print-pdf .animated {
+    visibility: visible; }

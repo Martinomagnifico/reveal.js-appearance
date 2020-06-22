@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.0.5
+ * Version 1.0.6
  * 
  * @license 
  * MIT licensed
