@@ -6,15 +6,26 @@ const Plugin = () => {
 
 	const appear = function (deck, options) {
 
+		let timeouts = [];
+
+		const clearTimeOuts = function (timeouts) {
+			for (let i=0; i<timeouts.length; i++) {
+				clearTimeout(timeouts[i]);
+			}
+			timeouts = [];
+		};
+
 		const loopAppearances = function (appearances, appearancesInFragment) {
 			let delay = 0;
 			appearances.filter(function (element, i) {
 				if (!(appearancesInFragment.indexOf(element) > -1)) {
 					let delayincrement = parseInt(element.dataset.delay ? element.dataset.delay : i > 0 ? options.delay : 0);
 					delay += delayincrement;
-					setTimeout(function () {
-						element.classList.add(options.visibleclass);
-					}, delay);
+					timeouts.push(
+						setTimeout(function () {
+							element.classList.add(options.visibleclass);
+						}, delay)
+					);
 				}
 			});
 		};
@@ -34,11 +45,13 @@ const Plugin = () => {
 		const hideAppearances = function (container) {
 			let disappearances = selectionArray(container, ":scope .".concat(options.baseclass, ", :scope .fragment.visible"));
 			disappearances.filter(function (element) {
-			element.classList.remove(element.classList.contains("fragment") ? "visible" : options.visibleclass);
+				element.classList.remove(element.classList.contains("fragment") ? "visible" : options.visibleclass);
 			});
 		};
 	
 		const showHideSlide = function (event) {
+
+			clearTimeOuts(timeouts);
 			showAppearances(event.currentSlide);
 	
 			if (event.previousSlide && options.hideagain) {

@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.0.6
+ * Version 1.0.7
  * 
  * @license 
  * MIT licensed
@@ -73,15 +73,25 @@
 	  }
 
 	  var appear = function appear(deck, options) {
+	    var timeouts = [];
+
+	    var clearTimeOuts = function clearTimeOuts(timeouts) {
+	      for (var i = 0; i < timeouts.length; i++) {
+	        clearTimeout(timeouts[i]);
+	      }
+
+	      timeouts = [];
+	    };
+
 	    var loopAppearances = function loopAppearances(appearances, appearancesInFragment) {
 	      var delay = 0;
 	      appearances.filter(function (element, i) {
 	        if (!(appearancesInFragment.indexOf(element) > -1)) {
 	          var delayincrement = parseInt(element.dataset.delay ? element.dataset.delay : i > 0 ? options.delay : 0);
 	          delay += delayincrement;
-	          setTimeout(function () {
+	          timeouts.push(setTimeout(function () {
 	            element.classList.add(options.visibleclass);
-	          }, delay);
+	          }, delay));
 	        }
 	      });
 	    };
@@ -106,6 +116,7 @@
 	    };
 
 	    var showHideSlide = function showHideSlide(event) {
+	      clearTimeOuts(timeouts);
 	      showAppearances(event.currentSlide);
 
 	      if (event.previousSlide && options.hideagain) {
