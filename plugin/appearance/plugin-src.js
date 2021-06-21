@@ -68,7 +68,7 @@ const Plugin = () => {
 		};
 
 		deck.on( 'ready', event => { showHideSlide(event) } );
-		deck.on( 'slidetransitionend', event => {showHideSlide(event)  });
+		deck.on( options.revealAfterTransitionEnd ? 'slidetransitionend' : 'slidechanged', event => {showHideSlide(event)  });
 		deck.on( 'fragmentshown', event => {showHideFragment(event)  });
 		deck.on( 'fragmenthidden', event => {showHideFragment(event)  });
 	};
@@ -79,7 +79,8 @@ const Plugin = () => {
 			baseclass: 'animated',
 			visibleclass: 'in',
 			hideagain: true,
-			delay: 300
+			delay: 300,
+			revealAfterTransitionEnd: true
 		};
 
 		const defaults = function (options, defaultOptions) {

@@ -135,7 +135,7 @@
 	    deck.on('ready', function (event) {
 	      showHideSlide(event);
 	    });
-	    deck.on('slidetransitionend', function (event) {
+	    deck.on(options.revealAfterTransitionEnd ? 'slidetransitionend' : 'slidechanged', function (event) {
 	      showHideSlide(event);
 	    });
 	    deck.on('fragmentshown', function (event) {
@@ -151,7 +151,8 @@
 	      baseclass: 'animated',
 	      visibleclass: 'in',
 	      hideagain: true,
-	      delay: 300
+	      delay: 300,
+		  revealAfterTransitionEnd: true
 	    };
 
 	    var defaults = function defaults(options, defaultOptions) {
