@@ -1,28 +1,26 @@
-
 /*****************************************************************
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/Martinomagnifico
  *
- * Appearance.js for Reveal.js 
+ * Appearance.js for Reveal.js
  * Version 1.0.7
- * 
- * @license 
+ *
+ * @license
  * MIT licensed
  *
  * Thanks to:
- *  - Hakim El Hattab, Reveal.js 
+ *  - Hakim El Hattab, Reveal.js
  *  - Daniel Eden, Animate.css
  ******************************************************************/
-
 
 var Plugin = function Plugin() {
   // Scope support polyfill
   try {
     document.querySelector(":scope *");
   } catch (t) {
-    !function (t) {
+    !(function (t) {
       var e = /:scope(?![\w-])/gi,
-          r = u(t.querySelector);
+        r = u(t.querySelector);
 
       t.querySelector = function (t) {
         return r.apply(this, arguments);
@@ -30,9 +28,12 @@ var Plugin = function Plugin() {
 
       var c = u(t.querySelectorAll);
 
-      if (t.querySelectorAll = function (t) {
-        return c.apply(this, arguments);
-      }, t.matches) {
+      if (
+        ((t.querySelectorAll = function (t) {
+          return c.apply(this, arguments);
+        }),
+        t.matches)
+      ) {
         var n = u(t.matches);
 
         t.matches = function (t) {
@@ -53,7 +54,7 @@ var Plugin = function Plugin() {
           if (r && e.test(r)) {
             var _c = "q" + Math.floor(9e6 * Math.random()) + 1e6;
 
-            arguments[0] = r.replace(e, "[" + _c + "]"), this.setAttribute(_c, "");
+            (arguments[0] = r.replace(e, "[" + _c + "]")), this.setAttribute(_c, "");
 
             var _n = t.apply(this, arguments);
 
@@ -63,7 +64,7 @@ var Plugin = function Plugin() {
           return t.apply(this, arguments);
         };
       }
-    }(Element.prototype);
+    })(Element.prototype);
   }
 
   var appear = function appear(deck, options) {
@@ -83,9 +84,11 @@ var Plugin = function Plugin() {
         if (!(appearancesInFragment.indexOf(element) > -1)) {
           var delayincrement = parseInt(element.dataset.delay ? element.dataset.delay : i > 0 ? options.delay : 0);
           delay += delayincrement;
-          timeouts.push(setTimeout(function () {
-            element.classList.add(options.visibleclass);
-          }, delay));
+          timeouts.push(
+            setTimeout(function () {
+              element.classList.add(options.visibleclass);
+            }, delay)
+          );
         }
       });
     };
@@ -126,27 +129,27 @@ var Plugin = function Plugin() {
       }
     };
 
-    deck.on('ready', function (event) {
+    deck.on("ready", function (event) {
       showHideSlide(event);
     });
-    deck.on(options.revealAfterTransitionEnd ? 'slidetransitionend' : 'slidechanged', function (event) {
+    deck.on(options.revealAfterTransitionEnd ? "slidetransitionend" : "autoanimate", function (event) {
       showHideSlide(event);
     });
-    deck.on('fragmentshown', function (event) {
+    deck.on("fragmentshown", function (event) {
       showHideFragment(event);
     });
-    deck.on('fragmenthidden', function (event) {
+    deck.on("fragmenthidden", function (event) {
       showHideFragment(event);
     });
   };
 
   var init = function init(deck) {
     var defaultOptions = {
-      baseclass: 'animated',
-      visibleclass: 'in',
+      baseclass: "animated",
+      visibleclass: "in",
       hideagain: true,
       delay: 300,
-			revealAfterTransitionEnd: true
+      revealAfterTransitionEnd: true,
     };
 
     var defaults = function defaults(options, defaultOptions) {
@@ -163,8 +166,8 @@ var Plugin = function Plugin() {
   };
 
   return {
-    id: 'appearance',
-    init: init
+    id: "appearance",
+    init: init,
   };
 };
 
