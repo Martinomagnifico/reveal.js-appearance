@@ -132,7 +132,7 @@ var Plugin = function Plugin() {
     deck.on("ready", function (event) {
       showHideSlide(event);
     });
-    deck.on(options.revealAfterTransitionEnd ? "slidetransitionend" : "autoanimate", function (event) {
+    deck.on(options.revealAfterTransitionEnd ? "slidetransitionend" : "slidechanged", function (event) {
       showHideSlide(event);
     });
     deck.on("fragmentshown", function (event) {

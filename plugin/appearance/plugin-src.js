@@ -105,7 +105,7 @@ const Plugin = () => {
     deck.on("ready", (event) => {
       showHideSlide(event);
     });
-    deck.on(options.revealAfterTransitionEnd ? "slidetransitionend" : "autoanimate", (event) => {
+    deck.on(options.revealAfterTransitionEnd ? "slidetransitionend" : "slidechanged", (event) => {
       showHideSlide(event);
     });
     deck.on("fragmentshown", (event) => {
