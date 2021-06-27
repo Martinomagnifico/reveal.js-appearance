@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.0.7
+ * Version 1.0.8
  * 
  * @license 
  * MIT licensed
@@ -73,6 +73,10 @@
 	  }
 
 	  var appear = function appear(deck, options) {
+	    var debugLog = function debugLog(text) {
+	      if (options.debug) console.log(text);
+	    };
+
 	    var timeouts = [];
 
 	    var clearTimeOuts = function clearTimeOuts(timeouts) {
@@ -103,6 +107,7 @@
 	    };
 
 	    var showAppearances = function showAppearances(container) {
+	      clearTimeOuts(timeouts);
 	      var appearances = selectionArray(container, ":scope ." + options.baseclass);
 	      var appearancesInFragment = selectionArray(container, ":scope .fragment .".concat(options.baseclass));
 	      loopAppearances(appearances, appearancesInFragment);
@@ -115,12 +120,71 @@
 	      });
 	    };
 
-	    var showHideSlide = function showHideSlide(event) {
-	      clearTimeOuts(timeouts);
-	      showAppearances(event.currentSlide);
+	    var fromTo = function fromTo(event) {
+	      var slides = {};
+	      slides.from = event.fromSlide ? event.fromSlide : event.previousSlide ? event.previousSlide : null;
+	      slides.to = event.toSlide ? event.toSlide : event.currentSlide ? event.currentSlide : null;
+	      return slides;
+	    };
 
-	      if (event.previousSlide && options.hideagain) {
-	        hideAppearances(event.previousSlide);
+	    var showHideSlide = function showHideSlide(event) {
+	      var slides = fromTo(event);
+
+	      if (slides.to.dataset.appearevent == "auto") {
+	        slides.to.dataset.appearevent == "autoanimate";
+	      }
+
+	      if (options.appearevent == "auto") {
+	        options.appearevent == "autoanimate";
+	      }
+
+	      if (!slides.to.dataset.eventdone) {
+	        debugLog("Event: '".concat(event.type, "'"));
+
+	        if (event.type == "ready") {
+	          showAppearances(slides.to);
+	        } else if (event.type == slides.to.dataset.appearevent) {
+	          slides.to.dataset.eventdone = true;
+	          showAppearances(slides.to);
+	        } else if (event.type == options.appearevent) {
+	          slides.to.dataset.eventdone = true;
+	          showAppearances(slides.to);
+	        } else if (event.type == "slidetransitionend" && options.appearevent == "autoanimate") {
+	          slides.to.dataset.eventdone = true;
+	          showAppearances(slides.to);
+	        } else if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
+	          if (slides.from && options.hideagain) {
+	            hideAppearances(slides.to);
+	          }
+
+	          showAppearances(slides.to);
+	          slides.to.dataset.eventdone = true;
+	        } else if (event.type == 'overviewhidden') {
+	          document.body.dataset.exitoverview = true; // This hack is because Reveal does not give the correct clicked slide from the overviewhidden event
+
+	          setTimeout(function () {
+	            document.body.removeAttribute('data-exitoverview');
+	          }, 500);
+
+	          if (event.currentSlide) {
+	            if (slides.from && options.hideagain) {
+	              hideAppearances(event.previousSlide);
+	            }
+
+	            showAppearances(slides.to);
+	            event.currentSlide.dataset.eventdone = true;
+	          }
+	        }
+	      }
+
+	      if (event.type == "slidechanged" && slides.from) {
+	        slides.from.removeAttribute('data-eventdone');
+	      }
+
+	      if (slides.from) {
+	        if (event.type == 'slidetransitionend' && options.hideagain) {
+	          hideAppearances(slides.from);
+	        }
 	      }
 	    };
 
@@ -135,7 +199,16 @@
 	    deck.on('ready', function (event) {
 	      showHideSlide(event);
 	    });
+	    deck.on('slidechanged', function (event) {
+	      showHideSlide(event);
+	    });
 	    deck.on('slidetransitionend', function (event) {
+	      showHideSlide(event);
+	    });
+	    deck.on('autoanimate', function (event) {
+	      showHideSlide(event);
+	    });
+	    deck.on('overviewhidden', function (event) {
 	      showHideSlide(event);
 	    });
 	    deck.on('fragmentshown', function (event) {
@@ -151,7 +224,9 @@
 	      baseclass: 'animated',
 	      visibleclass: 'in',
 	      hideagain: true,
-	      delay: 300
+	      delay: 300,
+	      debug: false,
+	      appearevent: 'slidetransitionend'
 	    };
 
 	    var defaults = function defaults(options, defaultOptions) {

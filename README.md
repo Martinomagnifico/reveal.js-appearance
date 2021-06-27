@@ -77,7 +77,7 @@ You now need to add TWO stylesheets to your presentation.
 * The second file is included with Appearance. It adds to the first stylesheet to allow for a non-animated state.
 
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <link rel="stylesheet" href="plugin/appearance/appearance.css">
 ```
 
@@ -104,19 +104,35 @@ There are a few options that you can change from the Reveal.js options. The valu
 Reveal.initialize({
 	// ...
 	appearance: {
-		// The baseclass uses the baseclass from Animate.css. Change it if you like
 		baseclass: 'animated',
-		// Use a specific class for the visible state.
 		visibleclass: 'in',
-		// Change this if you want to see the shown elements if you go back
 		hideagain: true,
-		// Base time between appearances
-		delay: 300
-		
+		delay: 300,
+		appearevent: 'slidetransitionend'
 	},
 	plugins: [ Appearance ]
 });
 ```
+
+* **`baseclass`**: The baseclass uses the baseclass from Animate.css. Change it if you like. 
+* **`visibleclass`**: Use a specific class for the visible state. 
+* **`hideagain`**: Change this (true/false) if you want to see the shown elements if you go back.
+* **`delay`**: Base time in ms between appearances.
+* **`appearevent`**: Use a specific event at which Appearance starts.
+
+### Changing the 'appearevent'
+When you navigate from slide to slide, you can set transition effects in Reveal. These effects take some time. That's why, by default, Appearance only starts when the slide transition has ended. 
+
+There are cases however, where  there is hardly any transition, for example, when going from an autoanimate slide to another. Reveal then suppresses the user-set transition to a short opacity change. Starting *together with* the transition might then be nicer. You can use any of the following events:
+
+* *slidetransitionend* (default, Appearance will start animating elements after the transition)
+* *slidechanged* (Appearance will start together with the transition)
+* *auto* (Appearance will start together with the transition, but only on autoanimate slides, other slides will use *slidetransitionend*) 
+
+These same event triggers can be set through the data-attribute `data-appearevent`. 
+
+When using Appearance inside an autoanimate slide, and changing the appearevent to `slidechanged` or `auto`, keep in mind that Reveal transforms opacity for all non-autoanimate items, while Appearance does the same on most of the effects. To avoid strange behaviour, wrap these Appearance items in a parent. For example, a list of animated bullet points works well, because the animated class is on the children, not the parent. Separate headings or other elements do not have that, so should be wrapped.
+
 
 
 ## Now change it
@@ -129,6 +145,7 @@ It is easy to change the effects for Appearance. Here's how to change the delay 
 <img class="animated fadeInDown" data-src="3.jpg" data-delay="120">
 ```
 or the speed of each animation, using the tempo classes from Animate.css:
+
 ```html
 <img class="animated fadeInDown slower" data-src="1.jpg">
 <img class="animated fadeInDown slow" data-src="2.jpg">
@@ -145,4 +162,4 @@ And if you want to show off what you made with it, please do :-)
 ## License
 MIT licensed
 
-Copyright (C) 2020 Martijn De Jongh (Martino)
+Copyright (C) 2021 Martijn De Jongh (Martino)

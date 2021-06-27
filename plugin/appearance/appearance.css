@@ -192,392 +192,253 @@
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); } }
 
-.animated.in.bounce {
-  -webkit-animation-name: bounce;
-          animation-name: bounce;
-  -webkit-transform-origin: center bottom;
-      -ms-transform-origin: center bottom;
-          transform-origin: center bottom; }
-
-.animated.in.flash {
-  -webkit-animation-name: flash;
-          animation-name: flash; }
-
-.animated.in.pulse {
-  -webkit-animation-name: pulse;
-          animation-name: pulse; }
-
-.animated.in.rubberBand {
-  -webkit-animation-name: rubberBand;
-          animation-name: rubberBand; }
-
-.animated.in.shake {
-  -webkit-animation-name: shake;
-          animation-name: shake; }
-
-.animated.in.headShake {
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -webkit-animation-name: headShake;
-          animation-name: headShake; }
-
-.animated.in.swing {
-  -webkit-transform-origin: top center;
-      -ms-transform-origin: top center;
-          transform-origin: top center;
-  -webkit-animation-name: swing;
-          animation-name: swing; }
-
-.animated.in.tada {
-  -webkit-animation-name: tada;
-          animation-name: tada; }
-
-.animated.in.wobble {
-  -webkit-animation-name: wobble;
-          animation-name: wobble; }
-
-.animated.in.jello {
-  -webkit-animation-name: jello;
-          animation-name: jello;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center; }
-
-.animated.in.heartBeat {
-  -webkit-animation-name: heartBeat;
-          animation-name: heartBeat;
-  -webkit-animation-duration: 1.3s;
-          animation-duration: 1.3s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out; }
-
-.animated.in.bounceIn {
-  -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
-  -webkit-animation-name: bounceIn;
-          animation-name: bounceIn; }
-
-.animated.in.bounceInDown {
-  -webkit-animation-name: bounceInDown;
-          animation-name: bounceInDown; }
-
-.animated.in.bounceInLeft {
-  -webkit-animation-name: bounceInLeft;
-          animation-name: bounceInLeft; }
-
-.animated.in.bounceInRight {
-  -webkit-animation-name: bounceInRight;
-          animation-name: bounceInRight; }
-
-.animated.in.bounceInUp {
-  -webkit-animation-name: bounceInUp;
-  animation-name: bounceInUp; }
-
-.animated.in.bounceOut {
-  -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
-  -webkit-animation-name: bounceOut;
-          animation-name: bounceOut; }
-
-.animated.in.bounceOutDown {
-  -webkit-animation-name: bounceOutDown;
-          animation-name: bounceOutDown; }
-
-.animated.in.bounceOutLeft {
-  -webkit-animation-name: bounceOutLeft;
-          animation-name: bounceOutLeft; }
-
-.animated.in.bounceOutRight {
-  -webkit-animation-name: bounceOutRight;
-          animation-name: bounceOutRight; }
-
-.animated.in.bounceOutUp {
-  -webkit-animation-name: bounceOutUp;
-          animation-name: bounceOutUp; }
-
-.animated.in.fadeIn {
-  -webkit-animation-name: fadeIn;
-          animation-name: fadeIn; }
-
-.animated.in.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-          animation-name: fadeInDown; }
-
-.animated.in.fadeInDownBig {
-  -webkit-animation-name: fadeInDownBig;
-          animation-name: fadeInDownBig; }
-
-.animated.in.fadeInLeft {
-  -webkit-animation-name: fadeInLeft;
-          animation-name: fadeInLeft; }
-
-.animated.in.fadeInLeftBig {
-  -webkit-animation-name: fadeInLeftBig;
-          animation-name: fadeInLeftBig; }
-
-.animated.in.fadeInRight {
-  -webkit-animation-name: fadeInRight;
-          animation-name: fadeInRight; }
-
-.animated.in.fadeInRightBig {
-  -webkit-animation-name: fadeInRightBig;
-          animation-name: fadeInRightBig; }
-
-.animated.in.fadeInUp {
-  -webkit-animation-name: fadeInUp;
-          animation-name: fadeInUp; }
-
-.animated.in.fadeInUpBig {
-  -webkit-animation-name: fadeInUpBig;
-          animation-name: fadeInUpBig; }
-
-.animated.in.fadeOut {
-  -webkit-animation-name: fadeOut;
-          animation-name: fadeOut; }
-
-.animated.in.fadeOutDown {
-  -webkit-animation-name: fadeOutDown;
-          animation-name: fadeOutDown; }
-
-.animated.in.fadeOutDownBig {
-  -webkit-animation-name: fadeOutDownBig;
-          animation-name: fadeOutDownBig; }
-
-.animated.in.fadeOutLeft {
-  -webkit-animation-name: fadeOutLeft;
-          animation-name: fadeOutLeft; }
-
-.animated.in.fadeOutLeftBig {
-  -webkit-animation-name: fadeOutLeftBig;
-          animation-name: fadeOutLeftBig; }
-
-.animated.in.fadeOutRight {
-  -webkit-animation-name: fadeOutRight;
-          animation-name: fadeOutRight; }
-
-.animated.in.fadeOutRightBig {
-  -webkit-animation-name: fadeOutRightBig;
-          animation-name: fadeOutRightBig; }
-
-.animated.in.fadeOutUp {
-  -webkit-animation-name: fadeOutUp;
-          animation-name: fadeOutUp; }
-
-.animated.in.fadeOutUpBig {
-  -webkit-animation-name: fadeOutUpBig;
-          animation-name: fadeOutUpBig; }
-
-.animated.in.animated.flip {
-  -webkit-backface-visibility: visible;
-          backface-visibility: visible;
-  -webkit-animation-name: flip;
-          animation-name: flip; }
-
-.animated.in.flipInX {
-  -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-  -webkit-animation-name: flipInX;
-          animation-name: flipInX; }
-
-.animated.in.flipInY {
-  -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-  -webkit-animation-name: flipInY;
-          animation-name: flipInY; }
-
-.animated.in.flipOutX {
-  -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
-  -webkit-animation-name: flipOutX;
-          animation-name: flipOutX;
-  -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important; }
-
-.animated.in.flipOutY {
-  -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
-  -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-  -webkit-animation-name: flipOutY;
-          animation-name: flipOutY; }
-
-.animated.in.lightSpeedIn {
-  -webkit-animation-name: lightSpeedIn;
-          animation-name: lightSpeedIn;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out; }
-
-.animated.in.lightSpeedOut {
-  -webkit-animation-name: lightSpeedOut;
-          animation-name: lightSpeedOut;
-  -webkit-animation-timing-function: ease-in;
-          animation-timing-function: ease-in; }
-
-.animated.in.rotateIn {
-  -webkit-animation-name: rotateIn;
-          animation-name: rotateIn; }
-
-.animated.in.rotateInDownLeft {
-  -webkit-animation-name: rotateInDownLeft;
-          animation-name: rotateInDownLeft; }
-
-.animated.in.rotateInDownRight {
-  -webkit-animation-name: rotateInDownRight;
-          animation-name: rotateInDownRight; }
-
-.animated.in.rotateInUpLeft {
-  -webkit-animation-name: rotateInUpLeft;
-          animation-name: rotateInUpLeft; }
-
-.animated.in.rotateOut {
-  -webkit-animation-name: rotateOut;
-          animation-name: rotateOut; }
-
-.animated.in.rotateOutDownLeft {
-  -webkit-animation-name: rotateOutDownLeft;
-          animation-name: rotateOutDownLeft; }
-
-.animated.in.rotateOutDownRight {
-  -webkit-animation-name: rotateOutDownRight;
-          animation-name: rotateOutDownRight; }
-
-.animated.in.rotateOutUpLeft {
-  -webkit-animation-name: rotateOutUpLeft;
-          animation-name: rotateOutUpLeft; }
-
-.animated.in.rotateOutUpRight {
-  -webkit-animation-name: rotateOutUpRight;
-          animation-name: rotateOutUpRight; }
-
-.animated.in.hinge {
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-name: hinge;
-          animation-name: hinge; }
-
-.animated.in.jackInTheBox {
-  -webkit-animation-name: jackInTheBox;
-          animation-name: jackInTheBox; }
-
-.animated.in.rollIn {
-  -webkit-animation-name: rollIn;
-          animation-name: rollIn; }
-
-.animated.in.rollOut {
-  -webkit-animation-name: rollOut;
-          animation-name: rollOut; }
-
-.animated.in.zoomIn {
-  -webkit-animation-name: zoomIn;
-          animation-name: zoomIn; }
-
-.animated.in.zoomInDown {
-  -webkit-animation-name: zoomInDown;
-          animation-name: zoomInDown; }
-
-.animated.in.zoomInLeft {
-  -webkit-animation-name: zoomInLeft;
-          animation-name: zoomInLeft; }
-
-.animated.in.zoomInRight {
-  -webkit-animation-name: zoomInRight;
-          animation-name: zoomInRight; }
-
-.animated.in.zoomInUp {
-  -webkit-animation-name: zoomInUp;
-          animation-name: zoomInUp; }
-
-.animated.in.zoomOut {
-  -webkit-animation-name: zoomOut;
-          animation-name: zoomOut; }
-
-.animated.in.zoomOutDown {
-  -webkit-animation-name: zoomOutDown;
-          animation-name: zoomOutDown; }
-
-.animated.in.zoomOutLeft {
-  -webkit-animation-name: zoomOutLeft;
-          animation-name: zoomOutLeft; }
-
-.animated.in.zoomOutRight {
-  -webkit-animation-name: zoomOutRight;
-          animation-name: zoomOutRight; }
-
-.animated.in.zoomOutUp {
-  -webkit-animation-name: zoomOutUp;
-          animation-name: zoomOutUp; }
-
-.animated.in.slideInDown {
-  -webkit-animation-name: slideInDown;
-          animation-name: slideInDown; }
-
-.animated.in.slideInLeft {
-  -webkit-animation-name: slideInLeft;
-          animation-name: slideInLeft; }
-
-.animated.in.slideInRight {
-  -webkit-animation-name: slideInRight;
-          animation-name: slideInRight; }
-
-.animated.in.slideInUp {
-  -webkit-animation-name: slideInUp;
-          animation-name: slideInUp; }
-
-.animated.in.slideOutDown {
-  -webkit-animation-name: slideOutDown;
-          animation-name: slideOutDown; }
-
-.animated.in.slideOutLeft {
-  -webkit-animation-name: slideOutLeft;
-          animation-name: slideOutLeft; }
-
-.animated.in.slideOutRight {
-  -webkit-animation-name: slideOutRight;
-          animation-name: slideOutRight; }
-
-.animated.in.slideOutUp {
-  -webkit-animation-name: slideOutUp;
-          animation-name: slideOutUp; }
-
-.animated.in.skidRight {
-  -webkit-animation-name: skidRight;
-          animation-name: skidRight; }
-
-.animated.in.skidRightBig {
-  -webkit-animation-name: skidRightBig;
-          animation-name: skidRightBig; }
-
-.animated.in.skidLeft {
-  -webkit-animation-name: skidLeft;
-          animation-name: skidLeft; }
-
-.animated.in.skidLeftBig {
-  -webkit-animation-name: skidLeftBig;
-          animation-name: skidLeftBig; }
-
-.animated.in.shrinkIn {
-  -webkit-animation-name: shrinkIn;
-          animation-name: shrinkIn; }
-
-.animated.in.shrinkInBlur {
-  -webkit-animation-name: shrinkInBlur;
-          animation-name: shrinkInBlur; }
-
-.animated.in.fast {
-  -webkit-animation-duration: 800ms;
-          animation-duration: 800ms; }
-
-.animated.in.faster {
-  -webkit-animation-duration: 500ms;
-          animation-duration: 500ms; }
-
-.animated.in.slow {
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s; }
-
-.animated.in.slower {
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s; }
+.animated.in {
+  /* Attention seekers */
+  /* Back entrances */
+  /* Bouncing entrances  */
+  /* Fading entrances */
+  /* Flippers */
+  /* Lightspeed */
+  /* Rotating entrances */
+  /* Specials */
+  /* Zooming entrances */
+  /* Sliding entrances */
+  /* Appearance animation classes */ }
+  .animated.in.bounce {
+    -webkit-animation-name: bounce;
+            animation-name: bounce;
+    -webkit-transform-origin: center bottom;
+        -ms-transform-origin: center bottom;
+            transform-origin: center bottom; }
+  .animated.in.flash {
+    -webkit-animation-name: flash;
+            animation-name: flash; }
+  .animated.in.pulse {
+    -webkit-animation-name: pulse;
+            animation-name: pulse; }
+  .animated.in.rubberBand {
+    -webkit-animation-name: rubberBand;
+            animation-name: rubberBand; }
+  .animated.in.shake {
+    -webkit-animation-name: shake;
+            animation-name: shake; }
+  .animated.in.shakeX {
+    -webkit-animation-name: shakeX;
+            animation-name: shakeX; }
+  .animated.in.shakeY {
+    -webkit-animation-name: shakeY;
+            animation-name: shakeY; }
+  .animated.in.headShake {
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-animation-name: headShake;
+            animation-name: headShake; }
+  .animated.in.swing {
+    -webkit-transform-origin: top center;
+        -ms-transform-origin: top center;
+            transform-origin: top center;
+    -webkit-animation-name: swing;
+            animation-name: swing; }
+  .animated.in.tada {
+    -webkit-animation-name: tada;
+            animation-name: tada; }
+  .animated.in.wobble {
+    -webkit-animation-name: wobble;
+            animation-name: wobble; }
+  .animated.in.jello {
+    -webkit-animation-name: jello;
+            animation-name: jello;
+    -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+            transform-origin: center; }
+  .animated.in.heartBeat {
+    -webkit-animation-name: heartBeat;
+            animation-name: heartBeat;
+    -webkit-animation-duration: 1.3s;
+            animation-duration: 1.3s;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out; }
+  .animated.in.backInDown {
+    -webkit-animation-name: backInDown;
+            animation-name: backInDown; }
+  .animated.in.backInLeft {
+    -webkit-animation-name: backInLeft;
+            animation-name: backInLeft; }
+  .animated.in.backInRight {
+    -webkit-animation-name: backInRight;
+            animation-name: backInRight; }
+  .animated.in.backInUp {
+    -webkit-animation-name: backInUp;
+            animation-name: backInUp; }
+  .animated.in.bounceIn {
+    -webkit-animation-duration: 0.75s;
+            animation-duration: 0.75s;
+    -webkit-animation-name: bounceIn;
+            animation-name: bounceIn; }
+  .animated.in.bounceInDown {
+    -webkit-animation-name: bounceInDown;
+            animation-name: bounceInDown; }
+  .animated.in.bounceInLeft {
+    -webkit-animation-name: bounceInLeft;
+            animation-name: bounceInLeft; }
+  .animated.in.bounceInRight {
+    -webkit-animation-name: bounceInRight;
+            animation-name: bounceInRight; }
+  .animated.in.bounceInUp {
+    -webkit-animation-name: bounceInUp;
+    animation-name: bounceInUp; }
+  .animated.in.fadeIn {
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn; }
+  .animated.in.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+            animation-name: fadeInDown; }
+  .animated.in.fadeInDownBig {
+    -webkit-animation-name: fadeInDownBig;
+            animation-name: fadeInDownBig; }
+  .animated.in.fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft; }
+  .animated.in.fadeInLeftBig {
+    -webkit-animation-name: fadeInLeftBig;
+            animation-name: fadeInLeftBig; }
+  .animated.in.fadeInRight {
+    -webkit-animation-name: fadeInRight;
+            animation-name: fadeInRight; }
+  .animated.in.fadeInRightBig {
+    -webkit-animation-name: fadeInRightBig;
+            animation-name: fadeInRightBig; }
+  .animated.in.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp; }
+  .animated.in.fadeInUpBig {
+    -webkit-animation-name: fadeInUpBig;
+            animation-name: fadeInUpBig; }
+  .animated.in.fadeInTopLeft {
+    -webkit-animation-name: fadeInTopLeft;
+            animation-name: fadeInTopLeft; }
+  .animated.in.fadeInTopRight {
+    -webkit-animation-name: fadeInTopRight;
+            animation-name: fadeInTopRight; }
+  .animated.in.fadeInBottomLeft {
+    -webkit-animation-name: fadeInBottomLeft;
+            animation-name: fadeInBottomLeft; }
+  .animated.in.fadeInBottomRight {
+    -webkit-animation-name: fadeInBottomRight;
+            animation-name: fadeInBottomRight; }
+  .animated.in.flip {
+    -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+    -webkit-animation-name: flip;
+            animation-name: flip; }
+  .animated.in.flipInX {
+    -webkit-backface-visibility: visible !important;
+            backface-visibility: visible !important;
+    -webkit-animation-name: flipInX;
+            animation-name: flipInX; }
+  .animated.in.flipInY {
+    -webkit-backface-visibility: visible !important;
+            backface-visibility: visible !important;
+    -webkit-animation-name: flipInY;
+            animation-name: flipInY; }
+  .animated.in.lightSpeedIn {
+    -webkit-animation-name: lightSpeedIn;
+            animation-name: lightSpeedIn;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out; }
+  .animated.in.lightSpeedInRight {
+    -webkit-animation-name: lightSpeedInRight;
+            animation-name: lightSpeedInRight;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out; }
+  .animated.in.lightSpeedInLeft {
+    -webkit-animation-name: lightSpeedInLeft;
+            animation-name: lightSpeedInLeft;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out; }
+  .animated.in.rotateIn {
+    -webkit-animation-name: rotateIn;
+            animation-name: rotateIn; }
+  .animated.in.rotateInDownLeft {
+    -webkit-animation-name: rotateInDownLeft;
+            animation-name: rotateInDownLeft; }
+  .animated.in.rotateInDownRight {
+    -webkit-animation-name: rotateInDownRight;
+            animation-name: rotateInDownRight; }
+  .animated.in.rotateInUpLeft {
+    -webkit-animation-name: rotateInUpLeft;
+            animation-name: rotateInUpLeft; }
+  .animated.in.rotateInUpRight {
+    -webkit-animation-name: rotateInUpLeft;
+            animation-name: rotateInUpLeft; }
+  .animated.in.hinge {
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+    -webkit-animation-name: hinge;
+            animation-name: hinge; }
+  .animated.in.jackInTheBox {
+    -webkit-animation-name: jackInTheBox;
+            animation-name: jackInTheBox; }
+  .animated.in.rollIn {
+    -webkit-animation-name: rollIn;
+            animation-name: rollIn; }
+  .animated.in.zoomIn {
+    -webkit-animation-name: zoomIn;
+            animation-name: zoomIn; }
+  .animated.in.zoomInDown {
+    -webkit-animation-name: zoomInDown;
+            animation-name: zoomInDown; }
+  .animated.in.zoomInLeft {
+    -webkit-animation-name: zoomInLeft;
+            animation-name: zoomInLeft; }
+  .animated.in.zoomInRight {
+    -webkit-animation-name: zoomInRight;
+            animation-name: zoomInRight; }
+  .animated.in.zoomInUp {
+    -webkit-animation-name: zoomInUp;
+            animation-name: zoomInUp; }
+  .animated.in.slideInDown {
+    -webkit-animation-name: slideInDown;
+            animation-name: slideInDown; }
+  .animated.in.slideInLeft {
+    -webkit-animation-name: slideInLeft;
+            animation-name: slideInLeft; }
+  .animated.in.slideInRight {
+    -webkit-animation-name: slideInRight;
+            animation-name: slideInRight; }
+  .animated.in.slideInUp {
+    -webkit-animation-name: slideInUp;
+            animation-name: slideInUp; }
+  .animated.in.skidRight {
+    -webkit-animation-name: skidRight;
+            animation-name: skidRight; }
+  .animated.in.skidRightBig {
+    -webkit-animation-name: skidRightBig;
+            animation-name: skidRightBig; }
+  .animated.in.skidLeft {
+    -webkit-animation-name: skidLeft;
+            animation-name: skidLeft; }
+  .animated.in.skidLeftBig {
+    -webkit-animation-name: skidLeftBig;
+            animation-name: skidLeftBig; }
+  .animated.in.shrinkIn {
+    -webkit-animation-name: shrinkIn;
+            animation-name: shrinkIn; }
+  .animated.in.shrinkInBlur {
+    -webkit-animation-name: shrinkInBlur;
+            animation-name: shrinkInBlur; }
+  .animated.in.fast {
+    -webkit-animation-duration: 800ms;
+            animation-duration: 800ms; }
+  .animated.in.faster {
+    -webkit-animation-duration: 500ms;
+            animation-duration: 500ms; }
+  .animated.in.slow {
+    -webkit-animation-duration: 2s;
+            animation-duration: 2s; }
+  .animated.in.slower {
+    -webkit-animation-duration: 3s;
+            animation-duration: 3s; }
 
 /* Animate.css overrides */
 .animated {
@@ -594,8 +455,15 @@
     visibility: visible;
     -webkit-animation-duration: 1s;
             animation-duration: 1s; }
+  .reveal.overview .animated {
+    visibility: visible;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s; }
 
 .print-pdf {
   color: black; }
   .print-pdf .animated {
     visibility: visible; }
+    .print-pdf .animated.in {
+      -webkit-animation: none;
+              animation: none; }

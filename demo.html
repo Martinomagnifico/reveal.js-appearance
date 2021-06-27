@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
     <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="plugin/appearance/appearance.css">
 </head>
 
@@ -70,6 +70,23 @@
                         <div class="padded"><img class="animated fadeInDown" data-src="img/5.jpg"></div>
                     </div>
                 </section>
+                <section class="center" data-auto-animate>
+                    <h3>Set the event for Appearance</h3>
+                </section>
+                <section class="center" data-auto-animate>
+                    <h3>Set the event for Appearance</h3>
+                    <div>
+                        <p class="animated fadeInUp">You can use any of the following events:</p>
+                    </div>
+                    <ul>
+                        <li class="animated bounceInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
+                        <li class="animated bounceInLeft"><em>slidechanged</em> (with the transition)</li>
+                        <li class="animated bounceInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
+                    </ul>
+                    <div>
+                        <p class="animated fadeInUp">This can also be set per-slide with data-attributes</p><small class="animated fadeInUp">Reveal forces opacity changes on unmatched autoanimate items, while Appearance does the same. To avoid getting animation stutter, make sure that your Appearance items are nested in a parent that does not use an animation class.</small>
+                    </div>
+                </section>
             </section>
             <section class="center" data-transition="convex-in fade-out">
                 <h3>Additional animations:</h3>
@@ -98,12 +115,6 @@
         Reveal.initialize({
             transition: "convex",
             history: true,
-            appearance: {
-                baseclass: "animated",
-                visibleclass: "in",
-                hideagain: true,
-                delay: 300
-            },
             plugins: [
                 Appearance
             ]
