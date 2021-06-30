@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.0.8
+ * Version 1.0.9
  * 
  * @license 
  * MIT licensed
@@ -125,11 +125,11 @@ var Plugin = function Plugin() {
       var slides = fromTo(event);
 
       if (slides.to.dataset.appearevent == "auto") {
-        slides.to.dataset.appearevent == "autoanimate";
+        slides.to.dataset.appearevent = "autoanimate";
       }
 
       if (options.appearevent == "auto") {
-        options.appearevent == "autoanimate";
+        options.appearevent = "autoanimate";
       }
 
       if (!slides.to.dataset.eventdone) {
@@ -154,8 +154,7 @@ var Plugin = function Plugin() {
           showAppearances(slides.to);
           slides.to.dataset.eventdone = true;
         } else if (event.type == 'overviewhidden') {
-          document.body.dataset.exitoverview = true; // This hack is because Reveal does not give the correct clicked slide from the overviewhidden event
-
+          document.body.dataset.exitoverview = true;
           setTimeout(function () {
             document.body.removeAttribute('data-exitoverview');
           }, 500);

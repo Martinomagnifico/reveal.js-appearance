@@ -23,8 +23,8 @@
                 <h1 class="animated flipInX slow">Appearance</h1>
                 <h3 class="animated flipInX slow" data-delay="700">for Reveal.js</h3>
             </section>
-            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small><br><br><small>We do not want the animations to start during the slide transition, so we wait for the slide transition to end. Reveal versions lower than 4 have no "slidetransitionend" event, so we need the Transit.js plugin that handles that.</small>
-                <p>Let's check out what appearance.js does:</p>
+            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. Appearance is a plugin for Reveal.js that does the same. </small><br><br><small>Appearance is easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small>
+                <p>Let's check out what Appearance does:</p>
             </section>
             <section class="center">
                 <h3>Let text appear</h3>
@@ -71,10 +71,10 @@
                     </div>
                 </section>
                 <section class="center" data-auto-animate>
-                    <h3>Set the event for Appearance</h3>
+                    <h3>Change when Appearance starts</h3>
                 </section>
-                <section class="center" data-auto-animate>
-                    <h3>Set the event for Appearance</h3>
+                <section class="center" data-auto-animate data-appearevent="auto">
+                    <h3>Change when Appearance starts</h3>
                     <div>
                         <p class="animated fadeInUp">You can use any of the following events:</p>
                     </div>
@@ -83,9 +83,7 @@
                         <li class="animated bounceInLeft"><em>slidechanged</em> (with the transition)</li>
                         <li class="animated bounceInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
                     </ul>
-                    <div>
-                        <p class="animated fadeInUp">This can also be set per-slide with data-attributes</p><small class="animated fadeInUp">Reveal forces opacity changes on unmatched autoanimate items, while Appearance does the same. To avoid getting animation stutter, make sure that your Appearance items are nested in a parent that does not use an animation class.</small>
-                    </div>
+                    <div><br><small class="animated fadeInUp">This can also be set per-slide with data-attributes.</small></div>
                 </section>
             </section>
             <section class="center" data-transition="convex-in fade-out">
@@ -115,6 +113,13 @@
         Reveal.initialize({
             transition: "convex",
             history: true,
+            appearance: {
+                baseclass: "animated",
+                visibleclass: "in",
+                hideagain: true,
+                delay: 300,
+                appearevent: "slidetransitionend"
+            },
             plugins: [
                 Appearance
             ]

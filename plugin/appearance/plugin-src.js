@@ -6,7 +6,6 @@ const Plugin = () => {
 
 	const appear = function (deck, options) {
 
-
 		const debugLog = function(text) {
 			if (options.debug) console.log(text);
 		}
@@ -67,8 +66,8 @@ const Plugin = () => {
 
 			let slides = fromTo(event);
 
-			if (slides.to.dataset.appearevent == "auto") {slides.to.dataset.appearevent == "autoanimate"}
-			if (options.appearevent == "auto") {options.appearevent == "autoanimate"}
+			if (slides.to.dataset.appearevent == "auto") {slides.to.dataset.appearevent = "autoanimate"}
+			if (options.appearevent == "auto") {options.appearevent = "autoanimate"}
 
 			if ( !slides.to.dataset.eventdone ) {
 
@@ -82,6 +81,7 @@ const Plugin = () => {
 					showAppearances(slides.to);
 
 				} else if (event.type == options.appearevent) {
+					
 					slides.to.dataset.eventdone = true;
 					showAppearances(slides.to);
 
@@ -100,7 +100,6 @@ const Plugin = () => {
 
 					document.body.dataset.exitoverview = true;
 
-					// This hack is because Reveal does not give the correct clicked slide from the overviewhidden event
 					setTimeout(function () {
 						document.body.removeAttribute('data-exitoverview')
 					}, 500)
