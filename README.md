@@ -1,6 +1,5 @@
 # Appearance
 
-
 [![Version](https://img.shields.io/npm/v/reveal.js-appearance)]() [![Version](https://img.shields.io/npms-io/maintenance-score/reveal.js-appearance)]() [![Downloads](https://img.shields.io/npm/dt/reveal.js-appearance)]()
 
 A plugin for [Reveal.js](https://revealjs.com) 4 that adds appearance effects to elements.
