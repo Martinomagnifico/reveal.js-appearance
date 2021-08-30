@@ -39,8 +39,6 @@ The Appearance plugin folder can then be referenced from `node_modules/reveal.js
 
 ### JavaScript
 
-
-
 There are two JavaScript files for Appearance, a regular one, `appearance.js`, and a module one, `appearance.esm.js`. You only need one of them:
 
 #### Regular 
