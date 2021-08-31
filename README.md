@@ -28,7 +28,7 @@ Copy the appearance folder to the plugins folder of the reveal.js folder, like t
 
 This plugin is published to, and can be installed from, npm.
 
-```javascript
+```console
 npm install reveal.js-appearance
 ```
 The Appearance plugin folder can then be referenced from `node_modules/reveal.js-appearance/plugin/appearance`
