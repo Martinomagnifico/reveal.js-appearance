@@ -4,7 +4,7 @@
 
 A plugin for [Reveal.js](https://revealjs.com) 4 that adds appearance effects to elements.
 
-[![Screenshot](screenshot.png)](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
+[![Screenshot](https://martinomagnifico.github.io/reveal.js-appearance/screenshot.png)](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
 
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. 
 
