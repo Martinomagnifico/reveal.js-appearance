@@ -110,6 +110,8 @@ or this:
 
 ```
 
+Another usecase is when you have dynamic items that are inserted, for example, when you generate a Table Of Contents automatically with the [Simplemenu](https://martinomagnifico.github.io/reveal.js-simplemenu) plugin, you can now animate those as well.
+
 
 ## Configuration
 
