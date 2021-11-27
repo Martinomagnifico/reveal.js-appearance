@@ -8,9 +8,9 @@
     <meta name="author" content="Martinomagnifico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/black.css">
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="plugin/appearance/appearance.css">
@@ -26,7 +26,7 @@
                 <h1 class="animated flipInX slow">Appearance</h1>
                 <h3 class="animated flipInX slow" data-delay="700">for Reveal.js</h3>
             </section>
-            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. Appearance is a plugin for Reveal.js that does the same. </small><br><br><small>Appearance is easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small>
+            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. Appearance is a plugin for Reveal.js that does the same. </small><small>Appearance is easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small>
                 <p>Let's check out what Appearance does:</p>
             </section>
             <section class="center">
@@ -82,15 +82,23 @@
                         <p class="animated fadeInUp">You can use any of the following events:</p>
                     </div>
                     <ul>
-                        <li class="animated bounceInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
-                        <li class="animated bounceInLeft"><em>slidechanged</em> (with the transition)</li>
-                        <li class="animated bounceInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
+                        <li class="animated fadeInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
+                        <li class="animated fadeInLeft"><em>slidechanged</em> (with the transition)</li>
+                        <li class="animated fadeInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
                     </ul>
                     <div><br><small class="animated fadeInUp">This can also be set per-slide with data-attributes.</small></div>
                 </section>
             </section>
+            <section class="center" data-transition="convex-in fade-out" data-autoappear>
+                <h3>Autoappear mode</h3><small>Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements in the presentation (with the option <code>autoappear</code>) or per slide (with <code>data-autoappear</code>).</small>
+                <ul>
+                    <li>This is list item 1</li>
+                    <li>This is list item 2</li>
+                    <li>This is list item 3</li>
+                </ul>
+            </section>
             <section class="center" data-transition="convex-in fade-out">
-                <h3>Additional animations:</h3>
+                <h3>Additional animations</h3>
                 <ul>
                     <li class="animated skidLeft" data-delay="300">Appear with .skidLeft</li>
                     <li class="animated skidLeftBig" data-delay="1000">Appear with .skidLeftBig</li>
@@ -103,14 +111,14 @@
             <section class="center" data-transition="fade-in">
                 <h3>Thanks</h3>
                 <ul>
-                    <li class="animated bounceInLeft">Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
-                    <li class="animated bounceInLeft">Daniel Eden for <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a></li>
-                    <li class="animated bounceInLeft">David Marby &amp; Nijiko Yonskai for <a href="https://picsum.photos" target="_blank">picsum.photos</a></li>
+                    <li class="animated fadeInLeft">Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
+                    <li class="animated fadeInLeft">Daniel Eden for <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a></li>
+                    <li class="animated fadeInLeft">David Marby &amp; Nijiko Yonskai for <a href="https://picsum.photos" target="_blank">picsum.photos</a></li>
                 </ul>
             </section>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+    <script src="../dist/reveal.js"></script>
     <script src="plugin/appearance/appearance.js"></script>
     <script>
         Reveal.initialize({
@@ -121,7 +129,13 @@
                 visibleclass: "in",
                 hideagain: true,
                 delay: 300,
-                appearevent: "slidetransitionend"
+                appearevent: "slidetransitionend",
+                debug: true,
+                autoappear: false,
+                autoelements: {
+                    "ul li": "fadeInLeft",
+                    "ol li": "fadeInLeftRight"
+                }
             },
             plugins: [
                 Appearance

@@ -12,13 +12,11 @@ In Powerpoint you can make slides with items that appear automatically with effe
 
 We do not want the animations to start during the slide transition, so we wait for the slide transition to end. Then the animations will start automatically if the HTML is set up to use Appearance.
 
+Version 1.1.1 adds an `autoappear` mode for use in cases where adding animation classes is too much of a hassle, like inside Markdown.
+
 
 
 ## Installation
-
-The Appearance plugin has been rewritten for Reveal.js version 4.
-
-If you want to use Appearance with an older version of Reveal, use the [1.0.4 version](https://github.com/Martinomagnifico/reveal.js-appearance/releases).
 
 ### Regular installation
 
@@ -94,6 +92,23 @@ It is easy to set up your HTML structure for Appearance:
 	<li class="animated bounceInLeft">It adds some attention.</li>
 </ul>
 ```
+When you are working with Markdown, this can be a chore so if you do not want to add all these classes, you can set the option `autoappear` to `true` (see Configuration below) and let Appearance do the heavy work. You do not need to add any markup and it will stay like this:
+
+```html
+<ul>
+	<li>Add it to any text element</li>
+	<li>Like list items, or headers.</li>
+	<li>It adds some attention.</li>
+</ul>
+```
+or this:
+
+```markdown
+* Add it to any text element
+* Like list items, or headers.
+* It adds some attention.
+
+```
 
 
 ## Configuration
@@ -108,7 +123,9 @@ Reveal.initialize({
 		visibleclass: 'in',
 		hideagain: true,
 		delay: 300,
-		appearevent: 'slidetransitionend'
+		appearevent: 'slidetransitionend',
+		autoappear: false,
+		autoelements: false
 	},
 	plugins: [ Appearance ]
 });
@@ -119,6 +136,9 @@ Reveal.initialize({
 * **`hideagain`**: Change this (true/false) if you want to see the shown elements if you go back.
 * **`delay`**: Base time in ms between appearances.
 * **`appearevent`**: Use a specific event at which Appearance starts.
+* **`autoappear`**: Use this when you do not want to add classes to each item that you want to appear, and just let Appearance add animation classes to (all of) the provided elements in the presentation. See "Using 'autoappear'" mode below.
+* **`autoelements`**: These are the elements that `autoappear` will target. Each element has a selector and an animation class. If `autoappear` is off, the elements will still get animation if the section contains a `data-autoappear` attribute.
+
 
 ### Changing the 'appearevent'
 When you navigate from slide to slide, you can set transition effects in Reveal. These effects take some time. That's why, by default, Appearance only starts when the slide transition has ended. 
@@ -132,6 +152,22 @@ There are cases however, where  there is hardly any transition, for example, whe
 These same event triggers can be set through the data-attribute `data-appearevent`. 
 
 When using Appearance inside an autoanimate slide, and changing the appearevent to `slidechanged` or `auto`, keep in mind that Reveal transforms opacity for all non-autoanimate items, while Appearance does the same on most of the effects. To avoid strange behaviour, wrap these Appearance items in a parent. For example, a list of animated bullet points works well, because the animated class is on the children, not the parent. Separate headings or other elements do not have that, so should be wrapped.
+
+
+### Using 'autoappear' mode
+Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements in the presentation.
+
+With the option `autoappear` set to `true`, ALL elements in the presentation that have a certain selector will get an animation. These selectors and the animations can be set in the configuration options like this: 
+
+```javascript
+autoelements: {
+	'ul li': 'fadeInLeft',
+	'ol li': 'fadeInRight'
+}
+```
+You can add any selector and animation class to this object.
+
+With the option `autoappear` set to `false`, the above still works, but only on a data-attribute basis. ONLY elements in the presentation that are inside sections or fragments with a data-attribute of `data-autoappear` will be animated automatically. 
 
 
 

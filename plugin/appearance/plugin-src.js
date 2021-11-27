@@ -40,11 +40,39 @@ const Plugin = () => {
 			let selectionarray = Array.prototype.slice.call(selections);
 			return selectionarray;
 		};
+
+		const autoAdd = function () {
+
+			if (options.autoelements) {
+
+				for (const [autoelement, autoanimation] of Object.entries(options.autoelements)) {
+
+					if (options.autoappear) {
+						debugLog(`All "${autoelement}"" elements will animate with ${autoanimation}`);
+					}
+					let autosection = options.autoappear ? "" : "[data-autoappear] ";
+					let autoAppearances = deck.getRevealElement().querySelectorAll(`.slides ${autosection}${autoelement}`);
+
+					if (autoAppearances.length > 0) {
+						autoAppearances.forEach(autoAppearance => {
+							if (!autoAppearance.classList.contains(options.baseclass)) {
+								autoAppearance.classList.add(options.baseclass);
+								autoAppearance.classList.add(autoanimation);
+							}
+						});
+					}
+
+				}
+			} else if (options.autoappear) {
+				console.log(`Please set an "autoelements" object.`);
+			}
+		}
 	
 		const showAppearances = function (container) {
 			clearTimeOuts(timeouts);
 			let appearances = selectionArray(container, ":scope ." + options.baseclass);
 			let appearancesInFragment = selectionArray(container, ":scope .fragment .".concat(options.baseclass));
+
 			loopAppearances(appearances, appearancesInFragment);
 		};
 	
@@ -125,7 +153,6 @@ const Plugin = () => {
 			}
 		};
 	
-	
 		const showHideFragment = function (event) {
 			if (event.type == "fragmentshowncomplete" || event.type == "fragmentshown") {
 				showAppearances(event.fragment);
@@ -134,7 +161,7 @@ const Plugin = () => {
 			}
 		};
 
-		deck.on( 'ready', event => { showHideSlide(event) } );
+		deck.on( 'ready', event => { autoAdd(); showHideSlide(event) } );
 		deck.on( 'slidechanged', event => { showHideSlide(event) } );
 		deck.on( 'slidetransitionend', event => { showHideSlide(event) } );
 		deck.on( 'autoanimate', event => { showHideSlide(event) } );
@@ -152,6 +179,8 @@ const Plugin = () => {
 			delay: 300,
 			debug: false,
 			appearevent: 'slidetransitionend',
+			autoappear: false,
+			autoelements: null
 		};
 
 		const defaults = function (options, defaultOptions) {

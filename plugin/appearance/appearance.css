@@ -20,6 +20,16 @@
   -webkit-perspective: 1000px;
           perspective: 1000px; }
 
+small {
+  margin: 1.5rem 0 2rem 0; }
+
+small code {
+  font-size: 75%;
+  background: #222D2F;
+  color: #ddd;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem; }
+
 /* Custom animation */
 @-webkit-keyframes skidLeft {
   from {
