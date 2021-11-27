@@ -157,7 +157,7 @@ When using Appearance inside an autoanimate slide, and changing the appearevent 
 ### Using 'autoappear' mode
 Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements in the presentation.
 
-With the option `autoappear` set to `true`, ALL elements in the presentation that have a certain selector will get an animation. These selectors and the animations can be set in the configuration options like this: 
+With the option `autoappear` set to `true`, ALL elements in the presentation that have a certain selector (and that are not already classed with your base animation class, like 'animated') will get subsequently get this class, and thus an animation. These selectors and the animations can be set in the configuration options like this: 
 
 ```javascript
 autoelements: {
