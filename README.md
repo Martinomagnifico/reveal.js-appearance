@@ -110,6 +110,7 @@ or this:
 
 ```
 
+
 ## Configuration
 
 There are a few options that you can change from the Reveal.js options. The values below are default and do not need to be set if they are not changed.
@@ -156,9 +157,7 @@ When using Appearance inside an autoanimate slide, and changing the appearevent 
 ### Using 'autoappear' mode
 Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements in the presentation.
 
-Another usecase is when you have dynamic items that are inserted, for example, when you generate a Table Of Contents automatically with the [Simplemenu](https://martinomagnifico.github.io/reveal.js-simplemenu) plugin, you can now animate those as well.
-
-With the option `autoappear` set to `true`, ALL elements in the presentation that have a certain selector (and that are not already classed with your base animation class, like 'animated') will get subsequently get this class, and thus an animation. These selectors and the animations can be set in the configuration options like this: 
+With the option `autoappear` set to `true`, ALL elements in the presentation that have a certain selector (and that are not already classed with your base animation class, like 'animated') will get subsequently get this class, and thus an animation. These selectors and the animations can be set in the configuration options like this:  
 
 ```javascript
 autoelements: {

@@ -9,7 +9,7 @@
         "url": "https://github.com/Martinomagnifico/reveal.js-appearance.git"
     },
     "peerDependencies": {
-        "reveal.js": "^4.0"
+        "reveal.js": "^4.2"
     },
     "author": "Martijn De Jongh",
     "license": "MIT, Copyright (C) 2021 Martijn De Jongh"
