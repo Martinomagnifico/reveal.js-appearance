@@ -15,7 +15,6 @@ We do not want the animations to start during the slide transition, so we wait f
 Version 1.1.1 adds an `autoappear` mode for use in cases where adding animation classes is too much of a hassle, like inside Markdown.
 
 
-
 ## Installation
 
 ### Regular installation
