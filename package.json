@@ -1,16 +1,16 @@
 {
     "name": "reveal.js-appearance",
-    "version": "1.1.1",
-    "description": "A plugin for Reveal.js that adds appearance effects to elements",
-    "keywords": "reveal, reveal.js, reveal-plugin, plugin, text effects",
+    "version": "1.1.2",
+    "description": "A plugin for Reveal.js that sequentially adds appearance effects to elements like in Powerpoint",
+    "keywords": "reveal, reveal.js, reveal-plugin, plugin, text effects, powerpoint",
     "homepage": "https://github.com/Martinomagnifico/reveal.js-appearance",
     "repository": {
         "type": "git",
         "url": "https://github.com/Martinomagnifico/reveal.js-appearance.git"
     },
+    "author": "Martijn De Jongh",
+    "license": "MIT, Copyright (C) 2022 Martijn De Jongh",
     "peerDependencies": {
         "reveal.js": "^4.2"
-    },
-    "author": "Martijn De Jongh",
-    "license": "MIT, Copyright (C) 2021 Martijn De Jongh"
+    }
 }

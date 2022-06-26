@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.1.1
+ * Version 1.1.2
  * 
  * @license 
  * MIT licensed
@@ -18,8 +18,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Appearance = factory());
-}(this, (function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Appearance = factory());
+})(this, (function () { 'use strict';
 
   function _slicedToArray(arr, i) {
     return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
@@ -30,14 +30,17 @@
   }
 
   function _iterableToArrayLimit(arr, i) {
-    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
     var _arr = [];
     var _n = true;
     var _d = false;
-    var _e = undefined;
+
+    var _s, _e;
 
     try {
-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
         _arr.push(_s.value);
 
         if (i && _arr.length === i) break;
@@ -128,38 +131,64 @@
       }(Element.prototype);
     }
 
+    var loadStyle = function loadStyle(url, type, callback) {
+      var head = document.querySelector('head');
+      var style;
+      style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = url;
+
+      var finish = function finish() {
+        if (typeof callback === 'function') {
+          callback.call();
+          callback = null;
+        }
+      };
+
+      style.onload = finish;
+
+      style.onreadystatechange = function () {
+        if (this.readyState === 'loaded') {
+          finish();
+        }
+      };
+
+      head.appendChild(style);
+    };
+
+    var selectionArray = function selectionArray(container, selectors) {
+      var selections = container.querySelectorAll(selectors);
+      var selectionarray = Array.prototype.slice.call(selections);
+      return selectionarray;
+    };
+
     var appear = function appear(deck, options) {
+      var baseclass = 'animate__animated';
+      var appearanceSelector = options.compatibility ? ".".concat(options.compatibilitybaseclass) : ".".concat(baseclass);
+      var fragmentSelector = ".fragment";
+      var sections = deck.getRevealElement().querySelectorAll(".slides section");
+      var fragments = deck.getRevealElement().querySelectorAll(fragmentSelector);
+      var animatecss = '[class^="animate__"],[class*=" animate__"]';
+
       var debugLog = function debugLog(text) {
         if (options.debug) console.log(text);
       };
 
-      var timeouts = [];
-
-      var clearTimeOuts = function clearTimeOuts(timeouts) {
-        for (var i = 0; i < timeouts.length; i++) {
-          clearTimeout(timeouts[i]);
+      var findAppearancesIn = function findAppearancesIn(container, includeClass, excludeClass) {
+        if (!isStack(container)) {
+          var appearances = selectionArray(container, ":scope ".concat(includeClass));
+          var excludes = selectionArray(container, ":scope ".concat(excludeClass, " ").concat(includeClass));
+          var delay = 0;
+          appearances.filter(function (appearance, index) {
+            if (!(excludes.indexOf(appearance) > -1)) {
+              if (index == 0 && appearance.dataset.delay || index != 0) {
+                var elementDelay = appearance.dataset.delay ? parseInt(appearance.dataset.delay) : options.delay;
+                delay = delay + elementDelay;
+                appearance.style.setProperty('animation-delay', delay + "ms");
+              }
+            }
+          });
         }
-
-        timeouts = [];
-      };
-
-      var loopAppearances = function loopAppearances(appearances, appearancesInFragment) {
-        var delay = 0;
-        appearances.filter(function (element, i) {
-          if (!(appearancesInFragment.indexOf(element) > -1)) {
-            var delayincrement = parseInt(element.dataset.delay ? element.dataset.delay : i > 0 ? options.delay : 0);
-            delay += delayincrement;
-            timeouts.push(setTimeout(function () {
-              element.classList.add(options.visibleclass);
-            }, delay));
-          }
-        });
-      };
-
-      var selectionArray = function selectionArray(container, selectors) {
-        var selections = container.querySelectorAll(selectors);
-        var selectionarray = Array.prototype.slice.call(selections);
-        return selectionarray;
       };
 
       var autoAdd = function autoAdd() {
@@ -178,8 +207,8 @@
 
             if (autoAppearances.length > 0) {
               autoAppearances.forEach(function (autoAppearance) {
-                if (!autoAppearance.classList.contains(options.baseclass)) {
-                  autoAppearance.classList.add(options.baseclass);
+                if (!autoAppearance.classList.contains(baseclass)) {
+                  autoAppearance.classList.add(baseclass);
                   autoAppearance.classList.add(autoanimation);
                 }
               });
@@ -194,19 +223,37 @@
         }
       };
 
-      var showAppearances = function showAppearances(container) {
-        clearTimeOuts(timeouts);
-        var appearances = selectionArray(container, ":scope ." + options.baseclass);
-        var appearancesInFragment = selectionArray(container, ":scope .fragment .".concat(options.baseclass));
-        loopAppearances(appearances, appearancesInFragment);
+      var isStack = function isStack(section) {
+        var isStack = false;
+
+        for (var i = 0; i < section.childNodes.length; i++) {
+          if (section.childNodes[i].tagName == "SECTION") {
+            isStack = true;
+            break;
+          }
+        }
+
+        return isStack;
       };
 
-      var hideAppearances = function hideAppearances(container) {
-        var disappearances = selectionArray(container, ":scope .".concat(options.baseclass, ", :scope .fragment.visible"));
-        disappearances.filter(function (element) {
-          element.classList.remove(element.classList.contains("fragment") ? "visible" : options.visibleclass);
-        });
-      };
+      if (options.compatibility) {
+        animatecss = '.backInDown, .backInLeft, .backInRight, .backInUp, .bounceIn, .bounceInDown, .bounceInLeft, .bounceInRight, .bounceInUp, .fadeIn, .fadeInDown, .fadeInDownBig, .fadeInLeft, .fadeInLeftBig, .fadeInRight, .fadeInRightBig, .fadeInUp, .fadeInUpBig, .fadeInTopLeft, .fadeInTopRight, .fadeInBottomLeft, .fadeInBottomRight, .flipInX, .flipInY, .lightSpeedInRight, .lightSpeedInLeft, .rotateIn, .rotateInDownLeft, .rotateInDownRight, .rotateInUpLeft, .rotateInUpRight, .jackInTheBox, .rollIn, .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp, .slideInDown, .slideInLeft, .slideInRight, .slideInUp, .skidLeft, .skidLeftBig, .skidRight, .skidRightBig, .shrinkIn, .shrinkInBlur';
+        baseclass = options.compatibilitybaseclass;
+      }
+
+      var allappearances = deck.getRevealElement().querySelectorAll(animatecss);
+      allappearances.forEach(function (appearance) {
+        if (!appearance.classList.contains(baseclass)) {
+          appearance.classList.add(baseclass);
+        }
+      });
+      autoAdd();
+      sections.forEach(function (section) {
+        findAppearancesIn(section, appearanceSelector, fragmentSelector);
+      });
+      fragments.forEach(function (fragment) {
+        findAppearancesIn(fragment, appearanceSelector, fragmentSelector);
+      });
 
       var fromTo = function fromTo(event) {
         var slides = {};
@@ -215,10 +262,28 @@
         return slides;
       };
 
-      var showHideSlide = function showHideSlide(event) {
-        var slides = fromTo(event);
+      Object.prototype.setTransition = function (action) {
+        if (action == "remove") {
+          delete this.dataset.appearanceCanStart;
+        } else {
+          this.dataset.appearanceCanStart = true;
+        }
+      };
 
-        if (slides.to.dataset.appearevent == "auto") {
+      var removeFrom = function removeFrom(slides) {
+        if (slides.from && options.hideagain == true) {
+          slides.from.setTransition("remove");
+        }
+      };
+
+      var showHideSlide = function showHideSlide(event) {
+        var _slides$to;
+
+        var etype = event.type;
+        var slides = fromTo(event);
+        debugLog(etype);
+
+        if (((_slides$to = slides.to) === null || _slides$to === void 0 ? void 0 : _slides$to.dataset.appearevent) == "auto") {
           slides.to.dataset.appearevent = "autoanimate";
         }
 
@@ -226,26 +291,33 @@
           options.appearevent = "autoanimate";
         }
 
-        if (!slides.to.dataset.eventdone) {
-          debugLog("Event: '".concat(event.type, "'"));
+        if (etype == "ready") {
+          slides.to.setTransition();
+        }
 
-          if (event.type == "ready") {
-            showAppearances(slides.to);
-          } else if (event.type == slides.to.dataset.appearevent) {
-            slides.to.dataset.eventdone = true;
-            showAppearances(slides.to);
-          } else if (event.type == options.appearevent) {
-            slides.to.dataset.eventdone = true;
-            showAppearances(slides.to);
-          } else if (event.type == "slidetransitionend" && options.appearevent == "autoanimate") {
-            slides.to.dataset.eventdone = true;
-            showAppearances(slides.to);
-          } else if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
-            if (slides.from && options.hideagain) {
-              hideAppearances(slides.to);
+        if (slides.to) {
+          var appearevent = slides.to.dataset.appearevent ? slides.to.dataset.appearevent : options.appearevent;
+
+          if (etype == appearevent) {
+            slides.to.setTransition();
+          } else if (etype == "slidetransitionend" && appearevent == "autoanimate") {
+            slides.to.setTransition();
+          }
+
+          if (etype == "slidetransitionend") {
+            removeFrom(slides);
+
+            if (options.hideagain) {
+              var fromFragments = slides.from.querySelectorAll(".fragment.visible");
+              fromFragments.forEach(function (fragment) {
+                fragment.classList.remove('visible');
+              });
             }
+          }
 
-            showAppearances(slides.to);
+          if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
+            removeFrom(slides);
+            slides.to.setTransition();
             slides.to.dataset.eventdone = true;
           } else if (event.type == 'overviewhidden') {
             document.body.dataset.exitoverview = true;
@@ -254,69 +326,41 @@
             }, 500);
 
             if (event.currentSlide) {
-              if (slides.from && options.hideagain) {
-                hideAppearances(event.previousSlide);
-              }
-
-              showAppearances(slides.to);
+              removeFrom(slides);
+              slides.to.setTransition();
               event.currentSlide.dataset.eventdone = true;
             }
           }
         }
-
-        if (event.type == "slidechanged" && slides.from) {
-          slides.from.removeAttribute('data-eventdone');
-        }
-
-        if (slides.from) {
-          if (event.type == 'slidetransitionend' && options.hideagain) {
-            hideAppearances(slides.from);
-          }
-        }
       };
 
-      var showHideFragment = function showHideFragment(event) {
-        if (event.type == "fragmentshowncomplete" || event.type == "fragmentshown") {
-          showAppearances(event.fragment);
-        } else {
-          hideAppearances(event.fragment);
-        }
-      };
-
-      deck.on('ready', function (event) {
-        autoAdd();
-        showHideSlide(event);
-      });
-      deck.on('slidechanged', function (event) {
-        showHideSlide(event);
-      });
-      deck.on('slidetransitionend', function (event) {
-        showHideSlide(event);
-      });
-      deck.on('autoanimate', function (event) {
-        showHideSlide(event);
-      });
-      deck.on('overviewhidden', function (event) {
-        showHideSlide(event);
-      });
-      deck.on('fragmentshown', function (event) {
-        showHideFragment(event);
-      });
-      deck.on('fragmenthidden', function (event) {
-        showHideFragment(event);
+      var eventnames = ['ready', 'slidechanged', 'slidetransitionend', 'autoanimate', 'overviewhidden'];
+      eventnames.forEach(function (eventname) {
+        return deck.on(eventname, function (event) {
+          showHideSlide(event);
+        });
       });
     };
 
     var init = function init(deck) {
+      var es5Filename = "appearance.js";
       var defaultOptions = {
-        baseclass: 'animated',
-        visibleclass: 'in',
+        baseclass: 'animate__animated',
         hideagain: true,
         delay: 300,
         debug: false,
         appearevent: 'slidetransitionend',
         autoappear: false,
-        autoelements: null
+        autoelements: false,
+        csspath: {
+          appearance: '',
+          animatecss: {
+            link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+            compat: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css'
+          }
+        },
+        compatibility: false,
+        compatibilitybaseclass: 'animated'
       };
 
       var defaults = function defaults(options, defaultOptions) {
@@ -329,6 +373,33 @@
 
       var options = deck.getConfig().appearance || {};
       defaults(options, defaultOptions);
+
+      function pluginPath() {
+        var path;
+        var pluginScript = document.querySelector("script[src$=\"".concat(es5Filename, "\"]"));
+
+        if (pluginScript) {
+          path = pluginScript.getAttribute("src").slice(0, -1 * es5Filename.length);
+        } else {
+          path = (typeof document === 'undefined' && typeof location === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : typeof document === 'undefined' ? location.href : (document.currentScript && document.currentScript.src || new URL('appearance.js', document.baseURI).href)).slice(0, (typeof document === 'undefined' && typeof location === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : typeof document === 'undefined' ? location.href : (document.currentScript && document.currentScript.src || new URL('appearance.js', document.baseURI).href)).lastIndexOf('/') + 1);
+        }
+
+        return path;
+      }
+
+      var AppearanceStylePath = options.csspath.appearance ? options.csspath.appearance : "".concat(pluginPath(), "appearance.css") || 'plugin/appearance/appearance.css';
+      var AnimateCSSPath = !options.compatibility ? options.csspath.animatecss.link : options.csspath.animatecss.compat;
+
+      if (options.debug) {
+        console.log("Plugin path = ".concat(pluginPath()));
+        console.log("Compatibility mode: ".concat(options.compatibility));
+        console.log("Appearance CSS path = ".concat(AppearanceStylePath));
+        console.log("AnimateCSS CSS path = ".concat(AnimateCSSPath));
+      }
+
+      loadStyle(AnimateCSSPath, 'stylesheet', function () {
+        loadStyle(AppearanceStylePath, 'stylesheet');
+      });
       appear(deck, options);
     };
 
@@ -340,4 +411,4 @@
 
   return Plugin;
 
-})));
+}));

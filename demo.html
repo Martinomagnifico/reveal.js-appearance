@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="../dist/reveal.css">
     <link rel="stylesheet" href="../dist/theme/black.css">
     <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="plugin/appearance/appearance.css">
 </head>
 
 <body>
@@ -23,54 +21,69 @@
             </svg></a>
         <div class="slides">
             <section class="center">
-                <h1 class="animated flipInX slow">Appearance</h1>
-                <h3 class="animated flipInX slow" data-delay="700">for Reveal.js</h3>
+                <h1 class="animate__flipInX animate__slow">Appearance</h1>
+                <h3 class="animate__flipInX animate__slow" data-delay="700">for Reveal.js</h3>
             </section>
-            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically with effects. Appearance is a plugin for Reveal.js that does the same. </small><small>Appearance is easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes in a separate CSS file to allow for a non-animated state. </small>
+            <section class="center"><small>In Powerpoint you can make slides with items that appear automatically and sequentially with effects. Appearance is a plugin for Reveal.js that does the same. </small><small>Appearance is easy to set up. It uses <a href="https://animate.style" target="_blank">Animate.css</a> by Daniel Eden for the animations, with some changes to allow for a non-animated state. </small>
                 <p>Let's check out what Appearance does:</p>
             </section>
             <section class="center">
                 <h3>Let text appear</h3>
                 <ul>
-                    <li class="animated bounceInLeft">Add it to any text element</li>
-                    <li class="animated bounceInLeft">Like list items, or headers.</li>
-                    <li class="animated bounceInLeft">It adds some impact.</li>
+                    <li class="animate__bounceInLeft">Add it to any text element</li>
+                    <li class="animate__bounceInLeft">Like list items, or headers.</li>
+                    <li class="animate__bounceInLeft">It adds some impact.</li>
                 </ul>
             </section>
             <section class="center">
                 <h3>Let images appear</h3>
-                <div class="padded"><img class="animated flipInX" data-src="img/1.jpg"></div>
-                <div class="padded"><img class="animated flipInX" data-src="img/2.jpg"></div>
-                <div class="padded"><img class="animated flipInX" data-src="img/3.jpg"></div>
-                <div class="padded"><img class="animated flipInX" data-src="img/4.jpg"></div>
-                <div class="padded"><img class="animated flipInX" data-src="img/5.jpg"></div>
+                <div class="row">
+                    <div class="padded"><img class="animate__flipInX" data-src="img/1.jpg"></div>
+                    <div class="padded"><img class="animate__flipInX" data-src="img/2.jpg"></div>
+                    <div class="padded"><img class="animate__flipInX" data-src="img/3.jpg"></div>
+                    <div class="padded"><img class="animate__flipInX" data-src="img/4.jpg"></div>
+                    <div class="padded"><img class="animate__flipInX" data-src="img/5.jpg"></div>
+                </div>
             </section>
             <section class="center">
-                <h3>Change the delay</h3><small>Use data-delay="*" on each element, where the wildcard is the delay in microseconds</small>
-                <div class="padded"><img class="animated fadeInDown" data-src="img/1.jpg" data-delay="200"></div>
-                <div class="padded"><img class="animated fadeInDown" data-src="img/2.jpg" data-delay="160"></div>
-                <div class="padded"><img class="animated fadeInDown" data-src="img/3.jpg" data-delay="120"></div>
-                <div class="padded"><img class="animated fadeInDown" data-src="img/4.jpg" data-delay="80"></div>
-                <div class="padded"><img class="animated fadeInDown" data-src="img/5.jpg" data-delay="40"></div>
+                <h3>Change the delay</h3><small>Use <code>data-delay="*"</code> on each element, where the wildcard is the delay in microseconds from the appearance of the previous element.</small>
+                <div class="row">
+                    <div class="padded"><img class="animate__fadeInDown" data-src="img/1.jpg" data-delay="0"></div>
+                    <div class="padded"><img class="animate__fadeInDown" data-src="img/2.jpg" data-delay="200"></div>
+                    <div class="padded"><img class="animate__fadeInDown" data-src="img/3.jpg" data-delay="160"></div>
+                    <div class="padded"><img class="animate__fadeInDown" data-src="img/4.jpg" data-delay="120"></div>
+                    <div class="padded"><img class="animate__fadeInDown" data-src="img/5.jpg" data-delay="80"></div>
+                </div><small><code>data-delay</code> is automatically converted to CSS animation delay.</small>
             </section>
             <section>
                 <section class="center">
                     <h3>Change the animation speed</h3><small>Use the speed classes from Animate.css to change the speed of the animation:</small>
-                    <div class="padded"><img class="animated bounceIn slower" data-src="img/1.jpg"><br><small>slower</small></div>
-                    <div class="padded"><img class="animated bounceIn slow" data-src="img/2.jpg"><br><small>slow</small></div>
-                    <div class="padded"><img class="animated bounceIn" data-src="img/3.jpg"><br><small></small></div>
-                    <div class="padded"><img class="animated bounceIn fast" data-src="img/4.jpg"><br><small>fast</small></div>
-                    <div class="padded"><img class="animated bounceIn faster" data-src="img/5.jpg"><br><small>faster</small></div>
+                    <div class="row">
+                        <div class="padded"><small class="animate__fadeIn" style="font-size: 1rem" data-delay="50"><code>.animate__slower</code></small></div>
+                        <div class="padded"><small class="animate__fadeIn" style="font-size: 1rem" data-delay="50"><code>.animate__slow</code></small></div>
+                        <div class="padded"><small class="animate__fadeIn" style="font-size: 1rem" data-delay="50"></small></div>
+                        <div class="padded"><small class="animate__fadeIn" style="font-size: 1rem" data-delay="50"><code>.animate__fast</code></small></div>
+                        <div class="padded"><small class="animate__fadeIn" style="font-size: 1rem" data-delay="50"><code>.animate__faster</code></small></div>
+                    </div>
+                    <div class="row">
+                        <div class="padded"><img class="animate__bounceIn animate__slower" data-src="img/1.jpg"></div>
+                        <div class="padded"><img class="animate__bounceIn animate__slow" data-src="img/2.jpg"></div>
+                        <div class="padded"><img class="animate__bounceIn" data-src="img/3.jpg"></div>
+                        <div class="padded"><img class="animate__bounceIn animate__fast" data-src="img/4.jpg"></div>
+                        <div class="padded"><img class="animate__bounceIn animate__faster" data-src="img/5.jpg"></div>
+                    </div>
                 </section>
                 <section class="center">
                     <h3>Inside fragments</h3>
-                    <p class="animated fadeIn">Like this <span class="animated fadeInDown faster" style="font-size: .8em">(click next)</span>:</p>
+                    <p class="animate__fadeInDown">Like this <span class="animate__fadeInDown animate__faster" style="font-size: .8em">(click next)</span>:</p>
                     <div class="fragment">
-                        <div class="padded"><img class="animated fadeInDown" data-src="img/1.jpg"></div>
-                        <div class="padded"><img class="animated fadeInDown" data-src="img/2.jpg"></div>
-                        <div class="padded"><img class="animated fadeInDown" data-src="img/3.jpg"></div>
-                        <div class="padded"><img class="animated fadeInDown" data-src="img/4.jpg"></div>
-                        <div class="padded"><img class="animated fadeInDown" data-src="img/5.jpg"></div>
+                        <div class="row">
+                            <div class="padded"><img class="animate__fadeInDown" data-src="img/1.jpg"></div>
+                            <div class="padded"><img class="animate__fadeInDown" data-src="img/2.jpg"></div>
+                            <div class="padded"><img class="animate__fadeInDown" data-src="img/3.jpg"></div>
+                            <div class="padded"><img class="animate__fadeInDown" data-src="img/4.jpg"></div>
+                            <div class="padded"><img class="animate__fadeInDown" data-src="img/5.jpg"></div>
+                        </div>
                     </div>
                 </section>
                 <section class="center" data-auto-animate>
@@ -82,38 +95,52 @@
                         <p class="animated fadeInUp">You can use any of the following events:</p>
                     </div>
                     <ul>
-                        <li class="animated fadeInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
-                        <li class="animated fadeInLeft"><em>slidechanged</em> (with the transition)</li>
-                        <li class="animated fadeInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
+                        <li class="animate__fadeInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
+                        <li class="animate__fadeInLeft"><em>slidechanged</em> (with the transition)</li>
+                        <li class="animate__fadeInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
                     </ul>
-                    <div><br><small class="animated fadeInUp">This can also be set per-slide with data-attributes.</small></div>
+                    <div><br><small class="animate__fadeInUp">This can also be set per-slide with data-attributes.</small></div>
                 </section>
             </section>
-            <section class="center" data-transition="convex-in fade-out" data-autoappear>
-                <h3>Autoappear mode</h3><small>Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements in the presentation (with the option <code>autoappear</code>) or per slide (with <code>data-autoappear</code>).</small>
+            <section class="center" data-autoappear>
+                <h3>Autoappear mode</h3><small>Sometimes (for example with Markdown), adding classes to elements is a chore. Appearance can automatically add animation classes to specific elements (tags or other selectors) in the presentation (with the option <code>autoappear</code>) or per slide (with <code>data-autoappear</code>), like this slide.</small>
                 <ul>
                     <li>This is list item 1</li>
                     <li>This is list item 2</li>
                     <li>This is list item 3</li>
                 </ul>
             </section>
-            <section class="center" data-transition="convex-in fade-out">
+            <section class="center">
+                <h3>Animate.css animations</h3>
+                <p>Appearance supports the standard entrance/in animations that Animate.css offers. Some examples:</p>
+                <ul>
+                    <li class="small animate__backInDown" data-delay="0">.animate__backInDown</li>
+                    <li class="small animate__bounceInDown" data-delay="1000">.animate__bounceInDown</li>
+                    <li class="small animate__fadeInLeft" data-delay="1000">.animate__fadeInLeft</li>
+                    <li class="small animate__flipInX" data-delay="1000">.animate__flipInX</li>
+                    <li class="small animate__rotateIn" data-delay="1000">.animate__rotateIn</li>
+                    <li class="small animate__zoomInDown" data-delay="1000">.animate__zoomInDown</li>
+                    <li class="small animate__jackInTheBox" data-delay="1000">.animate__jackInTheBox</li>
+                </ul>
+            </section>
+            <section class="center">
                 <h3>Additional animations</h3>
                 <ul>
-                    <li class="animated skidLeft" data-delay="300">Appear with .skidLeft</li>
-                    <li class="animated skidLeftBig" data-delay="1000">Appear with .skidLeftBig</li>
-                    <li class="animated skidRight" data-delay="1000">Appear with .skidRight</li>
-                    <li class="animated skidRightBig" data-delay="1000">Appear with .skidRightBig</li>
-                    <li class="animated shrinkIn" data-delay="1000">Appear with .shrinkIn</li>
-                    <li class="animated shrinkInBlur" data-delay="1000">Appear with .shrinkInBlur</li>
+                    <li class="animate__skidLeft" data-delay="300">Appear with .animate__skidLeft</li>
+                    <li class="animated animate__skidLeftBig" data-delay="1000">Appear with .animate__skidLeftBig</li>
+                    <li class="animated animate__skidRight" data-delay="1000">Appear with .animate__skidRight</li>
+                    <li class="animated animate__skidRightBig" data-delay="1000">Appear with .animate__skidRightBig</li>
+                    <li class="animated animate__shrinkIn" data-delay="1000">Appear with .animate__shrinkIn</li>
+                    <li class="animated animate__shrinkInBlur" data-delay="1000">Appear with .animate__shrinkInBlur</li>
                 </ul>
             </section>
             <section class="center" data-transition="fade-in">
-                <h3>Thanks</h3>
+                <h3>Credits</h3>
                 <ul>
-                    <li class="animated fadeInLeft">Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
-                    <li class="animated fadeInLeft">Daniel Eden for <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a></li>
-                    <li class="animated fadeInLeft">David Marby &amp; Nijiko Yonskai for <a href="https://picsum.photos" target="_blank">picsum.photos</a></li>
+                    <li class="animate__fadeInLeft">Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
+                    <li class="animate__fadeInLeft">Daniel Eden for <a href="https://animate.style" target="_blank">Animate.css</a></li>
+                    <li class="animate__fadeInLeft">David Marby &amp; Nijiko Yonskai for <a href="https://picsum.photos" target="_blank">picsum.photos</a></li>
+                    <li class="animate__fadeInLeft">Photography by <a href="https://unsplash.com/photos/6WLGMivmV00" target="_blank">Michael Baird</a>, <a href="https://unsplash.com/photos/scwYrU5hCSM" target="_blank">Michael Quinn</a>, <a href="https://unsplash.com/photos/YoadQb46v6k" target="_blank">Craig Garner</a>, <a href="https://unsplash.com/photos/RlYsCMbF6EI" target="_blank">Grzegorz Mleczek</a> and <a href="https://unsplash.com/photos/9RqA6tnT0gA" target="_blank">Samuel Zeller</a>.</li>
                 </ul>
             </section>
         </div>
@@ -125,17 +152,14 @@
             transition: "slide",
             history: true,
             appearance: {
-                baseclass: "animated",
-                visibleclass: "in",
                 hideagain: true,
-                delay: 300,
-                appearevent: "slidetransitionend",
-                debug: true,
+                appearevent: "auto",
                 autoappear: false,
                 autoelements: {
-                    "ul li": "fadeInLeft",
-                    "ol li": "fadeInLeftRight"
-                }
+                    "ul li": "animate__fadeInLeft",
+                    "ol li": "animate__fadeInLeftRight"
+                },
+                compatibility: false
             },
             plugins: [
                 Appearance

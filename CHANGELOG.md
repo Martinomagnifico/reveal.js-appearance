@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2] - 2022-06-26
+### Added
+- Added auto-loading of styles.
+
+### Changed
+- Changed the internal delay mechanism to use CSS animation delay in combination to adding the trigger on the parent, not each animated element. This will improve the performance.
+- ***Breaking change***: Moved to Animate.css version 4, but added a compatibility mode
 
 ## [1.1.1] - 2021-11-27
 ### Added
