@@ -339,12 +339,10 @@ var Plugin = function Plugin() {
       appearevent: 'slidetransitionend',
       autoappear: false,
       autoelements: false,
-      csspath: {
-        appearance: '',
-        animatecss: {
-          link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-          compat: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css'
-        }
+      csspath: '',
+      animatecsspath: {
+        link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+        compat: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css'
       },
       compatibility: false,
       compatibilitybaseclass: 'animated'
@@ -375,7 +373,7 @@ var Plugin = function Plugin() {
     }
 
     var AppearanceStylePath = options.csspath.appearance ? options.csspath.appearance : "".concat(pluginPath(), "appearance.css") || 'plugin/appearance/appearance.css';
-    var AnimateCSSPath = !options.compatibility ? options.csspath.animatecss.link : options.csspath.animatecss.compat;
+    var AnimateCSSPath = !options.compatibility ? options.animatecsspath.link : options.animatecsspath.compat;
 
     if (options.debug) {
       console.log("Plugin path = ".concat(pluginPath()));

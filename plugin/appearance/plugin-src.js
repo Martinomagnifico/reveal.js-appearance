@@ -204,12 +204,10 @@ const Plugin = () => {
 			appearevent: 'slidetransitionend',
 			autoappear: false,
 			autoelements: false,
-			csspath: {
-				appearance: '',
-				animatecss: {
-					link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-					compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css',
-				}
+			csspath: '',
+			animatecsspath: {
+				link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+				compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css',
 			},
 			compatibility: false,
 			compatibilitybaseclass: 'animated'
@@ -238,7 +236,7 @@ const Plugin = () => {
 		}
 
 		let AppearanceStylePath = options.csspath.appearance ? options.csspath.appearance : null || `${pluginPath()}appearance.css` || 'plugin/appearance/appearance.css'
-		let AnimateCSSPath = !options.compatibility ? options.csspath.animatecss.link :options.csspath.animatecss.compat;
+		let AnimateCSSPath = !options.compatibility ? options.animatecsspath.link : options.animatecsspath.compat;
 
 		if (options.debug) {
 			console.log(`Plugin path = ${pluginPath()}`);

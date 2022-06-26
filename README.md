@@ -118,12 +118,10 @@ Reveal.initialize({
     appearevent: 'slidetransitionend',
     autoappear: false,
     autoelements: false,
-    csspath: {
-      appearance: '',
-      animatecss: {
-        link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-        compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css',
-      }
+    csspath: '',
+    animatecsspath: {
+      link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+      compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css',
     },
     compatibility: false,
     compatibilitybaseclass: 'animated'
@@ -137,7 +135,8 @@ Reveal.initialize({
 * **`appearevent`**: Use a specific event at which Appearance starts.
 * **`autoappear`**: Use this when you do not want to add classes to each item that you want to appear, and just let Appearance add animation classes to (all of) the provided elements in the presentation. See "Using 'autoappear'" mode below.
 * **`autoelements`**: These are the elements that `autoappear` will target. Each element has a selector and an animation class. If `autoappear` is off, the elements will still get animation if the section contains a `data-autoappear` attribute.
-* **`csspath`**: Appearance will automatically load the Animate.css styling and the styling of the plugin itself. If you want to customise the styling, you can link to your own CSS files here for each of the styles. Note that Animate.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.
+* **`csspath`**: Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.
+* **`animatecsspath`**: Appearance will also automatically load the styling of Animate.css via a CDN. Note that Animeta.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.
 * **`compatibility`**: This setting can let you use your current markup. However, because this also uses the Animate.css compatibility CSS, and it is likely that they will not support this in the future, please update your markup as shown above.
 * **`compatibilitybaseclass`**: This is the baseclass to use if you don't change your markup. 
 
