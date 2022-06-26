@@ -256,20 +256,6 @@ var Plugin = function Plugin() {
       return slides;
     };
 
-    Object.prototype.setTransition = function (action) {
-      if (action == "remove") {
-        delete this.dataset.appearanceCanStart;
-      } else {
-        this.dataset.appearanceCanStart = true;
-      }
-    };
-
-    var removeFrom = function removeFrom(slides) {
-      if (slides.from && options.hideagain == true) {
-        slides.from.setTransition("remove");
-      }
-    };
-
     var showHideSlide = function showHideSlide(event) {
       var _slides$to;
 
@@ -286,22 +272,21 @@ var Plugin = function Plugin() {
       }
 
       if (etype == "ready") {
-        slides.to.setTransition();
+        slides.to.dataset.appearanceCanStart = true;
       }
 
       if (slides.to) {
         var appearevent = slides.to.dataset.appearevent ? slides.to.dataset.appearevent : options.appearevent;
 
-        if (etype == appearevent) {
-          slides.to.setTransition();
-        } else if (etype == "slidetransitionend" && appearevent == "autoanimate") {
-          slides.to.setTransition();
+        if (etype == appearevent || etype == "slidetransitionend" && appearevent == "autoanimate") {
+          slides.to.dataset.appearanceCanStart = true;
         }
 
         if (etype == "slidetransitionend") {
-          removeFrom(slides);
-
           if (options.hideagain) {
+            var _slides$from;
+
+            (_slides$from = slides.from) === null || _slides$from === void 0 ? true : delete _slides$from.dataset.appearanceCanStart;
             var fromFragments = slides.from.querySelectorAll(".fragment.visible");
             fromFragments.forEach(function (fragment) {
               fragment.classList.remove('visible');
@@ -310,9 +295,13 @@ var Plugin = function Plugin() {
         }
 
         if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
-          removeFrom(slides);
-          slides.to.setTransition();
-          slides.to.dataset.eventdone = true;
+          if (options.hideagain) {
+            var _slides$from2;
+
+            (_slides$from2 = slides.from) === null || _slides$from2 === void 0 ? true : delete _slides$from2.dataset.appearanceCanStart;
+          }
+
+          slides.to.dataset.appearanceCanStart = true;
         } else if (event.type == 'overviewhidden') {
           document.body.dataset.exitoverview = true;
           setTimeout(function () {
@@ -320,9 +309,13 @@ var Plugin = function Plugin() {
           }, 500);
 
           if (event.currentSlide) {
-            removeFrom(slides);
-            slides.to.setTransition();
-            event.currentSlide.dataset.eventdone = true;
+            if (options.hideagain) {
+              var _slides$from3;
+
+              (_slides$from3 = slides.from) === null || _slides$from3 === void 0 ? true : delete _slides$from3.dataset.appearanceCanStart;
+            }
+
+            slides.to.dataset.appearanceCanStart = true;
           }
         }
       }

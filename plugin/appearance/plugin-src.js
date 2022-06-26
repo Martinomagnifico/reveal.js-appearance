@@ -133,21 +133,6 @@ const Plugin = () => {
 			return slides
 		}
 
-		Object.prototype.setTransition = function(action) { 
-			if (action == "remove") {
-				delete this.dataset.appearanceCanStart;
-
-			} else {
-				this.dataset.appearanceCanStart = true;
-			}
-		};
-
-		const removeFrom = function(slides) {
-			if (slides.from && options.hideagain == true) {
-				slides.from.setTransition("remove");
-			}
-		}
-
 		const showHideSlide = function(event) {
 
 			let etype = event.type;
@@ -158,22 +143,20 @@ const Plugin = () => {
 			if (options.appearevent == "auto") {options.appearevent = "autoanimate"}
 
 			if (etype == "ready") {
-				slides.to.setTransition();
+				slides.to.dataset.appearanceCanStart = true;
 			}
 
 			if (slides.to) {
 
 				let appearevent = slides.to.dataset.appearevent ? slides.to.dataset.appearevent : options.appearevent;
 
-				if (etype == appearevent ) {
-					slides.to.setTransition();
-				} else if (etype == "slidetransitionend" && appearevent == "autoanimate") {
-					slides.to.setTransition();
+				if (etype == appearevent || (etype == "slidetransitionend" && appearevent == "autoanimate")) {
+					slides.to.dataset.appearanceCanStart = true;
 				}
 
 				if (etype == "slidetransitionend") {
-					removeFrom(slides);
 					if (options.hideagain) {
+						delete slides.from?.dataset.appearanceCanStart;
 						let fromFragments = slides.from.querySelectorAll(`.fragment.visible`);
 						fromFragments.forEach(fragment => {
 							fragment.classList.remove('visible');
@@ -182,9 +165,10 @@ const Plugin = () => {
 				}
 				
 				if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
-					removeFrom(slides);
-					slides.to.setTransition()
-					slides.to.dataset.eventdone = true;
+					if (options.hideagain) {
+						delete slides.from?.dataset.appearanceCanStart;
+					}
+					slides.to.dataset.appearanceCanStart = true;
 
 				} else if (event.type == 'overviewhidden' ) {
 
@@ -195,9 +179,10 @@ const Plugin = () => {
 					}, 500)
 		
 					if (event.currentSlide ) {
-						removeFrom(slides);
-						slides.to.setTransition();
-						event.currentSlide.dataset.eventdone = true;
+						if (options.hideagain) {
+							delete slides.from?.dataset.appearanceCanStart;
+						}
+						slides.to.dataset.appearanceCanStart = true;
 					}
 				}
 			}
