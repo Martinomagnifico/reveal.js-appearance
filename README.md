@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/reveal.js-appearance)](#) [![Downloads](https://img.shields.io/npm/dt/reveal.js-appearance)](https://github.com/Martinomagnifico/reveal.js-appearance/archive/refs/heads/master.zip)
 
-A plugin for [Reveal.js](https://revealjs.com) 4 that adds appearance effects to elements.
+An animation plugin for [Reveal.js](https://revealjs.com) that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.
 
 [![Screenshot](https://martinomagnifico.github.io/reveal.js-appearance/screenshot.png)](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
 
