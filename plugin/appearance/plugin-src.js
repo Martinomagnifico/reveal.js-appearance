@@ -156,11 +156,17 @@ const Plugin = () => {
 
 				if (etype == "slidetransitionend") {
 					if (options.hideagain) {
-						delete slides.from?.dataset.appearanceCanStart;
-						let fromFragments = slides.from.querySelectorAll(`.fragment.visible`);
-						fromFragments.forEach(fragment => {
-							fragment.classList.remove('visible');
-						})
+						if (slides.from) {
+							if (slides.from.dataset.appearanceCanStart) {
+								delete slides.from.dataset.appearanceCanStart;
+							}
+							let fromFragments = slides.from.querySelectorAll(`.fragment.visible`);
+							if (fromFragments) {
+								fromFragments.forEach(fragment => {
+									fragment.classList.remove('visible');
+								})
+							}
+						}
 					}
 				}
 				

@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.1.2
+ * Version 1.1.3
  * 
  * @license 
  * MIT licensed
@@ -290,21 +290,27 @@
 
           if (etype == "slidetransitionend") {
             if (options.hideagain) {
-              var _slides$from;
+              if (slides.from) {
+                if (slides.from.dataset.appearanceCanStart) {
+                  delete slides.from.dataset.appearanceCanStart;
+                }
 
-              (_slides$from = slides.from) === null || _slides$from === void 0 ? true : delete _slides$from.dataset.appearanceCanStart;
-              var fromFragments = slides.from.querySelectorAll(".fragment.visible");
-              fromFragments.forEach(function (fragment) {
-                fragment.classList.remove('visible');
-              });
+                var fromFragments = slides.from.querySelectorAll(".fragment.visible");
+
+                if (fromFragments) {
+                  fromFragments.forEach(function (fragment) {
+                    fragment.classList.remove('visible');
+                  });
+                }
+              }
             }
           }
 
           if (event.type == 'slidechanged' && document.body.dataset.exitoverview) {
             if (options.hideagain) {
-              var _slides$from2;
+              var _slides$from;
 
-              (_slides$from2 = slides.from) === null || _slides$from2 === void 0 ? true : delete _slides$from2.dataset.appearanceCanStart;
+              (_slides$from = slides.from) === null || _slides$from === void 0 ? true : delete _slides$from.dataset.appearanceCanStart;
             }
 
             slides.to.dataset.appearanceCanStart = true;
@@ -316,9 +322,9 @@
 
             if (event.currentSlide) {
               if (options.hideagain) {
-                var _slides$from3;
+                var _slides$from2;
 
-                (_slides$from3 = slides.from) === null || _slides$from3 === void 0 ? true : delete _slides$from3.dataset.appearanceCanStart;
+                (_slides$from2 = slides.from) === null || _slides$from2 === void 0 ? true : delete _slides$from2.dataset.appearanceCanStart;
               }
 
               slides.to.dataset.appearanceCanStart = true;

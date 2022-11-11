@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.3] - 2022-06-26
+### Changed
+- Fixed a bug if there was no previous slide
+
+
 ## [1.1.2] - 2022-06-26
 ### Added
 - Added auto-loading of styles.
