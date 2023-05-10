@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.0] - 2023-05-05
+### Added
+- Added local, specified, auto-appear
+- Added Markdown example
+- Added fix for Quarto list items
+
+### Changed
+- Reordered documentation
+- Fragments can now be Appearance items
+
+
 ## [1.1.3] - 2022-06-26
 ### Changed
 - Fixed a bug if there was no previous slide

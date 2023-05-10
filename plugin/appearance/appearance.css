@@ -1,3 +1,19 @@
+/*
+ ****************************************************************
+ * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
+ * https://github.com/Martinomagnifico
+ *
+ * Appearance.js for Reveal.js
+ * Version 1.2.0
+ * 
+ * @license 
+ * MIT licensed
+ *
+ * Thanks to:
+ *  - Hakim El Hattab, Reveal.js
+ *  - Daniel Eden, Animate.css
+ *****************************************************************
+*/
 /* Animate.css overrides */
 section:not(.stack):not([data-appearance-can-start]) .animate__animated, section:not(.stack):not([data-appearance-can-start]) .animated {
   opacity: 0;
@@ -11,7 +27,7 @@ section:not(.stack):not([data-appearance-can-start]) .animate__animated, section
   opacity: 1;
 }
 
-.fragment:not(.visible) .animate__animated, .fragment:not(.visible) .animated {
+.fragment:not(.visible) .animate__animated, .fragment:not(.visible) .animated, .fragment:not(.visible).animate__animated, .fragment:not(.visible).animated {
   opacity: 0;
   -webkit-animation: none;
           animation: none;

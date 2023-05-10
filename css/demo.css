@@ -1,3 +1,9 @@
+:root {
+  --r-heading-text-transform: none ;
+  --r-background-color: #1a1626;
+  --r-main-font-size: 40px;
+}
+
 .slides {
   opacity: 0;
   -webkit-transition: opacity 0.5s ease;
@@ -56,12 +62,17 @@
           perspective: 1000px;
 }
 
-small {
-  margin: 1.5rem 0 2rem 0;
+p.small {
+  font-size: 75%;
 }
 
-.small {
-  font-size: 75%;
+p {
+  margin: var(--r-block-margin) 0;
+}
+
+.reveal .slides ul li, .reveal .slides ol li {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
 }
 
 small code {
@@ -70,6 +81,24 @@ small code {
   color: #ddd;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
+}
+
+p a code {
+  background: none;
+  padding: 0;
+  text-decoration: underline;
+}
+
+p a[href*=html], p a[href*=http] {
+  text-decoration: underline;
+}
+
+.reveal pre {
+  font-size: 0.5em;
+}
+
+.reveal table.imagetable thead {
+  display: none;
 }
 
 a.github-corner {
@@ -82,4 +111,77 @@ a.github-corner {
 
 a.github-corner:hover {
   color: white;
+}
+
+.reveal pre {
+  width: 100%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 0.5em;
+}
+
+p code, p kbd, ul code {
+  background: rgba(180, 180, 180, 0.2);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+p kbd, ul kbd {
+  font-family: monospace;
+}
+
+.reveal .code-wrapper, pre, pre code {
+  white-space: pre-wrap !important;
+}
+
+em[class*=animate] {
+  display: inline-block;
+}
+
+.reveal img.demoimg {
+  width: 140px;
+  height: 140px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0.2em;
+}
+
+.centerblock {
+  height: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: auto;
+}
+
+ol.twocol {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  counter-reset: item;
+  width: 80%;
+  -webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+}
+ol.twocol li {
+  counter-increment: item;
+  padding-left: 1.7em;
+}
+ol.twocol li:before {
+  content: counter(item) ".";
+  margin-left: -1.7em;
+  margin-right: 0.5em;
+  display: inline-block;
+  width: 1.2em;
+  text-align: right;
 }
