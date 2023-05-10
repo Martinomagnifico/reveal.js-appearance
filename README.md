@@ -8,7 +8,8 @@ An animation plugin for [Reveal.js](https://revealjs.com) that animates elements
 
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes to allow for a non-animated state. 
 
-[Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
+* [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
+* [Markdown demo](https://martinomagnifico.github.io/reveal.js-appearance/demo-markdown.html)
 
 The animations will start automatically after or at each slide or fragment change if the HTML is set up to use Appearance.
 
