@@ -304,10 +304,22 @@ span.animate__animated, span.animated {
           animation-duration: calc(var(--animate-duration) * 3);
 }
 
-.print-pdf {
-  color: black;
+.print-pdf .animated, .print-pdf .animate__animated,
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animated,
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animate__animated {
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: none;
+          animation: none;
 }
-.print-pdf .animated, .print-pdf .animate__animated {
+.print-pdf .reveal .fragment {
+  opacity: 1;
+}
+
+.reveal.sv .animated, .reveal.sv .animate__animated,
+.reveal.sv section:not(.stack):not([data-appearance-can-start]) .animated,
+.reveal.sv section:not(.stack):not([data-appearance-can-start]) .animate__animated {
+  opacity: 1;
   visibility: visible;
   -webkit-animation: none;
           animation: none;

@@ -1,6 +1,6 @@
 {
     "name": "reveal.js-appearance",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "main": "plugin/appearance/appearance.js",
     "module": "plugin/appearance/appearance.esm.js",
     "description": "An animation plugin for Reveal.js that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.",
@@ -14,5 +14,8 @@
     "license": "MIT, Copyright (C) 2023 Martijn De Jongh",
     "peerDependencies": {
         "reveal.js": "^4.2"
+    },
+    "dependencies": {
+        "animate.css": "^4.1.1"
     }
 }

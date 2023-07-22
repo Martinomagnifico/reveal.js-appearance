@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * Appearance.js for Reveal.js 
- * Version 1.2.0
+ * Version 1.2.1
  * 
  * @license 
  * MIT licensed
@@ -146,6 +146,14 @@
 	    const debugLog = function (text) {
 	      if (options.debug) console.log(text);
 	    };
+
+	    let url = new URL(window.location);
+	    let urlparams = new URLSearchParams(url.search);
+
+	    if (urlparams.has('receiver')) {
+	      viewport.classList.add('sv');
+	      console.log(viewport);
+	    }
 
 	    const assignAutoClass = (section, str, kind) => {
 	      let index = [...section.parentElement.children].filter(s => s.tagName == "SECTION").indexOf(section) + 1;
