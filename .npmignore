@@ -1,0 +1,9 @@
+node_modules/
+demo/
+src/
+
+.git
+.gitignore
+.npmignore
+gulpfile.js
+screenshot.png

@@ -1,0 +1,50 @@
+/* Animate.css overrides */
+
+section:not(.stack):not([data-appearance-can-start]),
+.fragment:not(.visible) {
+	.animate__animated, 
+	.animated {
+		opacity: 0;
+		animation: none;
+		will-change: animation;
+	}
+
+	.reveal.overview & {
+		.animated, 
+		.animate__animated {
+			visibility: visible;
+			animation: none;
+			opacity: 1;
+		}
+	}
+}
+
+.fragment {
+	&.animate__animated, 
+	&.animated {
+		&:not(.visible) {
+			transition: opacity .3s ease-in-out !important;
+			opacity: 0;
+			animation: none;
+			will-change: animation;
+		}
+		
+		&.visible {
+			&.animate__animated, 
+			&.animated {
+				transition: none;
+			}
+		}
+	}
+}
+
+.animate__animated, 
+.animated {
+	@at-root #{selector-unify(&, i)}, #{selector-unify(&, span)} {
+		display: inline-block;
+	}
+
+	&.animationended {
+		animation: none;
+	}
+}

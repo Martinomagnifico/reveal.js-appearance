@@ -1,0 +1,27 @@
+extends /demo/html/_templates/layouts/_base.pug
+
+block content
+	.reveal
+		block beforeslides
+			+badge(locals.name.toLowerCase())
+		.slides
+			block slides
+		block afterslides
+
+append variables
+	- page.theme = "black"
+	- page.title = locals.name
+	- page.author = locals.author.name
+	- plugin = locals.name
+	- pluginName = plugin.toLowerCase()
+
+block append styles
+	link(rel='stylesheet', href=`dist/reset.css`)
+	link(rel='stylesheet', href=`dist/reveal.css`)
+	- let theme = page.theme ? page.theme : 'black';
+	link(rel='stylesheet', href=`dist/theme/${theme}.css`)
+	link(rel='stylesheet', href=`plugin/highlight/monokai.css`)
+	link(rel='stylesheet', href=`assets/css/demo.css`)
+
+block append scripts
+	script(src="dist/reveal.js")

@@ -1,0 +1,36 @@
+// CODE
+
+//-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500&family=JetBrains+Mono:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+:root {
+	--r-code-font: 'JetBrains Mono', monospace;
+}
+
+.reveal code.hljs {
+	background: var(--code-full-bg);
+	border-radius: 0.5em;
+	padding: 0.5em;
+	white-space: pre-wrap;
+
+	td {
+		line-height: 1.5;
+	}
+}
+
+p.code, p code, small code, .small code, li code {
+	background: var(--code-rgba-bg);
+	padding: 0.15em 0.25em;
+	border-radius: 0.25em;
+}
+
+.reveal pre {
+	width: 100%;
+}
+
+.reveal pre code {
+	display: block;
+	padding: 5px;
+	overflow: auto;
+	max-height: 400px;
+	word-wrap: normal;
+}

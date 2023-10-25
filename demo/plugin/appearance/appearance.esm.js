@@ -704,3 +704,4 @@ const Plugin = () => {
 };
 
 export { Plugin as default };
+//# sourceMappingURL=appearance.esm.js.map

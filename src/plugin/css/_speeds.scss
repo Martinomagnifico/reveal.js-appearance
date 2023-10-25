@@ -1,0 +1,17 @@
+// SPEEDS 
+
+.fast, .animate__fast {
+	animation-duration: calc(var(--animate-duration) * 0.8);
+}
+
+.faster, .animate__faster {
+	animation-duration: calc(var(--animate-duration) / 2);
+}
+
+.slow, .animate__slow {
+	animation-duration: calc(var(--animate-duration) * 2);
+}
+
+.slower, .animate__slower {
+	animation-duration: calc(var(--animate-duration) * 3);
+}

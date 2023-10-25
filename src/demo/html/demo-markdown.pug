@@ -1,0 +1,45 @@
+extends /demo/html/_templates/layouts/_reveal.pug
+
+block slides
+	include slides/_slides-markdown.pug
+
+block append styles
+	style.
+		:root {
+			--r-background-color: #051525;
+		}
+
+block append scripts
+	script(src="plugin/highlight/highlight.js")
+	script(src="plugin/markdown/markdown.js")
+	script(src=`plugin/${pluginName}/${pluginName}.js`)
+
+	script.
+		const deck = document.querySelector(".reveal");
+
+		// Define the plugins (Using strings)
+		let plugins = ["RevealMarkdown", "!{plugin}", "RevealHighlight"];
+
+		// Check the plugins
+		const pluginCheck = (plugs) => plugs.reduce((a, p) => typeof window[p] === "function" ? (a.push(window[p]), a) : (console.warn(`Plugin "${p}" does not exist.`), a), []);
+
+		// Initialize the deck
+		let revealdeck = new Reveal(deck);
+			revealdeck.initialize({
+			history: true,
+			overview: true,
+			margin: 0.1,
+			maxScale: 1.8,
+			center: true,
+			controlsTutorial: false,
+			appearance: {
+				debug: false,
+				appearparents: true,
+				hideagain: true,
+				appearevent: 'auto',
+				autoappear: true,
+				autoelements: {'ul li': 'animate__fadeInLeft'},
+				compatibility: false
+			},
+			plugins: pluginCheck(plugins)
+		});

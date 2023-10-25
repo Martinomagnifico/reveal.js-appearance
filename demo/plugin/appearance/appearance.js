@@ -712,3 +712,4 @@
 	return Plugin;
 
 }));
+//# sourceMappingURL=appearance.js.map

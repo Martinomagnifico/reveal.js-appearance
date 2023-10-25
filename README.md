@@ -4,18 +4,16 @@
 
 An animation plugin for [Reveal.js](https://revealjs.com) that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.
 
-[<img src="https://martinomagnifico.github.io/reveal.js-appearance/screenshot.png" width="100%">](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
+[<img src="https://martinomagnifico.github.io/reveal.js-appearance/screenshot.png" width="100%">](https://martinomagnifico.github.io/reveal.js-appearance/demo/demo.html)
 
 In Powerpoint you can make slides with items that appear automatically with effects. This plugin for Reveal.js tries to achieve the same result. It's easy to set up. It uses Animate.css by Daniel Eden for the animations, with some changes to allow for a non-animated state. 
 
-* [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo.html)
-* [Markdown demo](https://martinomagnifico.github.io/reveal.js-appearance/demo-markdown.html)
+* [Demo](https://martinomagnifico.github.io/reveal.js-appearance/demo/demo.html)
+* [Markdown demo](https://martinomagnifico.github.io/reveal.js-appearance/demo/demo-markdown.html)
 
 The animations will start automatically after or at each slide or fragment change if the HTML is set up to use Appearance.
 
-Version 1.1.1 adds an `autoappear` mode for use in cases where adding animation classes is too much of a hassle, like inside Markdown.
-
-Appearance v1.1.2 brought some **breaking changes**, please refer to the [migration guide](#migration-guide) before updating from v1.1.1 and under. It also changed the internal delay mechanism to use CSS animation delay in combination to adding the trigger on the parent, not each animated element. This will improve the performance.
+Version 1.3.0 adds an option to animate the words in a sentence, or the letters in a word.
 
 
 ## Basics
@@ -79,7 +77,7 @@ If you're using ES modules, you can add it like this:
 ```
 
 ### Styling
-Since version 1.1.2, the styling of Appearance is automatically inserted, either loaded through NPM or from the plugin folder. Two files are inserted: The first one is Animate.css by Daniel Eden for the basic animations, we add it through a CDN. The second file adds to the first stylesheet to allow for a non-animated state.
+The styling of Appearance is automatically inserted, either loaded through NPM or from the plugin folder. Two files are inserted: The first one is Animate.css by Daniel Eden for the basic animations, we add it through a CDN. The second file adds to the first stylesheet to allow for a non-animated state.
 
 If you want to change the Appearance style, you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of Appearance.
 
@@ -98,6 +96,15 @@ It is easy to set up your HTML structure for Appearance. Each element that you w
 ```
 
 When you are working with Markdown (or in any other case), this can be a chore **so if you do not want to add all these classes**, you can set the option `autoappear` to `true` (see [Autoappear](#autoappear) below) and let Appearance do the heavy work.
+
+#### Animating words and letters
+
+To nicely animate the words in a heading, or the letters of a word, add an animation class to it, and add a data-attribute for the kind of split you want:  
+
+```html
+<h3 class="animate__fadeInDown" data-split="words">Let words apear and appear</h3>
+<h3 class="animate__fadeInDown" data-split="letters">Let letters apear and appear</h3>
+```
 
 
 ## Now change it
@@ -124,6 +131,21 @@ You can change the speed of each animation, using the tempo classes from Animate
 <img class="animate__fadeInDown animate__fast" data-src="3.jpg">
 <img class="animate__fadeInDown animate__faster" data-src="4.jpg">
 ```
+
+
+### Changing word and letter animations
+
+For words and letters, the same techniques can be used. 
+
+Note that the data-delay also gets copied to the smaller elements in it, which means that there is no more 'whole sentence' or 'whole word' to delay. By default, the whole element then gets the delay (depending on if it is following other animations) as defined in the `delay` option in the Configuration, but it can be overriden by an optional `data-container-delay`. 
+
+```html
+<h3 class="animate__fadeInDown animate__faster" 
+	data-split="words" 
+	data-delay="80"
+	data-container-delay="600">Let words apear and appear</h3>
+```
+
 
 ### Changing the 'appearevent'
 When you navigate from slide to slide, you can set transition effects in Reveal. These effects take some time. That's why, by default, Appearance only starts when the slide transition has ended. 
@@ -174,9 +196,17 @@ Reveal.initialize({
 });
 ```
 
-You can add any selector and animation class to this object.
+You can add any selector and animation class to this object. You can use a simple JSON object, or more elaborate like this (you can also mix them): `{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}`. An object like that can contain the following keys:
 
-Now you do not need to add any classes to the markup and it will stay like this:
+* animation
+* speed
+* delay
+* split
+* container-delay 
+
+where the last two keys are specific for word- and letter-animations.
+
+If you choose to write all your animation selectors and properties globally, you no longer need to add any classes to the markup and it can stay like this:
 
 ```html
 <ul>
@@ -227,10 +257,13 @@ Reveal.initialize({
 
 ### Local auto-appear, specified
 
-You can also add a JSON object to the slide’s `data-autoappear`, with specific elements, their animations class as a string or an array with animations class, optional speed class and delay. 
+You can also add a JSON object to the slide’s `data-autoappear`, with specific elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.  
+
+In the example below you can see that mixing strings and objects is perfectly fine. The `ul li` has a simple string for only the animation class(es) while the `h3` uses an object with keys.
 
 ```html
-<section data-autoappear='{"ul li":"animate__fadeInRight","h3":["animate__fadeInDown, animate__slow","100ms"]}'>
+<section data-autoappear='{"ul li":"animate__fadeInRight", 
+"h3": {"animation":"animate__fadeInDown", "speed":"slow", "delay":"100"}}'>
 	<h3>Local auto-appear, specified</h3>
 	<ul>
 		<li>This is list item 1</li>
@@ -278,7 +311,7 @@ Reveal.initialize({
 
 
 ## Migration guide
-Appearance v1.1.2 is an update to stay current with the latest version of Animate.css, which itself brought breaking changes in version 4. Animate.css v4 added a prefix for all of the Animate.css classes, defaulting to `animate__` . Appearance will now automatically add the Animate.css base class (`animate__animated`) to any element with a Animate.css animation class.
+Appearance v1.1.2 was an update to stay current with the latest version of Animate.css, which itself brought breaking changes in version 4. Animate.css v4 added a prefix for all of the Animate.css classes, defaulting to `animate__` . Appearance will now automatically add the Animate.css base class (`animate__animated`) to any element with a Animate.css animation class.
 
 You have two options to migrate to the new version:
 
