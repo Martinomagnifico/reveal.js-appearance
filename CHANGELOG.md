@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.1] - 2023-11-05
+### Added
+- Added Terser to minimize files
+
+### Changed
+- Fixed invisible elements in auto-animate slides
+- Changed demo to align normal and MarkDown slides
+- Changed loadStyle function
+- Updated gulp file and dev dependencies
+
 ## [1.3.0] - 2023-10-25
 ### Added
 - Added word and character appearances
