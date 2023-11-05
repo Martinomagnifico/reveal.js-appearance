@@ -52,10 +52,6 @@ p code {
   font-size: 0.7em;
 }
 
-:root {
-  --r-code-font: "JetBrains Mono", monospace;
-}
-
 .reveal code.hljs {
   background: var(--code-full-bg);
   border-radius: 0.5em;
@@ -63,7 +59,7 @@ p code {
   white-space: pre-wrap;
 }
 .reveal code.hljs td {
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 p.code, p code, small code, .small code, li code {
@@ -85,7 +81,8 @@ p.code, p code, small code, .small code, li code {
 }
 
 :root {
-  --r-heading-text-transform: none ;
+  --r-background-color: #051525;
+  --r-heading-text-transform: none;
   --r-heading1-size: 2.7em;
   --r-main-font-size: 36px;
   --r-block-margin: 1.8rem;
@@ -128,16 +125,22 @@ a.github-corner:hover {
   opacity: 1;
 }
 
+img {
+  border-radius: 5%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  width: 3.5em;
+  height: 3.5em;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .row.fivegrid {
   display: grid;
-  width: 90%;
+  width: 82%;
   margin: auto;
-  margin-top: 0.25em;
+  margin: var(--r-block-margin) auto;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1em;
-}
-.row.fivegrid img {
-  border-radius: 5%;
 }
 
 .reveal img.demoimg {
@@ -145,7 +148,7 @@ a.github-corner:hover {
   height: 3.5em;
   max-width: 100%;
   max-height: 100%;
-  margin: 0.2em;
+  margin: 0.4em;
   border-radius: 5%;
 }
 .reveal img.demoimg.smallcircle {
@@ -156,9 +159,15 @@ a.github-corner:hover {
 }
 
 .row.smallcircles {
-  grid-gap: 1em;
-  width: 70%;
+  grid-gap: 0.5em;
+  width: 75%;
 }
-.row.smallcircles img {
-  border-radius: 50%;
+
+.title {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.5em;
 }

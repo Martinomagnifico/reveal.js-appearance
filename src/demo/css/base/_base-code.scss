@@ -1,11 +1,5 @@
 // CODE
 
-//-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500&family=JetBrains+Mono:wght@400;700&family=Lato:wght@400;700&display=swap');
-
-:root {
-	--r-code-font: 'JetBrains Mono', monospace;
-}
-
 .reveal code.hljs {
 	background: var(--code-full-bg);
 	border-radius: 0.5em;
@@ -13,7 +7,7 @@
 	white-space: pre-wrap;
 
 	td {
-		line-height: 1.5;
+		line-height: 1.4;
 	}
 }
 

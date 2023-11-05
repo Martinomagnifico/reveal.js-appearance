@@ -1,21 +1,25 @@
 "use strict";
 
-const { src, dest, watch, series, parallel } = require('gulp'),
-		pkg = require('./package.json'),
-		fs = require('fs'),
-		sass = require('gulp-sass')(require('sass')),
-		pug = require('gulp-pug'),
-		plumber = require('gulp-plumber'),
-		autoprefixer = require('gulp-autoprefixer'),
-		browserSync = require('browser-sync').create(),
-		{rollup} = require('rollup'),
-		babel = require('@rollup/plugin-babel').default,
-		commonjs = require('@rollup/plugin-commonjs'),
-		resolve = require('@rollup/plugin-node-resolve').default,
-		rename = require("gulp-rename"),
-		merge = require('merge-stream'),
-		header = require('gulp-header'),
-		del = require('del');
+const { src, dest, watch, series, parallel } = require('gulp');
+
+const pkg = require('./package.json');
+const sass = require('gulp-sass')(require('sass'));
+
+const pug = require('gulp-pug');
+const plumber = require('gulp-plumber');
+const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
+
+const {rollup} = require('rollup');
+const babel = require('@rollup/plugin-babel').default;
+const commonjs = require('@rollup/plugin-commonjs');
+const resolve = require('@rollup/plugin-node-resolve').default;
+const terser = require('@rollup/plugin-terser');
+
+const rename = require("gulp-rename");
+const merge = require('merge-stream');
+const header = require('gulp-header');
+const del = require('del');
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod';
 
@@ -100,7 +104,7 @@ const cleandev = () =>  {
 
 const copydeps = () => {
 	// Get the dependencies from package.json
-	let copydependencies = (JSON.parse(fs.readFileSync('./package.json'))).copydependencies;
+	let copydependencies = pkg.copydependencies;
 
 	if ( JSON.stringify(copydependencies) === "{}" || JSON.stringify(copydependencies) === "[]"  || !copydependencies  ) {
 		return src('.', {allowEmpty: true});
@@ -129,7 +133,8 @@ const pluginjs = () => {
 		plugins: [
 			babel( babelConfig ),
 			resolve(),
-			commonjs()
+			commonjs(),
+			terser()
 		]
 	}).then( bundle => {
 		cache.umd = bundle.cache;
@@ -149,8 +154,6 @@ const pluginjs = () => {
 		});
 	});
 }
-
-
 
 const pluginstyles = () => {
 	return (
@@ -214,7 +217,6 @@ const demofonts = () => {
 	)
 };
 
-
 // Browsersync Tasks
 const serve = (callback) =>  {
 	browserSync.init({
@@ -226,7 +228,6 @@ const serve = (callback) =>  {
 	});
 	callback();
 }
-
 
 const watchtask = (done) => {
 	watch(`${sourcefolder}/**/*.pug`, demoviews);

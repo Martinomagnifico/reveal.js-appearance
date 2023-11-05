@@ -3,9 +3,9 @@ section
 	h3.animate__fadeInDown.animate__faster(data-delay="75", data-container-delay="700", data-split="letters") for Reveal.js
 
 	.row.fivegrid.smallcircles
-		img.animate__shrinkIn(data-src="assets/img/1.jpg", data-delay="800")
+		img.demoimg.smallcircle.animate__shrinkIn(data-src="assets/img/1.jpg", data-delay="800")
 		+iterate('4')
-			img.animate__shrinkIn(data-src=`assets/img/${nr + 1}.jpg`,  data-delay="240" - (nr * 20))
+			img.demoimg.smallcircle.animate__shrinkIn(data-src=`assets/img/${nr + 1}.jpg`,  data-delay="240" - (nr * 20))
 
 section
 	section
@@ -35,7 +35,7 @@ section
 		h3 Let images appear
 		.row.fivegrid
 			+iterate('5')
-				img.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
+				img.demoimg.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
 
 	section
 		h3 Use with fragments

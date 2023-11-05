@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * Appearance for Reveal.js 
- * Version 1.3.0
+ * Version 1.3.1
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
@@ -148,6 +148,16 @@
 }
 
 /* Animate.css overrides */
+section:not(.stack):not([data-appearance-can-start]) .animate__animated, section:not(.stack):not([data-appearance-can-start]) .animated {
+  opacity: 0;
+  animation: none;
+}
+
+section:not(.stack)[data-appearance-can-start] .animate__animated:not(.fragment), section:not(.stack)[data-appearance-can-start] .animated:not(.fragment) {
+  opacity: 1;
+}
+
+/* Animations inside fragments */
 section:not(.stack):not([data-appearance-can-start]) .animate__animated,
 section:not(.stack):not([data-appearance-can-start]) .animated,
 .fragment:not(.visible) .animate__animated,
@@ -165,23 +175,31 @@ section:not(.stack):not([data-appearance-can-start]) .animated,
   opacity: 1;
 }
 
-.fragment.animate__animated:not(.visible), .fragment.animated:not(.visible) {
-  transition: opacity 0.3s ease-in-out !important;
+/* Animations which are also fragments */
+.reveal .fragment.animate__animated:not(.visible), .reveal .fragment.animated:not(.visible) {
+  transition: all 0.2s ease;
   opacity: 0;
   animation: none;
   will-change: animation;
 }
-.fragment.animate__animated.visible.animate__animated, .fragment.animate__animated.visible.animated, .fragment.animated.visible.animate__animated, .fragment.animated.visible.animated {
+.reveal .fragment.animate__animated.visible:not(.animationended), .reveal .fragment.animated.visible:not(.animationended) {
   transition: none;
+}
+.reveal .fragment.animate__animated.visible.animationended, .reveal .fragment.animated.visible.animationended {
+  animation: none;
+  transition: all 0.2s ease;
 }
 
 i.animate__animated, i.animated, span.animate__animated, span.animated {
   display: inline-block;
 }
 
-.animate__animated.animationended,
-.animated.animationended {
+.animate__animated[data-auto-animate-target]:not([data-auto-animate-target=unmatched]) {
   animation: none;
+}
+
+[data-auto-animate=running] .animate__animated[data-auto-animate-target]:not([data-auto-animate-target=unmatched]) {
+  opacity: 1 !important;
 }
 
 .fast, .animate__fast {

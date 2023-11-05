@@ -1,4 +1,4 @@
-import { loadStyle } from '../helpers';
+import { loadResource } from '../helpers';
 import { pluginPath } from '../helpers';
 
 /**
@@ -22,8 +22,8 @@ export const getAndLoadCSS = (options, fileName) => {
 		console.log(`  - AnimateCSS CSS path = ${AnimateCSSPath}`);
 	}
 
-	loadStyle(AnimateCSSPath, function () {
-		loadStyle(AppearanceStylePath);
+	loadResource(AnimateCSSPath, 'stylesheet', function () {
+		loadResource(AppearanceStylePath, 'stylesheet');
 	});
 
 }

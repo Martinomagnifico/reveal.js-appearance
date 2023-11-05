@@ -2,16 +2,22 @@
 
 // APPEARANCE DEMO
 
+img {
+	border-radius: 5%;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+	width: 3.5em;
+	height: 3.5em;
+	max-width: 100%;
+	max-height: 100%;
+}
+
 .row.fivegrid {
 	display: grid;
-	width: 90%;
+	width: 82%;
 	margin: auto;
-	margin-top: .25em;
+	margin: var(--r-block-margin) auto;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-gap: 1em;
-	img {
-		border-radius: 5%;
-	}
 }
 
 .reveal img.demoimg {
@@ -19,7 +25,7 @@
 	height: 3.5em;
 	max-width: 100%;
 	max-height: 100%;
-	margin: 0.2em;
+	margin: 0.4em;
 	border-radius: 5%;
 	&.smallcircle {
 		margin: 0.4em;
@@ -30,9 +36,15 @@
 }
 
 .row.smallcircles {
-	grid-gap: 1em;
-	width: 70%;
-	img {
-		border-radius: 50%;
-	}
+	grid-gap: .5em;
+	width: 75%;
+}
+
+
+.title {
+	font-size: 3em;
+	font-weight: bold;
+}
+.subtitle {
+	font-size: 1.5em
 }

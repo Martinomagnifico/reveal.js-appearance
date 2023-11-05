@@ -1,5 +1,18 @@
 /* Animate.css overrides */
 
+section:not(.stack):not([data-appearance-can-start]) {
+	.animate__animated, .animated {
+		opacity: 0;
+		animation: none;
+	}
+}
+section:not(.stack)[data-appearance-can-start] {
+	.animate__animated:not(.fragment), .animated:not(.fragment) {
+		opacity: 1;
+	}
+}
+
+/* Animations inside fragments */
 section:not(.stack):not([data-appearance-can-start]),
 .fragment:not(.visible) {
 	.animate__animated, 
@@ -19,22 +32,25 @@ section:not(.stack):not([data-appearance-can-start]),
 	}
 }
 
-.fragment {
+/* Animations which are also fragments */
+.reveal .fragment {
 	&.animate__animated, 
 	&.animated {
 		&:not(.visible) {
-			transition: opacity .3s ease-in-out !important;
+			transition: all .2s ease;
 			opacity: 0;
 			animation: none;
 			will-change: animation;
 		}
 		
-		&.visible {
-			&.animate__animated, 
-			&.animated {
-				transition: none;
-			}
+		&.visible:not(.animationended) {
+			transition: none;
 		}
+		&.visible.animationended {
+			animation: none;
+			transition: all .2s ease;
+		}
+		
 	}
 }
 
@@ -43,8 +59,11 @@ section:not(.stack):not([data-appearance-can-start]),
 	@at-root #{selector-unify(&, i)}, #{selector-unify(&, span)} {
 		display: inline-block;
 	}
+}
 
-	&.animationended {
-		animation: none;
-	}
+.animate__animated[data-auto-animate-target]:not([data-auto-animate-target="unmatched"]) {
+	animation: none;
+}
+[data-auto-animate="running"] .animate__animated[data-auto-animate-target]:not([data-auto-animate-target="unmatched"]) {
+	opacity: 1 !important;
 }

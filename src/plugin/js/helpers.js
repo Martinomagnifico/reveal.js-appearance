@@ -120,30 +120,42 @@ export const toJSONString = (str) => {
 	return JSONString;
 }
 
+
 /**
- * Dynamically loads a stylesheet from the specified URL and calls a callback function when it's loaded.
+ * Dynamically loads a resource from the specified URL and calls a callback function when it's loaded.
  *
- * @param {string} url - The URL of the stylesheet to load.
- * @param {Function} callback - A callback function to be called when the stylesheet is loaded.
+ * @param {string} url - The URL of the resource to load.
+ * @param {string} type - The type of resource to load.
+ * @param {Function} callback - A callback function to be called when the resource is loaded.
  */
-export const loadStyle = (url, callback) => {
-	const head = document.querySelector('head');
-	const style = document.createElement('link');
-	style.rel = 'stylesheet';
-	style.href = url;
-	style.onload = () => {
-		if (typeof callback === 'function') {
-			callback.call();
-			callback = null;
+export const loadResource = (url, type, callback) => {
+	let head = document.querySelector('head');
+	let resource;
+
+	if (type === 'script') {
+	  resource = document.createElement('script');
+	  resource.type = 'text/javascript';
+	  resource.src = url;
+	} else if (type === 'stylesheet') {
+	  resource = document.createElement('link');
+	  resource.rel = 'stylesheet';
+	  resource.href = url;
+	}
+	const finish = () => {
+	  if (typeof callback === 'function') {
+		callback.call();
+		callback = null;
+	  }
+	};
+	resource.onload = finish;
+	resource.onreadystatechange = function () {
+		if (this.readyState === 'loaded') {
+		  finish();
 		}
 	};
-	style.onreadystatechange = () => {
-		if (style.readyState === 'loaded') {
-			style.onload();
-		}
-	};
-	head.appendChild(style);
-};
+	head.appendChild(resource);
+}
+
 
 /**
  * Retrieves the path of a JavaScript file based on its filename.
@@ -163,7 +175,60 @@ export const pluginPath = (fileName) => {
 }
 
 
+/**
+ * Check if element 'a' appears before element 'b' in the DOM tree.
+ *
+ * @param {HTMLElement} a - The first HTML element to compare.
+ * @param {HTMLElement} b - The second HTML element to compare.
+ * @returns {boolean|undefined} - Returns `true` if element 'a' appears before element 'b', `false` if 'b' appears before 'a', and `undefined` if the elements have no relative position in the DOM tree.
+ */
+export const isBefore = (a, b) => {
+    var all = document.getElementsByTagName('*');
+
+    for (var i = 0; i < all.length; ++i) {
+        if (all[i] === a) {
+            return true;
+        } else if (all[i] === b) {
+            return false;
+        }
+    }
+    // If the elements have no relative position in the DOM tree
+    return undefined;
+};
+
+
+/**
+ * Check the number of occurrences of a specific element in an array.
+ *
+ * @param {Array} array - The array in which occurrences are to be counted.
+ * @param {*} element - The element to be counted within the array.
+ * @returns {number} - The count of occurrences of the specified element in the array.
+ */
+export const checkOccurrence = (array, element) => {
+    let counter = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] == element) {
+            counter++;
+        }
+    }
+    return counter;
+};
+
+
+/**
+ * Create an HTML element from a string of HTML.
+ *
+ * @param {string} thehtml - The string of HTML to be converted into an HTML element.
+ * @returns {HTMLElement | null} - The HTML element created from the provided HTML string. Returns `null` if the element couldn't be created.
+ */
+export const createNode = (thehtml) => {
+    const fragment = document.createRange().createContextualFragment(thehtml);
+    return fragment.firstElementChild;
+};
+
+
 
 export const debugLog = (options, text) => {
 	if (options.debug) console.log(text);
 }
+

@@ -3,12 +3,6 @@ extends /demo/html/_templates/layouts/_reveal.pug
 block slides
 	include slides/_slides-markdown.pug
 
-block append styles
-	style.
-		:root {
-			--r-background-color: #051525;
-		}
-
 block append scripts
 	script(src="plugin/highlight/highlight.js")
 	script(src="plugin/markdown/markdown.js")
