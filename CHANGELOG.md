@@ -10,7 +10,6 @@
 - Changed loadStyle function
 - Updated gulp file and dev dependencies
 
-
 ## [1.3.0] - 2023-10-25
 ### Added
 - Added word and character appearances
