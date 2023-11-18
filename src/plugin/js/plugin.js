@@ -74,7 +74,7 @@ const Plugin = () => {
 	* @param {object} options - The options object
 	* @param {string} es5Filename - The name of the file that will be used
 	*/
-	const Appear = function (deck, options, es5Filename) {
+	const Appear = (deck, options, es5Filename) => {
 
 		let names = vars.names;
 
@@ -87,7 +87,7 @@ const Plugin = () => {
 		names.speedClasses.push(...names.speedClasses.map(speed => `animate__${speed}`));
 		names.animatecss = '[class^="animate__"],[class*=" animate__"]';
 		names.es5Filename = es5Filename;
-		names.eventnames = ['ready', 'slidechanged', 'slidetransitionend', 'autoanimate', 'overviewhidden', 'scrolle'];
+		names.eventnames = ['ready', 'slidechanged', 'slidetransitionend', 'autoanimate', 'overviewhidden'];
 	
 		// Set up variables
 		vars.deck = deck;
@@ -124,7 +124,7 @@ const Plugin = () => {
 	* Initialize the plugin
 	* @param {object} deck - The deck object
 	*/
-	const init = function (deck) {
+	const init = (deck) => {
 
 		let defaultOptions = {
 			baseclass: 'animate__animated',

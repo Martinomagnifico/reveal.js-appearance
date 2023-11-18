@@ -100,24 +100,64 @@ p.code, p code, small code, .small code, li code {
   --r-link-color-hover: #0373bd;
 }
 
+.reveal.embedded {
+  border: 4px solid transparent;
+  border-radius: 8px;
+}
+.reveal.embedded:not(.focused) {
+  cursor: pointer;
+}
+.reveal.embedded.focused {
+  border-color: #42affa;
+  box-shadow: 0 4px 16px rgba(5, 21, 37, 0.3);
+}
+
+.reveal.embedded .progress {
+  background: rgba(66, 175, 250, 0.3);
+  font-size: 10px;
+  height: 0.3em;
+  border-radius: 0.25em;
+  left: 0.5em;
+  bottom: 0.5em;
+  right: 0.5em;
+  width: calc(100% - 1em);
+  overflow: hidden;
+}
+
 a.github-corner {
-  position: fixed;
+  position: sticky;
+  border: none;
+  pointer-events: initial;
   z-index: 2;
+  padding: 0;
   top: 0;
-  left: 0;
-  width: clamp(50px, 8vmax, 80px);
+  display: flex;
+  flex-direction: column;
   line-height: 0;
+  width: max-content;
+  height: max-content;
   opacity: 0.5;
   transition: opacity 0.3s;
   color: var(--c-theme-color, white);
 }
 .rtl a.github-corner {
   left: auto;
+  margin: 0 0 0 auto;
   right: 0;
 }
 a.github-corner.bottom {
-  top: auto;
-  bottom: 3px;
+  position: sticky;
+  top: 100%;
+  margin-top: auto;
+  top: calc(100% - 70px);
+}
+.reveal.embedded a.github-corner {
+  display: none;
+}
+a.github-corner svg {
+  line-height: 0;
+  width: 75px;
+  height: 75px;
 }
 
 a.github-corner:hover {

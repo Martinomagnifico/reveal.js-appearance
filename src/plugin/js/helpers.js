@@ -123,37 +123,49 @@ export const toJSONString = (str) => {
 
 /**
  * Dynamically loads a resource from the specified URL and calls a callback function when it's loaded.
+ * Will not load the resource if it has already been loaded.
  *
  * @param {string} url - The URL of the resource to load.
  * @param {string} type - The type of resource to load.
  * @param {Function} callback - A callback function to be called when the resource is loaded.
  */
+
 export const loadResource = (url, type, callback) => {
 	let head = document.querySelector('head');
 	let resource;
+	let alreadyExists = false;
 
 	if (type === 'script') {
-	  resource = document.createElement('script');
-	  resource.type = 'text/javascript';
-	  resource.src = url;
+		if (!document.querySelector(`srcipt[src="${url}"]`)) {
+			resource = document.createElement('script');
+			resource.type = 'text/javascript';
+			resource.src = url;
+		} else { alreadyExists = true }
+
 	} else if (type === 'stylesheet') {
-	  resource = document.createElement('link');
-	  resource.rel = 'stylesheet';
-	  resource.href = url;
+
+		if (!document.querySelector(`link[href="${url}"]`)) {
+			resource = document.createElement('link');
+			resource.rel = 'stylesheet';
+			resource.href = url;
+		} else { alreadyExists = true }
 	}
-	const finish = () => {
-	  if (typeof callback === 'function') {
-		callback.call();
-		callback = null;
-	  }
-	};
-	resource.onload = finish;
-	resource.onreadystatechange = function () {
-		if (this.readyState === 'loaded') {
-		  finish();
-		}
-	};
-	head.appendChild(resource);
+
+	if (!alreadyExists) {
+		const finish = () => {
+			if (typeof callback === 'function') {
+			callback.call();
+			callback = null;
+			}
+		};
+		resource.onload = finish;
+		resource.onreadystatechange = function () {
+			if (this.readyState === 'loaded') {
+				finish();
+			}
+		};
+		head.appendChild(resource);
+	}
 }
 
 

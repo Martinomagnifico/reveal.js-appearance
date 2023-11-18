@@ -26,3 +26,27 @@
     --r-link-color-hover :  #0373bd;
 }
 
+// EMBEDDED DEMO
+
+.reveal.embedded {
+	border: 4px solid transparent;
+	border-radius: 8px;
+	&:not(.focused) {
+		cursor: pointer;
+	}
+	&.focused {
+		border-color: #42affa;
+		box-shadow: 0 4px 16px rgba(#051525, 0.3)
+	}
+}
+.reveal.embedded .progress {
+	background: rgba(#42affa, 0.3);
+	font-size: 10px;
+	height: 0.3em;
+	border-radius: 0.25em;
+	left: 0.5em;
+	bottom: 0.5em;
+	right: 0.5em;
+	width: calc(100% - 1em);
+	overflow: hidden;
+}

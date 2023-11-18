@@ -1,0 +1,64 @@
+extends /demo/html/_templates/layouts/_reveal-embed.pug
+
+block slides
+	section
+		h1.animate__flipInX.slow Embed test
+		h2(data-delay="2000") Embed test
+	section
+		ul
+			+iterate('2')
+				li.globalul="This is list item " + nr
+
+block slidestwo
+	section
+		h1.animate__flipInX Embed test
+		h2 Embed test
+	section
+		ul
+			+iterate('2')
+				li.globalul="This is list item " + nr
+
+block append scripts
+	script(src=`plugin/highlight/highlight.js`)
+	script(src=`plugin/${pluginName}/${pluginName}.js`)
+
+	script.
+		// Get the decks
+		const deck = document.querySelector("#deck1");
+		const decktwo = document.querySelector("#deck2");
+
+		// Define the plugins (Using strings)
+		let plugins = ["!{plugin}", "RevealHighlight"];
+
+		// Check the plugins
+		const pluginCheck = (plugs) => plugs.reduce((a, p) => typeof window[p] === "function" ? (a.push(window[p]), a) : (console.warn(`Plugin "${p}" does not exist.`), a), []);
+
+		let deck1 = new Reveal(deck, {
+			embedded: true,
+			keyboardCondition: 'focused',
+			overview: false,
+			controlsTutorial: false,
+			appearance: {
+				appearparents: true,
+				appearevent: 'auto',
+				autoappear: true,
+				autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
+			},
+			plugins: pluginCheck(plugins)
+		});
+
+		let deck2 = new Reveal(decktwo, {
+			embedded: true,
+			keyboardCondition: 'focused',
+			overview: false,
+			controlsTutorial: false,
+			appearance: {
+				appearparents: true,
+				appearevent: 'slidechanged',
+				autoappear: true,
+				autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
+			},
+			plugins: pluginCheck(plugins)
+		});
+		deck1.initialize();
+		deck2.initialize();

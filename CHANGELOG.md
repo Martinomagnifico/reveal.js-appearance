@@ -1,5 +1,14 @@
 # Changelog
 
+
+## [1.3.3] - 2023-11-18
+### Added
+- Added embedded example to the demo’s
+
+### Changed
+- Fixed a bug where the plugin would not work if in an embedded presentation
+
+
 ## [1.3.1] - 2023-11-05
 ### Added
 - Added Terser to minimize files

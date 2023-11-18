@@ -85,7 +85,12 @@ export const addAutoAnimation = (section, options, vars) => {
 
 					element.classList.add(...newClasses);
 					if (speedClass) { element.classList.add(speedClass)}
-					if (newDelay) {element.dataset.delay = newDelay};
+
+					if (newDelay) {
+						if (!element.dataset.delay) {
+							element.dataset.delay = newDelay
+						}
+					}
 					if (elementSplit) {element.dataset.split = elementSplit};
 					if (containerDelay) {element.dataset.containerDelay = containerDelay};
 				});

@@ -58,16 +58,23 @@ const removeStartAttribute = (slides, options) => {
  */
 const turnOffSlideAppearances = (slides, options, names) => {
 	if (options.hideagain) {
-		let fromAppearances = slides.from.querySelectorAll(names.animatecss);
-		fromAppearances.forEach( appearance => {
-			appearance.classList.remove('animationended');
-		} );
-		// Remove visible class from fragments when moving away from that slide
-		let fromFragments = slides.from.querySelectorAll(`.fragment.visible`);
-		if (fromFragments) {
-			fromFragments.forEach(fragment => {
-				fragment.classList.remove('visible');
-			})
+		if (slides && slides.from) {
+
+			// Remove animationended class from animated elements when moving away from that slide
+			let fromAppearances = slides.from.querySelectorAll(names.animatecss);
+			if (fromAppearances) {
+				fromAppearances.forEach( appearance => {
+					appearance.classList.remove('animationended');
+				} );
+			}
+
+			// Remove visible class from fragments when moving away from that slide
+			let fromFragments = slides.from.querySelectorAll(`.fragment.visible`);
+			if (fromFragments) {
+				fromFragments.forEach(fragment => {
+					fragment.classList.remove('visible');
+				})
+			}
 		}
 	}
 };
@@ -82,6 +89,7 @@ const turnOffSlideAppearances = (slides, options, names) => {
 export const showHideSlide = (event, options, names, vars) => {
 
 	let view = vars.deck.getConfig().view;
+	let isScroll = vars.viewport.classList.contains("reveal-scroll");
 	let etype = event.type;
 	let slides = fromTo(event);
 
@@ -97,8 +105,8 @@ export const showHideSlide = (event, options, names, vars) => {
 			slides.to.dataset.appearanceCanStart = true;
 		}
 
-		// Add experimental Reader mode compatibility, does not have a slidetransitionend event yet
-		if (view == "scroll" && etype == 'slidechanged' ) {
+		// Add scroll mode compatibility, does not have a slidetransitionend event yet
+		if (isScroll && etype == 'slidechanged' ) {
 
 			removeStartAttribute(slides, options);
 			turnOffSlideAppearances(slides, options, names);
