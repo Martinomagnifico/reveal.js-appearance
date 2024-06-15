@@ -45,7 +45,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "browser-sync": "^2.29.3",
     "del": "^5.1.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-header": "^2.0.9",
     "gulp-plumber": "^1.2.1",
