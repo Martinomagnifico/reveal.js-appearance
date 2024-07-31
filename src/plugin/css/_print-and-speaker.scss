@@ -1,15 +1,24 @@
+
 .print-pdf {
 	.animated, .animate__animated,
-	section:not(.stack):not([data-appearance-can-start]) .animated,
-	section:not(.stack):not([data-appearance-can-start]) .animate__animated{
-		opacity: 1;
-		visibility: visible;
+	section:not(.stack):not([data-appearance-can-start]) {
+		.animated:not(.fragment),
+		.animate__animated:not(.fragment),
+		.animated.fragment.visible,
+		.animate__animated.fragment.visible {
+			opacity: 1;
+			visibility: visible;
+			animation: none;
+		}
+	}
+	.animated, .animate__animated {
 		animation: none;
 	}
-	.reveal .fragment {
-		opacity: 1;
-	}
 }
+
+
+
+
 
 .reveal.sv, .reveal-viewport.sv {
 	.animated, .animate__animated,

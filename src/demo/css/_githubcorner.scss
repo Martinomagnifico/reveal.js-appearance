@@ -29,7 +29,8 @@ a.github-corner {
     transition: opacity .3s;
     color: var(--c-theme-color, white);
 
-    .reveal.embedded & {
+    .reveal.embedded &,
+    .reveal-viewport.reveal-scroll & {
         display: none
     }
 

@@ -26,6 +26,7 @@ export const convertToSpans = (parent, kind) => {
 			if (parent.dataset.containerDelay && index === 0) {
 				span.dataset.delay = parent.dataset.containerDelay
 			}
+			parent.classList.add('wordchargroup');
 	
 			parent.classList.forEach(className => className.startsWith('animate__') && span.classList.add(className));
 			return span.outerHTML;

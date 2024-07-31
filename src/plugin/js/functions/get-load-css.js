@@ -12,18 +12,19 @@ export const getAndLoadCSS = (options, fileName) => {
 	let thePath = pluginPath(fileName);
 	let pluginBaseName = fileName.replace(/\.[^/.]+$/, "");
 
-	let AppearanceStylePath = options.csspath.appearance ? options.csspath.appearance : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`
-	let AnimateCSSPath = !options.compatibility ? options.animatecsspath.link : options.animatecsspath.compat;
-
-	if (options.debug) {
-		console.log(`Paths:`);
-		console.log(`  - Plugin path = ${thePath}`);
-		console.log(`  - Appearance CSS path = ${AppearanceStylePath}`);
-		console.log(`  - AnimateCSS CSS path = ${AnimateCSSPath}`);
+	if (options.cssautoload) {
+		let AppearanceStylePath = options.csspath.appearance ? options.csspath.appearance : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`
+		let AnimateCSSPath = !options.compatibility ? options.animatecsspath.link : options.animatecsspath.compat;
+	
+		if (options.debug) {
+			console.log(`Paths:`);
+			console.log(`  - Plugin path = ${thePath}`);
+			console.log(`  - Appearance CSS path = ${AppearanceStylePath}`);
+			console.log(`  - AnimateCSS CSS path = ${AnimateCSSPath}`);
+		}
+	
+		loadResource(AnimateCSSPath, 'stylesheet', function () {
+			loadResource(AppearanceStylePath, 'stylesheet');
+		});
 	}
-
-	loadResource(AnimateCSSPath, 'stylesheet', function () {
-		loadResource(AppearanceStylePath, 'stylesheet');
-	});
-
 }

@@ -87,7 +87,7 @@ p.code, p code, small code, .small code, li code {
   --r-main-font-size: 36px;
   --r-block-margin: 1.8rem;
   --code-full-bg: #142433;
-  --code-rgba-bg: rgba(50, 65, 80, 0.4);
+  --code-rgba-bg: rgba(91, 102, 112, 0.3);
 }
 
 .reveal .slides ul li, .reveal .slides ol li {
@@ -98,6 +98,12 @@ p.code, p code, small code, .small code, li code {
 .has-light-background {
   --r-link-color: var(--r-link-color-dark);
   --r-link-color-hover: #0373bd;
+}
+
+.demoembed {
+  width: 768px;
+  height: 400px;
+  margin: 64px auto;
 }
 
 .reveal.embedded {
@@ -111,7 +117,6 @@ p.code, p code, small code, .small code, li code {
   border-color: #42affa;
   box-shadow: 0 4px 16px rgba(5, 21, 37, 0.3);
 }
-
 .reveal.embedded .progress {
   background: rgba(66, 175, 250, 0.3);
   font-size: 10px;
@@ -151,7 +156,7 @@ a.github-corner.bottom {
   margin-top: auto;
   top: calc(100% - 70px);
 }
-.reveal.embedded a.github-corner {
+.reveal.embedded a.github-corner, .reveal-viewport.reveal-scroll a.github-corner {
   display: none;
 }
 a.github-corner svg {

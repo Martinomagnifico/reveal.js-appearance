@@ -77,10 +77,17 @@ If you're using ES modules, you can add it like this:
 ```
 
 ### Styling
-The styling of Appearance is automatically inserted, either loaded through NPM or from the plugin folder. Two files are inserted: The first one is Animate.css by Daniel Eden for the basic animations, we add it through a CDN. The second file adds to the first stylesheet to allow for a non-animated state.
+The styling of Appearance is automatically inserted **when the appearance folder is manually (or automatically) copied** to the Reveal.js plugin folder.
 
-If you want to change the Appearance style, you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of Appearance.
+**BUT**: If you are using a bundler like Webpack or Parcel, that uses **import**, you will also need to **import** the CSS file yourself. Depending on your setup this can be something like this:
 
+```
+import 'reveal.js-appearance/plugin/appearance/appearance.css';
+```
+
+In that case, the `cssautoload` option (in the Reveal appearance options) should be set to `false`, to avoid style loading errors. 
+
+> However, if you actually know the correct full path to the CSS file, then you can still use the `csspath` option and keep `cssautoload` set to `true`.
 
 
 ### HTML
@@ -137,10 +144,12 @@ You can change the speed of each animation, using the tempo classes from Animate
 
 For words and letters, the same techniques can be used. 
 
-Note that the data-delay also gets copied to the smaller elements in it, which means that there is no more 'whole sentence' or 'whole word' to delay. By default, the whole element then gets the delay (depending on if it is following other animations) as defined in the `delay` option in the Configuration, but it can be overriden by an optional `data-container-delay`. 
+Note that the data-delay also gets copied to the smaller elements in it, which means that there is no more 'whole sentence' or 'whole word' to delay. By default, the whole element then gets the delay (depending on if it is following other animations) as defined in the `delay` option in the Configuration, but it can be overriden by an optional `data-container-delay`.
+
+Also note the (optional) `baseline` class here, which makes the words appear from the baseline of the text.
 
 ```html
-<h3 class="animate__fadeInDown animate__faster" 
+<h3 class="animate__fadeInUp animate__faster baseline"
 	data-split="words" 
 	data-delay="80"
 	data-container-delay="600">Let words apear and appear</h3>
@@ -150,7 +159,7 @@ Note that the data-delay also gets copied to the smaller elements in it, which m
 ### Changing the 'appearevent'
 When you navigate from slide to slide, you can set transition effects in Reveal. These effects take some time. That's why, by default, Appearance only starts when the slide transition has ended. 
 
-There are cases however, where  there is hardly any transition, for example, when going from an autoanimate slide to another. Reveal then suppresses the user-set transition to a short opacity change. Starting *together with* the transition might then be nicer. You can use any of the following events:
+There are cases however, where there is hardly any transition, for example, when going from an autoanimate slide to another. Reveal then suppresses the user-set transition to a short opacity change. Starting *together with* the transition might then be nicer. You can use any of the following events:
 
 * *slidetransitionend* (default, Appearance will always start animating elements after the transition)
 * *slidechanged* (Appearance will always start together with the transition)
@@ -285,6 +294,7 @@ Reveal.initialize({
     appearevent: 'slidetransitionend',
     autoappear: false,
     autoelements: false,
+    cssautoload: true,
     csspath: '',
     animatecsspath: {
       link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
@@ -302,6 +312,7 @@ Reveal.initialize({
 * **`appearevent`**: Use a specific event at which Appearance starts.
 * **`autoappear`**: Use this when you do not want to add classes to each item that you want to appear, and just let Appearance add animation classes to (all of) the provided elements in the presentation. See "Autoappear" mode above.
 * **`autoelements`**: These are the elements that `autoappear` will target. Each element has a selector and an animation class. If `autoappear` is off, the elements will still get animation if the section contains a `data-autoappear` attribute.
+* **`cssautoload`**: Appearance will load the CSS if this is set to `true`. If you import reveal.js-appearance from npm, you will need to import the CSS file yourself. If you use 'import', then csspath should be set to `false`. If you know the path to the CSS file, you can use the `csspath` option and keep cssautoload set to `true`.
 * **`csspath`**: Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.
 * **`animatecsspath`**: Appearance will also automatically load the styling of Animate.css via a CDN. Note that Animate.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.
 * **`compatibility`**: This setting can let you use your current markup. However, because this also uses the Animate.css compatibility CSS, and it is likely that they will not support this in the future, please update your markup as shown above.

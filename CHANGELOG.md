@@ -1,6 +1,19 @@
 # Changelog
 
 
+## [1.3.4] - 2023-07-31
+### Changed
+- Fixed a typo (was srcipt but should be script)
+- Fixed visible appearance items in print view (#13)
+- Dependency fixes
+
+### Added
+- Added `cssautoload` option to automatically load the CSS file. Can be switched off if you want to load the CSS file yourself with `import` when using bundlers like Webpack or Parcel.
+- Added `baseline` effect for use with words and letters, to make them appear from the baseline of the text.
+
+
+
+
 ## [1.3.3] - 2023-11-18
 ### Added
 - Added embedded example to the demo’s

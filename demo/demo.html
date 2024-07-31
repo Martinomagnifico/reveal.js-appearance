@@ -161,11 +161,11 @@
 &lt;img class=&quot;animate__fadeInDown animate__faster&quot; src=&quot;assets/img/5.jpg&quot;&gt;</code></pre>
           </section>
           <section>
-            <h3>Change the settings for words or letters</h3><small>For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a <code>data-container-delay="*"</code> for a different delay for the container, compared to the standard <code>delay = 300</code> from the options. </small><br><br>
-            <h3 class="animate__fadeInDown" data-split="words">Split into words</h3>
-            <h3 class="animate__fadeInDown animate__faster" data-split="letters" data-delay="75" data-container-delay="800">Split into letters</h3><br>
-            <pre><code class="hljs html" data-line-numbers>&lt;h3 class=&quot;animate__fadeInDown&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
-&lt;h3 class=&quot;animate__fadeInDown animate__faster&quot; data-split=&quot;letters&quot; data-delay=&quot;75&quot; data-container-delay=&quot;800&quot;&gt;Split into letters&lt;/h3&gt;</code></pre>
+            <h3>Change the settings for words or letters</h3><small>For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a <code>data-container-delay="*"</code> for a different delay for the container, compared to the standard <code>delay = 300</code> from the options. Add a <code>baseline</code> class for a nice baseline effect.</small><br><br>
+            <h3 class="animate__fadeInUp baseline" data-split="words">Split into words</h3>
+            <h3 class="animate__fadeInUp animate__faster" data-split="letters" data-delay="75" data-container-delay="800">Split into letters</h3><br>
+            <pre><code class="hljs html" data-line-numbers>&lt;h3 class=&quot;animate__fadeInUp baseline&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
+&lt;h3 class=&quot;animate__fadeInUp animate__faster&quot; data-split=&quot;letters&quot; data-delay=&quot;75&quot; data-container-delay=&quot;800&quot;&gt;Split into letters&lt;/h3&gt;</code></pre>
           </section>
           <section data-auto-animate>
             <h3>Change when Appearance starts</h3>
@@ -244,10 +244,10 @@
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
           </section>
-          <section data-autoappear="{&quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;fast&quot;, &quot;delay&quot;:&quot;180&quot;, &quot;split&quot;:&quot;words&quot;, &quot;container-delay&quot;:&quot;200ms&quot;}, &quot;h4&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;split&quot;:&quot;letters&quot;, &quot;delay&quot;:&quot;80&quot;}}">
+          <section data-autoappear="{&quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;fast&quot;, &quot;delay&quot;:&quot;180&quot;, &quot;split&quot;:&quot;words&quot;, &quot;container-delay&quot;:&quot;200ms&quot;}, &quot;h4&quot;: {&quot;animation&quot;:&quot;animate__fadeInUp baseline&quot;, &quot;split&quot;:&quot;letters&quot;, &quot;delay&quot;:&quot;80&quot;}}">
             <h3>Local auto-appear, specified and split</h3><small>And you can do the same for any animations that you would like to have on lines and words.</small>
             <h4>Appearance</h4>
-            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInDown", "split":"letters", "delay":"80"}}'&gt;
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}'&gt;
 	&lt;h3&gt;Local auto-appear, specified and split&lt;/h3&gt;
 	&lt;h4&gt;Appearance&lt;/h4&gt;
 &lt;/section&gt;</code></pre>
@@ -263,6 +263,7 @@
                 <li>appearevent</li>
                 <li>autoappear</li>
                 <li>autoelements</li>
+                <li>cssautoload</li>
                 <li>csspath</li>
                 <li>animatecsspath</li>
                 <li>compatibility</li>
@@ -274,106 +275,118 @@
             <h4>Option 1: hideagain</h4>
             <p class="small">The <code>hideagain</code> option will hide elements (that have appeared on the slide) again when moving away from that slide. </p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-	...
-	appearance: {
-		hideagain: true
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        hideagain: true
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
             <h4>Option 2: delay</h4>
             <p class="small">The <code>delay</code> option is the base time in ms between appearances. This value governs any elements that do not have an Animate.css speed class assigned to it, or are not inside a slide which includes delay in a data-autoappear attribute.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-	...
-	appearance: {
-		delay: 300
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        delay: 300
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
             <h4>Option 3: appearevent</h4>
             <p class="small">You can change when Appearance starts with any of the following events: <code>slidetransitionend</code> (default, after the transition), <code>slidechanged</code> (with the transition) and <code>auto</code> (with transition, on autoanimate slides). This can be overridden per-slide with data-attributes, like this: <code>data-appearevent="auto"</code>.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-	...
-	appearance: {
-		appearevent: slidetransitionend
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        appearevent: slidetransitionend
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
             <h4>Option 4: autoappear</h4>
             <p class="small">The <code>autoappear</code> option works together with the <code>autoelements</code> option. When it is set to <code>true</code>, any elements in the autoelements option will animate with the declared animation when the slide or fragment opens. See <a href="#/autoappear"><code>autoappear</code></a>.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
-	...
-	appearance: {
-		autoappear: false,
-		autoelements: false
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        autoappear: false,
+        autoelements: false
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
             <h4>Option 5: autoelements</h4>
             <p class="small">These are the elements that <code>autoappear</code> will target. Each element has a selector and an animation class. If autoappear is off, the elements will still get animation if the section contains a data-autoappear attribute.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
-	...
-	appearance: {
-		autoappear: false,
-		autoelements: false
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        autoappear: false,
+        autoelements: false
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
+          <section class="center">
+            <h4>Option 6: cssautoload</h4>
+            <p>Appearance will load the CSS if this is set to <code>true</code>.</p>
+            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
+    ...
+    appearance: {
+        cssautoload: true
+    },
+    plugins: [ Appearance ]
+})</code></pre>
+            <p class="small">If you import reveal.js-appearance from npm, you will need to import the CSS file yourself. If you use 'import', then <code>csspath</code> should be set to <code>false</code>. If you know the path to the CSS file, you can use the <code>csspath</code> option and keep <code>cssautoload</code> set to <code>true</code>.</p>
+          </section>
           <section>
-            <h4>Option 6: csspath</h4>
+            <h4>Option 7: csspath</h4>
             <p class="small">Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
-	...
-	appearance: {
-		csspath: ''
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        csspath: ''
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
-            <h4>Option 7: animatecsspath</h4>
+            <h4>Option 8: animatecsspath</h4>
             <p class="small">Appearance will also automatically load the styling of Animate.css via a CDN. Note that Animate.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.</p>
             <pre><code class="hljs js" data-line-numbers="4-7">Reveal.initialize({
-	...
-	appearance: {
-		animatecsspath: {
-			link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-			compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
-		}
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        animatecsspath: {
+            link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+            compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
+        }
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
-            <h4>Option 8: compatibility</h4>
+            <h4>Option 9: compatibility</h4>
             <p class="small">This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. </p>
             <p class="small">Setting <code>'compatibility: true'</code> can let you use your old markup.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-	...
-	appearance: {
-		compatibility: false
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        compatibility: false
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
-            <h4>Option 9: compatibilitybaseclass</h4>
+            <h4>Option 10: compatibilitybaseclass</h4>
             <p class="small">This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. </p>
             <p class="small">This is the baseclass to use if you don't change your markup.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-	...
-	appearance: {
-		compatibilitybaseclass: 'animated'
-	},
-	plugins: [ Appearance ]
+    ...
+    appearance: {
+        compatibilitybaseclass: 'animated'
+    },
+    plugins: [ Appearance ]
 })</code></pre>
           </section>
         </section>
@@ -411,7 +424,6 @@
       	center: true,
       	controlsTutorial: false,
       	appearance: {
-      		debug: true,
       		appearparents: true,
       		hideagain: true,
       		appearevent: 'auto',

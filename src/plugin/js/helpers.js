@@ -60,7 +60,7 @@ export const copyDataAttributes = ({attributes}, target, not) => {
  * @param {*} item - The item to be checked.
  * @returns {boolean} `true` if the item is an object and not an array, otherwise `false`.
  */
-const isObject = (item) => {
+export const isObject = (item) => {
 	return (item && typeof item === 'object' && !Array.isArray(item));
 }
 
@@ -136,7 +136,7 @@ export const loadResource = (url, type, callback) => {
 	let alreadyExists = false;
 
 	if (type === 'script') {
-		if (!document.querySelector(`srcipt[src="${url}"]`)) {
+		if (!document.querySelector(`script[src="${url}"]`)) {
 			resource = document.createElement('script');
 			resource.type = 'text/javascript';
 			resource.src = url;
@@ -238,6 +238,13 @@ export const createNode = (thehtml) => {
     return fragment.firstElementChild;
 };
 
+
+/**
+ * Gets the index of the given DOM element within its parent's children.
+ * @param {HTMLElement} elm - The target element.
+ * @returns {number} - The index of the element within its parent's children.
+ */
+export const getNodeIndex = (elm) => [...elm.parentNode.children].indexOf(elm);
 
 
 export const debugLog = (options, text) => {

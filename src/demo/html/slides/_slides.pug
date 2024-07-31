@@ -166,17 +166,17 @@ section
 
 	section
 		h3 Change the settings for words or letters
-		small For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a #[code data-container-delay="*"] for a different delay for the container, compared to the standard #[code delay = 300] from the options. 
+		small For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a #[code data-container-delay="*"] for a different delay for the container, compared to the standard #[code delay = 300] from the options. Add a #[code baseline] class for a nice baseline effect.
 		br
 		br
-		h3.animate__fadeInDown(data-split="words") Split into words
-		h3.animate__fadeInDown.animate__faster(data-split="letters" data-delay="75" data-container-delay="800") Split into letters
+		h3.animate__fadeInUp.baseline(data-split="words") Split into words
+		h3.animate__fadeInUp.animate__faster(data-split="letters" data-delay="75" data-container-delay="800") Split into letters
 
 		br
 		pre
 			code.hljs.html(data-line-numbers).
-				&lt;h3 class=&quot;animate__fadeInDown&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
-				&lt;h3 class=&quot;animate__fadeInDown animate__faster&quot; data-split=&quot;letters&quot; data-delay=&quot;75&quot; data-container-delay=&quot;800&quot;&gt;Split into letters&lt;/h3&gt;
+				&lt;h3 class=&quot;animate__fadeInUp baseline&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
+				&lt;h3 class=&quot;animate__fadeInUp animate__faster&quot; data-split=&quot;letters&quot; data-delay=&quot;75&quot; data-container-delay=&quot;800&quot;&gt;Split into letters&lt;/h3&gt;
 		//-
 
 	section(data-auto-animate)
@@ -275,7 +275,7 @@ section
 				&lt;/section&gt;
 		//-
 
-	section(data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200ms"}, "h4": {"animation":"animate__fadeInDown", "split":"letters", "delay":"80"}}')
+	section(data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}')
 		h3 Local auto-appear, specified and split
 
 		small And you can do the same for any animations that you would like to have on lines and words.
@@ -284,7 +284,7 @@ section
 
 		pre
 			code.hljs.html(data-line-numbers).
-				&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInDown", "split":"letters", "delay":"80"}}'&gt;
+				&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}'&gt;
 					&lt;h3&gt;Local auto-appear, specified and split&lt;/h3&gt;
 					&lt;h4&gt;Appearance&lt;/h4&gt;
 				&lt;/section&gt;
@@ -299,6 +299,7 @@ section
 				li appearevent
 				li autoappear
 				li autoelements
+				li cssautoload
 				li csspath
 				li animatecsspath
 				li compatibility
@@ -310,11 +311,11 @@ section
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
-					...
-					appearance: {
-						hideagain: true
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        hideagain: true
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
@@ -324,11 +325,11 @@ section
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
-					...
-					appearance: {
-						delay: 300
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        delay: 300
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
@@ -339,11 +340,11 @@ section
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
-					...
-					appearance: {
-						appearevent: slidetransitionend
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        appearevent: slidetransitionend
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
@@ -354,12 +355,12 @@ section
 		pre
 			code.hljs.js(data-line-numbers="4,5").
 				Reveal.initialize({
-					...
-					appearance: {
-						autoappear: false,
-						autoelements: false
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        autoappear: false,
+				        autoelements: false
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
@@ -370,77 +371,94 @@ section
 		pre
 			code.hljs.js(data-line-numbers="4,5").
 				Reveal.initialize({
-					...
-					appearance: {
-						autoappear: false,
-						autoelements: false
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        autoappear: false,
+				        autoelements: false
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
+	section.center
+		h4 Option 6: cssautoload
+		p Appearance will load the CSS if this is set to #[code true].
+		pre
+			code.hljs.js(data-line-numbers="4").
+				Reveal.initialize({
+				    ...
+				    appearance: {
+				        cssautoload: true
+				    },
+				    plugins: [ Appearance ]
+				})
+		//-
+		p.small If you import reveal.js-appearance from npm, you will need to import the CSS file yourself. If you use 'import', then #[code csspath] should be set to #[code false]. If you know the path to the CSS file, you can use the #[code csspath] option and keep #[code cssautoload] set to #[code true].
+
+
+
 	section
-		h4 Option 6: csspath
+		h4 Option 7: csspath
 		p.small Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.
 
 		pre
 			code.hljs.js(data-line-numbers="4,5").
 				Reveal.initialize({
-					...
-					appearance: {
-						csspath: ''
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        csspath: ''
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
 	section
-		h4 Option 7: animatecsspath
+		h4 Option 8: animatecsspath
 		p.small Appearance will also automatically load the styling of Animate.css via a CDN. Note that Animate.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.
 
 		pre
 			code.hljs.js(data-line-numbers="4-7").
 				Reveal.initialize({
-					...
-					appearance: {
-						animatecsspath: {
-							link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-							compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
-						}
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        animatecsspath: {
+				            link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+				            compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
+				        }
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
 	section
-		h4 Option 8: compatibility
+		h4 Option 9: compatibility
 		p.small This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. 
 		p.small Setting #[code 'compatibility: true'] can let you use your old markup.
 
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
-					...
-					appearance: {
-						compatibility: false
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        compatibility: false
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 
 	section
-		h4 Option 9: compatibilitybaseclass
+		h4 Option 10: compatibilitybaseclass
 		p.small This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. 
 		p.small This is the baseclass to use if you don't change your markup.
 
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
-					...
-					appearance: {
-						compatibilitybaseclass: 'animated'
-					},
-					plugins: [ Appearance ]
+				    ...
+				    appearance: {
+				        compatibilitybaseclass: 'animated'
+				    },
+				    plugins: [ Appearance ]
 				})
 		//-
 

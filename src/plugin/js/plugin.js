@@ -99,6 +99,7 @@ const Plugin = () => {
 		vars.fragments = vars.slides.querySelectorAll(names.fragmentSelector);
 		vars.regularSections = Array.from(vars.sections).filter( section => !isStack(section));
 
+		// Check if Speaker view window
 		if( /receiver/i.test( window.location.search ) ) vars.viewport.classList.add('sv');
 
 		names.eventnames.forEach( (eventname) => deck.on( eventname, event => { showHideSlide(event, options, names, vars) } ) );
@@ -135,6 +136,7 @@ const Plugin = () => {
 			autoappear: false,
 			autoelements: false,
 			appearparents: false,
+			cssautoload: true,
 			csspath: '',
 			animatecsspath: {
 				link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',

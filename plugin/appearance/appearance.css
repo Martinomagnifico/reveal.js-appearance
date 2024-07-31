@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * Appearance for Reveal.js 
- * Version 1.3.3
+ * Version 1.3.4
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
@@ -13,6 +13,8 @@
  * Copyright (C) 2023 Martijn De Jongh (Martino)
  *
  ******************************************************************/
+
+
 
 /* Custom Appearance animation keyframes */
 @keyframes skidLeft {
@@ -111,6 +113,10 @@
     transform: scale3d(1, 1, 1);
   }
 }
+.wordchargroup.baseline {
+  overflow: hidden;
+}
+
 /* Custom Appearance animation classes */
 .skidRight, .animate__skidRight {
   animation-name: skidRight;
@@ -218,15 +224,23 @@ i.animate__animated, i.animated, span.animate__animated, span.animated {
   animation-duration: calc(var(--animate-duration) * 3);
 }
 
-.print-pdf .animated, .print-pdf .animate__animated,
-.print-pdf section:not(.stack):not([data-appearance-can-start]) .animated,
-.print-pdf section:not(.stack):not([data-appearance-can-start]) .animate__animated {
+.print-pdf .animated .animated:not(.fragment),
+.print-pdf .animated .animate__animated:not(.fragment),
+.print-pdf .animated .animated.fragment.visible,
+.print-pdf .animated .animate__animated.fragment.visible, .print-pdf .animate__animated .animated:not(.fragment),
+.print-pdf .animate__animated .animate__animated:not(.fragment),
+.print-pdf .animate__animated .animated.fragment.visible,
+.print-pdf .animate__animated .animate__animated.fragment.visible,
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animated:not(.fragment),
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animate__animated:not(.fragment),
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animated.fragment.visible,
+.print-pdf section:not(.stack):not([data-appearance-can-start]) .animate__animated.fragment.visible {
   opacity: 1;
   visibility: visible;
   animation: none;
 }
-.print-pdf .reveal .fragment {
-  opacity: 1;
+.print-pdf .animated, .print-pdf .animate__animated {
+  animation: none;
 }
 
 .reveal.sv .animated, .reveal.sv .animate__animated,
