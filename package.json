@@ -37,6 +37,7 @@
     "start": "npm run dev",
     "copy-reveal": "node scripts/copy-reveal.mjs",
     "dev": "vite",
+    "prebuild": "rimraf demo plugin",
     "build-plugin": "vite build -c vite.lib.config.js",
     "build-demo": "vite build",
     "copy-plugin": "node scripts/copy-plugin.mjs",
@@ -57,21 +58,20 @@
     }
   },
   "peerDependencies": {
-    "reveal.js": ">=4.0.0"
+    "reveal.js": ">=5.0.0"
   },
   "devDependencies": {
+    "animate.css": "^4.1.1",
     "@biomejs/biome": "latest",
     "@types/node": "^22.10.1",
     "@types/reveal.js": "^5.0.4",
     "@vituum/vite-plugin-pug": "latest",
     "fs-extra": "latest",
+    "reveal.js-plugintoolkit": "^0.1.4",
+    "rimraf": "^6.0.1",
     "sass": "latest",
     "typescript": "^5.7.2",
-    "vite": "latest",
+    "vite": "6.2.3",
     "vituum": "1.2.0"
-  },
-  "dependencies": {
-    "animate.css": "^4.1.1",
-    "deepmerge": "^4.3.1"
   }
 }

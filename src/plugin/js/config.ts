@@ -9,10 +9,6 @@ export interface Config {
 	appearparents: boolean;
 	cssautoload: boolean;
 	csspath: string;
-	animatecsspath: {
-	  link: string;
-	  compat: string;
-	};
 	compatibility: boolean;
 	compatibilitybaseclass: string;
   }
@@ -27,10 +23,6 @@ export interface Config {
 	appearparents: false,
 	cssautoload: true,
 	csspath: '',
-	animatecsspath: {
-	  link: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-	  compat: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
-	},
 	compatibility: false,
 	compatibilitybaseclass: 'animated'
   };

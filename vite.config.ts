@@ -85,6 +85,7 @@ export default defineConfig({
         },
     },
     server: {
+        host: true,
         port: pkg.demo?.server?.port || 8000,
         open: pkg.demo?.server?.open || "index.html",
     },

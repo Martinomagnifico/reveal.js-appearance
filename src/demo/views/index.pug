@@ -15,13 +15,8 @@ block append scripts
 	if process.env.NODE_ENV === 'production'
 		script(src=`./plugin/${plugin.name}/${plugin.name}.js`)
 		script.
-			Reveal.initialize({
-				plugins: [ Appearance ]
-			});
+			Reveal.initialize();
 	else
 		script(type="module").
 			import Appearance from '@/plugin/js/index';
-			Reveal.initialize({
-				plugins: [ Appearance ],
-				appearance: { debug: true}
-			});
+			Reveal.initialize();
