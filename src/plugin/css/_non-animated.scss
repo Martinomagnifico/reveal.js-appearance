@@ -4,6 +4,8 @@ section:not(.stack):not([data-appearance-can-start]) {
 	.animate__animated, .animated {
 		opacity: 0;
 		animation: none;
+		pointer-events: none;
+		will-change: animation;
 	}
 }
 section:not(.stack)[data-appearance-can-start] {
@@ -19,6 +21,7 @@ section:not(.stack):not([data-appearance-can-start]),
 	.animated {
 		opacity: 0;
 		animation: none;
+		pointer-events: none;
 		will-change: animation;
 	}
 
@@ -40,6 +43,7 @@ section:not(.stack):not([data-appearance-can-start]),
 			transition: all .2s ease;
 			opacity: 0;
 			animation: none;
+			pointer-events: none;
 			will-change: animation;
 		}
 		
@@ -53,11 +57,8 @@ section:not(.stack):not([data-appearance-can-start]),
 	}
 }
 
-.animate__animated, 
-.animated {
-	@at-root #{selector-unify(&, i)}, #{selector-unify(&, span)} {
-		display: inline-block;
-	}
+i.animate__animated, i.animated, span.animate__animated, span.animated {
+	display: inline-block;
 }
 
 .animate__animated[data-auto-animate-target]:not([data-auto-animate-target="unmatched"]) {

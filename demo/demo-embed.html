@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Appearance</title>
+    <title>Appearance demo: embedded</title>
     <meta name="author" content="Martijn De Jongh (Martino)">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="dist/reset.css">
@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="dist/theme/black.css">
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <link rel="stylesheet" href="assets/css/demo.css">
+    <style>
+      body {background: var(--r-background-color)}
+      
+    </style>
   </head>
   <body>
-    <div style="width: 768px; height: 400px; margin: 64px auto;">
-      <div class="reveal" id="deck1"><a class="github-corner" href="https://github.com/martinomagnifico/reveal.js-appearance" target="blank" title="View source on GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
-            <path fill="currentColor" d="M27.5 11.2a16.3 16.3 0 0 0-5.1 31.7c.8.2 1.1-.3 1.1-.7v-2.8c-4.5 1-5.5-2.2-5.5-2.2-.7-1.9-1.8-2.4-1.8-2.4-1.5-1 .1-1 .1-1 1.6.1 2.5 1.7 2.5 1.7 1.5 2.5 3.8 1.8 4.7 1.4.2-1 .6-1.8 1-2.2-3.5-.4-7.3-1.8-7.3-8 0-1.8.6-3.3 1.6-4.4-.1-.5-.7-2.1.2-4.4 0 0 1.4-.4 4.5 1.7a15.6 15.6 0 0 1 8.1 0c3.1-2 4.5-1.7 4.5-1.7.9 2.3.3 4 .2 4.4 1 1 1.6 2.6 1.6 4.3 0 6.3-3.8 7.7-7.4 8 .6.6 1.1 1.6 1.1 3v4.6c0 .4.3.9 1.1.7a16.3 16.3 0 0 0-5.2-31.7"></path>
-          </svg></a>
+    <div class="embeddemo">
+      <div class="reveal" id="deck1">
         <div class="slides">
           <section>
             <h1 class="animate__flipInX slow">Embed test</h1>
@@ -32,15 +33,10 @@
           </section>
         </div>
       </div>
-    </div>
-    <div style="width: 768px; height: 400px; margin: 64px auto;">
-      <div class="reveal" id="deck2"><a class="github-corner bottom" href="https://github.com/martinomagnifico/reveal.js-appearance" target="blank" title="View source on GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
-            <path fill="currentColor" d="M27.5 11.2a16.3 16.3 0 0 0-5.1 31.7c.8.2 1.1-.3 1.1-.7v-2.8c-4.5 1-5.5-2.2-5.5-2.2-.7-1.9-1.8-2.4-1.8-2.4-1.5-1 .1-1 .1-1 1.6.1 2.5 1.7 2.5 1.7 1.5 2.5 3.8 1.8 4.7 1.4.2-1 .6-1.8 1-2.2-3.5-.4-7.3-1.8-7.3-8 0-1.8.6-3.3 1.6-4.4-.1-.5-.7-2.1.2-4.4 0 0 1.4-.4 4.5 1.7a15.6 15.6 0 0 1 8.1 0c3.1-2 4.5-1.7 4.5-1.7.9 2.3.3 4 .2 4.4 1 1 1.6 2.6 1.6 4.3 0 6.3-3.8 7.7-7.4 8 .6.6 1.1 1.6 1.1 3v4.6c0 .4.3.9 1.1.7a16.3 16.3 0 0 0-5.2-31.7"></path>
-          </svg></a>
+      <div class="reveal" id="deck2">
         <div class="slides">
           <section>
-            <h1 class="animate__flipInX">Embed test</h1>
+            <h1 class="animate__flipInX">Embed test two</h1>
             <h2>Embed test</h2>
           </section>
           <section>
@@ -56,45 +52,34 @@
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/appearance/appearance.js"></script>
     <script>
-      // Get the decks
-      const deck = document.querySelector("#deck1");
-      const decktwo = document.querySelector("#deck2");
-      
-      // Define the plugins (Using strings)
-      let plugins = ["Appearance", "RevealHighlight"];
-      
-      // Check the plugins
-      const pluginCheck = (plugs) => plugs.reduce((a, p) => typeof window[p] === "function" ? (a.push(window[p]), a) : (console.warn(`Plugin "${p}" does not exist.`), a), []);
-      
-      let deck1 = new Reveal(deck, {
-      	embedded: true,
-      	keyboardCondition: 'focused',
-      	overview: false,
-      	controlsTutorial: false,
+      const deck1 = new Reveal(document.querySelector("#deck1"), {
+      	embedded: true, keyboardCondition: 'focused',
+      	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+      	overview: false, center: true, controlsTutorial: false,
+      	plugins: [ Appearance, RevealHighlight ],
       	appearance: {
       		appearparents: true,
       		appearevent: 'auto',
       		autoappear: true,
       		autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
-      	},
-      	plugins: pluginCheck(plugins)
+      	}
       });
       
-      let deck2 = new Reveal(decktwo, {
-      	embedded: true,
-      	keyboardCondition: 'focused',
-      	overview: false,
-      	controlsTutorial: false,
+      const deck2 = new Reveal(document.querySelector("#deck2"), {
+      	embedded: true, keyboardCondition: 'focused',
+      	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+      	overview: false, center: true, controlsTutorial: false,
+      	plugins: [ Appearance, RevealHighlight ],
       	appearance: {
       		appearparents: true,
       		appearevent: 'slidechanged',
       		autoappear: true,
       		autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
-      	},
-      	plugins: pluginCheck(plugins)
+      	}
       });
       deck1.initialize();
       deck2.initialize();
+      
     </script>
   </body>
 </html>

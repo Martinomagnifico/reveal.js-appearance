@@ -1,6 +1,6 @@
 {
   "name": "reveal.js-appearance",
-  "version": "1.3.4",
+  "version": "1.4.0",
   "description": "An animation plugin for Reveal.js that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.",
   "keywords": [
     "reveal",
@@ -10,9 +10,6 @@
     "text effects",
     "powerpoint"
   ],
-  "main": "plugin/appearance/appearance.js",
-  "module": "plugin/appearance/appearance.esm.js",
-  "browser": "plugin/appearance/appearance.js",
   "author": {
     "name": "Martijn De Jongh (Martino)",
     "email": "martijn.de.jongh@gmail.com",
@@ -21,43 +18,60 @@
     "username": "martinomagnifico"
   },
   "homepage": "https://github.com/Martinomagnifico/reveal.js-appearance",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/martinomagnifico/reveal.js-appearance.git"
   },
   "functionname": "Appearance",
-  "license": "MIT",
+  "type": "module",
+  "main": "plugin/appearance/appearance.js",
+  "module": "plugin/appearance/appearance.esm.js",
+  "browser": "plugin/appearance/appearance.js",
+  "style": "plugin/appearance/appearance.css",
+  "files": [
+    "plugin/appearance",
+    "src/plugin"
+  ],
   "scripts": {
-    "start": "gulp demo",
-    "build": "NODE_ENV=prod gulp build"
+    "start": "npm run dev",
+    "copy-reveal": "node scripts/copy-reveal.mjs",
+    "dev": "vite",
+    "build-plugin": "vite build -c vite.lib.config.js",
+    "build-demo": "vite build",
+    "copy-plugin": "node scripts/copy-plugin.mjs",
+    "build": "npm run copy-reveal && npm run build-plugin && npm run build-demo && npm run copy-plugin",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check --write .",
+    "ci": "biome ci ."
   },
-  "overrides": {
-    "ws": "8.17.1"
+  "demo": {
+    "server": {
+      "port": 8000,
+      "open": "index.html"
+    },
+    "presentation": {
+      "title": "Appearance demo",
+      "theme": "black"
+    }
   },
-  "browserslist": "> 2%, not dead",
+  "peerDependencies": {
+    "reveal.js": ">=4.0.0"
+  },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.2",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "browser-sync": "^3.0.2",
-    "del": "^5.1.0",
-    "gulp": "^5.0.0",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-pug": "^5.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-tap": "^2.0.0",
-    "merge-stream": "^2.0.0",
-    "rollup": "^4.2.0",
-    "sass": "^1.63.6"
+    "@biomejs/biome": "latest",
+    "@types/node": "^22.10.1",
+    "@types/reveal.js": "^5.0.4",
+    "@vituum/vite-plugin-pug": "latest",
+    "fs-extra": "latest",
+    "sass": "latest",
+    "typescript": "^5.7.2",
+    "vite": "latest",
+    "vituum": "1.2.0"
   },
   "dependencies": {
-    "reveal.js": "^5.0.4"
-  },
-  "copydependencies": [
-    "reveal.js"
-  ]
+    "animate.css": "^4.1.1",
+    "deepmerge": "^4.3.1"
+  }
 }

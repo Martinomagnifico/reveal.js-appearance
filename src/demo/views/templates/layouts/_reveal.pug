@@ -1,0 +1,26 @@
+extends _base.pug
+
+block content
+	block beforereveal
+	.reveal
+		block beforeslides
+		.slides
+			block slides
+		block afterslides
+
+block append styles
+	+revealsrc("style", "dist/reset.css")
+	+revealsrc("style", "dist/reveal.css")
+	+revealsrc("style", `dist/theme/${presentation.theme}.css`)
+	+revealsrc("style", "plugin/highlight/monokai.css")
+
+	
+	//- Demo styles
+	if process.env.NODE_ENV === 'production'
+		link(rel="stylesheet" href="assets/css/demo.css")
+	else
+		link(rel="stylesheet" href="/src/demo/css/demo.scss")
+
+
+block append scripts
+	+revealsrc("script", "dist/reveal.js")

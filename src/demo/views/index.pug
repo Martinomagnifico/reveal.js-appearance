@@ -1,0 +1,27 @@
+extends templates/layouts/_reveal.pug
+
+append variables
+	- presentation.title = presentation.title + " list"
+
+block slides
+	section
+		ul.menu
+			li: a(href="demo.html") Demo
+			li: a(href="demo-markdown.html") Demo with markdown
+			li: a(href="demo-embed.html") Demo, embedded
+
+block append scripts
+
+	if process.env.NODE_ENV === 'production'
+		script(src=`./plugin/${plugin.name}/${plugin.name}.js`)
+		script.
+			Reveal.initialize({
+				plugins: [ Appearance ]
+			});
+	else
+		script(type="module").
+			import Appearance from '@/plugin/js/index';
+			Reveal.initialize({
+				plugins: [ Appearance ],
+				appearance: { debug: true}
+			});

@@ -1,0 +1,45 @@
+
+.centerblock {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.reveal .slides {
+    ul, ol {
+        --li-gap: 0.25em;
+
+        li {
+            margin-bottom: var(--li-gap);
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &.twocol {
+            width: 80%;
+            position: relative;
+            margin: 0 auto;
+            column-count: 2;
+            column-gap: 4em;
+            list-style: inside;
+            list-style-type: decimal;
+
+            li {
+                margin-bottom: var(--li-gap);
+            }
+            
+            &::after {
+                content: '';
+                width: 1px;
+                height: calc(100% - var(--li-gap));
+                background: rgba(white, 0.3);
+                position: absolute;
+                top: 0;
+                left: 50%;
+            }
+        }
+    }
+}

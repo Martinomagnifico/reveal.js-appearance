@@ -1,6 +1,30 @@
-@import '_base', '_githubcorner';
+@use 'includes/_base';
+@use 'includes/_embedded';
+@use 'includes/_githubcorner';
 
-// APPEARANCE DEMO
+
+
+.reveal {
+	opacity: 0;
+	transition: opacity 0.5s ease-in;
+}
+
+.reveal.ready {
+	opacity: 1;
+}
+
+.demoblock {
+	background: var(--code-full-bg);
+	border-radius: 0.5rem;
+	padding: 0.5em;
+	ul.menu li {
+		margin: 0;
+	}
+	ul.menu.tocstyle {
+		width: 97%;
+	}
+}
+
 
 img {
 	border-radius: 5%;

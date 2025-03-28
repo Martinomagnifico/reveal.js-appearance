@@ -1,0 +1,25 @@
+@use 'base/_base-layout';
+@use 'base/_base-type';
+@use 'base/_base-code';
+
+:root {
+	--r-background-color: #051525;
+	--r-heading-text-transform: none;
+	--r-heading1-size: 2.7em;
+	--r-main-font-size: 36px;
+	--r-block-margin: 1.8rem;
+	--code-full-bg: #142433;
+	--code-rgba-bg: rgba(91, 102, 112, 0.3);
+
+	--r-link-color: #3399FF;
+	--r-link-color-dark: #0088DD;
+	--r-link-color-hover: #AADDFF;
+
+}
+
+// COLOR
+
+.has-light-background {
+    --r-link-color :  var(--r-link-color-dark);
+    --r-link-color-hover :  #0373bd;
+}

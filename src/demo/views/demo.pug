@@ -1,0 +1,40 @@
+extends templates/layouts/_reveal.pug
+
+append variables
+	- presentation.title = presentation.title
+
+block slides
+	include slides/_slides.pug
+
+block append scripts
+	+revealsrc("script", "plugin/highlight/highlight.js")
+
+	if process.env.NODE_ENV === 'production'
+		//- @vite-ignore
+		script(src=`plugin/${plugin.name}/${plugin.name}.js`)
+		script.
+			Reveal.initialize({
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					debug: true
+				}
+			});
+	else
+		script(type="module").
+			import Appearance from '@/plugin/js/index';
+			Reveal.initialize({
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					debug: true,
+					appearparents: true,
+					hideagain: true,
+					appearevent: 'auto',
+					autoappear: true,
+					autoelements: {'ul li': 'animate__fadeInLeft'},
+					compatibility: false
+				}
+			});

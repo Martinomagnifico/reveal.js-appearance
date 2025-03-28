@@ -1,0 +1,95 @@
+extends templates/layouts/_reveal-embed.pug
+
+append variables
+	- presentation.title = presentation.title + ": embedded"
+
+block slides
+	section
+		h1.animate__flipInX.slow Embed test
+		h2(data-delay="2000") Embed test
+	section
+		ul
+			+iterate('2')
+				li.globalul="This is list item " + nr
+
+block slidestwo
+	section
+		h1.animate__flipInX Embed test two
+		h2 Embed test
+	section
+		ul
+			+iterate('2')
+				li.globalul="This is list item " + nr
+
+append styles
+	style.
+		body {background: var(--r-background-color)}
+
+block append scripts
+	+revealsrc("script", "plugin/highlight/highlight.js")
+
+	if process.env.NODE_ENV === 'production'
+		script(src=`plugin/${plugin.name}/${plugin.name}.js`)
+		script.
+			const deck1 = new Reveal(document.querySelector("#deck1"), {
+				embedded: true, keyboardCondition: 'focused',
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				overview: false, center: true, controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					appearparents: true,
+					appearevent: 'auto',
+					autoappear: true,
+					autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
+				}
+			});
+
+			const deck2 = new Reveal(document.querySelector("#deck2"), {
+				embedded: true, keyboardCondition: 'focused',
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				overview: false, center: true, controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					appearparents: true,
+					appearevent: 'slidechanged',
+					autoappear: true,
+					autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
+				}
+			});
+			deck1.initialize();
+			deck2.initialize();
+
+	else
+		script(type="module").
+			import Appearance from '@/plugin/js/index';
+
+			const deck1 = new Reveal(document.querySelector("#deck1"), {
+				embedded: true,
+				keyboardCondition: 'focused',
+				overview: false,
+				controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					appearparents: true,
+					appearevent: 'auto',
+					autoappear: true,
+					autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
+				}
+			});
+
+			const deck2 = new Reveal(document.querySelector("#deck2"), {
+				embedded: true, keyboardCondition: 'focused',
+				overview: false,
+				controlsTutorial: false,
+				plugins: [ Appearance, RevealHighlight ],
+				appearance: {
+					appearparents: true,
+					appearevent: 'slidechanged',
+					autoappear: true,
+					autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
+				}
+			});
+
+			deck1.initialize();
+			deck2.initialize();
+
