@@ -32,7 +32,7 @@ export const toJSONString = (str?: unknown): string => {
         modifiedStr = modifiedStr.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
     }
 
-    // Check if str is a valid JSON string
+    // Check if str is a valid JSON string (needs the isJSON function)
     if (isJSON(str as string)) {
         JSONString = str as string;
     } else if (typeof str === "object") {
