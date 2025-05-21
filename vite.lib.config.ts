@@ -2,6 +2,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import pkg from './package.json'
+import pluginConfig from './plugin.config.js'
 
 const pluginName = pkg.name.replace('reveal.js-', '');
 
@@ -10,7 +11,7 @@ export default defineConfig({
         lib: {
             formats: ['es', 'umd'],
             entry: resolve(__dirname, 'src/plugin/js/index.ts'),
-            name: pkg.functionname,
+            name: pluginConfig.functionname,
             fileName: (format) => `plugin/${pluginName}/${pluginName}.${format === 'es' ? 'mjs' : 'js'}`
         },
         outDir: 'demo',
