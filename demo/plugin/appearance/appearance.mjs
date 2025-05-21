@@ -427,7 +427,9 @@ const le = (t) => {
     try {
       const r = JSON.parse(ce(i));
       for (const [u, o] of Object.entries(r)) {
-        const c = Array.from(t.querySelectorAll(u)).filter((s) => !n.includes(s));
+        const c = Array.from(t.querySelectorAll(u)).filter(
+          (s) => !n.includes(s)
+        );
         if (c.length !== 0)
           for (const s of c) {
             n.push(s);
@@ -453,53 +455,7 @@ const le = (t) => {
 function ge(t, e) {
   t.classList.contains(e.baseclass) || t.classList.add(e.baseclass), t.classList.contains(e.fragmentClass) && t.classList.add("custom");
 }
-function j(t, e) {
-  const n = t.parentNode;
-  if (n) {
-    for (const i of Array.from(n.children))
-      if (i !== t && i.dataset.appearParent) return;
-    n instanceof Element && (n.classList.value = t.classList.value, ue(t, n, "data-appear-parent"), n.innerHTML = t.innerHTML, e && n.classList.add(e));
-  }
-}
 function me(t, e, n) {
-  const i = n.baseclass;
-  if (t.hasAttribute("data-appear-parent") && j(t, i), e.appearparents && t.parentNode && t.parentNode instanceof Element && t.tagName === "SPAN" && t.parentNode.tagName === "LI") {
-    const r = t.outerHTML.length, u = t.parentNode.innerHTML.length;
-    r === u && j(t);
-  }
-}
-function pe(t, e) {
-  var r;
-  let n = !1, i = " ";
-  if ((r = t.textContent) != null && r.trim() && (e === "words" ? n = t.textContent.trim().split(/\s+/) || [] : e === "letters" && (n = t.textContent.trim().split("") || [], i = ""), n && n.length > 0)) {
-    const u = Array.from(t.classList).filter((c) => c.startsWith("animate__")), o = n.map((c, s) => {
-      const d = document.createElement("span");
-      d.textContent = c === " " ? " " : c, t.dataset.delay && s !== 0 && (d.dataset.delay = t.dataset.delay), t.dataset.containerDelay && s === 0 && (d.dataset.delay = t.dataset.containerDelay);
-      for (let y = 0; y < u.length; y++)
-        d.classList.add(u[y]);
-      return d.outerHTML;
-    }).join(i);
-    t.classList.add("wordchargroup");
-    for (let c = 0; c < u.length; c++)
-      t.classList.remove(u[c]);
-    t.removeAttribute("data-delay"), t.removeAttribute("data-split"), t.removeAttribute("data-container-delay"), t.innerHTML = o;
-  }
-}
-const he = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
-  (i) => !i.closest(`.${e}`)
-), ye = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
-  (i) => i.closest(`.${e}`) === n
-), be = (t, e, n) => {
-  if (!e) return !1;
-  const i = [
-    he(e, n, t),
-    ...Array.from(t.querySelectorAll(`.${n}`)).map(
-      (r) => ye(e, n, r)
-    )
-  ];
-  return i.some((r) => r.length > 0) ? i : !1;
-};
-function Se(t, e, n) {
   let i = 0;
   t.forEach((r, u) => {
     if (u === 0 && r instanceof HTMLElement && r.dataset.delay || u !== 0) {
@@ -512,6 +468,54 @@ function Se(t, e, n) {
     }
   });
 }
+function pe(t, e) {
+  var r;
+  let n = !1, i = " ";
+  if ((r = t.textContent) != null && r.trim() && (e === "words" ? n = t.textContent.trim().split(/\s+/) || [] : e === "letters" && (n = t.textContent.trim().split("") || [], i = ""), n && n.length > 0)) {
+    const u = Array.from(t.classList).filter(
+      (c) => c.startsWith("animate__")
+    ), o = n.map((c, s) => {
+      const d = document.createElement("span");
+      d.textContent = c === " " ? " " : c, t.dataset.delay && s !== 0 && (d.dataset.delay = t.dataset.delay), t.dataset.containerDelay && s === 0 && (d.dataset.delay = t.dataset.containerDelay);
+      for (let y = 0; y < u.length; y++)
+        d.classList.add(u[y]);
+      return d.outerHTML;
+    }).join(i);
+    t.classList.add("wordchargroup");
+    for (let c = 0; c < u.length; c++)
+      t.classList.remove(u[c]);
+    t.removeAttribute("data-delay"), t.removeAttribute("data-split"), t.removeAttribute("data-container-delay"), t.innerHTML = o;
+  }
+}
+function j(t, e) {
+  const n = t.parentNode;
+  if (n) {
+    for (const i of Array.from(n.children))
+      if (i !== t && i.dataset.appearParent) return;
+    n instanceof Element && (n.classList.value = t.classList.value, ue(t, n, "data-appear-parent"), n.innerHTML = t.innerHTML, e && n.classList.add(e));
+  }
+}
+function he(t, e, n) {
+  const i = n.baseclass;
+  if (t.hasAttribute("data-appear-parent") && j(t, i), e.appearparents && t.parentNode && t.parentNode instanceof Element && t.tagName === "SPAN" && t.parentNode.tagName === "LI") {
+    const r = t.outerHTML.length, u = t.parentNode.innerHTML.length;
+    r === u && j(t);
+  }
+}
+const ye = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
+  (i) => !i.closest(`.${e}`)
+), be = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
+  (i) => i.closest(`.${e}`) === n
+), Se = (t, e, n) => {
+  if (!e) return !1;
+  const i = [
+    ye(e, n, t),
+    ...Array.from(t.querySelectorAll(`.${n}`)).map(
+      (r) => be(e, n, r)
+    )
+  ];
+  return i.some((r) => r.length > 0) ? i : !1;
+};
 function ve(t) {
   return {
     from: t.fromSlide || t.previousSlide || null,
@@ -580,16 +584,16 @@ class M {
     for (const e of this.regularSections)
       de(e, this.options, this.appearances);
     for (const e of this.appearances)
-      me(e, this.options, this.consts), ge(e, this.consts), e instanceof HTMLElement && e.dataset.split && pe(e, e.dataset.split);
+      he(e, this.options, this.consts), ge(e, this.consts), e instanceof HTMLElement && e.dataset.split && pe(e, e.dataset.split);
     for (const e of this.regularSections) {
-      const n = be(
+      const n = Se(
         e,
         this.consts.baseclass,
         this.consts.fragmentClass
       );
       if (n)
         for (const i of n)
-          Se(i, this.options, this.consts);
+          me(i, this.options, this.consts);
     }
   }
   /**
