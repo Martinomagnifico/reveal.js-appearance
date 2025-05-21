@@ -1,41 +1,29 @@
-import type { Api } from 'reveal.js';
-import type { Config } from './config';
-import { debug } from "./helpers";
+import "../css/index.scss";
 
-import { PluginBase, pluginCSS } from 'reveal.js-plugintoolkit';
+// Basic imports
+import type { Api } from "reveal.js";
+import type { Config } from "./config";
+import { defaultConfig } from "./config";
 
-import { defaultConfig } from './config'
-import { Appearance } from './main';
+// Helper imports
+import { PluginBase, pluginDebug as debug, pluginCSS } from "reveal.js-plugintoolkit";
 
-import '../css/index.scss'
+// Function imports
+import { Appearance } from "./main";
+
+const PLUGIN_ID = "appearance";
 
 const init = async (plugin: PluginBase<Config>, deck: Api, config: Config): Promise<void> => {
-
-
-    if (debug && (config.debug || (deck.getConfig() as any).debug)) {
-        debug.initialize(true, "Appearance");
+    // Init debug
+    if (debug && config.debug) {
+        debug.initialize(true, PLUGIN_ID);
     }
 
-    const generatorMetaTag = document.querySelector("meta[name=generator]");
-    const isQuartoContent = generatorMetaTag instanceof HTMLMetaElement && generatorMetaTag.content.includes("quarto");
-
-    if (!isQuartoContent && config.cssautoload) {
-        try {
-            await pluginCSS({
-                id: plugin.pluginId,
-                enableLoading: config.cssautoload,
-                userPath: config.csspath,
-                debug: config.debug
-            });
-        } catch (err) {
-            console.warn('CSS loading failed, but plugin will continue:', err);
-        }
-    }
-	await Appearance.create(deck, config);
-
-}
+    await pluginCSS(plugin, config);
+    await Appearance.create(deck, config);
+};
 
 export default () => {
-    const plugin = new PluginBase('appearance', init, defaultConfig);
+    const plugin = new PluginBase(PLUGIN_ID, init, defaultConfig);
     return plugin.createInterface();
 };

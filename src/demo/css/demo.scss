@@ -1,17 +1,9 @@
 @use 'includes/_base';
 @use 'includes/_embedded';
 @use 'includes/_githubcorner';
+@use 'includes/_indexpage';
 
-
-
-.reveal {
-	opacity: 0;
-	transition: opacity 0.5s ease-in;
-}
-
-.reveal.ready {
-	opacity: 1;
-}
+// Appearance demo only styles
 
 .demoblock {
 	background: var(--code-full-bg);
@@ -24,7 +16,6 @@
 		width: 97%;
 	}
 }
-
 
 img {
 	border-radius: 5%;

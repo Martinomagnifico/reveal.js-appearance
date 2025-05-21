@@ -20,8 +20,7 @@
         }
     },
     "files": {
-        "include": ["src/**/*.js"],
-        "ignore": ["dist/**/*", "demo/**/*", "node_modules/**/*"]
+        "include": ["src/plugin/js/**/*"]
     },
     "vcs": {
         "enabled": true,

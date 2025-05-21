@@ -4,6 +4,9 @@ import { defineConfig } from "vite";
 import vituum from "vituum";
 import pug from "@vituum/vite-plugin-pug";
 import pkg from "./package.json";
+import pluginConfig from './plugin.config.js'
+import { dynamicIndex } from './vite-plugins/vite-plugin-dynamic-index';
+import suppressWarnings from './vite-plugins/vite-plugin-suppress-warnings';
 
 export default defineConfig({
     publicDir: "src/demo/public",
@@ -39,13 +42,12 @@ export default defineConfig({
             globals: {
                 plugin: {
                     packagename: pkg.name,
-                    functionname: pkg.functionname,
-                    name: pkg.functionname.toLowerCase(),
                     homepage: pkg.homepage,
+                    name: pluginConfig.functionname.toLowerCase(),
                 },
                 presentation: {
-                    title: pkg.demo?.presentation?.title || pkg.name,
-                    theme: pkg.demo?.presentation?.theme || "black",
+                    title: pluginConfig.demo?.presentation?.title || pkg.name,
+                    theme: pluginConfig.demo?.presentation?.theme || "black",
                 },
                 author: pkg.author,
                 isProd: process.env.NODE_ENV === "production",
@@ -54,30 +56,8 @@ export default defineConfig({
                 pretty: true,
             },
         }),
-        (() => {
-            let originalWarn;
-            return {
-              name: 'filter-warnings',
-              apply: 'build',
-              configResolved() {
-                originalWarn = console.warn;
-                console.warn = function(msg, ...args) {
-                  if (typeof msg === 'string' && (
-                      msg.includes("can't be bundled without type=\"module\"") ||
-                      msg.includes("doesn't exist at build time")
-                  )) {
-                    return;
-                  }
-                  originalWarn.call(console, msg, ...args);
-                };
-              },
-              closeBundle() {
-                if (originalWarn) {
-                  console.warn = originalWarn;
-                }
-              }
-            };
-          })()
+        dynamicIndex(),
+        suppressWarnings()
     ],
     resolve: {
         alias: {
@@ -86,8 +66,7 @@ export default defineConfig({
     },
     server: {
         host: true,
-        port: pkg.demo?.server?.port || 8000,
-        open: pkg.demo?.server?.open || "index.html",
+        open: pluginConfig.demo?.server?.open || "index.html" || "demo.html",
     },
     css: {
         preprocessorOptions: {

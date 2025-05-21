@@ -255,43 +255,18 @@
             <h2>Options</h2>
             <div class="centerblock">
               <ol class="twocol">
-                <li>hideagain</li>
-                <li>delay</li>
                 <li>appearevent</li>
                 <li>autoappear</li>
                 <li>autoelements</li>
                 <li>cssautoload</li>
                 <li>csspath</li>
-                <li>animatecsspath</li>
-                <li>compatibility</li>
-                <li>compatibility&shy;baseclass</li>
+                <li>delay</li>
+                <li>hideagain</li>
               </ol>
             </div>
           </section>
           <section>
-            <h4>Option 1: hideagain</h4>
-            <p class="small">The <code>hideagain</code> option will hide elements (that have appeared on the slide) again when moving away from that slide. </p>
-            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-    ...
-    appearance: {
-        hideagain: true
-    },
-    plugins: [ Appearance ]
-})</code></pre>
-          </section>
-          <section>
-            <h4>Option 2: delay</h4>
-            <p class="small">The <code>delay</code> option is the base time in ms between appearances. This value governs any elements that do not have an Animate.css speed class assigned to it, or are not inside a slide which includes delay in a data-autoappear attribute.</p>
-            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-    ...
-    appearance: {
-        delay: 300
-    },
-    plugins: [ Appearance ]
-})</code></pre>
-          </section>
-          <section>
-            <h4>Option 3: appearevent</h4>
+            <h4>Option 1: appearevent</h4>
             <p class="small">You can change when Appearance starts with any of the following events: <code>slidetransitionend</code> (default, after the transition), <code>slidechanged</code> (with the transition) and <code>auto</code> (with transition, on autoanimate slides). This can be overridden per-slide with data-attributes, like this: <code>data-appearevent="auto"</code>.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
     ...
@@ -302,7 +277,7 @@
 })</code></pre>
           </section>
           <section>
-            <h4>Option 4: autoappear</h4>
+            <h4>Option 2: autoappear</h4>
             <p class="small">The <code>autoappear</code> option works together with the <code>autoelements</code> option. When it is set to <code>true</code>, any elements in the autoelements option will animate with the declared animation when the slide or fragment opens. See <a href="#/autoappear"><code>autoappear</code></a>.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
     ...
@@ -314,7 +289,7 @@
 })</code></pre>
           </section>
           <section>
-            <h4>Option 5: autoelements</h4>
+            <h4>Option 3: autoelements</h4>
             <p class="small">These are the elements that <code>autoappear</code> will target. Each element has a selector and an animation class. If autoappear is off, the elements will still get animation if the section contains a data-autoappear attribute.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
     ...
@@ -326,7 +301,7 @@
 })</code></pre>
           </section>
           <section class="center">
-            <h4>Option 6: cssautoload</h4>
+            <h4>Option 4: cssautoload</h4>
             <p>Appearance will load the CSS if this is set to <code>true</code>.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
     ...
@@ -338,7 +313,7 @@
             <p class="small">If you import reveal.js-appearance from npm, you will need to import the CSS file yourself. If you use 'import', then <code>csspath</code> should be set to <code>false</code>. If you know the path to the CSS file, you can use the <code>csspath</code> option and keep <code>cssautoload</code> set to <code>true</code>.</p>
           </section>
           <section>
-            <h4>Option 7: csspath</h4>
+            <h4>Option 5: csspath</h4>
             <p class="small">Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.</p>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
     ...
@@ -349,39 +324,23 @@
 })</code></pre>
           </section>
           <section>
-            <h4>Option 8: animatecsspath</h4>
-            <p class="small">Appearance will also automatically load the styling of Animate.css via a CDN. Note that Animate.css has two links, the first (CDN) one is for version 4, the second (old) one is the version 3 compatibility CDN link.</p>
-            <pre><code class="hljs js" data-line-numbers="4-7">Reveal.initialize({
+            <h4>Option 6: delay</h4>
+            <p class="small">The <code>delay</code> option is the base time in ms between appearances. This value governs any elements that do not have an Animate.css speed class assigned to it, or are not inside a slide which includes delay in a data-autoappear attribute.</p>
+            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
     ...
     appearance: {
-        animatecsspath: {
-            link : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-            compat : 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css',
-        }
+        delay: 300
     },
     plugins: [ Appearance ]
 })</code></pre>
           </section>
           <section>
-            <h4>Option 9: compatibility</h4>
-            <p class="small">This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. </p>
-            <p class="small">Setting <code>'compatibility: true'</code> can let you use your old markup.</p>
+            <h4>Option 7: hideagain</h4>
+            <p class="small">The <code>hideagain</code> option will hide elements (that have appeared on the slide) again when moving away from that slide. </p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
     ...
     appearance: {
-        compatibility: false
-    },
-    plugins: [ Appearance ]
-})</code></pre>
-          </section>
-          <section>
-            <h4>Option 10: compatibilitybaseclass</h4>
-            <p class="small">This setting is about the breaking changes in Animate.css (used by Appearance). See the migration guide in the Readme for more info. </p>
-            <p class="small">This is the baseclass to use if you don't change your markup.</p>
-            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
-    ...
-    appearance: {
-        compatibilitybaseclass: 'animated'
+        hideagain: true
     },
     plugins: [ Appearance ]
 })</code></pre>

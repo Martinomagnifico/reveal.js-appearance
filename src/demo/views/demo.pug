@@ -6,6 +6,9 @@ append variables
 block slides
 	include slides/_slides.pug
 
+block beforeslides
+	+badge(plugin.name.toLowerCase())
+
 block append scripts
 	+revealsrc("script", "plugin/highlight/highlight.js")
 

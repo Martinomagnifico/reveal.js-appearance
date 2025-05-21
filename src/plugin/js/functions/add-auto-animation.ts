@@ -1,7 +1,20 @@
-import type { Api } from 'reveal.js';
-import type { Config } from '../config';
-import { AppearanceConsts } from '../consts';
-import { toJSONString, debug } from '../helpers';
+// Basic imports
+import { pluginDebug as debug } from "reveal.js-plugintoolkit";
+import type { AnimationOption, Config } from "../config";
+
+// Helper imports
+import { toJSONString } from "../helpers";
+
+const isAnimationObject = (
+    obj: unknown
+): obj is {
+    class?: string;
+    animation?: string;
+    speed?: string;
+    delay?: string | number;
+    split?: string;
+    "container-delay"?: string | number;
+} => typeof obj === "object" && obj !== null;
 
 /**
  * Adds automatic animations to elements within a section based on specified criteria.
@@ -12,90 +25,137 @@ import { toJSONString, debug } from '../helpers';
  * @param section The section element to which automatic animations will be applied
  * @param options The existing user options object
  * @param appearances Array of appearance elements to update
- * @param consts Plugin constants
+
  */
-export function addAutoAnimation(
-  section: Element, 
-  options: Config, 
-  appearances: Element[]
-): void {
-  let sectionAutoSelectors: any = null;
+export const addAutoAnimation = (
+    section: Element,
+    options: Config,
+    appearances: Element[]
+): void => {
+    let sectionAutoSelectors: Record<string, AnimationOption> | null = null;
 
-  if (section instanceof HTMLElement && section.hasAttribute("data-autoappear")) {
-    let sectDataAppear = section.dataset.autoappear;
+    // Determine which auto selectors to use for this section
+    if (section instanceof HTMLElement && section.hasAttribute("data-autoappear")) {
+        const sectDataAppear = section.dataset.autoappear;
 
-    if (sectDataAppear == "auto" || sectDataAppear == "" || sectDataAppear == "true") {
-      // This section should get the global autoappear classes on its objects
-      sectionAutoSelectors = options.autoelements ? options.autoelements : null;
-    } else {
-      // This section should get the local autoappear classes on its objects
-      sectionAutoSelectors = sectDataAppear;
+        // Case 1: Section has data-autoappear="auto" (or empty, or true)
+        const isDefaultAutoAppear =
+            sectDataAppear === "auto" || sectDataAppear === "" || sectDataAppear === "true";
+
+        if (isDefaultAutoAppear) {
+            // Use global auto elements configuration
+            sectionAutoSelectors =
+                options.autoelements && typeof options.autoelements === "object"
+                    ? options.autoelements
+                    : null;
+        } else {
+            // Use local auto elements configuration from the section attribute
+            try {
+                sectionAutoSelectors = sectDataAppear ? JSON.parse(sectDataAppear) : null;
+            } catch (e) {
+                debug.log(options, `Error parsing data-autoappear: ${e}`);
+                sectionAutoSelectors = null;
+            }
+        }
     }
-  } else if (options.autoappear && options.autoelements) {
-    // This section should get the global autoappear classes on its objects
-    sectionAutoSelectors = options.autoelements;
-  }
+    // Case 2: Global autoappear is enabled
+    else if (
+        options.autoappear &&
+        options.autoelements &&
+        typeof options.autoelements === "object"
+    ) {
+        sectionAutoSelectors = options.autoelements;
+    }
 
-  if (sectionAutoSelectors) {
-    let elementsToAnimate = JSON.parse(toJSONString(sectionAutoSelectors));
+    // If no selectors were found or they're invalid, exit early
+    if (!sectionAutoSelectors) return;
 
-    Object.entries(elementsToAnimate).forEach(([selector, assignables]: [string, any]) => {
-      // Exclude the elements from appearances
-      let elements = Array.from(section.querySelectorAll(selector))
-        .filter(element => !appearances.includes(element));
+    try {
+        // Parse the selectors safely
+        const elementsToAnimate = JSON.parse(toJSONString(sectionAutoSelectors));
 
-      if (elements.length) {
-        elements.forEach((element) => {
-          // Add this element to the appearances array
-          appearances.push(element);
+        // Process each selector and its animation configuration
+        for (const [selector, animConfig] of Object.entries(elementsToAnimate)) {
+            // Find elements matching the selector that aren't already in the appearances array
+            const elements = Array.from(section.querySelectorAll(selector)).filter(
+                (element) => !appearances.includes(element)
+            );
 
-          let newClasses: string[] = [];
-          let newDelay: string | null = null;
-          let speedClass: string | false = false;
-          let elementSplit: string | null = null;
-          let containerDelay: string | null = null;
+            if (elements.length === 0) continue;
 
-          if (Array.isArray(assignables)) {
-            newClasses = assignables[0].split(/[ ,]+/);
-            newDelay = assignables[1];
-          } else if (typeof assignables == "string") {
-            newClasses = assignables.split(/[ ,]+/);
-          } else if (assignables && typeof assignables === 'object') {
-            if (assignables.class || assignables.animation) {
-              let animationClass = assignables.animation ? assignables.animation : assignables.class;
-              newClasses = animationClass.split(/[ ,]+/);
+            // Process each matching element
+            for (const element of elements) {
+                // Add this element to the appearances array
+                appearances.push(element);
+
+                // Initialize animation properties
+                let newClasses: string[] = [];
+                let newDelay: string | null = null;
+                let speedClass: string | false = false;
+                let elementSplit: string | null = null;
+                let containerDelay: string | null = null;
+
+                // Handle different types of animation configurations
+                if (Array.isArray(animConfig)) {
+                    // Format: ["animation-class", delay]
+                    newClasses = String(animConfig[0]).split(/[ ,]+/);
+                    newDelay = animConfig[1] !== undefined ? String(animConfig[1]) : null;
+                } else if (typeof animConfig === "string") {
+                    // Format: "animation-class"
+                    newClasses = animConfig.split(/[ ,]+/);
+                } else if (isAnimationObject(animConfig)) {
+                    // Format: { class/animation: "...", speed: "...", delay: "...", ... }
+                    if (animConfig.class || animConfig.animation) {
+                        const animationClass = animConfig.animation || animConfig.class;
+                        newClasses = String(animationClass).split(/[ ,]+/);
+                    }
+
+                    if (animConfig.speed) {
+                        speedClass = String(animConfig.speed);
+                        if (!speedClass.includes("animate__")) {
+                            speedClass = `animate__${speedClass}`;
+                        }
+                    }
+
+                    if (animConfig.delay !== undefined) {
+                        newDelay = String(animConfig.delay);
+                    }
+
+                    if (animConfig.split !== undefined) {
+                        elementSplit = String(animConfig.split);
+                    }
+
+                    if (animConfig["container-delay"] !== undefined) {
+                        containerDelay = String(animConfig["container-delay"]);
+                    }
+                }
+
+                // Apply classes to the element
+                if (newClasses.length > 0) {
+                    element.classList.add(...newClasses);
+                }
+
+                if (speedClass) {
+                    element.classList.add(speedClass);
+                }
+
+                // Apply data attributes if the element is an HTMLElement
+                if (element instanceof HTMLElement) {
+                    if (newDelay && !element.dataset.delay) {
+                        element.dataset.delay = newDelay;
+                    }
+
+                    if (elementSplit) {
+                        element.dataset.split = elementSplit;
+                    }
+
+                    if (containerDelay) {
+                        element.dataset.containerDelay = containerDelay;
+                    }
+                }
             }
-            if (assignables.speed) {
-              speedClass = String(assignables.speed);
-              if (!speedClass.includes("animate__")) {
-                speedClass = `animate__${speedClass}`;
-              }
-            }
-            if (assignables.delay) {
-              newDelay = String(assignables.delay);
-            }
-            if (assignables.split) {
-              elementSplit = String(assignables.split);
-            }
-            if (assignables["container-delay"]) {
-              containerDelay = String(assignables["container-delay"]);
-            }
-          }
-
-          element.classList.add(...newClasses);
-          if (speedClass) { element.classList.add(speedClass); }
-
-          if (element instanceof HTMLElement) {
-            if (newDelay) {
-              if (!element.dataset.delay) {
-                element.dataset.delay = newDelay;
-              }
-            }
-            if (elementSplit) { element.dataset.split = elementSplit; }
-            if (containerDelay) { element.dataset.containerDelay = containerDelay; }
-          }
-        });
-      }
-    });
-  }
-}
+        }
+    } catch (error) {
+        debug.log(options, `Error processing auto animations: ${error}`);
+    }
+};

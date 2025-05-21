@@ -9,7 +9,8 @@
 
 .reveal .slides {
     ul, ol {
-        --li-gap: 0.25em;
+        --li-gap: 0.33em;
+        --col-gap: 4em;
 
         li {
             margin-bottom: var(--li-gap);
@@ -19,16 +20,24 @@
         }
 
         &.twocol {
+            padding-left: calc( 0.5 * var(--col-gap));
             width: 80%;
             position: relative;
             margin: 0 auto;
             column-count: 2;
-            column-gap: 4em;
-            list-style: inside;
-            list-style-type: decimal;
+            column-gap: var(--col-gap);
+            counter-reset: optionnr;
 
             li {
+                display: inline-flex;
+                gap: calc(var(--li-gap) * 2);
+                width: 100%;
                 margin-bottom: var(--li-gap);
+
+                &:before {
+                    counter-increment: optionnr;
+                    content: counter(optionnr) ".";
+                }
             }
             
             &::after {

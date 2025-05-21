@@ -1,0 +1,29 @@
+
+html.index {
+
+	color: white;
+	font-family: sans-serif;
+	background: var(--r-background-color);
+	font-size: var(--r-main-font-size);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	a {
+		color: #42affa;
+		font-size: var(--r-main-font-size);
+		font-family: "Source Sans Pro", sans-serif;
+		line-height: 1.4;
+		&:hover {
+			color: #8dcffc;
+		}
+	}
+	.fileindex {
+		display: inline-flex;
+		margin: 0 auto;
+		flex-direction: column;
+		margin-top: 3em;
+	}
+
+}
