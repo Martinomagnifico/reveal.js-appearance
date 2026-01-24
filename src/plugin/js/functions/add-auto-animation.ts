@@ -17,15 +17,11 @@ const isAnimationObject = (
 } => typeof obj === "object" && obj !== null;
 
 /**
- * Adds automatic animations to elements within a section based on specified criteria.
+ * addAutoAnimation
  *
- * This function examines the provided section for attributes and options to determine
- * which classes should be added to its elements to enable automatic animations.
- *
- * @param section The section element to which automatic animations will be applied
+ * @param section The section element
  * @param options The existing user options object
  * @param appearances Array of appearance elements to update
-
  */
 export const addAutoAnimation = (
     section: Element,
@@ -83,8 +79,21 @@ export const addAutoAnimation = (
 
             if (elements.length === 0) continue;
 
+            // Track containers to know when we hit the first element of a new container
+            let lastContainer: Element | null = null;
+            let containerIndex = 0;
+
             // Process each matching element
-            for (const element of elements) {
+            for (let index = 0; index < elements.length; index++) {
+                const element = elements[index];
+                
+                // Check if we're in a new container
+                const currentContainer = element.parentElement;
+                if (currentContainer !== lastContainer) {
+                    lastContainer = currentContainer;
+                    containerIndex = 0;
+                }
+                
                 // Add this element to the appearances array
                 appearances.push(element);
 
@@ -141,18 +150,21 @@ export const addAutoAnimation = (
 
                 // Apply data attributes if the element is an HTMLElement
                 if (element instanceof HTMLElement) {
-                    if (newDelay && !element.dataset.delay) {
+                    // Apply container-delay to the first element of each container
+                    if (containerDelay && containerIndex === 0) {
+                        element.dataset.delay = containerDelay;
+                    }
+                    // Only apply delay to elements after the first in each container
+                    else if (newDelay && containerIndex > 0 && !element.dataset.delay) {
                         element.dataset.delay = newDelay;
                     }
 
                     if (elementSplit) {
                         element.dataset.split = elementSplit;
                     }
-
-                    if (containerDelay) {
-                        element.dataset.containerDelay = containerDelay;
-                    }
                 }
+                
+                containerIndex++;
             }
         }
     } catch (error) {

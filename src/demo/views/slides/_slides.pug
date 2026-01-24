@@ -37,6 +37,20 @@ section
 			+iterate('5')
 				img.demoimg.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
 
+	section(data-autoappear='{"ul li":"animate__fadeInRight", "img.test": {"animation":"animate__fadeInUp", "speed":"slow", "delay":"1000", "container-delay":"2000"}}')
+		h3 Test images
+		.row.fivegrid
+			+iterate('5')
+				img.demoimg.test(data-src="assets/img/" + nr + ".jpg")
+
+		.row.fivegrid
+			+iterate('5')
+				img.demoimg.test(data-src="assets/img/" + nr + ".jpg")
+
+
+
+
+
 	section
 		h3 Use with fragments
 		p.animate__fadeInDown Inside fragments like this #[span.animate__fadeInDown.animate__faster(style="font-size: .8em") (click next)]:
@@ -234,7 +248,7 @@ section
 		h3 Local auto-appear
 		p.small This will use the JSON object from the global autoelements option, even if autoappear is false.
 		ul
-			li.localauto This is a list item
+			li This is a list item
 
 		pre
 			code.hljs.js(data-line-numbers="4,5").
@@ -255,18 +269,18 @@ section
 				&lt;/section&gt;
 		//-
 
-	section(data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow", "delay":"100"}}')
+	section(data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}')
 		h3 Local auto-appear, specified
 
 		small You can also add a JSON object to the slide’s #[code data-autoappear], with specific elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.
 
 		ul
 			+iterate('2')
-				li.specified="This is list item " + nr
+				li="This is list item " + nr
 
 		pre
 			code.hljs.html(data-line-numbers).
-				&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow", "delay":"100"}}'&gt;
+				&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}'&gt;
 					&lt;h3&gt;Local auto-appear, specified&lt;/h3&gt;
 					&lt;ul&gt;
 						&lt;li&gt;This is list item 1&lt;/li&gt;

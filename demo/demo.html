@@ -367,7 +367,16 @@
       Reveal.initialize({
       	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
       	history: true, center: true, controlsTutorial: false,
-      	plugins: [ Appearance, RevealHighlight ]
+      	plugins: [ Appearance, RevealHighlight ],
+      	appearance: {
+      		debug: true,
+      		appearparents: true,
+      		hideagain: true,
+      		appearevent: 'auto',
+      		autoappear: true,
+      		autoelements: {'ul li': 'animate__fadeInLeft'},
+      		compatibility: false
+      	}
       });
     </script>
   </body>
