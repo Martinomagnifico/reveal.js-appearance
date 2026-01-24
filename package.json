@@ -55,7 +55,7 @@
         "ci": "biome ci ."
     },
     "devDependencies": {
-        "@biomejs/biome": "latest",
+        "@biomejs/biome": "2.3.11",
         "@types/node": "^22.10.1",
         "@types/reveal.js": "^5.0.4",
         "@vituum/vite-plugin-pug": "latest",

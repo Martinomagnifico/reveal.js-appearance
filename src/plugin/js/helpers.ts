@@ -4,11 +4,11 @@
  * @returns {boolean} `true` if the string is valid JSON, otherwise `false`.
  */
 export const isJSON = (str: string): boolean => {
-    try {
-        return JSON.parse(str) && !!str;
-    } catch (e) {
-        return false;
-    }
+	try {
+		return JSON.parse(str) && !!str;
+	} catch (_e) {
+		return false;
+	}
 };
 
 /********************************************************************************************/
@@ -20,32 +20,32 @@ export const isJSON = (str: string): boolean => {
  * @returns {string} The JSON string.
  */
 export const toJSONString = (str?: unknown): string => {
-    if (str == null) {
-        return ""; // Return an empty string if `str` is `null` or `undefined`
-    }
+	if (str == null) {
+		return ""; // Return an empty string if `str` is `null` or `undefined`
+	}
 
-    let JSONString = "";
+	let JSONString = "";
 
-    // Handle the case where str is a string
-    let modifiedStr = str;
-    if (typeof modifiedStr === "string") {
-        modifiedStr = modifiedStr.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
-    }
+	// Handle the case where str is a string
+	let modifiedStr = str;
+	if (typeof modifiedStr === "string") {
+		modifiedStr = modifiedStr.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+	}
 
-    // Check if str is a valid JSON string (needs the isJSON function)
-    if (isJSON(str as string)) {
-        JSONString = str as string;
-    } else if (typeof str === "object") {
-        JSONString = JSON.stringify(str, null, 2);
-    } else if (typeof str === "string") {
-        // Handle non-JSON strings
-        JSONString =
-            str.trim().replace(/'/g, '"').charAt(0) === "{"
-                ? str.trim().replace(/'/g, '"')
-                : `{${str.trim().replace(/'/g, '"')}}`;
-    }
+	// Check if str is a valid JSON string (needs the isJSON function)
+	if (isJSON(str as string)) {
+		JSONString = str as string;
+	} else if (typeof str === "object") {
+		JSONString = JSON.stringify(str, null, 2);
+	} else if (typeof str === "string") {
+		// Handle non-JSON strings
+		JSONString =
+			str.trim().replace(/'/g, '"').charAt(0) === "{"
+				? str.trim().replace(/'/g, '"')
+				: `{${str.trim().replace(/'/g, '"')}}`;
+	}
 
-    return JSONString;
+	return JSONString;
 };
 
 /********************************************************************************************/
@@ -57,10 +57,10 @@ export const toJSONString = (str?: unknown): string => {
  * @param {string} [not] - Optional attribute name to exclude from copying.
  */
 export const copyDataAttributes = (source: Element, target: Element, not?: string): void => {
-    // Use `Array.from` to ensure correct type inference
-    for (const attr of Array.from(source.attributes)) {
-        if (attr.nodeName.startsWith("data") && (not ? attr.nodeName !== not : true)) {
-            target.setAttribute(attr.nodeName, attr.nodeValue || "");
-        }
-    }
+	// Use `Array.from` to ensure correct type inference
+	for (const attr of Array.from(source.attributes)) {
+		if (attr.nodeName.startsWith("data") && (not ? attr.nodeName !== not : true)) {
+			target.setAttribute(attr.nodeName, attr.nodeValue || "");
+		}
+	}
 };

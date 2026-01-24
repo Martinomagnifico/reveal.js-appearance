@@ -6,9 +6,9 @@
  * @returns Array of selected elements
  */
 const elemsNotInClass = (targetClass: string, excludeClass: string, el: Element): Element[] => {
-    return Array.from(el.querySelectorAll(`.${targetClass}`)).filter(
-        (s) => !s.closest(`.${excludeClass}`)
-    );
+	return Array.from(el.querySelectorAll(`.${targetClass}`)).filter(
+		(s) => !s.closest(`.${excludeClass}`)
+	);
 };
 
 /**
@@ -19,9 +19,9 @@ const elemsNotInClass = (targetClass: string, excludeClass: string, el: Element)
  * @returns Array of selected elements
  */
 const elemsInClass = (targetClass: string, parentClass: string, el: Element): Element[] => {
-    return Array.from(el.querySelectorAll(`.${targetClass}`)).filter(
-        (s) => s.closest(`.${parentClass}`) === el
-    );
+	return Array.from(el.querySelectorAll(`.${targetClass}`)).filter(
+		(s) => s.closest(`.${parentClass}`) === el
+	);
 };
 
 /**
@@ -34,21 +34,21 @@ const elemsInClass = (targetClass: string, parentClass: string, el: Element): El
  */
 
 export const getAppearanceArrays = (
-    section: Element,
-    targetClass: string | undefined,
-    groupClass: string
+	section: Element,
+	targetClass: string | undefined,
+	groupClass: string
 ): Element[][] | false => {
-    // Early return if targetClass is undefined
-    if (!targetClass) return false;
+	// Early return if targetClass is undefined
+	if (!targetClass) return false;
 
-    // Build the result array
-    const result: Element[][] = [
-        elemsNotInClass(targetClass, groupClass, section),
-        ...Array.from(section.querySelectorAll(`.${groupClass}`)).map((frag) =>
-            elemsInClass(targetClass, groupClass, frag)
-        ),
-    ];
+	// Build the result array
+	const result: Element[][] = [
+		elemsNotInClass(targetClass, groupClass, section),
+		...Array.from(section.querySelectorAll(`.${groupClass}`)).map((frag) =>
+			elemsInClass(targetClass, groupClass, frag)
+		),
+	];
 
-    // Return result if any group has elements, otherwise return false
-    return result.some((group) => group.length > 0) ? result : false;
+	// Return result if any group has elements, otherwise return false
+	return result.some((group) => group.length > 0) ? result : false;
 };
