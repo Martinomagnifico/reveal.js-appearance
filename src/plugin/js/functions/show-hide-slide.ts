@@ -103,7 +103,8 @@ export function showHideSlide(
 	event: RevealSlideEvent,
 	options: Config,
 	consts: AppearanceConsts,
-	deck: Api
+	deck: Api,
+	isInitialLoad: { value: boolean }
 ): void {
 	const viewport = deck.getViewportElement() as HTMLElement;
 	const isScroll = viewport.classList.contains("reveal-scroll");
@@ -112,7 +113,22 @@ export function showHideSlide(
 
 	if (slides.to) {
 		if (etype === "ready") {
-			slides.to.dataset.appearanceCanStart = "true";
+			// Get init-delay from slide attribute or global config
+			const slideInitDelay = slides.to.dataset.initdelay
+				? parseInt(slides.to.dataset.initdelay, 10)
+				: options.initdelay || 0;
+
+			if (isInitialLoad.value && slideInitDelay > 0) {
+				setTimeout(() => {
+					if (slides.to) {
+						slides.to.dataset.appearanceCanStart = "true";
+					}
+					isInitialLoad.value = false; // Mark that initial load is complete
+				}, slideInitDelay);
+			} else {
+				slides.to.dataset.appearanceCanStart = "true";
+				isInitialLoad.value = false; // Mark initial load complete
+			}
 		}
 
 		const appearevent = slideAppearevent(slides.to, options);

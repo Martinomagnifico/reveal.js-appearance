@@ -7,6 +7,7 @@
 
 .small, .reveal small {
 	font-size: calc(0.7 * var(--r-main-font-size));
+	margin: var(--r-block-margin) 0;
 	code {
 		font-size: 0.8em;
 	}
@@ -16,3 +17,4 @@ p {
 		font-size: 0.8em;
 	}
 }
+

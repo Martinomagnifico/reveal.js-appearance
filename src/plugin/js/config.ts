@@ -19,6 +19,7 @@ export interface Config {
 	autoappear: boolean;
 	autoelements: Record<string, AnimationOption> | boolean | null;
 	appearparents: boolean;
+	initdelay?: number;
 	cssautoload: boolean;
 	csspath: string;
 	compatibility: boolean;
@@ -33,6 +34,7 @@ const defaultConfig: Config = {
 	autoappear: false,
 	autoelements: false,
 	appearparents: false,
+	initdelay: 0,
 	cssautoload: true,
 	csspath: "",
 	compatibility: false,

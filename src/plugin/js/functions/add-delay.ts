@@ -10,6 +10,10 @@ export function addDelay(appearanceArray: Element[], options: Config): void {
 	let delay = 0;
 
 	appearanceArray.forEach((appearance, index) => {
+		if (appearance instanceof HTMLElement && appearance.style.animationDelay) {
+			return; // Skip this element, keep its existing delay
+		}
+
 		// Apply delay if this is the first element with a data-delay attribute
 		// or if this is not the first element
 		if (

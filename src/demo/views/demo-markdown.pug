@@ -7,7 +7,7 @@ block slides
 	include slides/_slides-markdown
 
 block beforeslides
-	+badge(plugin.name.toLowerCase(), 'bottom')
+	+badge(plugin.name.toLowerCase())
 
 block append scripts
 	+revealsrc("script", "plugin/markdown/markdown.js")
@@ -21,11 +21,12 @@ block append scripts
 				history: true, center: true, controlsTutorial: false,
 				plugins: [ RevealMarkdown, RevealHighlight, Appearance ],
 				appearance: {
+					debug: true,
 					appearparents: true,
 					hideagain: true,
 					appearevent: 'auto',
 					autoappear: true,
-					autoelements: {'ul li': 'animate__fadeInLeft'}
+					autoelements: {"ul li": "animate__fadeInLeft"}
 				}
 			});
 	else
@@ -36,11 +37,13 @@ block append scripts
 				history: true, center: true, controlsTutorial: false,
 				plugins: [ RevealMarkdown, RevealHighlight, Appearance],
 				appearance: {
+					debug: true,
+					delay: 300,
 					appearparents: true,
 					hideagain: true,
 					appearevent: 'auto',
 					autoappear: true,
-					autoelements: {'ul li': 'animate__fadeInLeft'}
+					autoelements: {"ul li": "animate__fadeInLeft"}
 				}
 			});
 

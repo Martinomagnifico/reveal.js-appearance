@@ -1,6 +1,6 @@
 import type { Api } from "reveal.js";
 // Helper imports
-import { sectionTools } from "reveal.js-plugintoolkit";
+import { pluginDebug as debug, sectionTools } from "reveal.js-plugintoolkit";
 import type { Config } from "./config";
 import { type AppearanceConsts, initConsts } from "./consts";
 // Function imports
@@ -16,22 +16,21 @@ import type { RevealFragmentEvent, RevealSlideEvent } from "./types";
 export class Appearance {
 	private readonly deck: Api;
 	private readonly viewport: HTMLElement;
-	private readonly revealEl: HTMLElement;
 	private readonly slides: HTMLElement;
 	private readonly options: Config;
 	private readonly consts: AppearanceConsts;
 	private readonly sections: NodeListOf<Element>;
 	private readonly regularSections: Element[];
-	private readonly fragments: NodeListOf<Element>;
 	private appearances: Element[];
+	private isInitialLoad: boolean;
 
 	private constructor(deck: Api, options: Config) {
 		this.deck = deck;
 		this.options = options;
+		this.isInitialLoad = true;
 
 		// Get Reveal.js elements
 		this.viewport = deck.getViewportElement() as HTMLElement;
-		this.revealEl = deck.getRevealElement() as HTMLElement;
 		this.slides = deck.getSlidesElement() as HTMLElement;
 
 		// Initialize constants
@@ -41,12 +40,11 @@ export class Appearance {
 			options.compatibility
 		);
 
-		// Get sections and fragments
+		// Get sections
 		this.sections = this.slides.querySelectorAll("section");
 		this.regularSections = Array.from(this.sections).filter(
 			(section) => !sectionTools.isStack(section as HTMLElement)
 		);
-		this.fragments = this.slides.querySelectorAll(this.consts.fragmentSelector);
 
 		// Initialize appearances array (will be filled later)
 		this.appearances = [];
@@ -68,6 +66,58 @@ export class Appearance {
 		for (const section of this.regularSections) {
 			addAutoAnimation(section, this.options, this.appearances);
 		}
+
+		// After addAutoAnimation, filter out inline elements that are redundant
+		// this.appearances = this.appearances.filter((element) => {
+		// 	const isInline = [
+		// 		"EM",
+		// 		"STRONG",
+		// 		"I",
+		// 		"B",
+		// 		"CODE",
+		// 		"SPAN",
+		// 		"A",
+		// 		"ABBR",
+		// 		"MARK",
+		// 		"SMALL",
+		// 		"SUB",
+		// 		"SUP",
+		// 	].includes(element.tagName);
+
+		// 	if (!isInline) {
+		// 		return true;
+		// 	}
+
+		// 	const parentLi = element.closest("li");
+		// 	if (!parentLi || !this.appearances.includes(parentLi)) {
+		// 		return true;
+		// 	}
+
+		// 	// Get animation classes (excluding base class)
+		// 	const elementAnimClasses = Array.from(element.classList).filter(
+		// 		(c) => c.startsWith("animate__") && c !== this.consts.baseclass
+		// 	);
+		// 	const liAnimClasses = Array.from(parentLi.classList).filter(
+		// 		(c) => c.startsWith("animate__") && c !== this.consts.baseclass
+		// 	);
+
+		// 	if (elementAnimClasses.length === 0 || liAnimClasses.length === 0) {
+		// 		return true;
+		// 	}
+
+		// 	const hasSameClass = elementAnimClasses.some((c) => liAnimClasses.includes(c));
+
+		// 	if (hasSameClass) {
+		// 		debug.log(
+		// 			`Removing redundant inline element from appearances in favor of parent LI:`,
+		// 			element,
+		// 			parentLi
+		// 		);
+		// 		return false;
+		// 	}
+
+		// 	return true;
+		// });
 
 		// Process each appearance element
 		for (const element of this.appearances) {
@@ -99,12 +149,19 @@ export class Appearance {
 	 * Set up event listeners
 	 */
 	private setupEventListeners(): void {
+		debug.log("Options:", this.options);
+		debug.log("Setting up event listeners");
+
+		const initialLoadRef = { value: this.isInitialLoad };
+
 		// Add event listeners for all defined event names
 		for (const eventname of this.consts.eventnames) {
+			debug.log(`Adding listener for ${eventname} event`);
+
 			this.deck.on(eventname, (event: unknown) => {
-				// Handle slide show/hide (placeholder)
 				const e = event as RevealSlideEvent;
-				showHideSlide(e, this.options, this.consts, this.deck);
+				showHideSlide(e, this.options, this.consts, this.deck, initialLoadRef);
+				this.isInitialLoad = initialLoadRef.value;
 			});
 		}
 
@@ -115,7 +172,7 @@ export class Appearance {
 		});
 
 		this.viewport.addEventListener("autoanimate", (event) => {
-			console.log("Autoanimate event triggered:", event);
+			debug.log("Autoanimate event triggered:", event);
 		});
 
 		// Fragment hidden event

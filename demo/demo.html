@@ -19,7 +19,7 @@
           <path fill="currentColor" d="M27.5 11.2a16.3 16.3 0 0 0-5.1 31.7c.8.2 1.1-.3 1.1-.7v-2.8c-4.5 1-5.5-2.2-5.5-2.2-.7-1.9-1.8-2.4-1.8-2.4-1.5-1 .1-1 .1-1 1.6.1 2.5 1.7 2.5 1.7 1.5 2.5 3.8 1.8 4.7 1.4.2-1 .6-1.8 1-2.2-3.5-.4-7.3-1.8-7.3-8 0-1.8.6-3.3 1.6-4.4-.1-.5-.7-2.1.2-4.4 0 0 1.4-.4 4.5 1.7a15.6 15.6 0 0 1 8.1 0c3.1-2 4.5-1.7 4.5-1.7.9 2.3.3 4 .2 4.4 1 1 1.6 2.6 1.6 4.3 0 6.3-3.8 7.7-7.4 8 .6.6 1.1 1.6 1.1 3v4.6c0 .4.3.9 1.1.7a16.3 16.3 0 0 0-5.2-31.7"></path>
         </svg></a>
       <div class="slides">
-        <section>
+        <section data-init-delay="300">
           <h1 class="animate__flipInX animate__slow">Appearance</h1>
           <h3 class="animate__fadeInDown animate__faster" data-delay="75" data-container-delay="700" data-split="letters">for Reveal.js</h3>
           <div class="row fivegrid smallcircles"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/1.jpg" data-delay="800"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/2.jpg" data-delay="220"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/3.jpg" data-delay="200"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/4.jpg" data-delay="180"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/5.jpg" data-delay="160">
@@ -182,6 +182,15 @@
             </ul>
             <div><br><small class="animate__fadeInUp">This can be set per-slide with data-attributes, or globally in the Appearance options.</small></div>
           </section>
+          <section data-init-delay="2000">
+            <h3>Change the initial delay</h3>
+            <p class="small">Use <code>data-init-delay="*"</code> on the slide element, to set a delay before the first element appears, in case a page is loaded/reloaded for the first time. This can also be set globally in the Appearance options.</p>
+            <p class="small">When you came to this page, you probably came from the previous slide so the initial delay was 
+              <u>not</u> applied. Try reloading this page to see the effect. The first image will only appear after 2 seconds.
+            </p>
+            <div class="row fivegrid"><img class="demoimg animate__flipInX" data-src="assets/img/1.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/2.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/3.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/4.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/5.jpg">
+            </div>
+          </section>
         </section>
         <section>
           <section id="autoappear">
@@ -198,24 +207,24 @@
               <li class="globalul">This is list item 1</li>
               <li class="globalul">This is list item 2</li>
             </ul>
-            <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
-	// ...
-	appearance: {
-		autoappear: true,
-		autoelements: '{"ul li": "animate__fadeInLeft"}'
-	}
-	// ...</code></pre>
             <pre><code class="hljs html" data-line-numbers>&lt;ul&gt;
 	&lt;li&gt;This is list item 1&lt;/li&gt;
 	&lt;li&gt;This is list item 2&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
+            <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
+	// ...
+	appearance: {
+		autoappear: true,
+		autoelements: {"ul li": "animate__fadeInLeft"}
+	}
+	// ...</code></pre>
             <p class="small">You can use a simple JSON object, or more elaborate like this: <code>'{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}'</code>.</p>
           </section>
           <section data-autoappear="true">
             <h3>Local auto-appear</h3>
             <p class="small">This will use the JSON object from the global autoelements option, even if autoappear is false.</p>
             <ul>
-              <li class="localauto">This is a list item</li>
+              <li>This is a list item</li>
             </ul>
             <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
 	// ...
@@ -230,13 +239,13 @@
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
           </section>
-          <section data-autoappear="{&quot;ul li&quot;:&quot;animate__fadeInRight&quot;, &quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;slow&quot;, &quot;delay&quot;:&quot;100&quot;}}">
+          <section data-autoappear="{&quot;ul li&quot;:&quot;animate__fadeInRight&quot;, &quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;slow&quot; }}">
             <h3>Local auto-appear, specified</h3><small>You can also add a JSON object to the slide’s <code>data-autoappear</code>, with specific elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.</small>
             <ul>
-              <li class="specified">This is list item 1</li>
-              <li class="specified">This is list item 2</li>
+              <li>This is list item 1</li>
+              <li>This is list item 2</li>
             </ul>
-            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow", "delay":"100"}}'&gt;
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}'&gt;
 	&lt;h3&gt;Local auto-appear, specified&lt;/h3&gt;
 	&lt;ul&gt;
 		&lt;li&gt;This is list item 1&lt;/li&gt;
@@ -256,6 +265,7 @@
         <section>
           <section>
             <h2>Options</h2>
+            <p class="small">In alphabetical order</p>
             <div class="centerblock">
               <ol class="twocol">
                 <li>appearevent</li>
@@ -265,6 +275,7 @@
                 <li>csspath</li>
                 <li>delay</li>
                 <li>hideagain</li>
+                <li>initdelay</li>
               </ol>
             </div>
           </section>
@@ -348,6 +359,18 @@
     plugins: [ Appearance ]
 })</code></pre>
           </section>
+          <section>
+            <h4>Option 8: initdelay</h4>
+            <p class="small">The <code>initdelay</code> option sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). This gives users time to orient themselves when first loading the presentation. Can be overridden per-slide with <code>data-init-delay="2000"</code>.</p>
+            <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
+    ...
+    appearance: {
+        initdelay: 0
+    },
+    plugins: [ Appearance ]
+})</code></pre>
+            <p class="small">Set to <code>0</code> by default (no delay). Useful values are typically between 300-1000ms.</p>
+          </section>
         </section>
         <section>
           <h3>Credits</h3>
@@ -374,7 +397,7 @@
       		hideagain: true,
       		appearevent: 'auto',
       		autoappear: true,
-      		autoelements: {'ul li': 'animate__fadeInLeft'},
+      		autoelements: {"ul li": "animate__fadeInLeft"},
       		compatibility: false
       	}
       });

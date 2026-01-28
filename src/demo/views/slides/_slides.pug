@@ -1,4 +1,4 @@
-section
+section(data-initdelay="300")
 	h1.animate__flipInX.animate__slow Appearance
 	h3.animate__fadeInDown.animate__faster(data-delay="75", data-container-delay="700", data-split="letters") for Reveal.js
 
@@ -37,19 +37,6 @@ section
 			+iterate('5')
 				img.demoimg.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
 
-	section(data-autoappear='{"ul li":"animate__fadeInRight", "img.test": {"animation":"animate__fadeInUp", "speed":"slow", "delay":"90", "container-delay":"2000"}}')
-		h3 Test images
-		.row.fivegrid
-			+iterate('5')
-				img.demoimg.test(data-src="assets/img/" + nr + ".jpg")
-
-		.row.fivegrid
-			+iterate('5')
-				img.demoimg.test(data-src="assets/img/" + nr + ".jpg")
-
-
-
-
 
 	section
 		h3 Use with fragments
@@ -74,8 +61,6 @@ section
 		ul
 			each anim, index in ["animate__skidLeft", "animate__skidLeftBig", "animate__skidRight", "animate__skidRightBig", "animate__shrinkIn", "animate__shrinkInBig"]
 				li(class=anim, data-delay=index != 0 ? "1000": null) .#{anim}
-
-		p.small Note: The shrinkInBlur animation was removed from Appearance, due to performance issues. For backwards compatibility, any element that used it will now use the #[code shrinkIn] animation instead.
 
 section
 	section
@@ -103,7 +88,7 @@ section
 		//-
 
 	section
-		h3 Markup (auto)
+		h3 Markup (automatic or manual)
 
 		p.small For #[em automatic markup], you can use the #[a(href="#/autoappear") #[code autoappear]] option. 
 		p.small For #[em manual markup], continue to the next slide.
@@ -142,7 +127,6 @@ section
 			img.animate__fadeInDown(data-src="assets/img/1.jpg", data-delay="0")
 			+iterate('4')
 				img.animate__fadeInDown(data-src=`assets/img/${nr + 1}.jpg`,  data-delay="240" - (nr * 40))
-		br
 		pre
 			code.hljs.html(data-line-numbers).
 				&lt;img class=&quot;animate__fadeInDown&quot; data-delay=&quot;0&quot; src=&quot;assets/img/1.jpg&quot;&gt;
@@ -168,25 +152,24 @@ section
 			each speed in ["animate__slower", "animate__slow", "", "animate__fast", "animate__faster"]
 				- nr = nr + 1
 				img.animate__bounceIn(class=speed, style="margin: auto", data-src=`assets/img/${nr}.jpg`)
-		br
+
 		pre
 			code.hljs.html(data-line-numbers).
-				&lt;img class=&quot;animate__fadeInDown animate__slower&quot; src=&quot;assets/img/1.jpg&quot;&gt;
-				&lt;img class=&quot;animate__fadeInDown animate__slow&quot; src=&quot;assets/img/2.jpg&quot;&gt;
-				&lt;img class=&quot;animate__fadeInDown&quot; src=&quot;assets/img/3.jpg&quot;&gt;
-				&lt;img class=&quot;animate__fadeInDown animate__fast&quot; src=&quot;assets/img/4.jpg&quot;&gt;
-				&lt;img class=&quot;animate__fadeInDown animate__faster&quot; src=&quot;assets/img/5.jpg&quot;&gt;
+				&lt;img class=&quot;aanimate__bounceIn animate__slower&quot; src=&quot;assets/img/1.jpg&quot;&gt;
+				&lt;img class=&quot;animate__bounceIn animate__slow&quot; src=&quot;assets/img/2.jpg&quot;&gt;
+				&lt;img class=&quot;animate__bounceIn&quot; src=&quot;assets/img/3.jpg&quot;&gt;
+				&lt;img class=&quot;animate__bounceIn animate__fast&quot; src=&quot;assets/img/4.jpg&quot;&gt;
+				&lt;img class=&quot;animate__bounceIn animate__faster&quot; src=&quot;assets/img/5.jpg&quot;&gt;
 		//-
 
 	section
 		h3 Change the settings for words or letters
 		small For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a #[code data-container-delay="*"] for a different delay for the container, compared to the standard #[code delay = 300] from the options. Add a #[code baseline] class for a nice baseline effect.
-		br
-		br
+
 		h3.animate__fadeInUp.baseline(data-split="words") Split into words
 		h3.animate__fadeInUp.animate__faster(data-split="letters" data-delay="75" data-container-delay="800") Split into letters
 
-		br
+
 		pre
 			code.hljs.html(data-line-numbers).
 				&lt;h3 class=&quot;animate__fadeInUp baseline&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
@@ -198,15 +181,34 @@ section
 
 	section(data-auto-animate, data-appearevent="auto")
 		h3 Change when Appearance starts
-		div
-			p.animate__fadeInUp You can use any of the following events:
+		p.animate__fadeInUp You can use any of the following events:
 		ul
 			li.animate__fadeInLeft #[em slidetransitionend] (default, after the transition)
 			li.animate__fadeInLeft #[em slidechanged] (with the transition)
 			li.animate__fadeInLeft #[em auto] (with transition, on autoanimate slides)
-		div
-			br
-			small.animate__fadeInUp This can be set per-slide with data-attributes, or globally in the Appearance options.
+
+		pre
+			code.hljs.html(data-line-numbers).
+				&lt;section data-appearevent="auto"&gt;
+		//-
+
+
+		small.animate__fadeInUp This can be set per-slide with #[code data-appearevent], or globally in the Appearance options.
+
+	section(data-initdelay="3000")
+		h3 Change the initial delay
+		p.small This delay is triggered when a slide is loaded/reloaded for the first time.
+
+		p.small When you came to this slide, you probably came from the previous slide so the initial delay was NOT applied. Reload your browser to see the effect. The first image will then only appear after 3 seconds.
+		.row.fivegrid
+			+iterate('5')
+				img.demoimg.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
+
+		pre
+			code.hljs.html(data-line-numbers).
+				&lt;section data-initdelay="3000"&gt; ... &lt;/section&gt;
+		//-
+		p.small This can also be set globally in the Appearance options.
 
 section
 	section#autoappear
@@ -225,16 +227,6 @@ section
 				li.globalul="This is list item " + nr
 
 		pre
-			code.hljs.js(data-line-numbers="4,5").
-				Reveal.initialize({
-					// ...
-					appearance: {
-						autoappear: true,
-						autoelements: '{"ul li": "animate__fadeInLeft"}'
-					}
-					// ...
-		//-
-		pre
 			code.hljs.html(data-line-numbers).
 				&lt;ul&gt;
 					&lt;li&gt;This is list item 1&lt;/li&gt;
@@ -242,24 +234,26 @@ section
 				&lt;/ul&gt;
 		//-
 
-		p.small You can use a simple JSON object, or more elaborate like this: #[code '{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}'].
-
-	section(data-autoappear="true")
-		h3 Local auto-appear
-		p.small This will use the JSON object from the global autoelements option, even if autoappear is false.
-		ul
-			li This is a list item
-
 		pre
 			code.hljs.js(data-line-numbers="4,5").
 				Reveal.initialize({
 					// ...
 					appearance: {
-						autoappear: false,
-						autoelements: '{"ul li": "animate__fadeInLeft"}'
+						autoappear: true,
+						autoelements: {"ul li": "animate__fadeInLeft"}
 					}
 					// ...
 		//-
+
+
+		p.small You can use a simple object, or more elaborate like this: #[code '{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}'].
+
+	section(data-autoappear="true")
+		h3 Local auto-appear
+		p.small This will use the object (or JSON string) from the global autoelements option, even if autoappear is false.
+		ul
+			li This is a list item
+
 		pre
 			code.hljs.html(data-line-numbers="1").
 				&lt;section data-autoappear=&quot;true&quot;&gt;
@@ -268,28 +262,39 @@ section
 					&lt;/ul&gt;
 				&lt;/section&gt;
 		//-
+		pre
+			code.hljs.js(data-line-numbers="4,5").
+				Reveal.initialize({
+					// ...
+					appearance: {
+						autoappear: false,
+						autoelements: {"ul li": "animate__fadeInLeft"}
+					}
+					// ...
+		//-
+
 
 	section(data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}')
 		h3 Local auto-appear, specified
 
-		small You can also add a JSON object to the slide’s #[code data-autoappear], with specific elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.
+		small You can also add JSON to the slide’s #[code data-autoappear], with elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.
 
 		ul
-			+iterate('2')
-				li="This is list item " + nr
+			li="This is a list item"
 
 		pre
 			code.hljs.html(data-line-numbers).
 				&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}'&gt;
 					&lt;h3&gt;Local auto-appear, specified&lt;/h3&gt;
 					&lt;ul&gt;
-						&lt;li&gt;This is list item 1&lt;/li&gt;
-						&lt;li&gt;This is list item 2&lt;/li&gt;
+						&lt;li&gt;This is a list item&lt;/li&gt;
 					&lt;/ul&gt;
 				&lt;/section&gt;
 		//-
 
-	section(data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}')
+		small Appearance lets you use single quotes in JSON even though not valid: #[code data-autoappear="{'ul li':'animate__fadeInRight'}"]. This is because Reveal-Markdown only allows double quotes for its data-attributes (encoding your double quotes is also good, but that is a lot more work).
+
+	section(data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80", "container-delay":"200"}}')
 		h3 Local auto-appear, specified and split
 
 		small And you can do the same for any animations that you would like to have on lines and words.
@@ -298,14 +303,15 @@ section
 
 		pre
 			code.hljs.html(data-line-numbers).
-				&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}'&gt;
+				&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80", "container-delay":"200"}}'&gt;
 					&lt;h3&gt;Local auto-appear, specified and split&lt;/h3&gt;
 					&lt;h4&gt;Appearance&lt;/h4&gt;
 				&lt;/section&gt;
 		//-
 section
-	section
+	section#options
 		h2 Options
+		p.small In alphabetical order
 		.centerblock
 			ol.twocol
 				li appearevent
@@ -315,6 +321,8 @@ section
 				li csspath
 				li delay
 				li hideagain
+				li initdelay
+
 
 	- let optionnr = 1
 
@@ -424,6 +432,22 @@ section
 				    plugins: [ Appearance ]
 				})
 		//-
+
+	section
+		h4 Option #{optionnr++}: initdelay
+		p.small The #[code initdelay] option sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). This gives users time to orient themselves when first loading the presentation. Can be overridden per-slide with #[code data-initdelay="2000"].
+		pre
+			code.hljs.js(data-line-numbers="4").
+				Reveal.initialize({
+				    ...
+				    appearance: {
+				        initdelay: 0
+				    },
+				    plugins: [ Appearance ]
+				})
+		//-
+		p.small Set to #[code 0] by default (no delay). Useful values are typically between 300-1000ms.
+
 
 
 section

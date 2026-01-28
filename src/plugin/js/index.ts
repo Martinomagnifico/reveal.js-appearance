@@ -20,6 +20,7 @@ const init = async (plugin: PluginBase<Config>, deck: Api, config: Config): Prom
 
 	await pluginCSS(plugin, config);
 	await Appearance.create(deck, config);
+	// console.log("HELLO");
 };
 
 export default () => {

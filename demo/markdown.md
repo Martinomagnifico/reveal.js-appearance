@@ -1,3 +1,4 @@
+<!-- .slide: data-init-delay="300" -->
 # Appearance <!-- .element: class="animate__flipInX animate__slow" -->
 ### for Reveal.js <!-- .element: class="animate__fadeInDown faster" data-split="letters" data-delay="75", data-container-delay="700" -->
 
@@ -100,7 +101,7 @@ Or as a fragment itself.
 
 ---
 
-## Auto-appear
+## Autoappear
 You can simplify the addition of animation classes:
 
 ----
@@ -113,25 +114,24 @@ Appearance can automatically add animation classes to specific elements (tags or
 
 ----
 
-### Global auto-appear mode
+### Global autoappear mode
 * This is list item 1
 * This is list item 2
 
 ```html []
-### Global auto-appear mode
+### Global autoappear mode
 * This is list item 1
 * This is list item 2
 ```
 
-```html []
-<script>
-	//...
-	appearance: {
-		autoappear: true,
-		autoelements: {'ul li': 'animate__fadeInLeft'}
-	},
-	plugins: [ RevealMarkdown, Appearance ]
-</script>
+```js [3-6]
+Reveal.initialize({
+  //...
+  appearance: {
+    autoappear: true,
+    autoelements: {'ul li': 'animate__fadeInLeft'}
+  },
+  //...
 ```
 
 You can use a simple JSON object, or more elaborate like this:<!-- .element: class="small" -->
@@ -141,14 +141,15 @@ You can use a simple JSON object, or more elaborate like this:<!-- .element: cla
 
 ### Local auto-appear
 <!-- .slide: data-autoappear="true" -->
+
+This will use the JSON object from the global autoelements option, even if autoappear is false.<!-- .element: class="small" -->
+
 * This is list item 1
-* This is list item 2
 
 ```html []
 <!-- .slide: data-autoappear="true" -->
 ### Local auto-appear
 * This is list item 1
-* This is list item 2
 ```
 
 ```html []
@@ -156,13 +157,13 @@ You can use a simple JSON object, or more elaborate like this:<!-- .element: cla
 	//...
 	appearance: {
 		autoappear: false,
-		autoelements: {'ul li': 'animate__fadeInLeft'}
+		autoelements: {"ul li": "animate__fadeInLeft"}
 	},
 	plugins: [ RevealMarkdown, Appearance ]
 </script>
 ```
 
-This will use the JSON object from the global autoelements option, even if autoappear is false.<!-- .element: class="small" -->
+
 
 ----
 
@@ -171,6 +172,8 @@ This will use the JSON object from the global autoelements option, even if autoa
 ### Local auto-appear, specified
 
 You can also add a JSON object to the slide’s auto-appear data-attribute, with specific elements, their animations class(es) a string or an object with animations class(es), optional speed and optional delay.<!-- .element: class="small" -->
+
+IMPORTANT: Reveal Markdown expects data attributes to use double quotes, so using JSON (also double quotes) inside it would break things. Appearance allows you to use single quotes.<!-- .element: class="small" -->
 
 * This is list item 1
 * This is list item 2

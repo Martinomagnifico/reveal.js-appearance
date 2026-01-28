@@ -16,7 +16,6 @@ export default defineConfig({
         rollupOptions: {
             input: [
                 resolve(__dirname, "src/demo/views/demo*.pug"),
-                // resolve(__dirname, "src/demo/views/*.html"),
                 resolve(__dirname, "src/demo/css/*.scss"),
             ],
             external: [/^\/node_modules\/reveal\.js\/.*/],

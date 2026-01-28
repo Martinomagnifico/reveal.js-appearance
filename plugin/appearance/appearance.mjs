@@ -17,26 +17,13 @@
  ******************************************************************/
 
 
-const U = {
-  baseclass: "animate__animated",
-  hideagain: !0,
-  delay: 300,
-  appearevent: "slidetransitionend",
-  autoappear: !1,
-  autoelements: !1,
-  appearparents: !1,
-  cssautoload: !0,
-  csspath: "",
-  compatibility: !1,
-  compatibilitybaseclass: "animated"
-};
-function q(t) {
+function U(t) {
   return t && t.__esModule && Object.prototype.hasOwnProperty.call(t, "default") ? t.default : t;
 }
-var $, M;
-function x() {
-  if (M) return $;
-  M = 1;
+var D, j;
+function k() {
+  if (j) return D;
+  j = 1;
   var t = function(l) {
     return e(l) && !n(l);
   };
@@ -54,66 +41,66 @@ function x() {
   function s(r) {
     return Array.isArray(r) ? [] : {};
   }
-  function u(r, l) {
-    return l.clone !== !1 && l.isMergeableObject(r) ? h(s(r), r, l) : r;
+  function f(r, l) {
+    return l.clone !== !1 && l.isMergeableObject(r) ? m(s(r), r, l) : r;
   }
-  function o(r, l, f) {
-    return r.concat(l).map(function(m) {
-      return u(m, f);
+  function o(r, l, u) {
+    return r.concat(l).map(function(h) {
+      return f(h, u);
     });
   }
   function d(r, l) {
     if (!l.customMerge)
-      return h;
-    var f = l.customMerge(r);
-    return typeof f == "function" ? f : h;
+      return m;
+    var u = l.customMerge(r);
+    return typeof u == "function" ? u : m;
   }
   function y(r) {
     return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(r).filter(function(l) {
       return Object.propertyIsEnumerable.call(r, l);
     }) : [];
   }
-  function b(r) {
+  function p(r) {
     return Object.keys(r).concat(y(r));
   }
-  function p(r, l) {
+  function C(r, l) {
     try {
       return l in r;
     } catch {
       return !1;
     }
   }
-  function v(r, l) {
-    return p(r, l) && !(Object.hasOwnProperty.call(r, l) && Object.propertyIsEnumerable.call(r, l));
+  function S(r, l) {
+    return C(r, l) && !(Object.hasOwnProperty.call(r, l) && Object.propertyIsEnumerable.call(r, l));
   }
-  function I(r, l, f) {
-    var m = {};
-    return f.isMergeableObject(r) && b(r).forEach(function(g) {
-      m[g] = u(r[g], f);
-    }), b(l).forEach(function(g) {
-      v(r, g) || (p(r, g) && f.isMergeableObject(l[g]) ? m[g] = d(g, f)(r[g], l[g], f) : m[g] = u(l[g], f));
-    }), m;
+  function v(r, l, u) {
+    var h = {};
+    return u.isMergeableObject(r) && p(r).forEach(function(g) {
+      h[g] = f(r[g], u);
+    }), p(l).forEach(function(g) {
+      S(r, g) || (C(r, g) && u.isMergeableObject(l[g]) ? h[g] = d(g, u)(r[g], l[g], u) : h[g] = f(l[g], u));
+    }), h;
   }
-  function h(r, l, f) {
-    f = f || {}, f.arrayMerge = f.arrayMerge || o, f.isMergeableObject = f.isMergeableObject || t, f.cloneUnlessOtherwiseSpecified = u;
-    var m = Array.isArray(l), g = Array.isArray(r), z = m === g;
-    return z ? m ? f.arrayMerge(r, l, f) : I(r, l, f) : u(l, f);
+  function m(r, l, u) {
+    u = u || {}, u.arrayMerge = u.arrayMerge || o, u.isMergeableObject = u.isMergeableObject || t, u.cloneUnlessOtherwiseSpecified = f;
+    var h = Array.isArray(l), g = Array.isArray(r), z = h === g;
+    return z ? h ? u.arrayMerge(r, l, u) : v(r, l, u) : f(l, u);
   }
-  h.all = function(l, f) {
+  m.all = function(l, u) {
     if (!Array.isArray(l))
       throw new Error("first argument should be an array");
-    return l.reduce(function(m, g) {
-      return h(m, g, f);
+    return l.reduce(function(h, g) {
+      return m(h, g, u);
     }, {});
   };
-  var P = h;
-  return $ = P, $;
+  var A = m;
+  return D = A, D;
 }
-var B = x();
-const k = /* @__PURE__ */ q(B);
-let A = null;
+var q = k();
+const B = /* @__PURE__ */ U(q);
+let L = null;
 const V = () => {
-  if (A) return A;
+  if (L) return L;
   const t = typeof window < "u", e = typeof document < "u";
   let n = !1;
   try {
@@ -126,15 +113,15 @@ const V = () => {
     a = new Function('return typeof import.meta !== "undefined" && import.meta.env?.DEV === true')();
   } catch {
   }
-  return A = {
+  return L = {
     isDevelopment: n || a,
     hasHMR: n,
     isViteDev: a,
     hasWindow: t,
     hasDocument: e
-  }, A;
+  }, L;
 };
-class F {
+class J {
   defaultConfig;
   pluginInit;
   pluginId;
@@ -149,7 +136,7 @@ class F {
   // Initialize plugin configuration by merging default and user settings
   initializeConfig(e) {
     const n = this.defaultConfig, a = e.getConfig()[this.pluginId] || {};
-    this.userConfigData = a, this.mergedConfig = k(n, a, {
+    this.userConfigData = a, this.mergedConfig = B(n, a, {
       arrayMerge: (i, c) => c,
       clone: !0
     });
@@ -185,7 +172,7 @@ class F {
     };
   }
 }
-const J = (t) => {
+const F = (t) => {
   const e = document.querySelector(
     `script[src$="${t}.js"], script[src$="${t}.min.js"], script[src$="${t}.mjs"]`
   );
@@ -200,9 +187,9 @@ const J = (t) => {
   } catch {
   }
   return `plugin/${t}/`;
-}, _ = "data-css-id", G = (t, e) => new Promise((n, a) => {
+}, R = "data-css-id", G = (t, e) => new Promise((n, a) => {
   const i = document.createElement("link");
-  i.rel = "stylesheet", i.href = e, i.setAttribute(_, t);
+  i.rel = "stylesheet", i.href = e, i.setAttribute(R, t);
   const c = setTimeout(() => {
     i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${t}] Timeout loading CSS from: ${e}`));
   }, 5e3);
@@ -211,37 +198,37 @@ const J = (t) => {
   }, i.onerror = () => {
     clearTimeout(c), i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${t}] Failed to load CSS from: ${e}`));
   }, document.head.appendChild(i);
-}), D = (t) => document.querySelectorAll(`[${_}="${t}"]`).length > 0, W = (t) => new Promise((e) => {
+}), T = (t) => document.querySelectorAll(`[${R}="${t}"]`).length > 0, W = (t) => new Promise((e) => {
   if (n())
     return e(!0);
   setTimeout(() => {
     e(n());
   }, 50);
   function n() {
-    if (D(t)) return !0;
+    if (T(t)) return !0;
     try {
       return window.getComputedStyle(document.documentElement).getPropertyValue(`--cssimported-${t}`).trim() !== "";
     } catch {
       return !1;
     }
   }
-}), T = async (t) => {
+}), N = async (t) => {
   const { id: e, cssautoload: n = !0, csspath: a = "", debug: i = !1 } = t;
   if (n === !1 || a === !1) return;
-  if (D(e) && !(typeof a == "string" && a.trim() !== "")) {
+  if (T(e) && !(typeof a == "string" && a.trim() !== "")) {
     i && console.log(`[${e}] CSS is already loaded, skipping`);
     return;
   }
-  D(e) && typeof a == "string" && a.trim() !== "" && i && console.log(`[${e}] CSS is already loaded, also loading user-specified path: ${a}`);
+  T(e) && typeof a == "string" && a.trim() !== "" && i && console.log(`[${e}] CSS is already loaded, also loading user-specified path: ${a}`);
   const c = [];
   typeof a == "string" && a.trim() !== "" && c.push(a);
-  const s = J(e);
+  const s = F(e);
   if (s) {
     const o = `${s}${e}.css`;
     c.push(o);
   }
-  const u = `plugin/${e}/${e}.css`;
-  c.push(u);
+  const f = `plugin/${e}/${e}.css`;
+  c.push(f);
   for (const o of c)
     try {
       await G(e, o);
@@ -261,7 +248,7 @@ async function K(t, e) {
       return;
     }
     if ("cssautoload" in n.userConfig ? e.cssautoload : !a.isDevelopment)
-      return T({
+      return N({
         id: n.pluginId,
         cssautoload: !0,
         csspath: e.csspath,
@@ -272,7 +259,7 @@ async function K(t, e) {
     );
     return;
   }
-  return T(t);
+  return N(t);
 }
 class Y {
   // Flag to enable/disable all debugging output
@@ -368,29 +355,42 @@ const X = (t) => new Proxy(t, {
         e.debugLog(a, ...i);
       };
   }
-}), L = X(new Y());
-var R = /* @__PURE__ */ ((t) => (t.HORIZONTAL = "horizontal", t.STACK = "stack", t.VERTICAL = "vertical", t.INVALID = "invalid", t))(R || {});
-const S = (t) => t instanceof HTMLElement && t.tagName === "SECTION", E = (t) => S(t) ? Array.from(t.children).some(
+}), b = X(new Y());
+var P = /* @__PURE__ */ ((t) => (t.HORIZONTAL = "horizontal", t.STACK = "stack", t.VERTICAL = "vertical", t.INVALID = "invalid", t))(P || {});
+const I = (t) => t instanceof HTMLElement && t.tagName === "SECTION", w = (t) => I(t) ? Array.from(t.children).some(
   (e) => e instanceof HTMLElement && e.tagName === "SECTION"
-) : !1, w = (t) => S(t) ? t.parentElement instanceof HTMLElement && t.parentElement.tagName === "SECTION" : !1, Z = (t) => S(t) && !w(t) && !E(t), Q = (t) => {
-  if (!S(t)) return null;
-  if (w(t)) {
+) : !1, $ = (t) => I(t) ? t.parentElement instanceof HTMLElement && t.parentElement.tagName === "SECTION" : !1, Z = (t) => I(t) && !$(t) && !w(t), Q = (t) => {
+  if (!I(t)) return null;
+  if ($(t)) {
     const e = t.parentElement;
-    if (e instanceof HTMLElement && E(e))
+    if (e instanceof HTMLElement && w(e))
       return e;
   }
   return null;
-}, ee = (t) => S(t) ? w(t) ? "vertical" : E(t) ? "stack" : "horizontal" : "invalid", te = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, ee = (t) => I(t) ? $(t) ? "vertical" : w(t) ? "stack" : "horizontal" : "invalid", te = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  SectionType: R,
+  SectionType: P,
   getSectionType: ee,
   getStack: Q,
   isHorizontal: Z,
-  isSection: S,
-  isStack: E,
-  isVertical: w
-}, Symbol.toStringTag, { value: "Module" }));
-function ne(t, e, n) {
+  isSection: I,
+  isStack: w,
+  isVertical: $
+}, Symbol.toStringTag, { value: "Module" })), ne = {
+  baseclass: "animate__animated",
+  hideagain: !0,
+  delay: 300,
+  appearevent: "slidetransitionend",
+  autoappear: !1,
+  autoelements: !1,
+  appearparents: !1,
+  initdelay: 0,
+  cssautoload: !0,
+  csspath: "",
+  compatibility: !1,
+  compatibilitybaseclass: "animated"
+};
+function ae(t, e, n) {
   const a = {
     baseclass: t,
     compatibilitybaseclass: e,
@@ -411,76 +411,94 @@ function ne(t, e, n) {
     ...a.speedClasses.map((i) => `animate__${i}`)
   ], n && (a.animatecss = ".backInDown, .backInLeft, .backInRight, .backInUp, .bounceIn, .bounceInDown, .bounceInLeft, .bounceInRight, .bounceInUp, .fadeIn, .fadeInDown, .fadeInDownBig, .fadeInLeft, .fadeInLeftBig, .fadeInRight, .fadeInRightBig, .fadeInUp, .fadeInUpBig, .fadeInTopLeft, .fadeInTopRight, .fadeInBottomLeft, .fadeInBottomRight, .flipInX, .flipInY, .lightSpeedInRight, .lightSpeedInLeft, .rotateIn, .rotateInDownLeft, .rotateInDownRight, .rotateInUpLeft, .rotateInUpRight, .jackInTheBox, .rollIn, .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp, .slideInDown, .slideInLeft, .slideInRight, .slideInUp, .skidLeft, .skidLeftBig, .skidRight, .skidRightBig, .shrinkIn, .shrinkInBlur", a.baseclass = e), a;
 }
-const ae = (t) => {
+const ie = (t) => {
   try {
     return JSON.parse(t) && !!t;
   } catch {
     return !1;
   }
-}, ie = (t) => {
+}, O = (t) => {
   if (t == null)
     return "";
   let e = "", n = t;
-  return typeof n == "string" && (n = n.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")), ae(t) ? e = t : typeof t == "object" ? e = JSON.stringify(t, null, 2) : typeof t == "string" && (e = t.trim().replace(/'/g, '"').charAt(0) === "{" ? t.trim().replace(/'/g, '"') : `{${t.trim().replace(/'/g, '"')}}`), e;
+  return typeof n == "string" && (n = n.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")), ie(t) ? e = t : typeof t == "object" ? e = JSON.stringify(t, null, 2) : typeof t == "string" && (e = t.trim().replace(/'/g, '"').charAt(0) === "{" ? t.trim().replace(/'/g, '"') : `{${t.trim().replace(/'/g, '"')}}`), e;
 }, re = (t, e, n) => {
   for (const a of Array.from(t.attributes))
     a.nodeName.startsWith("data") && a.nodeName !== n && e.setAttribute(a.nodeName, a.nodeValue || "");
-}, se = (t) => typeof t == "object" && t !== null, oe = (t, e, n) => {
+}, se = (t) => {
+  const e = document.createElement("textarea");
+  return e.innerHTML = t, e.value;
+}, oe = (t) => typeof t == "object" && t !== null, le = (t, e, n) => {
   let a = null;
   if (t instanceof HTMLElement && t.hasAttribute("data-autoappear")) {
     const i = t.dataset.autoappear;
     if (i === "auto" || i === "" || i === "true")
-      a = e.autoelements && typeof e.autoelements == "object" ? e.autoelements : null;
+      if (typeof e.autoelements == "string")
+        try {
+          a = JSON.parse(e.autoelements);
+        } catch (s) {
+          b.log(`Error parsing global autoelements string: ${s} (${e.autoelements})`), a = null;
+        }
+      else
+        a = e.autoelements && typeof e.autoelements == "object" ? e.autoelements : null;
     else
       try {
-        a = i ? JSON.parse(i) : null;
+        a = i ? JSON.parse(O(se(i))) : null;
       } catch (s) {
-        L.log(e, `Error parsing data-autoappear: ${s}`), a = null;
+        b.log(`Error parsing data-autoappear: ${s} (${i})`), a = null;
       }
-  } else e.autoappear && e.autoelements && typeof e.autoelements == "object" && (a = e.autoelements);
+  } else if (e.autoappear && e.autoelements)
+    if (typeof e.autoelements == "string")
+      try {
+        a = JSON.parse(O(e.autoelements));
+      } catch (i) {
+        b.log(`Error parsing global autoelements string: ${i} (${e.autoelements})`), a = null;
+      }
+    else typeof e.autoelements == "object" && (a = e.autoelements);
   if (a)
     try {
-      const i = JSON.parse(ie(a));
+      const i = JSON.parse(O(a));
       for (const [c, s] of Object.entries(i)) {
-        const u = Array.from(t.querySelectorAll(c)).filter(
-          (o) => !n.includes(o)
+        const f = Array.from(t.querySelectorAll(c)).filter(
+          (y) => !n.includes(y)
         );
-        if (u.length !== 0)
-          for (let o = 0; o < u.length; o++) {
-            const d = u[o];
-            n.push(d);
-            let y = [], b = null, p = !1, v = null, I = null;
-            if (Array.isArray(s))
-              y = String(s[0]).split(/[ ,]+/), b = s[1] !== void 0 ? String(s[1]) : null;
-            else if (typeof s == "string")
-              y = s.split(/[ ,]+/);
-            else if (se(s)) {
-              if (s.class || s.animation) {
-                const h = s.animation || s.class;
-                y = String(h).split(/[ ,]+/);
-              }
-              s.speed && (p = String(s.speed), p.includes("animate__") || (p = `animate__${p}`)), s.delay !== void 0 && (b = String(s.delay)), s.split !== void 0 && (v = String(s.split)), s["container-delay"] !== void 0 && (I = String(s["container-delay"]));
+        if (f.length === 0) continue;
+        let o = null, d = 0;
+        for (let y = 0; y < f.length; y++) {
+          const p = f[y], C = p.parentElement;
+          C !== o && (o = C, d = 0), n.push(p);
+          let S = [], v = null, m = !1, A = null, r = null;
+          if (Array.isArray(s))
+            S = String(s[0]).split(/[ ,]+/), v = s[1] !== void 0 ? String(s[1]) : null;
+          else if (typeof s == "string")
+            S = s.split(/[ ,]+/);
+          else if (oe(s)) {
+            if (s.class || s.animation) {
+              const l = s.animation || s.class;
+              S = String(l).split(/[ ,]+/);
             }
-            y.length > 0 && d.classList.add(...y), p && d.classList.add(p), d instanceof HTMLElement && (b && o > 0 && !d.dataset.delay && (d.dataset.delay = b), I && o === 0 && (d.dataset.delay = I), v && (d.dataset.split = v));
+            s.speed && (m = String(s.speed), m.includes("animate__") || (m = `animate__${m}`)), s.delay !== void 0 && (v = String(s.delay)), s.split !== void 0 && (A = String(s.split)), s["container-delay"] !== void 0 && (r = String(s["container-delay"]));
           }
+          S.length > 0 && p.classList.add(...S), m && p.classList.add(m), p instanceof HTMLElement && (r && d === 0 ? p.dataset.delay = r : v && d > 0 && !p.dataset.delay && (p.dataset.delay = v), A && (p.dataset.split = A)), d++;
+        }
       }
     } catch (i) {
-      L.log(e, `Error processing auto animations: ${i}`);
+      b.log(e, `Error processing auto animations: ${i}`);
     }
 };
-function le(t, e) {
+function ce(t, e) {
   t.classList.contains(e.baseclass) || t.classList.add(e.baseclass), t.classList.contains(e.fragmentClass) && t.classList.add("custom");
 }
-function ce(t, e, n) {
-  let a = 0;
-  t.forEach((i, c) => {
-    if (c === 0 && i instanceof HTMLElement && i.dataset.delay || c !== 0) {
-      let s = e.delay;
-      if (i instanceof HTMLElement && i.dataset && i.dataset.delay) {
-        const u = Number.parseInt(i.dataset.delay);
-        Number.isNaN(u) || (s = u);
+function ue(t, e) {
+  let n = 0;
+  t.forEach((a, i) => {
+    if (i === 0 && a instanceof HTMLElement && a.dataset.delay || i !== 0) {
+      let c = e.delay;
+      if (a instanceof HTMLElement && a.dataset && a.dataset.delay) {
+        const s = Number.parseInt(a.dataset.delay, 10);
+        Number.isNaN(s) || (c = s);
       }
-      a = a + s, i instanceof HTMLElement && (i.style.setProperty("animation-delay", `${a}ms`), i.removeAttribute("data-delay"));
+      n = n + c, a instanceof HTMLElement && (a.style.setProperty("animation-delay", `${n}ms`), a.removeAttribute("data-delay"));
     }
   });
 }
@@ -489,9 +507,9 @@ function fe(t, e) {
   if (t.textContent?.trim() && (e === "words" ? n = t.textContent.trim().split(/\s+/) || [] : e === "letters" && (n = t.textContent.trim().split("") || [], a = ""), n && n.length > 0)) {
     const i = Array.from(t.classList).filter(
       (s) => s.startsWith("animate__")
-    ), c = n.map((s, u) => {
+    ), c = n.map((s, f) => {
       const o = document.createElement("span");
-      o.textContent = s === " " ? " " : s, t.dataset.delay && u !== 0 && (o.dataset.delay = t.dataset.delay), t.dataset.containerDelay && u === 0 && (o.dataset.delay = t.dataset.containerDelay);
+      o.textContent = s === " " ? " " : s, t.dataset.delay && f !== 0 && (o.dataset.delay = t.dataset.delay), t.dataset.containerDelay && f === 0 && (o.dataset.delay = t.dataset.containerDelay);
       for (let d = 0; d < i.length; d++)
         o.classList.add(i[d]);
       return o.outerHTML;
@@ -502,7 +520,7 @@ function fe(t, e) {
     t.removeAttribute("data-delay"), t.removeAttribute("data-split"), t.removeAttribute("data-container-delay"), t.innerHTML = c;
   }
 }
-function j(t, e) {
+function _(t, e) {
   const n = t.parentNode;
   if (n) {
     for (const a of Array.from(n.children))
@@ -510,42 +528,42 @@ function j(t, e) {
     n instanceof Element && (n.classList.value = t.classList.value, re(t, n, "data-appear-parent"), n.innerHTML = t.innerHTML, e && n.classList.add(e));
   }
 }
-function ue(t, e, n) {
+function de(t, e, n) {
   const a = n.baseclass;
-  if (t.hasAttribute("data-appear-parent") && j(t, a), e.appearparents && t.parentNode && t.parentNode instanceof Element && t.tagName === "SPAN" && t.parentNode.tagName === "LI") {
+  if (t.hasAttribute("data-appear-parent") && _(t, a), e.appearparents && t.parentNode && t.parentNode instanceof Element && t.tagName === "SPAN" && t.parentNode.tagName === "LI") {
     const i = t.outerHTML.length, c = t.parentNode.innerHTML.length;
-    i === c && j(t);
+    i === c && _(t);
   }
 }
-const de = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
+const ge = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
   (a) => !a.closest(`.${e}`)
-), ge = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
+), me = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
   (a) => a.closest(`.${e}`) === n
-), me = (t, e, n) => {
+), pe = (t, e, n) => {
   if (!e) return !1;
   const a = [
-    de(e, n, t),
+    ge(e, n, t),
     ...Array.from(t.querySelectorAll(`.${n}`)).map(
-      (i) => ge(e, n, i)
+      (i) => me(e, n, i)
     )
   ];
   return a.some((i) => i.length > 0) ? a : !1;
 };
-function pe(t) {
+function he(t) {
   return {
     from: t.fromSlide || t.previousSlide || null,
     to: t.toSlide || t.currentSlide || null
   };
 }
-function he(t, e) {
+function ye(t, e) {
   t.dataset.appearevent && t.dataset.appearevent === "auto" && (t.dataset.appearevent = "autoanimate");
   let n = e.appearevent;
   return n === "auto" && (n = "autoanimate"), t.dataset.appearevent || n;
 }
-function C(t, e) {
+function E(t, e) {
   e.hideagain && t.from && t.from.dataset.appearanceCanStart && t.from.removeAttribute("data-appearance-can-start");
 }
-function N(t, e, n) {
+function H(t, e, n) {
   if (e.hideagain && t && t.from) {
     const a = t.from.querySelectorAll(n.animatecss);
     if (a)
@@ -557,79 +575,117 @@ function N(t, e, n) {
         c.classList.remove("animationended");
   }
 }
-function ye(t, e, n, a) {
-  const i = a.getViewportElement();
-  a.getConfig().view;
-  const s = i.classList.contains("reveal-scroll"), u = t.type, o = pe(t);
+function be(t, e, n, a, i) {
+  const s = a.getViewportElement().classList.contains("reveal-scroll"), f = t.type, o = he(t);
   if (o.to) {
-    u === "ready" && (o.to.dataset.appearanceCanStart = "true");
-    const d = he(o.to, e);
-    (u === d || u === "slidetransitionend" && d === "autoanimate") && (o.to.dataset.appearanceCanStart = "true"), s && u === "slidechanged" && (C(o, e), N(o, e, n), setTimeout(() => {
+    if (f === "ready") {
+      const y = o.to.dataset.initDelay ? parseInt(o.to.dataset.initDelay, 10) : e.initdelay || 0;
+      i.value && y > 0 ? setTimeout(() => {
+        o.to && (o.to.dataset.appearanceCanStart = "true"), i.value = !1;
+      }, y) : (o.to.dataset.appearanceCanStart = "true", i.value = !1);
+    }
+    const d = ye(o.to, e);
+    (f === d || f === "slidetransitionend" && d === "autoanimate") && (o.to.dataset.appearanceCanStart = "true"), s && f === "slidechanged" && (E(o, e), H(o, e, n), setTimeout(() => {
       o.to && (o.to.dataset.appearanceCanStart = "true");
-    }, e.delay)), u === "slidetransitionend" && (C(o, e), N(o, e, n)), u === "slidechanged" && document.body.dataset.exitoverview ? (C(o, e), o.to.dataset.appearanceCanStart = "true") : u === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
+    }, e.delay)), f === "slidetransitionend" && (E(o, e), H(o, e, n)), f === "slidechanged" && document.body.dataset.exitoverview ? (E(o, e), o.to.dataset.appearanceCanStart = "true") : f === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
       document.body.removeAttribute("data-exitoverview");
-    }, 500), t.currentSlide && (C(o, e), o.to.dataset.appearanceCanStart = "true"));
+    }, 500), t.currentSlide && (E(o, e), o.to.dataset.appearanceCanStart = "true"));
   }
 }
-class O {
+class M {
   deck;
   viewport;
-  revealEl;
   slides;
   options;
   consts;
   sections;
   regularSections;
-  fragments;
   appearances;
+  isInitialLoad;
   constructor(e, n) {
-    this.deck = e, this.options = n, this.viewport = e.getViewportElement(), this.revealEl = e.getRevealElement(), this.slides = e.getSlidesElement(), this.consts = ne(
+    this.deck = e, this.options = n, this.isInitialLoad = !0, this.viewport = e.getViewportElement(), this.slides = e.getSlidesElement(), this.consts = ae(
       n.baseclass,
       n.compatibilitybaseclass,
       n.compatibility
     ), this.sections = this.slides.querySelectorAll("section"), this.regularSections = Array.from(this.sections).filter(
       (a) => !te.isStack(a)
-    ), this.fragments = this.slides.querySelectorAll(this.consts.fragmentSelector), this.appearances = [], /receiver/i.test(window.location.search) && this.viewport.classList.add("sv");
+    ), this.appearances = [], /receiver/i.test(window.location.search) && this.viewport.classList.add("sv");
   }
   /**
    * Prepare appearance elements
    */
   async prepareElements() {
     this.appearances = Array.from(this.slides.querySelectorAll(this.consts.animatecss));
+
+
+// Find all appearance elements
+this.appearances = Array.from(this.slides.querySelectorAll(this.consts.animatecss));
+
+// Remove inline elements (em, strong, code, span, etc.) inside list items when they have the same animation class
+// This fixes a Reveal.js Markdown parser quirk where .element comments apply classes to both li and inline elements
+this.appearances = this.appearances.filter((element) => {
+    // Only check common inline elements
+    if (!['EM', 'STRONG', 'I', 'B', 'CODE', 'SPAN', 'A', 'ABBR', 'MARK', 'SMALL', 'SUB', 'SUP'].includes(element.tagName)) {
+        return true; // Keep non-inline elements
+    }
+    
+    // Check if this inline element is inside a list item
+    const parentLi = element.closest('li');
+    if (!parentLi || !this.appearances.includes(parentLi)) {
+        return true; // Keep if not in an li or li is not animated
+    }
+    
+    // Check if both have the same animation class
+    const elementAnimClasses = Array.from(element.classList).filter(c => c.startsWith('animate__'));
+    const liAnimClasses = Array.from(parentLi.classList).filter(c => c.startsWith('animate__'));
+    const hasSameClass = elementAnimClasses.some(c => liAnimClasses.includes(c));
+    
+    if (hasSameClass) {
+        return false; // Filter out this inline element - it's redundant
+    }
+    
+    return true; // Keep if different animation classes
+});
+
+debug.log(this.options, `Initially found ${this.appearances.length} appearance elements`);
+
+
     for (const e of this.regularSections)
-      oe(e, this.options, this.appearances);
+      le(e, this.options, this.appearances);
     for (const e of this.appearances)
-      ue(e, this.options, this.consts), le(e, this.consts), e instanceof HTMLElement && e.dataset.split && fe(e, e.dataset.split);
+      de(e, this.options, this.consts), ce(e, this.consts), e instanceof HTMLElement && e.dataset.split && fe(e, e.dataset.split);
     for (const e of this.regularSections) {
-      const n = me(
+      const n = pe(
         e,
         this.consts.baseclass,
         this.consts.fragmentClass
       );
       if (n)
         for (const a of n)
-          ce(a, this.options, this.consts);
+          ue(a, this.options);
     }
   }
   /**
    * Set up event listeners
    */
   setupEventListeners() {
-    for (const e of this.consts.eventnames)
-      this.deck.on(e, (n) => {
-        ye(n, this.options, this.consts, this.deck);
+    b.log("Options:", this.options), b.log("Setting up event listeners");
+    const e = { value: this.isInitialLoad };
+    for (const n of this.consts.eventnames)
+      b.log(`Adding listener for ${n} event`), this.deck.on(n, (a) => {
+        be(a, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
       });
-    this.viewport.addEventListener("animationend", (e) => {
-      e.target.classList.add("animationended");
-    }), this.viewport.addEventListener("autoanimate", (e) => {
-      console.log("Autoanimate event triggered:", e);
-    }), this.viewport.addEventListener("fragmenthidden", (e) => {
-      const n = e;
-      if (n.fragment) {
-        n.fragment.classList.remove("animationended");
-        const a = n.fragment.querySelectorAll(".animationended");
-        for (const i of a)
-          i.classList.remove("animationended");
+    this.viewport.addEventListener("animationend", (n) => {
+      n.target.classList.add("animationended");
+    }), this.viewport.addEventListener("autoanimate", (n) => {
+      b.log("Autoanimate event triggered:", n);
+    }), this.viewport.addEventListener("fragmenthidden", (n) => {
+      const a = n;
+      if (a.fragment) {
+        a.fragment.classList.remove("animationended");
+        const i = a.fragment.querySelectorAll(".animationended");
+        for (const c of i)
+          c.classList.remove("animationended");
       }
     });
   }
@@ -637,13 +693,13 @@ class O {
    * Create a new Appearance instance
    */
   static async create(e, n) {
-    const a = new O(e, n);
+    const a = new M(e, n);
     return await a.prepareElements(), a.setupEventListeners(), a;
   }
 }
-const H = "appearance", be = async (t, e, n) => {
-  L && n.debug && L.initialize(!0, H), await K(t, n), await O.create(e, n);
-}, Se = () => new F(H, be, U).createInterface();
+const x = "appearance", Se = async (t, e, n) => {
+  b && n.debug && b.initialize(!0, x), await K(t, n), await M.create(e, n);
+}, ve = () => new J(x, Se, ne).createInterface();
 export {
-  Se as default
+  ve as default
 };
