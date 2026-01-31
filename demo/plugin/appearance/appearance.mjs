@@ -17,91 +17,91 @@
  ******************************************************************/
 
 
-function U(t) {
-  return t && t.__esModule && Object.prototype.hasOwnProperty.call(t, "default") ? t.default : t;
+function k(e) {
+  return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-var D, j;
-function k() {
-  if (j) return D;
-  j = 1;
-  var t = function(l) {
-    return e(l) && !n(l);
+var D, O;
+function q() {
+  if (O) return D;
+  O = 1;
+  var e = function(o) {
+    return t(o) && !n(o);
   };
-  function e(r) {
+  function t(r) {
     return !!r && typeof r == "object";
   }
   function n(r) {
-    var l = Object.prototype.toString.call(r);
-    return l === "[object RegExp]" || l === "[object Date]" || c(r);
+    var o = Object.prototype.toString.call(r);
+    return o === "[object RegExp]" || o === "[object Date]" || c(r);
   }
   var a = typeof Symbol == "function" && Symbol.for, i = a ? /* @__PURE__ */ Symbol.for("react.element") : 60103;
   function c(r) {
     return r.$$typeof === i;
   }
-  function s(r) {
+  function u(r) {
     return Array.isArray(r) ? [] : {};
   }
-  function f(r, l) {
-    return l.clone !== !1 && l.isMergeableObject(r) ? m(s(r), r, l) : r;
+  function s(r, o) {
+    return o.clone !== !1 && o.isMergeableObject(r) ? p(u(r), r, o) : r;
   }
-  function o(r, l, u) {
-    return r.concat(l).map(function(h) {
-      return f(h, u);
+  function l(r, o, f) {
+    return r.concat(o).map(function(h) {
+      return s(h, f);
     });
   }
-  function d(r, l) {
-    if (!l.customMerge)
-      return m;
-    var u = l.customMerge(r);
-    return typeof u == "function" ? u : m;
+  function g(r, o) {
+    if (!o.customMerge)
+      return p;
+    var f = o.customMerge(r);
+    return typeof f == "function" ? f : p;
   }
-  function y(r) {
-    return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(r).filter(function(l) {
-      return Object.propertyIsEnumerable.call(r, l);
+  function b(r) {
+    return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(r).filter(function(o) {
+      return Object.propertyIsEnumerable.call(r, o);
     }) : [];
   }
-  function p(r) {
-    return Object.keys(r).concat(y(r));
+  function y(r) {
+    return Object.keys(r).concat(b(r));
   }
-  function C(r, l) {
+  function d(r, o) {
     try {
-      return l in r;
+      return o in r;
     } catch {
       return !1;
     }
   }
-  function S(r, l) {
-    return C(r, l) && !(Object.hasOwnProperty.call(r, l) && Object.propertyIsEnumerable.call(r, l));
+  function C(r, o) {
+    return d(r, o) && !(Object.hasOwnProperty.call(r, o) && Object.propertyIsEnumerable.call(r, o));
   }
-  function v(r, l, u) {
+  function I(r, o, f) {
     var h = {};
-    return u.isMergeableObject(r) && p(r).forEach(function(g) {
-      h[g] = f(r[g], u);
-    }), p(l).forEach(function(g) {
-      S(r, g) || (C(r, g) && u.isMergeableObject(l[g]) ? h[g] = d(g, u)(r[g], l[g], u) : h[g] = f(l[g], u));
+    return f.isMergeableObject(r) && y(r).forEach(function(m) {
+      h[m] = s(r[m], f);
+    }), y(o).forEach(function(m) {
+      C(r, m) || (d(r, m) && f.isMergeableObject(o[m]) ? h[m] = g(m, f)(r[m], o[m], f) : h[m] = s(o[m], f));
     }), h;
   }
-  function m(r, l, u) {
-    u = u || {}, u.arrayMerge = u.arrayMerge || o, u.isMergeableObject = u.isMergeableObject || t, u.cloneUnlessOtherwiseSpecified = f;
-    var h = Array.isArray(l), g = Array.isArray(r), z = h === g;
-    return z ? h ? u.arrayMerge(r, l, u) : v(r, l, u) : f(l, u);
+  function p(r, o, f) {
+    f = f || {}, f.arrayMerge = f.arrayMerge || l, f.isMergeableObject = f.isMergeableObject || e, f.cloneUnlessOtherwiseSpecified = s;
+    var h = Array.isArray(o), m = Array.isArray(r), U = h === m;
+    return U ? h ? f.arrayMerge(r, o, f) : I(r, o, f) : s(o, f);
   }
-  m.all = function(l, u) {
-    if (!Array.isArray(l))
+  p.all = function(o, f) {
+    if (!Array.isArray(o))
       throw new Error("first argument should be an array");
-    return l.reduce(function(h, g) {
-      return m(h, g, u);
+    return o.reduce(function(h, m) {
+      return p(h, m, f);
     }, {});
   };
-  var A = m;
-  return D = A, D;
+  var S = p;
+  return D = S, D;
 }
-var q = k();
-const B = /* @__PURE__ */ U(q);
+var B = q();
+const V = /* @__PURE__ */ k(B);
 let L = null;
-const V = () => {
+const F = () => {
   if (L) return L;
-  const t = typeof window < "u", e = typeof document < "u";
+  const e = typeof window < "u", t = typeof document < "u";
   let n = !1;
   try {
     const i = new Function('return typeof module !== "undefined" && !!module.hot')(), c = new Function('return typeof import.meta !== "undefined" && !!import.meta.hot')();
@@ -117,8 +117,8 @@ const V = () => {
     isDevelopment: n || a,
     hasHMR: n,
     isViteDev: a,
-    hasWindow: t,
-    hasDocument: e
+    hasWindow: e,
+    hasDocument: t
   }, L;
 };
 class J {
@@ -130,13 +130,13 @@ class J {
   /** Public data storage for plugin state */
   data = {};
   // Create a new plugin instance
-  constructor(e, n, a) {
-    typeof e == "string" ? (this.pluginId = e, this.pluginInit = n, this.defaultConfig = a || {}) : (this.pluginId = e.id, this.pluginInit = e.init, this.defaultConfig = e.defaultConfig || {});
+  constructor(t, n, a) {
+    typeof t == "string" ? (this.pluginId = t, this.pluginInit = n, this.defaultConfig = a || {}) : (this.pluginId = t.id, this.pluginInit = t.init, this.defaultConfig = t.defaultConfig || {});
   }
   // Initialize plugin configuration by merging default and user settings
-  initializeConfig(e) {
-    const n = this.defaultConfig, a = e.getConfig()[this.pluginId] || {};
-    this.userConfigData = a, this.mergedConfig = B(n, a, {
+  initializeConfig(t) {
+    const n = this.defaultConfig, a = t.getConfig()[this.pluginId] || {};
+    this.userConfigData = a, this.mergedConfig = V(n, a, {
       arrayMerge: (i, c) => c,
       clone: !0
     });
@@ -155,29 +155,29 @@ class J {
     return this.userConfigData || {};
   }
   // Gets information about the current JavaScript environment
-  getEnvironmentInfo = () => V();
+  getEnvironmentInfo = () => F();
   // Initialize the plugin
-  init(e) {
-    if (this.initializeConfig(e), this.pluginInit)
-      return this.pluginInit(this, e, this.getCurrentConfig());
+  init(t) {
+    if (this.initializeConfig(t), this.pluginInit)
+      return this.pluginInit(this, t, this.getCurrentConfig());
   }
   // Create the plugin interface containing all exports
-  createInterface(e = {}) {
+  createInterface(t = {}) {
     return {
       id: this.pluginId,
       init: (n) => this.init(n),
       getConfig: () => this.getCurrentConfig(),
       getData: () => this.getData(),
-      ...e
+      ...t
     };
   }
 }
-const F = (t) => {
-  const e = document.querySelector(
-    `script[src$="${t}.js"], script[src$="${t}.min.js"], script[src$="${t}.mjs"]`
+const G = (e) => {
+  const t = document.querySelector(
+    `script[src$="${e}.js"], script[src$="${e}.min.js"], script[src$="${e}.mjs"]`
   );
-  if (e?.src) {
-    const n = e.getAttribute("src") || "", a = n.lastIndexOf("/");
+  if (t?.src) {
+    const n = t.getAttribute("src") || "", a = n.lastIndexOf("/");
     if (a !== -1)
       return n.substring(0, a + 1);
   }
@@ -186,82 +186,82 @@ const F = (t) => {
       return import.meta.url.slice(0, import.meta.url.lastIndexOf("/") + 1);
   } catch {
   }
-  return `plugin/${t}/`;
-}, R = "data-css-id", G = (t, e) => new Promise((n, a) => {
+  return `plugin/${e}/`;
+}, R = "data-css-id", W = (e, t) => new Promise((n, a) => {
   const i = document.createElement("link");
-  i.rel = "stylesheet", i.href = e, i.setAttribute(R, t);
+  i.rel = "stylesheet", i.href = t, i.setAttribute(R, e);
   const c = setTimeout(() => {
-    i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${t}] Timeout loading CSS from: ${e}`));
+    i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${e}] Timeout loading CSS from: ${t}`));
   }, 5e3);
   i.onload = () => {
     clearTimeout(c), n();
   }, i.onerror = () => {
-    clearTimeout(c), i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${t}] Failed to load CSS from: ${e}`));
+    clearTimeout(c), i.parentNode && i.parentNode.removeChild(i), a(new Error(`[${e}] Failed to load CSS from: ${t}`));
   }, document.head.appendChild(i);
-}), T = (t) => document.querySelectorAll(`[${R}="${t}"]`).length > 0, W = (t) => new Promise((e) => {
+}), T = (e) => document.querySelectorAll(`[${R}="${e}"]`).length > 0, K = (e) => new Promise((t) => {
   if (n())
-    return e(!0);
+    return t(!0);
   setTimeout(() => {
-    e(n());
+    t(n());
   }, 50);
   function n() {
-    if (T(t)) return !0;
+    if (T(e)) return !0;
     try {
-      return window.getComputedStyle(document.documentElement).getPropertyValue(`--cssimported-${t}`).trim() !== "";
+      return window.getComputedStyle(document.documentElement).getPropertyValue(`--cssimported-${e}`).trim() !== "";
     } catch {
       return !1;
     }
   }
-}), N = async (t) => {
-  const { id: e, cssautoload: n = !0, csspath: a = "", debug: i = !1 } = t;
+}), j = async (e) => {
+  const { id: t, cssautoload: n = !0, csspath: a = "", debug: i = !1 } = e;
   if (n === !1 || a === !1) return;
-  if (T(e) && !(typeof a == "string" && a.trim() !== "")) {
-    i && console.log(`[${e}] CSS is already loaded, skipping`);
+  if (T(t) && !(typeof a == "string" && a.trim() !== "")) {
+    i && console.log(`[${t}] CSS is already loaded, skipping`);
     return;
   }
-  T(e) && typeof a == "string" && a.trim() !== "" && i && console.log(`[${e}] CSS is already loaded, also loading user-specified path: ${a}`);
+  T(t) && typeof a == "string" && a.trim() !== "" && i && console.log(`[${t}] CSS is already loaded, also loading user-specified path: ${a}`);
   const c = [];
   typeof a == "string" && a.trim() !== "" && c.push(a);
-  const s = F(e);
-  if (s) {
-    const o = `${s}${e}.css`;
-    c.push(o);
+  const u = G(t);
+  if (u) {
+    const l = `${u}${t}.css`;
+    c.push(l);
   }
-  const f = `plugin/${e}/${e}.css`;
-  c.push(f);
-  for (const o of c)
+  const s = `plugin/${t}/${t}.css`;
+  c.push(s);
+  for (const l of c)
     try {
-      await G(e, o);
-      let d = "CSS";
-      a && o === a ? d = "user-specified CSS" : s && o === `${s}${e}.css` ? d = "CSS (auto-detected from script location)" : d = "CSS (standard fallback)", i && console.log(`[${e}] ${d} loaded successfully from: ${o}`);
+      await W(t, l);
+      let g = "CSS";
+      a && l === a ? g = "user-specified CSS" : u && l === `${u}${t}.css` ? g = "CSS (auto-detected from script location)" : g = "CSS (standard fallback)", i && console.log(`[${t}] ${g} loaded successfully from: ${l}`);
       return;
     } catch {
-      i && console.log(`[${e}] Failed to load CSS from: ${o}`);
+      i && console.log(`[${t}] Failed to load CSS from: ${l}`);
     }
-  console.warn(`[${e}] Could not load CSS from any location`);
+  console.warn(`[${t}] Could not load CSS from any location`);
 };
-async function K(t, e) {
-  if ("getEnvironmentInfo" in t && e) {
-    const n = t, a = n.getEnvironmentInfo();
-    if (await W(n.pluginId) && !(typeof e.csspath == "string" && e.csspath.trim() !== "")) {
-      e.debug && console.log(`[${n.pluginId}] CSS is already imported, skipping`);
+async function Y(e, t) {
+  if ("getEnvironmentInfo" in e && t) {
+    const n = e, a = n.getEnvironmentInfo();
+    if (await K(n.pluginId) && !(typeof t.csspath == "string" && t.csspath.trim() !== "")) {
+      t.debug && console.log(`[${n.pluginId}] CSS is already imported, skipping`);
       return;
     }
-    if ("cssautoload" in n.userConfig ? e.cssautoload : !a.isDevelopment)
-      return N({
+    if ("cssautoload" in n.userConfig ? t.cssautoload : !a.isDevelopment)
+      return j({
         id: n.pluginId,
         cssautoload: !0,
-        csspath: e.csspath,
-        debug: e.debug
+        csspath: t.csspath,
+        debug: t.debug
       });
     a.isDevelopment && console.warn(
       `[${n.pluginId}] CSS autoloading is disabled in bundler environments. Please import the CSS manually, using import.`
     );
     return;
   }
-  return N(t);
+  return j(e);
 }
-class Y {
+class Q {
   // Flag to enable/disable all debugging output
   debugMode = !1;
   // Label to prefix all debug messages with
@@ -269,17 +269,17 @@ class Y {
   // Tracks the current depth of console groups for proper formatting
   groupDepth = 0;
   // Initializes the debug utility with custom settings.
-  initialize(e, n = "DEBUG") {
-    this.debugMode = e, this.label = n;
+  initialize(t, n = "DEBUG") {
+    this.debugMode = t, this.label = n;
   }
   // Creates a new console group and tracks the group depth. 
   // Groups will always display the label prefix in their header.
-  group = (...e) => {
-    this.debugLog("group", ...e), this.groupDepth++;
+  group = (...t) => {
+    this.debugLog("group", ...t), this.groupDepth++;
   };
   // Creates a new collapsed console group and tracks the group depth.
-  groupCollapsed = (...e) => {
-    this.debugLog("groupCollapsed", ...e), this.groupDepth++;
+  groupCollapsed = (...t) => {
+    this.debugLog("groupCollapsed", ...t), this.groupDepth++;
   };
   // Ends the current console group and updates the group depth tracker.
   groupEnd = () => {
@@ -287,30 +287,30 @@ class Y {
   };
   // Formats and logs an error message with the debug label. 
   // Error messages are always shown, even when debug mode is disabled.
-  error = (...e) => {
+  error = (...t) => {
     const n = this.debugMode;
-    this.debugMode = !0, this.formatAndLog(console.error, e), this.debugMode = n;
+    this.debugMode = !0, this.formatAndLog(console.error, t), this.debugMode = n;
   };
   // Displays a table in the console with the pluginDebug label.
   // Special implementation for console.table to handle tabular data properly.
   // @param messageOrData - Either a message string or the tabular data
   // @param propertiesOrData - Either property names or tabular data (if first param was message)
   // @param optionalProperties - Optional property names (if first param was message)
-  table = (e, n, a) => {
+  table = (t, n, a) => {
     if (this.debugMode)
       try {
-        typeof e == "string" && n !== void 0 && typeof n != "string" ? (this.groupDepth === 0 ? console.log(`[${this.label}]: ${e}`) : console.log(e), a ? console.table(n, a) : console.table(n)) : (this.groupDepth === 0 && console.log(`[${this.label}]: Table data`), typeof n == "object" && Array.isArray(n) ? console.table(e, n) : console.table(e));
+        typeof t == "string" && n !== void 0 && typeof n != "string" ? (this.groupDepth === 0 ? console.log(`[${this.label}]: ${t}`) : console.log(t), a ? console.table(n, a) : console.table(n)) : (this.groupDepth === 0 && console.log(`[${this.label}]: Table data`), typeof n == "object" && Array.isArray(n) ? console.table(t, n) : console.table(t));
       } catch (i) {
-        console.error(`[${this.label}]: Error showing table:`, i), console.log(`[${this.label}]: Raw data:`, e);
+        console.error(`[${this.label}]: Error showing table:`, i), console.log(`[${this.label}]: Raw data:`, t);
       }
   };
   // Helper method that formats and logs messages with the pluginDebug label.
   // @param logMethod - The console method to use for logging
   // @param args - Arguments to pass to the console method
-  formatAndLog = (e, n) => {
+  formatAndLog = (t, n) => {
     if (this.debugMode)
       try {
-        this.groupDepth > 0 ? e.call(console, ...n) : n.length > 0 && typeof n[0] == "string" ? e.call(console, `[${this.label}]: ${n[0]}`, ...n.slice(1)) : e.call(console, `[${this.label}]:`, ...n);
+        this.groupDepth > 0 ? t.call(console, ...n) : n.length > 0 && typeof n[0] == "string" ? t.call(console, `[${this.label}]: ${n[0]}`, ...n.slice(1)) : t.call(console, `[${this.label}]:`, ...n);
       } catch (a) {
         console.error(`[${this.label}]: Error in logging:`, a), console.log(`[${this.label}]: Original log data:`, ...n);
       }
@@ -322,19 +322,19 @@ class Y {
   // - Error messages are always shown regardless of debug mode
   // @param methodName - Name of the console method to call
   // @param args - Arguments to pass to the console method
-  debugLog(e, ...n) {
-    const a = console[e];
-    if (!this.debugMode && e !== "error" || typeof a != "function") return;
+  debugLog(t, ...n) {
+    const a = console[t];
+    if (!this.debugMode && t !== "error" || typeof a != "function") return;
     const i = a;
-    if (e === "group" || e === "groupCollapsed") {
+    if (t === "group" || t === "groupCollapsed") {
       n.length > 0 && typeof n[0] == "string" ? i.call(console, `[${this.label}]: ${n[0]}`, ...n.slice(1)) : i.call(console, `[${this.label}]:`, ...n);
       return;
     }
-    if (e === "groupEnd") {
+    if (t === "groupEnd") {
       i.call(console);
       return;
     }
-    if (e === "table") {
+    if (t === "table") {
       n.length === 1 ? this.table(n[0]) : n.length === 2 ? typeof n[0] == "string" ? this.table(n[0], n[1]) : this.table(n[0], n[1]) : n.length >= 3 && this.table(
         n[0],
         n[1],
@@ -345,38 +345,38 @@ class Y {
     this.groupDepth > 0 ? i.call(console, ...n) : n.length > 0 && typeof n[0] == "string" ? i.call(console, `[${this.label}]: ${n[0]}`, ...n.slice(1)) : i.call(console, `[${this.label}]:`, ...n);
   }
 }
-const X = (t) => new Proxy(t, {
-  get: (e, n) => {
-    if (n in e)
-      return e[n];
+const X = (e) => new Proxy(e, {
+  get: (t, n) => {
+    if (n in t)
+      return t[n];
     const a = n.toString();
     if (typeof console[a] == "function")
       return (...i) => {
-        e.debugLog(a, ...i);
+        t.debugLog(a, ...i);
       };
   }
-}), b = X(new Y());
-var P = /* @__PURE__ */ ((t) => (t.HORIZONTAL = "horizontal", t.STACK = "stack", t.VERTICAL = "vertical", t.INVALID = "invalid", t))(P || {});
-const I = (t) => t instanceof HTMLElement && t.tagName === "SECTION", w = (t) => I(t) ? Array.from(t.children).some(
-  (e) => e instanceof HTMLElement && e.tagName === "SECTION"
-) : !1, $ = (t) => I(t) ? t.parentElement instanceof HTMLElement && t.parentElement.tagName === "SECTION" : !1, Z = (t) => I(t) && !$(t) && !w(t), Q = (t) => {
-  if (!I(t)) return null;
-  if ($(t)) {
-    const e = t.parentElement;
-    if (e instanceof HTMLElement && w(e))
-      return e;
+}), v = X(new Q());
+var P = /* @__PURE__ */ ((e) => (e.HORIZONTAL = "horizontal", e.STACK = "stack", e.VERTICAL = "vertical", e.INVALID = "invalid", e))(P || {});
+const A = (e) => e instanceof HTMLElement && e.tagName === "SECTION", w = (e) => A(e) ? Array.from(e.children).some(
+  (t) => t instanceof HTMLElement && t.tagName === "SECTION"
+) : !1, $ = (e) => A(e) ? e.parentElement instanceof HTMLElement && e.parentElement.tagName === "SECTION" : !1, Z = (e) => A(e) && !$(e) && !w(e), ee = (e) => {
+  if (!A(e)) return null;
+  if ($(e)) {
+    const t = e.parentElement;
+    if (t instanceof HTMLElement && w(t))
+      return t;
   }
   return null;
-}, ee = (t) => I(t) ? $(t) ? "vertical" : w(t) ? "stack" : "horizontal" : "invalid", te = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, te = (e) => A(e) ? $(e) ? "vertical" : w(e) ? "stack" : "horizontal" : "invalid", ne = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   SectionType: P,
-  getSectionType: ee,
-  getStack: Q,
+  getSectionType: te,
+  getStack: ee,
   isHorizontal: Z,
-  isSection: I,
+  isSection: A,
   isStack: w,
   isVertical: $
-}, Symbol.toStringTag, { value: "Module" })), ne = {
+}, Symbol.toStringTag, { value: "Module" })), ae = {
   baseclass: "animate__animated",
   hideagain: !0,
   delay: 300,
@@ -390,10 +390,10 @@ const I = (t) => t instanceof HTMLElement && t.tagName === "SECTION", w = (t) =>
   compatibility: !1,
   compatibilitybaseclass: "animated"
 };
-function ae(t, e, n) {
+function ie(e, t, n) {
   const a = {
-    baseclass: t,
-    compatibilitybaseclass: e,
+    baseclass: e,
+    compatibilitybaseclass: t,
     fragmentSelector: ".fragment",
     fragmentClass: "fragment",
     speedClasses: ["slower", "slow", "fast", "faster"],
@@ -409,187 +409,189 @@ function ae(t, e, n) {
   return a.speedClasses = [
     ...a.speedClasses,
     ...a.speedClasses.map((i) => `animate__${i}`)
-  ], n && (a.animatecss = ".backInDown, .backInLeft, .backInRight, .backInUp, .bounceIn, .bounceInDown, .bounceInLeft, .bounceInRight, .bounceInUp, .fadeIn, .fadeInDown, .fadeInDownBig, .fadeInLeft, .fadeInLeftBig, .fadeInRight, .fadeInRightBig, .fadeInUp, .fadeInUpBig, .fadeInTopLeft, .fadeInTopRight, .fadeInBottomLeft, .fadeInBottomRight, .flipInX, .flipInY, .lightSpeedInRight, .lightSpeedInLeft, .rotateIn, .rotateInDownLeft, .rotateInDownRight, .rotateInUpLeft, .rotateInUpRight, .jackInTheBox, .rollIn, .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp, .slideInDown, .slideInLeft, .slideInRight, .slideInUp, .skidLeft, .skidLeftBig, .skidRight, .skidRightBig, .shrinkIn, .shrinkInBlur", a.baseclass = e), a;
+  ], n && (a.animatecss = ".backInDown, .backInLeft, .backInRight, .backInUp, .bounceIn, .bounceInDown, .bounceInLeft, .bounceInRight, .bounceInUp, .fadeIn, .fadeInDown, .fadeInDownBig, .fadeInLeft, .fadeInLeftBig, .fadeInRight, .fadeInRightBig, .fadeInUp, .fadeInUpBig, .fadeInTopLeft, .fadeInTopRight, .fadeInBottomLeft, .fadeInBottomRight, .flipInX, .flipInY, .lightSpeedInRight, .lightSpeedInLeft, .rotateIn, .rotateInDownLeft, .rotateInDownRight, .rotateInUpLeft, .rotateInUpRight, .jackInTheBox, .rollIn, .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp, .slideInDown, .slideInLeft, .slideInRight, .slideInUp, .skidLeft, .skidLeftBig, .skidRight, .skidRightBig, .shrinkIn, .shrinkInBlur", a.baseclass = t), a;
 }
-const ie = (t) => {
+const re = (e) => {
   try {
-    return JSON.parse(t) && !!t;
+    return JSON.parse(e) && !!e;
   } catch {
     return !1;
   }
-}, O = (t) => {
-  if (t == null)
+}, x = (e) => {
+  if (e == null)
     return "";
-  let e = "", n = t;
-  return typeof n == "string" && (n = n.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")), ie(t) ? e = t : typeof t == "object" ? e = JSON.stringify(t, null, 2) : typeof t == "string" && (e = t.trim().replace(/'/g, '"').charAt(0) === "{" ? t.trim().replace(/'/g, '"') : `{${t.trim().replace(/'/g, '"')}}`), e;
-}, re = (t, e, n) => {
-  for (const a of Array.from(t.attributes))
-    a.nodeName.startsWith("data") && a.nodeName !== n && e.setAttribute(a.nodeName, a.nodeValue || "");
-}, se = (t) => {
-  const e = document.createElement("textarea");
-  return e.innerHTML = t, e.value;
-}, oe = (t) => typeof t == "object" && t !== null, le = (t, e, n) => {
-  let a = null;
-  if (t instanceof HTMLElement && t.hasAttribute("data-autoappear")) {
-    const i = t.dataset.autoappear;
-    if (i === "auto" || i === "" || i === "true")
-      if (typeof e.autoelements == "string")
-        try {
-          a = JSON.parse(e.autoelements);
-        } catch (s) {
-          b.log(`Error parsing global autoelements string: ${s} (${e.autoelements})`), a = null;
-        }
-      else
-        a = e.autoelements && typeof e.autoelements == "object" ? e.autoelements : null;
-    else
-      try {
-        a = i ? JSON.parse(O(se(i))) : null;
-      } catch (s) {
-        b.log(`Error parsing data-autoappear: ${s} (${i})`), a = null;
-      }
-  } else if (e.autoappear && e.autoelements)
-    if (typeof e.autoelements == "string")
-      try {
-        a = JSON.parse(O(e.autoelements));
-      } catch (i) {
-        b.log(`Error parsing global autoelements string: ${i} (${e.autoelements})`), a = null;
-      }
-    else typeof e.autoelements == "object" && (a = e.autoelements);
+  let t = "", n = e;
+  return typeof n == "string" && (n = n.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")), re(e) ? t = e : typeof e == "object" ? t = JSON.stringify(e, null, 2) : typeof e == "string" && (t = e.trim().replace(/'/g, '"').charAt(0) === "{" ? e.trim().replace(/'/g, '"') : `{${e.trim().replace(/'/g, '"')}}`), t;
+}, se = (e, t, n) => {
+  for (const a of Array.from(e.attributes))
+    a.nodeName.startsWith("data") && a.nodeName !== n && t.setAttribute(a.nodeName, a.nodeValue || "");
+}, oe = (e) => {
+  const t = document.createElement("textarea");
+  return t.innerHTML = e, t.value;
+}, le = (e) => e.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'), N = (e, t = !1) => {
+  if (!e) return null;
+  if (typeof e == "object" && e !== null && !Array.isArray(e))
+    return e;
+  if (typeof e == "boolean")
+    return null;
+  if (typeof e == "string")
+    try {
+      let n = e;
+      return t && (n = le(oe(e))), JSON.parse(x(n));
+    } catch (n) {
+      return v.log(`Error parsing autoelements: ${n} (${e})`), null;
+    }
+  return null;
+}, ce = (e) => typeof e == "object" && e !== null, fe = (e, t, n) => {
+  let a = null, i = null;
+  if (t.autoappear && t.autoelements && (i = N(t.autoelements, !1)), e instanceof HTMLElement && e.hasAttribute("data-autoappear")) {
+    const c = e.dataset.autoappear;
+    if (c === "auto" || c === "" || c === "true")
+      a = i;
+    else {
+      const s = N(c || "", !0);
+      i && s ? a = { ...i, ...s } : s ? a = s : a = i;
+    }
+  } else i && (a = i);
   if (a)
     try {
-      const i = JSON.parse(O(a));
-      for (const [c, s] of Object.entries(i)) {
-        const f = Array.from(t.querySelectorAll(c)).filter(
-          (y) => !n.includes(y)
-        );
-        if (f.length === 0) continue;
-        let o = null, d = 0;
-        for (let y = 0; y < f.length; y++) {
-          const p = f[y], C = p.parentElement;
-          C !== o && (o = C, d = 0), n.push(p);
-          let S = [], v = null, m = !1, A = null, r = null;
+      const c = JSON.parse(x(a));
+      for (const [u, s] of Object.entries(c)) {
+        const l = Array.from(e.querySelectorAll(u)).filter((y) => {
+          if (n.includes(y)) return !1;
+          for (const d of n)
+            if (d.contains(y) && d !== y)
+              return !1;
+          return !0;
+        });
+        if (l.length === 0) continue;
+        let g = null, b = 0;
+        for (let y = 0; y < l.length; y++) {
+          const d = l[y], C = d.parentElement;
+          C !== g && (g = C, b = 0), n.push(d);
+          let I = [], p = null, S = !1, r = null, o = null;
           if (Array.isArray(s))
-            S = String(s[0]).split(/[ ,]+/), v = s[1] !== void 0 ? String(s[1]) : null;
+            I = String(s[0]).split(/[ ,]+/), p = s[1] !== void 0 ? String(s[1]) : null;
           else if (typeof s == "string")
-            S = s.split(/[ ,]+/);
-          else if (oe(s)) {
+            I = s.split(/[ ,]+/);
+          else if (ce(s)) {
             if (s.class || s.animation) {
-              const l = s.animation || s.class;
-              S = String(l).split(/[ ,]+/);
+              const f = s.animation || s.class;
+              I = String(f).split(/[ ,]+/);
             }
-            s.speed && (m = String(s.speed), m.includes("animate__") || (m = `animate__${m}`)), s.delay !== void 0 && (v = String(s.delay)), s.split !== void 0 && (A = String(s.split)), s["container-delay"] !== void 0 && (r = String(s["container-delay"]));
+            s.speed && (S = String(s.speed), S.includes("animate__") || (S = `animate__${S}`)), s.delay !== void 0 && (p = String(s.delay)), s.split !== void 0 && (r = String(s.split)), s["container-delay"] !== void 0 && (o = String(s["container-delay"]));
           }
-          S.length > 0 && p.classList.add(...S), m && p.classList.add(m), p instanceof HTMLElement && (r && d === 0 ? p.dataset.delay = r : v && d > 0 && !p.dataset.delay && (p.dataset.delay = v), A && (p.dataset.split = A)), d++;
+          I.length > 0 && d.classList.add(...I), S && d.classList.add(S), d instanceof HTMLElement && (r ? (p && (d.dataset.delay = p), o && (d.dataset.containerDelay = o), d.dataset.split = r) : o && b === 0 ? d.dataset.delay = o : p && b > 0 && !d.dataset.delay && (d.dataset.delay = p)), b++;
         }
       }
-    } catch (i) {
-      b.log(e, `Error processing auto animations: ${i}`);
+    } catch (c) {
+      v.log(t, `Error processing auto animations: ${c}`);
     }
 };
-function ce(t, e) {
-  t.classList.contains(e.baseclass) || t.classList.add(e.baseclass), t.classList.contains(e.fragmentClass) && t.classList.add("custom");
+function ue(e, t) {
+  e.classList.contains(t.baseclass) || e.classList.add(t.baseclass), e.classList.contains(t.fragmentClass) && e.classList.add("custom");
 }
-function ue(t, e) {
+function de(e, t) {
   let n = 0;
-  t.forEach((a, i) => {
-    if (i === 0 && a instanceof HTMLElement && a.dataset.delay || i !== 0) {
-      let c = e.delay;
+  e.forEach((a, i) => {
+    if (!(a instanceof HTMLElement && a.style.animationDelay) && (i === 0 && a instanceof HTMLElement && a.dataset.delay || i !== 0)) {
+      let c = t.delay;
       if (a instanceof HTMLElement && a.dataset && a.dataset.delay) {
-        const s = Number.parseInt(a.dataset.delay, 10);
-        Number.isNaN(s) || (c = s);
+        const u = Number.parseInt(a.dataset.delay, 10);
+        Number.isNaN(u) || (c = u);
       }
       n = n + c, a instanceof HTMLElement && (a.style.setProperty("animation-delay", `${n}ms`), a.removeAttribute("data-delay"));
     }
   });
 }
-function fe(t, e) {
+function ge(e, t) {
   let n = !1, a = " ";
-  if (t.textContent?.trim() && (e === "words" ? n = t.textContent.trim().split(/\s+/) || [] : e === "letters" && (n = t.textContent.trim().split("") || [], a = ""), n && n.length > 0)) {
-    const i = Array.from(t.classList).filter(
-      (s) => s.startsWith("animate__")
-    ), c = n.map((s, f) => {
-      const o = document.createElement("span");
-      o.textContent = s === " " ? " " : s, t.dataset.delay && f !== 0 && (o.dataset.delay = t.dataset.delay), t.dataset.containerDelay && f === 0 && (o.dataset.delay = t.dataset.containerDelay);
-      for (let d = 0; d < i.length; d++)
-        o.classList.add(i[d]);
-      return o.outerHTML;
+  if (e.textContent?.trim() && (t === "words" ? n = e.textContent.trim().split(/\s+/) || [] : t === "letters" && (n = e.textContent.trim().split("") || [], a = ""), n && n.length > 0)) {
+    const i = Array.from(e.classList).filter(
+      (u) => u.startsWith("animate__")
+    ), c = n.map((u, s) => {
+      const l = document.createElement("span");
+      l.textContent = u === " " ? " " : u, e.dataset.delay && s !== 0 && (l.dataset.delay = e.dataset.delay), e.dataset.containerDelay && s === 0 && (l.dataset.delay = e.dataset.containerDelay);
+      for (let g = 0; g < i.length; g++)
+        l.classList.add(i[g]);
+      return l.outerHTML;
     }).join(a);
-    t.classList.add("wordchargroup");
-    for (let s = 0; s < i.length; s++)
-      t.classList.remove(i[s]);
-    t.removeAttribute("data-delay"), t.removeAttribute("data-split"), t.removeAttribute("data-container-delay"), t.innerHTML = c;
+    e.classList.add("wordchargroup");
+    for (let u = 0; u < i.length; u++)
+      e.classList.remove(i[u]);
+    e.removeAttribute("data-delay"), e.removeAttribute("data-split"), e.removeAttribute("data-container-delay"), e.innerHTML = c;
   }
 }
-function _(t, e) {
-  const n = t.parentNode;
+function _(e, t) {
+  const n = e.parentNode;
   if (n) {
     for (const a of Array.from(n.children))
-      if (a !== t && a.dataset.appearParent) return;
-    n instanceof Element && (n.classList.value = t.classList.value, re(t, n, "data-appear-parent"), n.innerHTML = t.innerHTML, e && n.classList.add(e));
+      if (a !== e && a.dataset.appearParent) return;
+    n instanceof Element && (n.classList.value = e.classList.value, se(e, n, "data-appear-parent"), n.innerHTML = e.innerHTML, t && n.classList.add(t));
   }
 }
-function de(t, e, n) {
+function me(e, t, n) {
   const a = n.baseclass;
-  if (t.hasAttribute("data-appear-parent") && _(t, a), e.appearparents && t.parentNode && t.parentNode instanceof Element && t.tagName === "SPAN" && t.parentNode.tagName === "LI") {
-    const i = t.outerHTML.length, c = t.parentNode.innerHTML.length;
-    i === c && _(t);
+  if (e.hasAttribute("data-appear-parent") && _(e, a), t.appearparents && e.parentNode && e.parentNode instanceof Element && e.tagName === "SPAN" && e.parentNode.tagName === "LI") {
+    const i = e.outerHTML.length, c = e.parentNode.innerHTML.length;
+    i === c && _(e);
   }
 }
-const ge = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
-  (a) => !a.closest(`.${e}`)
-), me = (t, e, n) => Array.from(n.querySelectorAll(`.${t}`)).filter(
-  (a) => a.closest(`.${e}`) === n
-), pe = (t, e, n) => {
-  if (!e) return !1;
+const pe = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter(
+  (a) => !a.closest(`.${t}`)
+), he = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter(
+  (a) => a.closest(`.${t}`) === n
+), ye = (e, t, n) => {
+  if (!t) return !1;
   const a = [
-    ge(e, n, t),
-    ...Array.from(t.querySelectorAll(`.${n}`)).map(
-      (i) => me(e, n, i)
+    pe(t, n, e),
+    ...Array.from(e.querySelectorAll(`.${n}`)).map(
+      (i) => he(t, n, i)
     )
   ];
   return a.some((i) => i.length > 0) ? a : !1;
 };
-function he(t) {
+function be(e) {
   return {
-    from: t.fromSlide || t.previousSlide || null,
-    to: t.toSlide || t.currentSlide || null
+    from: e.fromSlide || e.previousSlide || null,
+    to: e.toSlide || e.currentSlide || null
   };
 }
-function ye(t, e) {
-  t.dataset.appearevent && t.dataset.appearevent === "auto" && (t.dataset.appearevent = "autoanimate");
-  let n = e.appearevent;
-  return n === "auto" && (n = "autoanimate"), t.dataset.appearevent || n;
+function Se(e, t) {
+  e.dataset.appearevent && e.dataset.appearevent === "auto" && (e.dataset.appearevent = "autoanimate");
+  let n = t.appearevent;
+  return n === "auto" && (n = "autoanimate"), e.dataset.appearevent || n;
 }
-function E(t, e) {
-  e.hideagain && t.from && t.from.dataset.appearanceCanStart && t.from.removeAttribute("data-appearance-can-start");
+function E(e, t) {
+  t.hideagain && e.from && e.from.dataset.appearanceCanStart && e.from.removeAttribute("data-appearance-can-start");
 }
-function H(t, e, n) {
-  if (e.hideagain && t && t.from) {
-    const a = t.from.querySelectorAll(n.animatecss);
+function H(e, t, n) {
+  if (t.hideagain && e && e.from) {
+    const a = e.from.querySelectorAll(n.animatecss);
     if (a)
       for (const c of a)
         c.classList.remove("animationended");
-    const i = t.from.querySelectorAll(".fragment.visible");
+    const i = e.from.querySelectorAll(".fragment.visible");
     if (i)
       for (const c of i)
         c.classList.remove("animationended");
   }
 }
-function be(t, e, n, a, i) {
-  const s = a.getViewportElement().classList.contains("reveal-scroll"), f = t.type, o = he(t);
-  if (o.to) {
-    if (f === "ready") {
-      const y = o.to.dataset.initDelay ? parseInt(o.to.dataset.initDelay, 10) : e.initdelay || 0;
-      i.value && y > 0 ? setTimeout(() => {
-        o.to && (o.to.dataset.appearanceCanStart = "true"), i.value = !1;
-      }, y) : (o.to.dataset.appearanceCanStart = "true", i.value = !1);
+function ve(e, t, n, a, i) {
+  const u = a.getViewportElement().classList.contains("reveal-scroll"), s = e.type, l = be(e);
+  if (l.to) {
+    if (s === "ready") {
+      const b = l.to.dataset.initdelay ? parseInt(l.to.dataset.initdelay, 10) : t.initdelay || 0;
+      i.value && b > 0 ? setTimeout(() => {
+        l.to && (l.to.dataset.appearanceCanStart = "true"), i.value = !1;
+      }, b) : (l.to.dataset.appearanceCanStart = "true", i.value = !1);
     }
-    const d = ye(o.to, e);
-    (f === d || f === "slidetransitionend" && d === "autoanimate") && (o.to.dataset.appearanceCanStart = "true"), s && f === "slidechanged" && (E(o, e), H(o, e, n), setTimeout(() => {
-      o.to && (o.to.dataset.appearanceCanStart = "true");
-    }, e.delay)), f === "slidetransitionend" && (E(o, e), H(o, e, n)), f === "slidechanged" && document.body.dataset.exitoverview ? (E(o, e), o.to.dataset.appearanceCanStart = "true") : f === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
+    const g = Se(l.to, t);
+    (s === g || s === "slidetransitionend" && g === "autoanimate") && (l.to.dataset.appearanceCanStart = "true"), u && s === "slidechanged" && (E(l, t), H(l, t, n), setTimeout(() => {
+      l.to && (l.to.dataset.appearanceCanStart = "true");
+    }, t.delay)), s === "slidetransitionend" && (E(l, t), H(l, t, n)), s === "slidechanged" && document.body.dataset.exitoverview ? (E(l, t), l.to.dataset.appearanceCanStart = "true") : s === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
       document.body.removeAttribute("data-exitoverview");
-    }, 500), t.currentSlide && (E(o, e), o.to.dataset.appearanceCanStart = "true"));
+    }, 500), e.currentSlide && (E(l, t), l.to.dataset.appearanceCanStart = "true"));
   }
 }
 class M {
@@ -602,13 +604,13 @@ class M {
   regularSections;
   appearances;
   isInitialLoad;
-  constructor(e, n) {
-    this.deck = e, this.options = n, this.isInitialLoad = !0, this.viewport = e.getViewportElement(), this.slides = e.getSlidesElement(), this.consts = ae(
+  constructor(t, n) {
+    this.deck = t, this.options = n, this.isInitialLoad = !0, this.viewport = t.getViewportElement(), this.slides = t.getSlidesElement(), this.consts = ie(
       n.baseclass,
       n.compatibilitybaseclass,
       n.compatibility
     ), this.sections = this.slides.querySelectorAll("section"), this.regularSections = Array.from(this.sections).filter(
-      (a) => !te.isStack(a)
+      (a) => !ne.isStack(a)
     ), this.appearances = [], /receiver/i.test(window.location.search) && this.viewport.classList.add("sv");
   }
   /**
@@ -616,35 +618,35 @@ class M {
    */
   async prepareElements() {
     this.appearances = Array.from(this.slides.querySelectorAll(this.consts.animatecss));
-    for (const e of this.regularSections)
-      le(e, this.options, this.appearances);
-    for (const e of this.appearances)
-      de(e, this.options, this.consts), ce(e, this.consts), e instanceof HTMLElement && e.dataset.split && fe(e, e.dataset.split);
-    for (const e of this.regularSections) {
-      const n = pe(
-        e,
+    for (const t of this.regularSections)
+      fe(t, this.options, this.appearances);
+    for (const t of this.appearances)
+      me(t, this.options, this.consts), ue(t, this.consts), t instanceof HTMLElement && t.dataset.split && ge(t, t.dataset.split);
+    for (const t of this.regularSections) {
+      const n = ye(
+        t,
         this.consts.baseclass,
         this.consts.fragmentClass
       );
       if (n)
         for (const a of n)
-          ue(a, this.options);
+          de(a, this.options);
     }
   }
   /**
    * Set up event listeners
    */
   setupEventListeners() {
-    b.log("Options:", this.options), b.log("Setting up event listeners");
-    const e = { value: this.isInitialLoad };
+    v.log("Options:", this.options), v.log("Setting up event listeners");
+    const t = { value: this.isInitialLoad };
     for (const n of this.consts.eventnames)
-      b.log(`Adding listener for ${n} event`), this.deck.on(n, (a) => {
-        be(a, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
+      v.log(`Adding listener for ${n} event`), this.deck.on(n, (a) => {
+        ve(a, this.options, this.consts, this.deck, t), this.isInitialLoad = t.value;
       });
     this.viewport.addEventListener("animationend", (n) => {
       n.target.classList.add("animationended");
     }), this.viewport.addEventListener("autoanimate", (n) => {
-      b.log("Autoanimate event triggered:", n);
+      v.log("Autoanimate event triggered:", n);
     }), this.viewport.addEventListener("fragmenthidden", (n) => {
       const a = n;
       if (a.fragment) {
@@ -658,14 +660,14 @@ class M {
   /**
    * Create a new Appearance instance
    */
-  static async create(e, n) {
-    const a = new M(e, n);
+  static async create(t, n) {
+    const a = new M(t, n);
     return await a.prepareElements(), a.setupEventListeners(), a;
   }
 }
-const x = "appearance", Se = async (t, e, n) => {
-  b && n.debug && b.initialize(!0, x), await K(t, n), await M.create(e, n);
-}, ve = () => new J(x, Se, ne).createInterface();
+const z = "appearance", Ie = async (e, t, n) => {
+  v && n.debug && v.initialize(!0, z), await Y(e, n), await M.create(t, n);
+}, Ae = () => new J(z, Ie, ae).createInterface();
 export {
-  ve as default
+  Ae as default
 };

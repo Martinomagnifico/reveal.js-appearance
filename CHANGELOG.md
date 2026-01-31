@@ -1,6 +1,5 @@
 # Changelog
 
-
 ## [1.3.4] - 2023-07-31
 ### Changed
 - Fixed a typo (was srcipt but should be script)

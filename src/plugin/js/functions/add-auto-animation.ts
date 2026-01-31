@@ -4,12 +4,7 @@ import type { AnimationOption, Config } from "../config";
 
 // Helper imports
 import { toJSONString } from "../helpers";
-
-const decodeHtmlEntities = (str: string): string => {
-	const textarea = document.createElement("textarea");
-	textarea.innerHTML = str;
-	return textarea.value;
-};
+import { parseAutoElements } from "./parse-auto-elements";
 
 const isAnimationObject = (
 	obj: unknown
@@ -36,6 +31,12 @@ export const addAutoAnimation = (
 ): void => {
 	let sectionAutoSelectors: Record<string, AnimationOption> | null = null;
 
+	// Start with global autoelements if available
+	let globalAutoelements: Record<string, AnimationOption> | null = null;
+	if (options.autoappear && options.autoelements) {
+		globalAutoelements = parseAutoElements(options.autoelements, false);
+	}
+
 	// Determine which auto selectors to use for this section
 	if (section instanceof HTMLElement && section.hasAttribute("data-autoappear")) {
 		const sectDataAppear = section.dataset.autoappear;
@@ -45,51 +46,25 @@ export const addAutoAnimation = (
 			sectDataAppear === "auto" || sectDataAppear === "" || sectDataAppear === "true";
 
 		if (isDefaultAutoAppear) {
-			// Use global auto elements configuration
-
-			if (typeof options.autoelements === "string") {
-				try {
-					sectionAutoSelectors = JSON.parse(options.autoelements);
-				} catch (e) {
-					debug.log(
-						`Error parsing global autoelements string: ${e} (${options.autoelements})`
-					);
-					sectionAutoSelectors = null;
-				}
-			} else {
-				sectionAutoSelectors =
-					options.autoelements && typeof options.autoelements === "object"
-						? options.autoelements
-						: null;
-			}
+			// Use global auto elements configuration only
+			sectionAutoSelectors = globalAutoelements;
 		} else {
-			// Use local auto elements configuration from the section attribute
-			try {
-				// Allow for HTML-encoded characters in the data attribute, in case the user had escaped the quotes.
-				sectionAutoSelectors = sectDataAppear
-					? JSON.parse(toJSONString(decodeHtmlEntities(sectDataAppear)))
-					: null;
-			} catch (e) {
-				debug.log(`Error parsing data-autoappear: ${e} (${sectDataAppear})`);
-				sectionAutoSelectors = null;
+			// Parse local auto elements configuration
+			const localAutoelements = parseAutoElements(sectDataAppear || "", true);
+
+			// Merge global and local (local overrides global for same selectors)
+			if (globalAutoelements && localAutoelements) {
+				sectionAutoSelectors = { ...globalAutoelements, ...localAutoelements };
+			} else if (localAutoelements) {
+				sectionAutoSelectors = localAutoelements;
+			} else {
+				sectionAutoSelectors = globalAutoelements;
 			}
 		}
 	}
-	// Case 2: Global autoappear is enabled
-	else if (options.autoappear && options.autoelements) {
-		if (typeof options.autoelements === "string") {
-			try {
-				//sectionAutoSelectors = JSON.parse(options.autoelements);
-				sectionAutoSelectors = JSON.parse(toJSONString(options.autoelements));
-			} catch (e) {
-				debug.log(
-					`Error parsing global autoelements string: ${e} (${options.autoelements})`
-				);
-				sectionAutoSelectors = null;
-			}
-		} else if (typeof options.autoelements === "object") {
-			sectionAutoSelectors = options.autoelements;
-		}
+	// Case 2: No data-autoappear attribute - use global if available
+	else if (globalAutoelements) {
+		sectionAutoSelectors = globalAutoelements;
 	}
 
 	// If no selectors were found or they're invalid, exit early
@@ -102,10 +77,6 @@ export const addAutoAnimation = (
 		// Process each selector and its animation configuration
 		for (const [selector, animConfig] of Object.entries(elementsToAnimate)) {
 			// Find elements matching the selector that aren't already in the appearances array
-			// const elements = Array.from(section.querySelectorAll(selector)).filter(
-			// 	(element) => !appearances.includes(element)
-			// );
-
 			const elements = Array.from(section.querySelectorAll(selector)).filter((element) => {
 				// Don't include if already in appearances
 				if (appearances.includes(element)) return false;
@@ -192,7 +163,6 @@ export const addAutoAnimation = (
 				}
 
 				// Apply data attributes if the element is an HTMLElement
-
 				if (element instanceof HTMLElement) {
 					// For elements that will be split, always apply delays
 					if (elementSplit) {

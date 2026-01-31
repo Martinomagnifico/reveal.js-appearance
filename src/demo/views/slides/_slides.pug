@@ -29,7 +29,8 @@ section
 
 	section
 		h3.animate__fadeInDown(data-split="words", data-delay="200") Let lines appear per word
-		h3.animate__fadeInDown(data-delay="600") &nbsp;or… #[span.animate__flipInX.animate__faster(data-split="letters", data-delay="75", data-container-delay="800" ) per character.]
+		h3.animate__fadeInDown or…
+		h3.animate__fadeInDown(data-split="letters", data-delay="75", data-container-delay="700" ) per character.
 
 	section
 		h3 Let images appear
@@ -40,7 +41,7 @@ section
 
 	section
 		h3 Use with fragments
-		p.animate__fadeInDown Inside fragments like this #[span.animate__fadeInDown.animate__faster(style="font-size: .8em") (click next)]:
+		p.animate__fadeInDown Inside fragments like this #[em.animate__fadeInDown.animate__faster (click next)]:
 
 		.fragment
 			.row.fivegrid
@@ -308,6 +309,36 @@ section
 					&lt;h4&gt;Appearance&lt;/h4&gt;
 				&lt;/section&gt;
 		//-
+
+
+	section(data-autoappear='{"h3": "animate__fadeInDown", "img.test": {"animation":"animate__fadeInDown", "container-delay":"2000"}}')
+
+		h3 Container-aware delays
+
+		small When you have multiple groups of elements in separate containers, #[code container-delay] applies to the first element in each container, while #[code delay] applies between elements within the same container. In the example below, the #[code delay] is the standard 300ms from the global options.
+
+		.row.fivegrid.smallcircles
+			img.test(data-src="assets/img/1.jpg")
+			img.test(data-src="assets/img/2.jpg")
+			img.test(data-src="assets/img/3.jpg")
+			img.test(data-src="assets/img/4.jpg")
+			img.test(data-src="assets/img/5.jpg")
+
+		pre
+			code.hljs.html(data-line-numbers).
+				&lt;section data-autoappear='{"img.test": {"animation":"animate__fadeInDown", "container-delay":"1200"}}'&gt;
+				    &lt;h3&gt;Container-aware delays&lt;/h3&gt;
+				    &lt;div class=&quot;row&quot;&gt;
+				        &lt;img class=&quot;test&quot; src=&quot;assets/img/1.jpg&quot;&gt;
+				        ... other images ...
+				    &lt;/div&gt;
+				&lt;/section&gt;
+		//-
+
+
+
+
+
 section
 	section#options
 		h2 Options
@@ -435,7 +466,7 @@ section
 
 	section
 		h4 Option #{optionnr++}: initdelay
-		p.small The #[code initdelay] option sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). This gives users time to orient themselves when first loading the presentation. Can be overridden per-slide with #[code data-initdelay="2000"].
+		p.small The #[code initdelay] option sets a delay in milliseconds before any animations start, but only on the initial load/reload (not when navigating). Can be overridden per-slide with #[code data-initdelay="2000"].
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({

@@ -19,7 +19,7 @@
           <path fill="currentColor" d="M27.5 11.2a16.3 16.3 0 0 0-5.1 31.7c.8.2 1.1-.3 1.1-.7v-2.8c-4.5 1-5.5-2.2-5.5-2.2-.7-1.9-1.8-2.4-1.8-2.4-1.5-1 .1-1 .1-1 1.6.1 2.5 1.7 2.5 1.7 1.5 2.5 3.8 1.8 4.7 1.4.2-1 .6-1.8 1-2.2-3.5-.4-7.3-1.8-7.3-8 0-1.8.6-3.3 1.6-4.4-.1-.5-.7-2.1.2-4.4 0 0 1.4-.4 4.5 1.7a15.6 15.6 0 0 1 8.1 0c3.1-2 4.5-1.7 4.5-1.7.9 2.3.3 4 .2 4.4 1 1 1.6 2.6 1.6 4.3 0 6.3-3.8 7.7-7.4 8 .6.6 1.1 1.6 1.1 3v4.6c0 .4.3.9 1.1.7a16.3 16.3 0 0 0-5.2-31.7"></path>
         </svg></a>
       <div class="slides">
-        <section data-init-delay="300">
+        <section data-initdelay="300">
           <h1 class="animate__flipInX animate__slow">Appearance</h1>
           <h3 class="animate__fadeInDown animate__faster" data-delay="75" data-container-delay="700" data-split="letters">for Reveal.js</h3>
           <div class="row fivegrid smallcircles"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/1.jpg" data-delay="800"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/2.jpg" data-delay="220"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/3.jpg" data-delay="200"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/4.jpg" data-delay="180"><img class="demoimg smallcircle animate__shrinkIn" data-src="assets/img/5.jpg" data-delay="160">
@@ -87,7 +87,6 @@
               <li class="animate__shrinkIn" data-delay="1000">.animate__shrinkIn</li>
               <li class="animate__shrinkInBig" data-delay="1000">.animate__shrinkInBig</li>
             </ul>
-            <p class="small">Note: The shrinkInBlur animation was removed from Appearance, due to performance issues. For backwards compatibility, any element that used it will now use the <code>shrinkIn</code> animation instead.</p>
           </section>
         </section>
         <section>
@@ -114,7 +113,7 @@
 &lt;/script&gt;</code></pre>
           </section>
           <section>
-            <h3>Markup (auto)</h3>
+            <h3>Markup (automatic or manual)</h3>
             <p class="small">For <em>automatic markup</em>, you can use the <a href="#/autoappear"><code>autoappear</code></a> option. </p>
             <p class="small">For <em>manual markup</em>, continue to the next slide.</p>
           </section>
@@ -141,7 +140,7 @@
           <section>
             <h3>Change the delay</h3><small>Use <code>data-delay="*"</code> on each element, where the wildcard is the delay in microseconds from the appearance of the previous element.</small>
             <div class="row fivegrid"><img class="animate__fadeInDown" data-src="assets/img/1.jpg" data-delay="0"><img class="animate__fadeInDown" data-src="assets/img/2.jpg" data-delay="200"><img class="animate__fadeInDown" data-src="assets/img/3.jpg" data-delay="160"><img class="animate__fadeInDown" data-src="assets/img/4.jpg" data-delay="120"><img class="animate__fadeInDown" data-src="assets/img/5.jpg" data-delay="80">
-            </div><br>
+            </div>
             <pre><code class="hljs html" data-line-numbers>&lt;img class=&quot;animate__fadeInDown&quot; data-delay=&quot;0&quot; src=&quot;assets/img/1.jpg&quot;&gt;
 &lt;img class=&quot;animate__fadeInDown&quot; data-delay=&quot;200&quot; src=&quot;assets/img/2.jpg&quot;&gt;
 &lt;img class=&quot;animate__fadeInDown&quot; data-delay=&quot;160&quot; src=&quot;assets/img/3.jpg&quot;&gt;
@@ -153,17 +152,17 @@
             <div class="row fivegrid"><small class="animate__fadeIn" style="font-size: 0.4em" data-delay="50"><code>.animate__slower</code></small><small class="animate__fadeIn" style="font-size: 0.4em" data-delay="50"><code>.animate__slow</code></small><small class="animate__fadeIn" style="font-size: 0.4em" data-delay="50"></small><small class="animate__fadeIn" style="font-size: 0.4em" data-delay="50"><code>.animate__fast</code></small><small class="animate__fadeIn" style="font-size: 0.4em" data-delay="50"><code>.animate__faster</code></small>
             </div>
             <div class="row fivegrid"><img class="animate__bounceIn animate__slower" style="margin: auto" data-src="assets/img/1.jpg"><img class="animate__bounceIn animate__slow" style="margin: auto" data-src="assets/img/2.jpg"><img class="animate__bounceIn" style="margin: auto" data-src="assets/img/3.jpg"><img class="animate__bounceIn animate__fast" style="margin: auto" data-src="assets/img/4.jpg"><img class="animate__bounceIn animate__faster" style="margin: auto" data-src="assets/img/5.jpg">
-            </div><br>
-            <pre><code class="hljs html" data-line-numbers>&lt;img class=&quot;animate__fadeInDown animate__slower&quot; src=&quot;assets/img/1.jpg&quot;&gt;
-&lt;img class=&quot;animate__fadeInDown animate__slow&quot; src=&quot;assets/img/2.jpg&quot;&gt;
-&lt;img class=&quot;animate__fadeInDown&quot; src=&quot;assets/img/3.jpg&quot;&gt;
-&lt;img class=&quot;animate__fadeInDown animate__fast&quot; src=&quot;assets/img/4.jpg&quot;&gt;
-&lt;img class=&quot;animate__fadeInDown animate__faster&quot; src=&quot;assets/img/5.jpg&quot;&gt;</code></pre>
+            </div>
+            <pre><code class="hljs html" data-line-numbers>&lt;img class=&quot;aanimate__bounceIn animate__slower&quot; src=&quot;assets/img/1.jpg&quot;&gt;
+&lt;img class=&quot;animate__bounceIn animate__slow&quot; src=&quot;assets/img/2.jpg&quot;&gt;
+&lt;img class=&quot;animate__bounceIn&quot; src=&quot;assets/img/3.jpg&quot;&gt;
+&lt;img class=&quot;animate__bounceIn animate__fast&quot; src=&quot;assets/img/4.jpg&quot;&gt;
+&lt;img class=&quot;animate__bounceIn animate__faster&quot; src=&quot;assets/img/5.jpg&quot;&gt;</code></pre>
           </section>
           <section>
-            <h3>Change the settings for words or letters</h3><small>For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a <code>data-container-delay="*"</code> for a different delay for the container, compared to the standard <code>delay = 300</code> from the options. Add a <code>baseline</code> class for a nice baseline effect.</small><br><br>
+            <h3>Change the settings for words or letters</h3><small>For words and letters, just set the speed and delay as described above. The smaller parts will inherit these settings. Set a <code>data-container-delay="*"</code> for a different delay for the container, compared to the standard <code>delay = 300</code> from the options. Add a <code>baseline</code> class for a nice baseline effect.</small>
             <h3 class="animate__fadeInUp baseline" data-split="words">Split into words</h3>
-            <h3 class="animate__fadeInUp animate__faster" data-split="letters" data-delay="75" data-container-delay="800">Split into letters</h3><br>
+            <h3 class="animate__fadeInUp animate__faster" data-split="letters" data-delay="75" data-container-delay="800">Split into letters</h3>
             <pre><code class="hljs html" data-line-numbers>&lt;h3 class=&quot;animate__fadeInUp baseline&quot; data-split=&quot;words&quot;&gt;Split into words&lt;/h3&gt;
 &lt;h3 class=&quot;animate__fadeInUp animate__faster&quot; data-split=&quot;letters&quot; data-delay=&quot;75&quot; data-container-delay=&quot;800&quot;&gt;Split into letters&lt;/h3&gt;</code></pre>
           </section>
@@ -172,24 +171,22 @@
           </section>
           <section data-auto-animate data-appearevent="auto">
             <h3>Change when Appearance starts</h3>
-            <div>
-              <p class="animate__fadeInUp">You can use any of the following events:</p>
-            </div>
+            <p class="animate__fadeInUp">You can use any of the following events:</p>
             <ul>
               <li class="animate__fadeInLeft"><em>slidetransitionend</em> (default, after the transition)</li>
               <li class="animate__fadeInLeft"><em>slidechanged</em> (with the transition)</li>
               <li class="animate__fadeInLeft"><em>auto</em> (with transition, on autoanimate slides)</li>
             </ul>
-            <div><br><small class="animate__fadeInUp">This can be set per-slide with data-attributes, or globally in the Appearance options.</small></div>
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-appearevent="auto"&gt;</code></pre><small class="animate__fadeInUp">This can be set per-slide with <code>data-appearevent</code>, or globally in the Appearance options.</small>
           </section>
-          <section data-init-delay="2000">
+          <section data-initdelay="3000">
             <h3>Change the initial delay</h3>
-            <p class="small">Use <code>data-init-delay="*"</code> on the slide element, to set a delay before the first element appears, in case a page is loaded/reloaded for the first time. This can also be set globally in the Appearance options.</p>
-            <p class="small">When you came to this page, you probably came from the previous slide so the initial delay was 
-              <u>not</u> applied. Try reloading this page to see the effect. The first image will only appear after 2 seconds.
-            </p>
+            <p class="small">This delay is triggered when a slide is loaded/reloaded for the first time.</p>
+            <p class="small">When you came to this slide, you probably came from the previous slide so the initial delay was NOT applied. Reload your browser to see the effect. The first image will then only appear after 3 seconds.</p>
             <div class="row fivegrid"><img class="demoimg animate__flipInX" data-src="assets/img/1.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/2.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/3.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/4.jpg"><img class="demoimg animate__flipInX" data-src="assets/img/5.jpg">
             </div>
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-initdelay="3000"&gt; ... &lt;/section&gt;</code></pre>
+            <p class="small">This can also be set globally in the Appearance options.</p>
           </section>
         </section>
         <section>
@@ -218,52 +215,61 @@
 		autoelements: {"ul li": "animate__fadeInLeft"}
 	}
 	// ...</code></pre>
-            <p class="small">You can use a simple JSON object, or more elaborate like this: <code>'{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}'</code>.</p>
+            <p class="small">You can use a simple object, or more elaborate like this: <code>'{"ul li": {"animation":"animate__fadeInLeft", "speed":"slow", "delay":"100"}}'</code>.</p>
           </section>
           <section data-autoappear="true">
             <h3>Local auto-appear</h3>
-            <p class="small">This will use the JSON object from the global autoelements option, even if autoappear is false.</p>
+            <p class="small">This will use the object (or JSON string) from the global autoelements option, even if autoappear is false.</p>
             <ul>
               <li>This is a list item</li>
             </ul>
-            <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
-	// ...
-	appearance: {
-		autoappear: false,
-		autoelements: '{"ul li": "animate__fadeInLeft"}'
-	}
-	// ...</code></pre>
             <pre><code class="hljs html" data-line-numbers="1">&lt;section data-autoappear=&quot;true&quot;&gt;
 	&lt;ul&gt;
 		&lt;li&gt;This is a list item&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
+            <pre><code class="hljs js" data-line-numbers="4,5">Reveal.initialize({
+	// ...
+	appearance: {
+		autoappear: false,
+		autoelements: {"ul li": "animate__fadeInLeft"}
+	}
+	// ...</code></pre>
           </section>
           <section data-autoappear="{&quot;ul li&quot;:&quot;animate__fadeInRight&quot;, &quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;slow&quot; }}">
-            <h3>Local auto-appear, specified</h3><small>You can also add a JSON object to the slide’s <code>data-autoappear</code>, with specific elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.</small>
+            <h3>Local auto-appear, specified</h3><small>You can also add JSON to the slide’s <code>data-autoappear</code>, with elements, their animations class(es) as a string or an object with animations class(es), optional speed and optional delay.</small>
             <ul>
-              <li>This is list item 1</li>
-              <li>This is list item 2</li>
+              <li>This is a list item</li>
             </ul>
             <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"ul li":"animate__fadeInRight", "h3": {"animation":"animate__fadeInDown", "speed":"slow" }}'&gt;
 	&lt;h3&gt;Local auto-appear, specified&lt;/h3&gt;
 	&lt;ul&gt;
-		&lt;li&gt;This is list item 1&lt;/li&gt;
-		&lt;li&gt;This is list item 2&lt;/li&gt;
+		&lt;li&gt;This is a list item&lt;/li&gt;
 	&lt;/ul&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;</code></pre><small>Appearance lets you use single quotes in JSON even though not valid: <code>data-autoappear="{'ul li':'animate__fadeInRight'}"</code>. This is because Reveal-Markdown only allows double quotes for its data-attributes (encoding your double quotes is also good, but that is a lot more work).</small>
           </section>
-          <section data-autoappear="{&quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;fast&quot;, &quot;delay&quot;:&quot;180&quot;, &quot;split&quot;:&quot;words&quot;, &quot;container-delay&quot;:&quot;200ms&quot;}, &quot;h4&quot;: {&quot;animation&quot;:&quot;animate__fadeInUp baseline&quot;, &quot;split&quot;:&quot;letters&quot;, &quot;delay&quot;:&quot;80&quot;}}">
+          <section data-autoappear="{&quot;h3&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;speed&quot;:&quot;fast&quot;, &quot;delay&quot;:&quot;180&quot;, &quot;split&quot;:&quot;words&quot;, &quot;container-delay&quot;:&quot;200&quot;}, &quot;h4&quot;: {&quot;animation&quot;:&quot;animate__fadeInUp baseline&quot;, &quot;split&quot;:&quot;letters&quot;, &quot;delay&quot;:&quot;80&quot;, &quot;container-delay&quot;:&quot;200&quot;}}">
             <h3>Local auto-appear, specified and split</h3><small>And you can do the same for any animations that you would like to have on lines and words.</small>
             <h4>Appearance</h4>
-            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"500ms"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80"}}'&gt;
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"h3": {"animation":"animate__fadeInDown", "speed":"fast", "delay":"180", "split":"words", "container-delay":"200"}, "h4": {"animation":"animate__fadeInUp baseline", "split":"letters", "delay":"80", "container-delay":"200"}}'&gt;
 	&lt;h3&gt;Local auto-appear, specified and split&lt;/h3&gt;
 	&lt;h4&gt;Appearance&lt;/h4&gt;
 &lt;/section&gt;</code></pre>
           </section>
+          <section data-autoappear="{&quot;h3&quot;: &quot;animate__fadeInDown&quot;, &quot;img.test&quot;: {&quot;animation&quot;:&quot;animate__fadeInDown&quot;, &quot;container-delay&quot;:&quot;2000&quot;}}">
+            <h3>Container-aware delays</h3><small>When you have multiple groups of elements in separate containers, <code>container-delay</code> applies to the first element in each container, while <code>delay</code> applies between elements within the same container. In the example below, the <code>delay</code> is the standard 300ms from the global options.</small>
+            <div class="row fivegrid smallcircles"><img class="test" data-src="assets/img/1.jpg"><img class="test" data-src="assets/img/2.jpg"><img class="test" data-src="assets/img/3.jpg"><img class="test" data-src="assets/img/4.jpg"><img class="test" data-src="assets/img/5.jpg"></div>
+            <pre><code class="hljs html" data-line-numbers>&lt;section data-autoappear='{"img.test": {"animation":"animate__fadeInDown", "container-delay":"1200"}}'&gt;
+    &lt;h3&gt;Container-aware delays&lt;/h3&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;img class=&quot;test&quot; src=&quot;assets/img/1.jpg&quot;&gt;
+        ... other images ...
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </section>
         </section>
         <section>
-          <section>
+          <section id="options">
             <h2>Options</h2>
             <p class="small">In alphabetical order</p>
             <div class="centerblock">
@@ -361,7 +367,7 @@
           </section>
           <section>
             <h4>Option 8: initdelay</h4>
-            <p class="small">The <code>initdelay</code> option sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). This gives users time to orient themselves when first loading the presentation. Can be overridden per-slide with <code>data-init-delay="2000"</code>.</p>
+            <p class="small">The <code>initdelay</code> option sets a delay in milliseconds before any animations start, but only on the initial load/reload (not when navigating). Can be overridden per-slide with <code>data-initdelay="2000"</code>.</p>
             <pre><code class="hljs js" data-line-numbers="4">Reveal.initialize({
     ...
     appearance: {

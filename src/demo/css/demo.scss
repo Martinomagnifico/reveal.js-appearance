@@ -26,17 +26,13 @@ img {
 	max-height: 100%;
 }
 
-// .row {
-// 	  overflow: auto;
-// }
-
 .row.fivegrid {
 	display: grid;
 	width: 82%;
 	margin: auto;
 	margin: var(--r-block-margin) auto;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-gap: 1em;
+	grid-gap: .5em;
 }
 
 
@@ -64,6 +60,12 @@ img {
 .row.smallcircles {
 	grid-gap: .5em;
 	width: 75%;
+	img {
+		width: 3em;
+		height: 3em;
+		border-radius: 50%;
+		margin: 0.4em;
+	}
 }
 
 
