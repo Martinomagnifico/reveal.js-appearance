@@ -8,6 +8,7 @@
 
 ### Added
 - Added `container-delay` for auto-elements, that influences how a first element of a group can have a different delay.
+- Added `initdelay` for when a slide is loaded/reloaded for the first time.
 
 
 
