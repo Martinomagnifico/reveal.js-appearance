@@ -370,8 +370,6 @@ Reveal.initialize({
 
 
 
-
-
 ## Like it?
 If you like it, please star this repo! 
 

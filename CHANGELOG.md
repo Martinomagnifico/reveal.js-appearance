@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.0] - 2026-01-31
+### Changed
+- This new version is built with Vite
+- The plugin will now check if it is running in a module environment and will then not autoload the CSS. You can still set `cssautoload` to `true` if you like, but your bundler (Vite, Webpack) may not like that. In any of these cases, `import` the CSS file yourself.
+- Appearance now no longer loads Animate.css on request, but bundles it in the CSS.
+
+### Added
+- Added `container-delay` for auto-elements, that influences how a first element of a group can have a different delay.
+
+
+
 ## [1.3.4] - 2023-07-31
 ### Changed
 - Fixed a typo (was srcipt but should be script)
@@ -9,8 +20,6 @@
 ### Added
 - Added `cssautoload` option to automatically load the CSS file. Can be switched off if you want to load the CSS file yourself with `import` when using bundlers like Webpack or Parcel.
 - Added `baseline` effect for use with words and letters, to make them appear from the baseline of the text.
-
-
 
 
 ## [1.3.3] - 2023-11-18
