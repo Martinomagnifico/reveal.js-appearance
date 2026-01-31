@@ -209,7 +209,8 @@ When using Appearance inside an autoanimate slide, and changing the appearevent 
 ### Initial delay on page load
 You can set a delay before animations start, but only on the initial page load or reloads (not when navigating between slides):
 
-<section data-init-delay="2000">
+```html
+<section data-initdelay="2000">
 	<h3>Welcome</h3>
 	<p class="animate__fadeIn">This will appear 2 seconds after page load</p>
 </section>
@@ -366,7 +367,7 @@ Reveal.initialize({
 * **`csspath`**: Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.
 * **`delay`**: Base time in milliseconds between element appearances. This is the delay between items of the same type.
 * **`hideagain`**: Change this (true/false) if you want to see the shown elements if you go back. When set to `true`, elements will hide again when navigating away from the slide.
-* **`initdelay`**: Sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). Default is `0` (no delay). Can be overridden per-slide with `data-init-delay` attribute.
+* **`initdelay`**: Sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). Default is `0` (no delay). Can be overridden per-slide with `data-initdelay` attribute.
 
 
 

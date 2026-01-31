@@ -113,7 +113,7 @@ export function showHideSlide(
 
 	if (slides.to) {
 		if (etype === "ready") {
-			// Get init-delay from slide attribute or global config
+			// Get initdelay from slide attribute or global config
 			const slideInitDelay = slides.to.dataset.initdelay
 				? parseInt(slides.to.dataset.initdelay, 10)
 				: options.initdelay || 0;
