@@ -249,8 +249,8 @@ You can add any selector and animation class to this object. You can use a simpl
 * **animation**: The Animate.css animation class
 * **speed**: Animation speed (slower, slow, fast, faster)
 * **delay**: Delay between elements in milliseconds
-* **initial-delay**: Delay before the first element of this type appears in milliseconds
-* * **container-delay**: Delay before the first element in each container (when elements are in separate parent containers)
+* **initdelay**: Delay before the first element of this type appears in milliseconds
+* **container-delay**: Delay before the first element in each container (when elements are in separate parent containers)
 * **split**: Split text into words (`data-split="words"`) or letters (`data-split="letters"`) for individual animation
 
 where the last key is specific for word- and letter-animations.

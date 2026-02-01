@@ -1,4 +1,4 @@
-section(data-initdelay="300")
+section
 	h1.animate__flipInX.animate__slow Appearance
 	h3.animate__fadeInDown.animate__faster(data-delay="75", data-container-delay="700", data-split="letters") for Reveal.js
 
@@ -195,21 +195,6 @@ section
 
 
 		small.animate__fadeInUp This can be set per-slide with #[code data-appearevent], or globally in the Appearance options.
-
-	section(data-initdelay="3000")
-		h3 Change the initial delay
-		p.small This delay is triggered when a slide is loaded/reloaded for the first time.
-
-		p.small When you came to this slide, you probably came from the previous slide so the initial delay was NOT applied. Reload your browser to see the effect. The first image will then only appear after 3 seconds.
-		.row.fivegrid
-			+iterate('5')
-				img.demoimg.animate__flipInX(data-src="assets/img/" + nr + ".jpg")
-
-		pre
-			code.hljs.html(data-line-numbers).
-				&lt;section data-initdelay="3000"&gt; ... &lt;/section&gt;
-		//-
-		p.small This can also be set globally in the Appearance options.
 
 section
 	section#autoappear
@@ -466,7 +451,7 @@ section
 
 	section
 		h4 Option #{optionnr++}: initdelay
-		p.small The #[code initdelay] option sets a delay in milliseconds before any animations start, but only on the initial load/reload (not when navigating). Can be overridden per-slide with #[code data-initdelay="2000"].
+		p.small The #[code initdelay] option sets a delay in milliseconds before any animations start, but only on the initial load/reload (not when navigating).
 		pre
 			code.hljs.js(data-line-numbers="4").
 				Reveal.initialize({
