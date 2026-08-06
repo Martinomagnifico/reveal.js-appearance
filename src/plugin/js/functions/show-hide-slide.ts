@@ -1,5 +1,5 @@
 // Basic imports
-import type { Api } from "reveal.js";
+import type { RevealApi } from "reveal.js";
 import type { Config } from "../config";
 import type { AppearanceConsts } from "../consts";
 import type { RevealSlideEvent } from "../types";
@@ -103,7 +103,7 @@ export function showHideSlide(
 	event: RevealSlideEvent,
 	options: Config,
 	consts: AppearanceConsts,
-	deck: Api,
+	deck: RevealApi,
 	isInitialLoad: { value: boolean }
 ): void {
 	const viewport = deck.getViewportElement() as HTMLElement;

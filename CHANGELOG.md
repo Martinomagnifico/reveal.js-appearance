@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1] - 2026-08-06
+### Fixed
+- Fix bug where Function("return import.meta")() does not work.
+
+### Changed
+- Updated dependencies (TypeScript, Vite, etc) 
+- Updated for the use of the latest version of Reveal.js.
+
 ## [1.4.0] - 2026-01-31
 ### Changed
 - This new version is built with Vite

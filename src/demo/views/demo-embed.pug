@@ -26,7 +26,7 @@ append styles
 		body {background: var(--r-background-color)}
 
 block append scripts
-	+revealsrc("script", "plugin/highlight/highlight.js")
+	+revealsrc("script", "dist/plugin/highlight.js")
 
 	if process.env.NODE_ENV === 'production'
 		script(src=`plugin/${plugin.name}/${plugin.name}.js`)

@@ -1,15 +1,12 @@
 import fs from 'fs-extra'
 
+// reveal.js 6 ships its plugins inside `dist/plugin`, so copying `dist`
+// brings them along. Older versions had a separate top-level `plugin` folder.
 const copyRevealFiles = async () => {
  try {
    await fs.copy(
      'node_modules/reveal.js/dist',
      'demo/dist'
-   )
-   
-   await fs.copy(
-     'node_modules/reveal.js/plugin',
-     'demo/plugin'
    )
 
    console.log('✓ Successfully copied reveal.js files')

@@ -10,8 +10,8 @@ block beforeslides
 	+badge(plugin.name.toLowerCase())
 
 block append scripts
-	+revealsrc("script", "plugin/markdown/markdown.js")
-	+revealsrc("script", "plugin/highlight/highlight.js")
+	+revealsrc("script", "dist/plugin/markdown.js")
+	+revealsrc("script", "dist/plugin/highlight.js")
 
 	if process.env.NODE_ENV === 'production'
 		script(src=`./plugin/${plugin.name}/${plugin.name}.js`)

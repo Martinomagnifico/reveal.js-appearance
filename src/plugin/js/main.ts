@@ -1,4 +1,4 @@
-import type { Api } from "reveal.js";
+import type { RevealApi } from "reveal.js";
 // Helper imports
 import { pluginDebug as debug, sectionTools } from "reveal.js-plugintoolkit";
 import type { Config } from "./config";
@@ -14,7 +14,7 @@ import { showHideSlide } from "./functions/show-hide-slide";
 import type { RevealFragmentEvent, RevealSlideEvent } from "./types";
 
 export class Appearance {
-	private readonly deck: Api;
+	private readonly deck: RevealApi;
 	private readonly viewport: HTMLElement;
 	private readonly slides: HTMLElement;
 	private readonly options: Config;
@@ -24,7 +24,7 @@ export class Appearance {
 	private appearances: Element[];
 	private isInitialLoad: boolean;
 
-	private constructor(deck: Api, options: Config) {
+	private constructor(deck: RevealApi, options: Config) {
 		this.deck = deck;
 		this.options = options;
 		this.isInitialLoad = true;
@@ -192,7 +192,7 @@ export class Appearance {
 	/**
 	 * Create a new Appearance instance
 	 */
-	static async create(deck: Api, options: Config): Promise<Appearance> {
+	static async create(deck: RevealApi, options: Config): Promise<Appearance> {
 		const instance = new Appearance(deck, options);
 		await instance.prepareElements();
 		instance.setupEventListeners();

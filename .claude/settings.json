@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -p \"require\\('./node_modules/reveal.js/package.json'\\).version\")",
+      "Bash(node -p \"JSON.stringify\\(require\\('./node_modules/reveal.js/package.json'\\).types||require\\('./node_modules/reveal.js/package.json'\\).exports,null,1\\)\")",
+      "Bash(perl -pi -e 's/\\\\bimport type \\\\{ Api \\\\} from \"reveal\\\\.js\";/import type { RevealApi } from \"reveal.js\";/' src/plugin/js/index.ts src/plugin/js/main.ts src/plugin/js/functions/show-hide-slide.ts)",
+      "Bash(perl -pi -e 's/\\\\bApi\\\\b/RevealApi/g if !/^import/' src/plugin/js/index.ts src/plugin/js/main.ts src/plugin/js/functions/show-hide-slide.ts)",
+      "Bash(node -p \"const p=require\\('./package.json'\\); JSON.stringify\\({version:p.version,types:p.types,exports:p.exports,peer:p.peerDependencies,dev:p.devDependencies,deps:p.dependencies},null,1\\)\")",
+      "Bash(node -p \"JSON.stringify\\(require\\('./package.json'\\).files\\)\")",
+      "Bash(npm ls *)",
+      "Bash(node -p \"const p=require\\('./node_modules/reveal.js-plugintoolkit/package.json'\\); JSON.stringify\\({deps:p.dependencies,peer:p.peerDependencies,types:p.types},null,1\\)\")",
+      "Bash(node -p \"require\\('./package.json'\\).version\")",
+      "Bash(echo \"version: $\\(node -p \"require\\('./package.json'\\).version\"\\)\")"
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import "../css/index.scss";
 
 // Basic imports
-import type { Api } from "reveal.js";
+import type { RevealApi } from "reveal.js";
 // Helper imports
 import { pluginDebug as debug, PluginBase, pluginCSS } from "reveal.js-plugintoolkit";
 import type { Config } from "./config";
@@ -12,7 +12,7 @@ import { Appearance } from "./main";
 
 const PLUGIN_ID = "appearance";
 
-const init = async (plugin: PluginBase<Config>, deck: Api, config: Config): Promise<void> => {
+const init = async (plugin: PluginBase<Config>, deck: RevealApi, config: Config): Promise<void> => {
 	// Init debug
 	if (debug && config.debug) {
 		debug.initialize(true, PLUGIN_ID);

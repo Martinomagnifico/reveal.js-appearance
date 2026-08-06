@@ -1,4 +1,3 @@
-<!-- .slide: data-initdelay="300" -->
 # Appearance <!-- .element: class="animate__flipInX animate__slow" -->
 ### for Reveal.js <!-- .element: class="animate__fadeInDown faster" data-split="letters" data-delay="75", data-container-delay="700" -->
 
@@ -30,9 +29,9 @@ Let's check out what Appearance does:
 
 ----
 
-## Let text appear
+### Let text appear
 
-* Add it to any text element <!-- .element: class="animate__bounceInLeft" -->
+* Add it to any text element. <!-- .element: class="animate__bounceInLeft" -->
 * Like list items, or headers. <!-- .element: class="animate__bounceInLeft" -->
 * It adds some impact. <!-- .element: class="animate__bounceInLeft" -->
 
@@ -40,11 +39,11 @@ Let's check out what Appearance does:
 
 ### Let lines appear per word<!-- .element: class="animate__fadeInDown animate__faster" data-split="words" data-delay="200" -->
 ### or…<!-- .element: class="animate__fadeInDown" -->
-### per character<!-- .element: class="animate__fadeInDown animate__faster" data-split="letters" data-delay="75", data-container-delay="700" -->
+### per character.<!-- .element: class="animate__fadeInDown animate__faster" data-split="letters" data-delay="75", data-container-delay="700" -->
 
 ----
 
-## Let images appear
+### Let images appear
 
 ![](assets/img/1.jpg) <!-- .element: class="animate__flipInX demoimg" -->
 ![](assets/img/2.jpg) <!-- .element: class="animate__flipInX demoimg" -->
@@ -55,7 +54,7 @@ Let's check out what Appearance does:
 
 ----
 
-## Use with fragments
+### Use with fragments
 
 Inside fragments like this *(click next)<!-- .element: class="animate__fadeInDown animate__faster" -->*:
 <!-- .element: class="animate__fadeInDown" -->
@@ -69,6 +68,32 @@ Inside fragments like this *(click next)<!-- .element: class="animate__fadeInDow
 
 Or as a fragment itself.
 <!-- .element: class="fragment animate__fadeInDown" -->
+
+----
+
+### Animate.css animations
+
+Appearance supports the standard entrance/in animations that Animate.css offers. Some examples:
+<!-- .element: class="small" -->
+
+* .animate__bounceInDown <!-- .element: class="animate__bounceInDown" -->
+* .animate__fadeInLeft <!-- .element: class="animate__fadeInLeft" data-delay="1000" -->
+* .animate__flipInX <!-- .element: class="animate__flipInX" data-delay="1000" -->
+* .animate__rotateIn <!-- .element: class="animate__rotateIn" data-delay="1000" -->
+* .animate__zoomInDown <!-- .element: class="animate__zoomInDown" data-delay="1000" -->
+* .animate__jackInTheBox<!-- .element: class="animate__jackInTheBox" data-delay="1000" -->
+
+
+----
+
+### Additional animations
+
+* .animate__skidLeft <!-- .element: class="animate__skidLeft" -->
+* .animate__skidLeftBig <!-- .element: class="animate__skidLeftBig" data-delay="1000" -->
+* .animate__skidRight <!-- .element: class="animate__skidRight" data-delay="1000" -->
+* .animate__skidRightBig <!-- .element: class="animate__skidRightBig" data-delay="1000" -->
+* .animate__shrinkIn <!-- .element: class="animate__shrinkIn" data-delay="1000" -->
+* .animate__shrinkInBig <!-- .element: class="animate__shrinkInBig" data-delay="1000" -->
 
 ---
 
@@ -237,31 +262,6 @@ You can use any of the following events:
 
 This can be set per-slide with `data-appearevent`, or globally in the Appearance options.
 <!-- .element: class="small animate__fadeInUp " -->
-
-
-----
-<!-- .slide: data-initdelay="3000" -->
-### Change the initial delay
-
-This delay is triggered when a slide is loaded/reloaded for the first time.
-<!-- .element: class="small" -->
-
-When you came to this slide, you probably came from the previous slide so the initial delay was NOT applied. Reload your browser to see the effect. The images will then only appear after 3 seconds.
-<!-- .element: class="small" -->
-
-![](assets/img/1.jpg) <!-- .element: class="animate__flipInX demoimg" -->
-![](assets/img/2.jpg) <!-- .element: class="animate__flipInX demoimg" -->
-![](assets/img/3.jpg) <!-- .element: class="animate__flipInX demoimg" -->
-![](assets/img/4.jpg) <!-- .element: class="animate__flipInX demoimg" -->
-![](assets/img/5.jpg) <!-- .element: class="animate__flipInX demoimg" -->
-<!-- .element: class="row fivegrid" -->
-
-```html []
-<!-- .slide: data-initdelay="3000" -->
-```
-
-This can also be set globally in the Appearance options.
-<!-- .element: class="small" -->
 
 ---
 

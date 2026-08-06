@@ -1,15 +1,16 @@
 import fs from 'fs';
 import { resolve } from 'path';
+import type { Plugin, ViteDevServer } from 'vite';
 
-export function dynamicIndex() {
+export function dynamicIndex(): Plugin {
   return {
     name: 'vite-plugin-dynamic-index', // Name of the plugin
-    async configureServer(server) {
+    async configureServer(server: ViteDevServer) {
       server.middlewares.use(async (req, res, next) => {
         if (req.url === '/' || req.url === '/index.html') {
           // Generate dynamic index.html
 
-          const viewsDir = resolve(__dirname, '../src/demo/views');
+          const viewsDir = resolve(import.meta.dirname, '../src/demo/views');
           const files = fs.readdirSync(viewsDir);
 
           // Find all Pug files in the directory

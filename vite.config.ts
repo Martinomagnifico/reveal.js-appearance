@@ -3,10 +3,10 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import vituum from "vituum";
 import pug from "@vituum/vite-plugin-pug";
-import pkg from "./package.json";
+import pkg from "./package.json" with { type: "json" };
 import pluginConfig from './plugin.config.js'
-import { dynamicIndex } from './vite-plugins/vite-plugin-dynamic-index';
-import suppressWarnings from './vite-plugins/vite-plugin-suppress-warnings';
+import { dynamicIndex } from './vite-plugins/vite-plugin-dynamic-index.ts';
+import suppressWarnings from './vite-plugins/vite-plugin-suppress-warnings.ts';
 
 export default defineConfig({
     publicDir: "src/demo/public",
@@ -14,9 +14,12 @@ export default defineConfig({
         outDir: "demo",
         emptyOutDir: false,
         rollupOptions: {
+            checks: {
+                emptyImportMeta: false,
+            },
             input: [
-                resolve(__dirname, "src/demo/views/demo*.pug"),
-                resolve(__dirname, "src/demo/css/*.scss"),
+                resolve(import.meta.dirname, "src/demo/views/demo*.pug"),
+                resolve(import.meta.dirname, "src/demo/css/*.scss"),
             ],
             external: [/^\/node_modules\/reveal\.js\/.*/],
             output: {
@@ -67,11 +70,4 @@ export default defineConfig({
         host: true,
         open: pluginConfig.demo?.server?.open || "index.html" || "demo.html",
     },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: "modern"
-            }
-        }
-    }
 });
