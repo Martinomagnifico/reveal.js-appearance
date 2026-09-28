@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [1.4.2] - 2026-09-28
 ### Fixed
 - The plugin files, the stylesheet and `package.json` can be imported by path again.
 
