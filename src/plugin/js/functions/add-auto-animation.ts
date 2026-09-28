@@ -1,9 +1,8 @@
 // Basic imports
-import { pluginDebug as debug } from "reveal.js-plugintoolkit";
+import { configTools, pluginDebug as debug } from "reveal.js-plugintoolkit";
 import type { AnimationOption, Config } from "../config";
 
 // Helper imports
-import { toJSONString } from "../helpers";
 import { parseAutoElements } from "./parse-auto-elements";
 
 const isAnimationObject = (
@@ -72,7 +71,7 @@ export const addAutoAnimation = (
 
 	try {
 		// Parse the selectors safely
-		const elementsToAnimate = JSON.parse(toJSONString(sectionAutoSelectors));
+		const elementsToAnimate = JSON.parse(configTools.toJSONString(sectionAutoSelectors));
 
 		// Process each selector and its animation configuration
 		for (const [selector, animConfig] of Object.entries(elementsToAnimate)) {

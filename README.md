@@ -45,7 +45,7 @@ The Appearance plugin folder can then be referenced from `node_modules/reveal.js
 ### JavaScript
 
 
-There are two JavaScript files for Appearance, a regular one, `appearance.js`, and a module one, `appearance.esm.js`. You only need one of them:
+There are two JavaScript files for Appearance, a regular one, `appearance.js`, and a module one, `appearance.mjs`. You only need one of them:
 
 #### Regular 
 If you're not using ES modules, for example, to be able to run your presentation from the filesystem, you can add it like this:
@@ -94,25 +94,29 @@ Otherwise, you may want to copy the plugin into a plugin folder or an other loca
 
 
 ### Styling
-The styling of Appearance is automatically inserted **when the appearance folder is manually copied** to the Reveal.js plugin folder.
+The styling of Appearance is automatically inserted from the included CSS styles, either loaded through NPM or from the plugin folder.
 
-If you **import** reveal.js-appearance from npm, you will need to **import** the CSS file yourself. Depending on your setup this can be something like this:
-```javascript
-import 'reveal.js-appearance/plugin/appearance/appearance.css';
+If you want to change the Appearance style, you can do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead.
+
+#### Where the stylesheet comes from
+
+Appearance finds and loads its own stylesheet, so most decks never set anything here. If it cannot find it, maybe because the plugin is in a bundle, or it is somewhere the plugin cannot work out, then use `csspath`.
+
+```js
+appearance: {
+    csspath: "plugin/appearance/appearance.css"
+}
 ```
 
-Appearance will detect if it runs in a module environment and will then not autoload the CSS. You can still set `cssautoload` to `true` if you like, but your bundler (Vite, Webpack) may not like that. In any of these cases, `import` the CSS file yourself.
-
-If you want to change the Appearance style, you can do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of Appearance or through `import` when using modules.
-
-#### Custom CSS
-If and when you decide to create your own CSS file, make sure that you also include the following CSS variable, that is used by the plugin to avoid loading the CSS multiple times, and to avoid using the autoloading feature when using modules:
+If you import the stylesheet yourself, then set `csspath: false` so that Appearance does not load a second copy. A stylesheet of your own can also say so, which is useful when you cannot reach the plugin’s options:
 
 ```css
 :root {
-	--cssimported-appearance: true;
+    --cssimported-appearance: true;
 }
 ```
+
+`csspath` loads that file *instead of* Appearance’s own.
 
 ## Setup
 
@@ -321,6 +325,26 @@ In the example below you can see that mixing strings and objects is perfectly fi
 </section>
 ```
 
+#### Quotes in the attribute
+
+JSON needs double quotes, and so does an attribute usually. They cannot be the same quotes: in `data-autoappear="{"h2": "animate__fadeInDown"}"` the attribute ends at the second `"`, and Appearance only gets `{`.
+
+Use single quotes for one of the two. Appearance turns single quotes inside into double quotes, so both of these work:
+
+```html
+<section data-autoappear='{"h2": "animate__fadeInDown"}'>
+<section data-autoappear="{'h2': 'animate__fadeInDown'}">
+```
+
+Where you write the attribute decides which one you can use:
+
+* **HTML**: either one.
+* **Markdown** (Reveal.js): only the second. Reveal's Markdown reads `<!-- .slide: ... -->` attributes only between double quotes, so use single quotes inside: `<!-- .slide: data-autoappear="{'h2': 'animate__fadeInDown'}" -->`.
+* **Quarto**: either one in the slide heading, for example `## Title {data-autoappear="{'h2': 'animate__fadeInDown'}"}`. In the YAML header (like `title-slide-attributes`), Quarto turns straight quotes into curly ones. Appearance turns those back.
+* **Pug**: either one. Pug escapes the quotes for you.
+
+In the Reveal.js options (`autoelements`) you write a JavaScript object, so none of this applies there.
+
 ### Container-aware delays
 
 When you have multiple groups of elements in separate containers, `container-delay` applies to the first element in each container, while `delay` applies between elements within the same container. In the example below, the `delay` is the standard 300ms from the global options.
@@ -363,8 +387,8 @@ Reveal.initialize({
 * **`appearevent`**: Use a specific event at which Appearance starts. Options: `'slidetransitionend'` (default), `'slidechanged'`, or `'auto'`.
 * **`autoappear`**: Use this when you do not want to add classes to each item that you want to appear, and just let Appearance add animation classes to (all of) the provided elements in the presentation. See "Autoappear" mode above.
 * **`autoelements`**: These are the elements that `autoappear` will target. Each element has a selector and an animation class. If `autoappear` is off, the elements will still get animation if the section contains a `data-autoappear` attribute.
-* **`cssautoload`**: Appearance will load the CSS (including Animate.css) if this is set to `true`. If you import reveal.js-appearance from npm, you will need to import the CSS file yourself. If you use 'import', then `cssautoload` should be set to `false`. If you know the path to the CSS file, you can use the `csspath` option and keep `cssautoload` set to `true`.
-* **`csspath`**: Appearance will automatically load the styling of the plugin. If you want to customise the styling, you can link to your own CSS file here.
+* **`cssautoload`**: Appearance loads its own stylesheet (including Animate.css) when this is on. If you bundle Appearance, or import its CSS yourself, it works this out and does not load a second copy, so this normally does not need setting. If you do want it to autoload in a bundled deck, then setting it to `true` yourself turns it back on.
+* **`csspath`**: Where Appearance's stylesheet is, for the cases where it cannot find it by itself. You can also set `csspath: false` if the styling is already on the page through some other file.
 * **`delay`**: Base time in milliseconds between element appearances. This is the delay between items of the same type.
 * **`hideagain`**: Change this (true/false) if you want to see the shown elements if you go back. When set to `true`, elements will hide again when navigating away from the slide.
 * **`initdelay`**: Sets a delay in milliseconds before any animations start, but only on the initial page load (not when navigating between slides). Default is `0` (no delay). Can be overridden per-slide with `data-initdelay` attribute.

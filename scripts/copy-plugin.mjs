@@ -37,6 +37,16 @@ const copyPluginFiles = async () => {
     const srcDir = join('demo', 'plugin', pluginName)
     const destDir = join('plugin', pluginName)
  
+    // Earlier versions shipped the module build as `<name>.esm.js`, and the readme
+    // has always told people to load the plugin folder by path — from node_modules
+    // or from a copy of it. A path is fetched as written, so the package's export
+    // map cannot redirect it and the old filename has to exist. Re-exporting the
+    // real build keeps those decks working without shipping it twice.
+    await fs.writeFile(
+      join(srcDir, `${pluginName}.esm.js`),
+      `export { default } from "./${pluginName}.mjs";\n`
+    )
+
     // First add banners to files in demo
     const files = await fs.readdir(srcDir)
     for (const file of files) {

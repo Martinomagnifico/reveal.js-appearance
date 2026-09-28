@@ -1,9 +1,7 @@
 // Basic imports
+import { domTools } from "reveal.js-plugintoolkit";
 import type { Config } from "../config";
 import type { AppearanceConsts } from "../consts";
-
-// Helpers import
-import { copyDataAttributes } from "../helpers";
 
 /**
  * Hoist a list item's appearance to its parent element's appearance.
@@ -26,7 +24,7 @@ function hoistAppearance(from: Element, baseclass?: string): void {
 		to.classList.value = from.classList.value;
 
 		// Copy data attributes
-		copyDataAttributes(from, to, "data-appear-parent");
+		domTools.copyDataAttributes(from, to, "data-appear-parent");
 
 		// Update content
 		to.innerHTML = from.innerHTML;

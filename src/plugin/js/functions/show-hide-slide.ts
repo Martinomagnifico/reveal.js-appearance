@@ -55,7 +55,7 @@ function slideAppearevent(toSlide: HTMLElement, options: Config): string {
  * @param options An object containing configuration options
  */
 function removeStartAttribute(slides: SlideTransition, options: Config): void {
-	if (options.hideagain && slides.from && slides.from.dataset.appearanceCanStart) {
+	if (options.hideagain && slides.from?.dataset.appearanceCanStart) {
 		slides.from.removeAttribute("data-appearance-can-start");
 	}
 }
@@ -72,7 +72,7 @@ function turnOffSlideAppearances(
 	options: Config,
 	consts: AppearanceConsts
 ): void {
-	if (options.hideagain && slides && slides.from) {
+	if (options.hideagain && slides?.from) {
 		// Remove animationended class from animated elements when moving away from that slide
 		const fromAppearances = slides.from.querySelectorAll(consts.animatecss);
 		if (fromAppearances) {

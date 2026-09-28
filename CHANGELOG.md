@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+### Fixed
+- The plugin files, the stylesheet and `package.json` can be imported by path again.
+
 ## [1.4.1] - 2026-08-06
 ### Fixed
 - Fix bug where Function("return import.meta")() does not work.
