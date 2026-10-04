@@ -1,7 +1,7 @@
  /*****************************************************************
  *
  * reveal.js-appearance for Reveal.js 
- * Version 1.4.2
+ * Version 1.4.3
  * 
  * @link
  * https://github.com/martinomagnifico/reveal.js-appearance
@@ -122,14 +122,14 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	/\/@id\//,
 	/\/\.vite\/deps\//,
 	/[?&][vt]=/
-], _ = (e) => g.some((t) => t.test(e)), v = (e) => {
+], ee = (e) => g.some((t) => t.test(e)), _ = (e) => {
 	if (typeof document < "u") {
 		let t = d.map((t) => `script[src$="${e}${t}"]`).join(", "), n = document.querySelector(t)?.getAttribute("src");
 		if (n) return { directory: p(n) };
 	}
-	return f && !_(f) && h(m(f), e) ? { directory: p(f) } : { directory: null };
-}, y = (e) => v(e).directory !== null, b = /* @__PURE__ */ new Map(), ee = (e = "") => {
-	let t = b.get(e);
+	return f && !ee(f) && h(m(f), e) ? { directory: p(f) } : { directory: null };
+}, v = (e) => _(e).directory !== null, y = /* @__PURE__ */ new Map(), b = (e = "") => {
+	let t = y.get(e);
 	if (t) return t;
 	let n = typeof window < "u", r = typeof document < "u", i = import.meta, a = !1;
 	try {
@@ -143,7 +143,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	try {
 		c = i?.env?.DEV === !0;
 	} catch {}
-	let l = e !== "" && y(e), u = {
+	let l = e !== "" && v(e), u = {
 		hasResolvableSource: l,
 		hasWindow: n,
 		hasDocument: r,
@@ -152,8 +152,8 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		hasHMR: s,
 		isViteDev: c
 	};
-	return b.set(e, u), u;
-}, te = class {
+	return y.set(e, u), u;
+}, x = class {
 	defaultConfig;
 	pluginInit;
 	pluginId;
@@ -180,7 +180,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	get userConfig() {
 		return this.userConfigData || {};
 	}
-	getEnvironmentInfo = () => ee(this.pluginId);
+	getEnvironmentInfo = () => b(this.pluginId);
 	init(e) {
 		if (this.initializeConfig(e), this.pluginInit) return this.pluginInit(this, e, this.getCurrentConfig());
 	}
@@ -193,9 +193,9 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			...e
 		};
 	}
-}, x = "data-css-id", S = (e, t) => new Promise((n, r) => {
+}, S = "data-css-id", C = (e, t) => new Promise((n, r) => {
 	let i = document.createElement("link");
-	i.rel = "stylesheet", i.href = t, i.setAttribute(x, e);
+	i.rel = "stylesheet", i.href = t, i.setAttribute(S, e);
 	let a = setTimeout(() => {
 		i.parentNode && i.parentNode.removeChild(i), r(/* @__PURE__ */ Error(`[${e}] Timeout loading CSS from: ${t}`));
 	}, 5e3);
@@ -204,30 +204,30 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	}, i.onerror = () => {
 		clearTimeout(a), i.parentNode && i.parentNode.removeChild(i), r(/* @__PURE__ */ Error(`[${e}] Failed to load CSS from: ${t}`));
 	}, document.head.appendChild(i);
-}), C = (e) => document.querySelectorAll(`[${x}="${e}"]`).length > 0, ne = 1e4, w = (e) => new Promise((t) => {
-	if (T(e)) return t(!0);
+}), te = (e) => document.querySelectorAll(`[${S}="${e}"]`).length > 0, w = 1e4, T = (e) => new Promise((t) => {
+	if (E(e)) return t(!0);
 	if (typeof MutationObserver > "u") return t(!1);
 	let n = !1, r = (e) => {
 		n || (n = !0, i.disconnect(), clearTimeout(o), window.removeEventListener("load", a), t(e));
 	}, i = new MutationObserver(() => {
-		T(e) && r(!0);
+		E(e) && r(!0);
 	});
 	i.observe(document.documentElement, {
 		childList: !0,
 		subtree: !0,
 		attributeFilter: ["href", "rel"]
 	});
-	let a = () => requestAnimationFrame(() => r(T(e)));
+	let a = () => requestAnimationFrame(() => r(E(e)));
 	document.readyState === "complete" ? a() : window.addEventListener("load", a, { once: !0 });
-	let o = setTimeout(() => r(T(e)), ne);
-}), T = (e) => {
-	if (C(e)) return !0;
+	let o = setTimeout(() => r(E(e)), w);
+}), E = (e) => {
+	if (te(e)) return !0;
 	try {
 		return window.getComputedStyle(document.documentElement).getPropertyValue(`--cssimported-${e}`).trim() !== "";
 	} catch {
 		return !1;
 	}
-}, E = ((e) => new Proxy(e, { get: (e, t) => {
+}, D = ((e) => new Proxy(e, { get: (e, t) => {
 	if (t in e) return e[t];
 	let n = t.toString();
 	if (typeof console[n] == "function") return (...t) => {
@@ -298,16 +298,16 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			this.groupDepth > 0 ? this.emit(e, t) : t.length > 0 && typeof t[0] == "string" ? this.emit(e, [`[${this.label}]: ${t[0]}`, ...t.slice(1)]) : this.emit(e, [`[${this.label}]:`, ...t]);
 		}
 	}
-}()), D = /* @__PURE__ */ new Set(), O = (e, t) => {
+}()), O = /* @__PURE__ */ new Set(), k = (e, t) => {
 	let n = `${e}::${t}`;
-	D.has(n) || (D.add(n), console.warn(`[${e}] ${t}`));
-}, k = (e) => [`dist/plugin/${e}/${e}.css`, `plugin/${e}/${e}.css`], re = (e) => typeof e == "string" && e.trim() !== "", A = async (e, t) => {
+	O.has(n) || (O.add(n), console.warn(`[${e}] ${t}`));
+}, ne = (e) => [`dist/plugin/${e}/${e}.css`, `plugin/${e}/${e}.css`], re = (e) => typeof e == "string" && e.trim() !== "", A = async (e, t) => {
 	let { cssautoload: n, csspath: r, debug: i = !1 } = t;
 	if (n === !1 || r === !1) return i && console.log(`[${e}] CSS loading is switched off`), { status: "skipped" };
 	if (re(r)) {
-		let t = r.trim(), n = T(e), a = n && !!document.querySelector(`[data-css-id="${e}"]`);
+		let t = r.trim(), n = E(e), a = n && !!document.querySelector(`[data-css-id="${e}"]`);
 		try {
-			return await S(e, t), i && console.log(`[${e}] CSS loaded from: ${t}`), n && O(e, `Loaded CSS from ${t}, but a stylesheet for this plugin was already on the page (${a ? "a tagged <link>" : "an import or inline <style>"}) — csspath adds one, it cannot remove one. Both are live and the cascade decides. Remove the other import or <link>, or drop csspath.`), {
+			return await C(e, t), i && console.log(`[${e}] CSS loaded from: ${t}`), n && k(e, `Loaded CSS from ${t}, but a stylesheet for this plugin was already on the page (${a ? "a tagged <link>" : "an import or inline <style>"}) — csspath adds one, it cannot remove one. Both are live and the cascade decides. Remove the other import or <link>, or drop csspath.`), {
 				status: "loaded",
 				path: t
 			};
@@ -318,12 +318,12 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			};
 		}
 	}
-	if (T(e)) return i && console.log(`[${e}] CSS is already imported, skipping`), { status: "present" };
-	let { directory: a } = v(e);
+	if (E(e)) return i && console.log(`[${e}] CSS is already imported, skipping`), { status: "present" };
+	let { directory: a } = _(e);
 	if (a !== null || n === !0) {
-		let t = [...a === null ? [] : [`${a}${e}.css`], ...k(e)].filter((e, t, n) => n.indexOf(e) === t);
+		let t = [...a === null ? [] : [`${a}${e}.css`], ...ne(e)].filter((e, t, n) => n.indexOf(e) === t);
 		for (let n of t) try {
-			return await S(e, n), i && console.log(`[${e}] CSS loaded from: ${n}`), {
+			return await C(e, n), i && console.log(`[${e}] CSS loaded from: ${n}`), {
 				status: "loaded",
 				path: n
 			};
@@ -332,8 +332,8 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		}
 		return console.warn(`[${e}] Could not load CSS. Tried: ${t.join(", ")}. Import the stylesheet yourself, or set csspath to where it is.`), { status: "failed" };
 	}
-	return w(e).then((t) => {
-		t || O(e, `CSS could not be autoloaded here, because the plugin is part of a bundle. Import it once in your own code: import 'reveal.js-${e}/${e}.css'`);
+	return T(e).then((t) => {
+		t || k(e, `CSS could not be autoloaded here, because the plugin is part of a bundle. Import it once in your own code: import 'reveal.js-${e}/${e}.css'`);
 	}), { status: "advised" };
 };
 async function ie(e, t) {
@@ -445,7 +445,7 @@ var K = (e) => {
 		let n = t ? K(e) : e;
 		return JSON.parse(R.toJSONString(n));
 	} catch (t) {
-		return E.log(`Error parsing autoelements: ${t} (${e})`), null;
+		return D.log(`Error parsing autoelements: ${t} (${e})`), null;
 	}
 	return null;
 }, J = (e) => typeof e == "object" && !!e, oe = (e, t, n) => {
@@ -488,7 +488,7 @@ var K = (e) => {
 			}
 		}
 	} catch (e) {
-		E.log(t, `Error processing auto animations: ${e}`);
+		D.log(t, `Error processing auto animations: ${e}`);
 	}
 };
 //#endregion
@@ -555,15 +555,19 @@ function me(e) {
 		to: e.toSlide || e.currentSlide || null
 	};
 }
-function X(e, t) {
+function he(e, t) {
 	e.dataset.appearevent && e.dataset.appearevent === "auto" && (e.dataset.appearevent = "autoanimate");
 	let n = t.appearevent;
 	return n === "auto" && (n = "autoanimate"), e.dataset.appearevent || n;
 }
-function Z(e, t) {
+function ge(e) {
+	let t = [e, e.parentElement?.matches("section.stack") ? e.parentElement : null].flatMap((e) => e ? e.getAnimations() : []).filter((e) => e.playState === "running");
+	return Promise.all(t.map((e) => e.finished.catch(() => void 0)));
+}
+function X(e, t) {
 	t.hideagain && e.from?.dataset.appearanceCanStart && e.from.removeAttribute("data-appearance-can-start");
 }
-function Q(e, t, n) {
+function Z(e, t, n) {
 	if (t.hideagain && e?.from) {
 		let t = e.from.querySelectorAll(n.animatecss);
 		if (t) for (let e of t) e.classList.remove("animationended");
@@ -571,7 +575,7 @@ function Q(e, t, n) {
 		if (r) for (let e of r) e.classList.remove("animationended");
 	}
 }
-function he(e, t, n, r, i) {
+function _e(e, t, n, r, i) {
 	let a = r.getViewportElement().classList.contains("reveal-scroll"), o = e.type, s = me(e);
 	if (s.to) {
 		if (o === "ready") {
@@ -580,17 +584,23 @@ function he(e, t, n, r, i) {
 				s.to && (s.to.dataset.appearanceCanStart = "true"), i.value = !1;
 			}, e) : (s.to.dataset.appearanceCanStart = "true", i.value = !1);
 		}
-		let r = X(s.to, t);
-		(o === r || o === "slidetransitionend" && r === "autoanimate") && (s.to.dataset.appearanceCanStart = "true"), a && o === "slidechanged" && (Z(s, t), Q(s, t, n), setTimeout(() => {
+		let c = he(s.to, t);
+		if (o === c || o === "slidetransitionend" && c === "autoanimate") {
+			let e = s.to;
+			o === "slidetransitionend" ? ge(e).then(() => {
+				r.getCurrentSlide() === e && (e.dataset.appearanceCanStart = "true");
+			}) : e.dataset.appearanceCanStart = "true";
+		}
+		a && o === "slidechanged" && (X(s, t), Z(s, t, n), setTimeout(() => {
 			s.to && (s.to.dataset.appearanceCanStart = "true");
-		}, t.delay)), o === "slidetransitionend" && (Z(s, t), Q(s, t, n)), o === "slidechanged" && document.body.dataset.exitoverview ? (Z(s, t), s.to.dataset.appearanceCanStart = "true") : o === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
+		}, t.delay)), o === "slidetransitionend" && (X(s, t), Z(s, t, n)), o === "slidechanged" && document.body.dataset.exitoverview ? (X(s, t), s.to.dataset.appearanceCanStart = "true") : o === "overviewhidden" && (document.body.dataset.exitoverview = "true", setTimeout(() => {
 			document.body.removeAttribute("data-exitoverview");
-		}, 500), e.currentSlide && (Z(s, t), s.to.dataset.appearanceCanStart = "true"));
+		}, 500), e.currentSlide && (X(s, t), s.to.dataset.appearanceCanStart = "true"));
 	}
 }
 //#endregion
 //#region src/plugin/js/main.ts
-var ge = class e {
+var Q = class e {
 	deck;
 	viewport;
 	slides;
@@ -613,15 +623,15 @@ var ge = class e {
 		}
 	}
 	setupEventListeners() {
-		E.log("Options:", this.options), E.log("Setting up event listeners");
+		D.log("Options:", this.options), D.log("Setting up event listeners");
 		let e = { value: this.isInitialLoad };
-		for (let t of this.consts.eventnames) E.log(`Adding listener for ${t} event`), this.deck.on(t, (t) => {
-			he(t, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
+		for (let t of this.consts.eventnames) D.log(`Adding listener for ${t} event`), this.deck.on(t, (t) => {
+			_e(t, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
 		});
 		this.viewport.addEventListener("animationend", (e) => {
 			e.target.classList.add("animationended");
 		}), this.viewport.addEventListener("autoanimate", (e) => {
-			E.log("Autoanimate event triggered:", e);
+			D.log("Autoanimate event triggered:", e);
 		}), this.viewport.addEventListener("fragmenthidden", (e) => {
 			let t = e;
 			if (t.fragment) {
@@ -635,8 +645,8 @@ var ge = class e {
 		let r = new e(t, n);
 		return await r.prepareElements(), r.setupEventListeners(), r;
 	}
-}, $ = "appearance", _e = async (e, t, n) => {
-	E && n.debug && E.initialize(!0, $), await ie(e, n), await ge.create(t, n);
-}, ve = () => new te($, _e, W).createInterface();
+}, $ = "appearance", ve = async (e, t, n) => {
+	D && n.debug && D.initialize(!0, $), await ie(e, n), await Q.create(t, n);
+}, ye = () => new x($, ve, W).createInterface();
 //#endregion
-export { ve as default };
+export { ye as default };

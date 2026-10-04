@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.3] - 2026-10-04
+### Fixed
+- With `appearevent: 'slidetransitionend'` (the default), a slide's first appearance could start while the slide was still moving in. Reveal sends `slidetransitionend` for the first transition that ends on any section, and a section elsewhere in the deck can end one straight away. Appearance now waits for the slide itself, and the stack it moves with, to finish moving before it starts.
+
 ## [1.4.2] - 2026-09-28
 ### Fixed
 - The plugin files, the stylesheet and `package.json` can be imported by path again.

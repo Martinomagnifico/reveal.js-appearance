@@ -1,6 +1,6 @@
 {
     "name": "reveal.js-appearance",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "description": "An animation plugin for Reveal.js that animates elements sequentially like in Powerpoint. Perfect for online portfolios or other presentations with images.",
     "keywords": [
         "reveal",

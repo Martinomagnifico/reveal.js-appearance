@@ -49,6 +49,27 @@ function slideAppearevent(toSlide: HTMLElement, options: Config): string {
 }
 
 /**
+ * Resolves once the slide, and the stack it moves with, have stopped moving.
+ *
+ * Reveal sends `slidetransitionend` for the first transition that ends on any
+ * section while a slide change is running, not only on the slide that moved. A
+ * section elsewhere in the deck can end one of its own straight away, and then
+ * the event comes long before this slide has arrived. So the slide's own
+ * transitions are waited for here. With none running, as at the real end of a
+ * change or with `transition: 'none'`, this resolves at once.
+ *
+ * @param slide The slide that is arriving
+ */
+function slideSettled(slide: HTMLElement): Promise<unknown> {
+	const stack = slide.parentElement?.matches("section.stack") ? slide.parentElement : null;
+	const moving = [slide, stack]
+		.flatMap((el) => (el ? el.getAnimations() : []))
+		.filter((animation) => animation.playState === "running");
+	// A transition that is cancelled, because the deck moved on, rejects `finished`.
+	return Promise.all(moving.map((animation) => animation.finished.catch(() => undefined)));
+}
+
+/**
  * Remove the 'data-appearance-can-start' attribute from the 'from' slide if the 'hideagain' option is enabled.
  *
  * @param slides The container element for the slides
@@ -137,7 +158,18 @@ export function showHideSlide(
 			etype === appearevent ||
 			(etype === "slidetransitionend" && appearevent === "autoanimate")
 		) {
-			slides.to.dataset.appearanceCanStart = "true";
+			const toSlide = slides.to;
+			if (etype === "slidetransitionend") {
+				// Only once the slide is really there (see slideSettled), and only if
+				// it is still the current slide by then.
+				slideSettled(toSlide).then(() => {
+					if (deck.getCurrentSlide() === toSlide) {
+						toSlide.dataset.appearanceCanStart = "true";
+					}
+				});
+			} else {
+				toSlide.dataset.appearanceCanStart = "true";
+			}
 		}
 
 		// Add scroll mode compatibility, does not have a slidetransitionend event yet
