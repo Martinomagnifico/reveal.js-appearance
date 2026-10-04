@@ -1,8 +1,12 @@
 // Basic imports
 import type { RevealApi } from "reveal.js";
+// The entrance signal; see main.ts.
+import { entranceTools } from "reveal.js-plugintoolkit";
 import type { Config } from "../config";
 import type { AppearanceConsts } from "../consts";
 import type { RevealSlideEvent } from "../types";
+
+const { reset } = entranceTools;
 
 interface SlideTransition {
 	from: HTMLElement | null;
@@ -99,6 +103,9 @@ function turnOffSlideAppearances(
 		if (fromAppearances) {
 			for (const appearance of fromAppearances) {
 				appearance.classList.remove("animationended");
+				// Hidden again, so it will come in again.
+				if (appearance instanceof HTMLElement && appearance.dataset.entrance)
+					reset(appearance);
 			}
 		}
 

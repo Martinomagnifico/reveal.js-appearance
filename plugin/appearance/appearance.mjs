@@ -122,13 +122,13 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	/\/@id\//,
 	/\/\.vite\/deps\//,
 	/[?&][vt]=/
-], ee = (e) => g.some((t) => t.test(e)), _ = (e) => {
+], _ = (e) => g.some((t) => t.test(e)), v = (e) => {
 	if (typeof document < "u") {
 		let t = d.map((t) => `script[src$="${e}${t}"]`).join(", "), n = document.querySelector(t)?.getAttribute("src");
 		if (n) return { directory: p(n) };
 	}
-	return f && !ee(f) && h(m(f), e) ? { directory: p(f) } : { directory: null };
-}, v = (e) => _(e).directory !== null, y = /* @__PURE__ */ new Map(), b = (e = "") => {
+	return f && !_(f) && h(m(f), e) ? { directory: p(f) } : { directory: null };
+}, ee = (e) => v(e).directory !== null, y = /* @__PURE__ */ new Map(), te = (e = "") => {
 	let t = y.get(e);
 	if (t) return t;
 	let n = typeof window < "u", r = typeof document < "u", i = import.meta, a = !1;
@@ -143,7 +143,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	try {
 		c = i?.env?.DEV === !0;
 	} catch {}
-	let l = e !== "" && v(e), u = {
+	let l = e !== "" && ee(e), u = {
 		hasResolvableSource: l,
 		hasWindow: n,
 		hasDocument: r,
@@ -153,7 +153,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		isViteDev: c
 	};
 	return y.set(e, u), u;
-}, x = class {
+}, b = class {
 	defaultConfig;
 	pluginInit;
 	pluginId;
@@ -180,7 +180,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	get userConfig() {
 		return this.userConfigData || {};
 	}
-	getEnvironmentInfo = () => b(this.pluginId);
+	getEnvironmentInfo = () => te(this.pluginId);
 	init(e) {
 		if (this.initializeConfig(e), this.pluginInit) return this.pluginInit(this, e, this.getCurrentConfig());
 	}
@@ -193,9 +193,9 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			...e
 		};
 	}
-}, S = "data-css-id", C = (e, t) => new Promise((n, r) => {
+}, x = "data-css-id", S = (e, t) => new Promise((n, r) => {
 	let i = document.createElement("link");
-	i.rel = "stylesheet", i.href = t, i.setAttribute(S, e);
+	i.rel = "stylesheet", i.href = t, i.setAttribute(x, e);
 	let a = setTimeout(() => {
 		i.parentNode && i.parentNode.removeChild(i), r(/* @__PURE__ */ Error(`[${e}] Timeout loading CSS from: ${t}`));
 	}, 5e3);
@@ -204,30 +204,30 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	}, i.onerror = () => {
 		clearTimeout(a), i.parentNode && i.parentNode.removeChild(i), r(/* @__PURE__ */ Error(`[${e}] Failed to load CSS from: ${t}`));
 	}, document.head.appendChild(i);
-}), te = (e) => document.querySelectorAll(`[${S}="${e}"]`).length > 0, w = 1e4, T = (e) => new Promise((t) => {
-	if (E(e)) return t(!0);
+}), ne = (e) => document.querySelectorAll(`[${x}="${e}"]`).length > 0, re = 1e4, ie = (e) => new Promise((t) => {
+	if (C(e)) return t(!0);
 	if (typeof MutationObserver > "u") return t(!1);
 	let n = !1, r = (e) => {
 		n || (n = !0, i.disconnect(), clearTimeout(o), window.removeEventListener("load", a), t(e));
 	}, i = new MutationObserver(() => {
-		E(e) && r(!0);
+		C(e) && r(!0);
 	});
 	i.observe(document.documentElement, {
 		childList: !0,
 		subtree: !0,
 		attributeFilter: ["href", "rel"]
 	});
-	let a = () => requestAnimationFrame(() => r(E(e)));
+	let a = () => requestAnimationFrame(() => r(C(e)));
 	document.readyState === "complete" ? a() : window.addEventListener("load", a, { once: !0 });
-	let o = setTimeout(() => r(E(e)), w);
-}), E = (e) => {
-	if (te(e)) return !0;
+	let o = setTimeout(() => r(C(e)), re);
+}), C = (e) => {
+	if (ne(e)) return !0;
 	try {
 		return window.getComputedStyle(document.documentElement).getPropertyValue(`--cssimported-${e}`).trim() !== "";
 	} catch {
 		return !1;
 	}
-}, D = ((e) => new Proxy(e, { get: (e, t) => {
+}, w = ((e) => new Proxy(e, { get: (e, t) => {
 	if (t in e) return e[t];
 	let n = t.toString();
 	if (typeof console[n] == "function") return (...t) => {
@@ -298,16 +298,16 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			this.groupDepth > 0 ? this.emit(e, t) : t.length > 0 && typeof t[0] == "string" ? this.emit(e, [`[${this.label}]: ${t[0]}`, ...t.slice(1)]) : this.emit(e, [`[${this.label}]:`, ...t]);
 		}
 	}
-}()), O = /* @__PURE__ */ new Set(), k = (e, t) => {
+}()), T = /* @__PURE__ */ new Set(), E = (e, t) => {
 	let n = `${e}::${t}`;
-	O.has(n) || (O.add(n), console.warn(`[${e}] ${t}`));
-}, ne = (e) => [`dist/plugin/${e}/${e}.css`, `plugin/${e}/${e}.css`], re = (e) => typeof e == "string" && e.trim() !== "", A = async (e, t) => {
+	T.has(n) || (T.add(n), console.warn(`[${e}] ${t}`));
+}, ae = (e) => [`dist/plugin/${e}/${e}.css`, `plugin/${e}/${e}.css`], oe = (e) => typeof e == "string" && e.trim() !== "", D = async (e, t) => {
 	let { cssautoload: n, csspath: r, debug: i = !1 } = t;
 	if (n === !1 || r === !1) return i && console.log(`[${e}] CSS loading is switched off`), { status: "skipped" };
-	if (re(r)) {
-		let t = r.trim(), n = E(e), a = n && !!document.querySelector(`[data-css-id="${e}"]`);
+	if (oe(r)) {
+		let t = r.trim(), n = C(e), a = n && !!document.querySelector(`[data-css-id="${e}"]`);
 		try {
-			return await C(e, t), i && console.log(`[${e}] CSS loaded from: ${t}`), n && k(e, `Loaded CSS from ${t}, but a stylesheet for this plugin was already on the page (${a ? "a tagged <link>" : "an import or inline <style>"}) — csspath adds one, it cannot remove one. Both are live and the cascade decides. Remove the other import or <link>, or drop csspath.`), {
+			return await S(e, t), i && console.log(`[${e}] CSS loaded from: ${t}`), n && E(e, `Loaded CSS from ${t}, but a stylesheet for this plugin was already on the page (${a ? "a tagged <link>" : "an import or inline <style>"}) — csspath adds one, it cannot remove one. Both are live and the cascade decides. Remove the other import or <link>, or drop csspath.`), {
 				status: "loaded",
 				path: t
 			};
@@ -318,12 +318,12 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			};
 		}
 	}
-	if (E(e)) return i && console.log(`[${e}] CSS is already imported, skipping`), { status: "present" };
-	let { directory: a } = _(e);
+	if (C(e)) return i && console.log(`[${e}] CSS is already imported, skipping`), { status: "present" };
+	let { directory: a } = v(e);
 	if (a !== null || n === !0) {
-		let t = [...a === null ? [] : [`${a}${e}.css`], ...ne(e)].filter((e, t, n) => n.indexOf(e) === t);
+		let t = [...a === null ? [] : [`${a}${e}.css`], ...ae(e)].filter((e, t, n) => n.indexOf(e) === t);
 		for (let n of t) try {
-			return await C(e, n), i && console.log(`[${e}] CSS loaded from: ${n}`), {
+			return await S(e, n), i && console.log(`[${e}] CSS loaded from: ${n}`), {
 				status: "loaded",
 				path: n
 			};
@@ -332,68 +332,142 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		}
 		return console.warn(`[${e}] Could not load CSS. Tried: ${t.join(", ")}. Import the stylesheet yourself, or set csspath to where it is.`), { status: "failed" };
 	}
-	return T(e).then((t) => {
-		t || k(e, `CSS could not be autoloaded here, because the plugin is part of a bundle. Import it once in your own code: import 'reveal.js-${e}/${e}.css'`);
+	return ie(e).then((t) => {
+		t || E(e, `CSS could not be autoloaded here, because the plugin is part of a bundle. Import it once in your own code: import 'reveal.js-${e}/${e}.css'`);
 	}), { status: "advised" };
 };
-async function ie(e, t) {
+async function O(e, t) {
 	if ("getEnvironmentInfo" in e && t) {
 		let n = e, r = n.userConfig, i = "cssautoload" in r && r.cssautoload !== "auto" ? t.cssautoload : void 0;
-		return A(n.pluginId, {
+		return D(n.pluginId, {
 			...t,
 			cssautoload: i
 		});
 	}
 	let { id: n, cssautoload: r, csspath: i, debug: a } = e;
-	return A(n, {
+	return D(n, {
 		cssautoload: r === "auto" ? void 0 : r,
 		csspath: i,
 		debug: a
 	});
 }
-var ae = /* @__PURE__ */ u({
-	SectionType: () => j,
-	getSectionType: () => L,
-	getStack: () => I,
-	isHorizontal: () => F,
-	isSection: () => M,
-	isStack: () => N,
-	isVertical: () => P
-}), j = /* @__PURE__ */ function(e) {
+var k = /* @__PURE__ */ u({
+	SectionType: () => A,
+	getSectionType: () => le,
+	getStack: () => ce,
+	isHorizontal: () => se,
+	isSection: () => j,
+	isStack: () => M,
+	isVertical: () => N
+}), A = /* @__PURE__ */ function(e) {
 	return e.HORIZONTAL = "horizontal", e.STACK = "stack", e.VERTICAL = "vertical", e.INVALID = "invalid", e;
-}({}), M = (e) => e instanceof HTMLElement && e.tagName === "SECTION", N = (e) => M(e) ? Array.from(e.children).some((e) => e instanceof HTMLElement && e.tagName === "SECTION") : !1, P = (e) => M(e) ? e.parentElement instanceof HTMLElement && e.parentElement.tagName === "SECTION" : !1, F = (e) => M(e) && !P(e) && !N(e), I = (e) => {
-	if (!M(e)) return null;
-	if (P(e)) {
+}({}), j = (e) => e instanceof HTMLElement && e.tagName === "SECTION", M = (e) => j(e) ? Array.from(e.children).some((e) => e instanceof HTMLElement && e.tagName === "SECTION") : !1, N = (e) => j(e) ? e.parentElement instanceof HTMLElement && e.parentElement.tagName === "SECTION" : !1, se = (e) => j(e) && !N(e) && !M(e), ce = (e) => {
+	if (!j(e)) return null;
+	if (N(e)) {
 		let t = e.parentElement;
-		if (t instanceof HTMLElement && N(t)) return t;
+		if (t instanceof HTMLElement && M(t)) return t;
 	}
 	return null;
-}, L = (e) => M(e) ? P(e) ? "vertical" : N(e) ? "stack" : "horizontal" : "invalid", R = /* @__PURE__ */ u({
-	isJSON: () => z,
-	toJSONString: () => B
-}), z = (e) => {
+}, le = (e) => j(e) ? N(e) ? "vertical" : M(e) ? "stack" : "horizontal" : "invalid", P = /* @__PURE__ */ u({
+	isJSON: () => F,
+	toJSONString: () => ue
+}), F = (e) => {
 	try {
 		return JSON.parse(e) && !!e;
 	} catch {
 		return !1;
 	}
-}, B = (e) => {
+}, ue = (e) => {
 	if (e == null) return "";
-	if (z(e)) return e;
+	if (F(e)) return e;
 	if (typeof e == "object") return JSON.stringify(e, null, 2);
 	if (typeof e == "string") {
 		let t = e.replace(/[“”]/g, "\"").replace(/[‘’]/g, "'");
-		if (z(t)) return t;
+		if (F(t)) return t;
 		let n = t.trim().replace(/'/g, "\"");
 		return n.charAt(0) === "{" ? n : `{${n}}`;
 	}
 	return "";
-}, V = /* @__PURE__ */ u({
-	copyDataAttributes: () => H,
-	createNode: () => U
-}), H = (e, t, n) => {
+}, de = /* @__PURE__ */ u({
+	copyDataAttributes: () => fe,
+	createNode: () => I
+}), fe = (e, t, n) => {
 	for (let r of Array.from(e.attributes)) r.nodeName.startsWith("data") && (!n || r.nodeName !== n) && t.setAttribute(r.nodeName, r.nodeValue || "");
-}, U = (e) => document.createRange().createContextualFragment(e).firstElementChild, W = {
+}, I = (e) => document.createRange().createContextualFragment(e).firstElementChild, L = /* @__PURE__ */ u({
+	ENTRANCE_ATTRIBUTE: () => B,
+	IN_EVENT: () => z,
+	SHOWN_EVENT: () => R,
+	announce: () => me,
+	markPending: () => K,
+	pendingAround: () => q,
+	reset: () => he,
+	stateOf: () => U,
+	whenShown: () => ge
+}), R = "entranceshown", z = "entrancein", B = "data-entrance", V = {
+	pending: 0,
+	shown: 1,
+	in: 2
+}, H = Symbol.for("reveal.js-plugintoolkit.entranceTimers"), pe = () => typeof window.matchMedia == "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function U(e) {
+	let t = e.getAttribute(B);
+	return t === "pending" || t === "shown" || t === "in" ? t : null;
+}
+function W(e, t) {
+	if (e.setAttribute(B, t), t === "pending") return;
+	let n = {
+		element: e,
+		state: t
+	};
+	e.dispatchEvent(new CustomEvent(t === "shown" ? R : z, {
+		bubbles: !0,
+		detail: n
+	}));
+}
+function G(e) {
+	for (let t of e[H] ?? []) window.clearTimeout(t);
+	delete e[H];
+}
+function K(e) {
+	G(e), W(e, "pending");
+}
+function me(e, t) {
+	G(e);
+	let n = Math.max(0, t.delay ?? 0), r = Math.max(0, t.duration), i = Number.parseFloat(e.dataset.entranceAt ?? ""), a = Number.isFinite(i) ? Math.min(1, Math.max(0, i)) : .5;
+	W(e, "pending"), e[H] = [window.setTimeout(() => W(e, "shown"), n + r * a), window.setTimeout(() => {
+		U(e) === "pending" && W(e, "shown"), W(e, "in"), delete e[H];
+	}, n + r)];
+}
+function he(e) {
+	K(e);
+}
+function q(e, t = "shown") {
+	let n = [];
+	for (let r = e; r && r.tagName !== "SECTION"; r = r.parentElement) {
+		let e = U(r);
+		e && V[e] < V[t] && n.push(r);
+	}
+	return n;
+}
+function ge(e, t = "shown", n) {
+	if (n?.aborted) return Promise.resolve(!1);
+	if (pe()) return Promise.resolve(!0);
+	let r = q(e, t);
+	return r.length ? new Promise((i) => {
+		let a = () => {
+			q(e, t).length || (s(), i(!0));
+		}, o = () => {
+			s(), i(!1);
+		}, s = () => {
+			for (let e of r) e.removeEventListener(R, a), e.removeEventListener(z, a);
+			n?.removeEventListener("abort", o);
+		};
+		for (let e of r) e.addEventListener(R, a), e.addEventListener(z, a);
+		n?.addEventListener("abort", o);
+	}) : Promise.resolve(!0);
+}
+//#endregion
+//#region src/plugin/js/config.ts
+var _e = {
 	baseclass: "animate__animated",
 	hideagain: !0,
 	delay: 300,
@@ -409,7 +483,7 @@ var ae = /* @__PURE__ */ u({
 };
 //#endregion
 //#region src/plugin/js/consts.ts
-function G(e, t, n) {
+function ve(e, t, n) {
 	let r = {
 		baseclass: e,
 		compatibilitybaseclass: t,
@@ -434,27 +508,27 @@ function G(e, t, n) {
 }
 //#endregion
 //#region src/plugin/js/functions/parse-auto-elements.ts
-var K = (e) => {
+var ye = (e) => {
 	let t = document.createElement("textarea");
 	return t.innerHTML = e, t.value;
-}, q = (e, t = !1) => {
+}, J = (e, t = !1) => {
 	if (!e) return null;
 	if (typeof e == "object" && e && !Array.isArray(e)) return e;
 	if (typeof e == "boolean") return null;
 	if (typeof e == "string") try {
-		let n = t ? K(e) : e;
-		return JSON.parse(R.toJSONString(n));
+		let n = t ? ye(e) : e;
+		return JSON.parse(P.toJSONString(n));
 	} catch (t) {
-		return D.log(`Error parsing autoelements: ${t} (${e})`), null;
+		return w.log(`Error parsing autoelements: ${t} (${e})`), null;
 	}
 	return null;
-}, J = (e) => typeof e == "object" && !!e, oe = (e, t, n) => {
+}, be = (e) => typeof e == "object" && !!e, xe = (e, t, n) => {
 	let r = null, i = null;
-	if (t.autoappear && t.autoelements && (i = q(t.autoelements, !1)), e instanceof HTMLElement && e.hasAttribute("data-autoappear")) {
+	if (t.autoappear && t.autoelements && (i = J(t.autoelements, !1)), e instanceof HTMLElement && e.hasAttribute("data-autoappear")) {
 		let t = e.dataset.autoappear;
 		if (t === "auto" || t === "" || t === "true") r = i;
 		else {
-			let e = q(t || "", !0);
+			let e = J(t || "", !0);
 			r = i && e ? {
 				...i,
 				...e
@@ -462,7 +536,7 @@ var K = (e) => {
 		}
 	} else i && (r = i);
 	if (r) try {
-		let t = JSON.parse(R.toJSONString(r));
+		let t = JSON.parse(P.toJSONString(r));
 		for (let [r, i] of Object.entries(t)) {
 			let t = Array.from(e.querySelectorAll(r)).filter((e) => {
 				if (n.includes(e)) return !1;
@@ -477,7 +551,7 @@ var K = (e) => {
 				let c = [], l = null, u = !1, d = null, f = null;
 				if (Array.isArray(i)) c = String(i[0]).split(/[ ,]+/), l = i[1] === void 0 ? null : String(i[1]);
 				else if (typeof i == "string") c = i.split(/[ ,]+/);
-				else if (J(i)) {
+				else if (be(i)) {
 					if (i.class || i.animation) {
 						let e = i.animation || i.class;
 						c = String(e).split(/[ ,]+/);
@@ -488,17 +562,17 @@ var K = (e) => {
 			}
 		}
 	} catch (e) {
-		D.log(t, `Error processing auto animations: ${e}`);
+		w.log(t, `Error processing auto animations: ${e}`);
 	}
 };
 //#endregion
 //#region src/plugin/js/functions/add-base-class.ts
-function se(e, t) {
+function Se(e, t) {
 	e.classList.contains(t.baseclass) || e.classList.add(t.baseclass), e.classList.contains(t.fragmentClass) && e.classList.add("custom");
 }
 //#endregion
 //#region src/plugin/js/functions/add-delay.ts
-function ce(e, t) {
+function Ce(e, t) {
 	let n = 0;
 	e.forEach((e, r) => {
 		if (!(e instanceof HTMLElement && e.style.animationDelay) && (r === 0 && e instanceof HTMLElement && e.dataset.delay || r !== 0)) {
@@ -513,7 +587,7 @@ function ce(e, t) {
 }
 //#endregion
 //#region src/plugin/js/functions/convert-to-spans.ts
-function le(e, t) {
+function we(e, t) {
 	let n = !1, r = " ";
 	if (e.textContent?.trim() && (t === "words" ? n = e.textContent.trim().split(/\s+/) || [] : t === "letters" && (n = e.textContent.trim().split("") || [], r = ""), n && n.length > 0)) {
 		let t = Array.from(e.classList).filter((e) => e.startsWith("animate__")), i = n.map((n, r) => {
@@ -533,34 +607,32 @@ function Y(e, t) {
 	let n = e.parentNode;
 	if (n) {
 		for (let t of Array.from(n.children)) if (t !== e && t.dataset.appearParent) return;
-		n instanceof Element && (n.classList.value = e.classList.value, V.copyDataAttributes(e, n, "data-appear-parent"), n.innerHTML = e.innerHTML, t && n.classList.add(t));
+		n instanceof Element && (n.classList.value = e.classList.value, de.copyDataAttributes(e, n, "data-appear-parent"), n.innerHTML = e.innerHTML, t && n.classList.add(t));
 	}
 }
-function ue(e, t, n) {
+function Te(e, t, n) {
 	let r = n.baseclass;
 	e.hasAttribute("data-appear-parent") && Y(e, r), t.appearparents && e.parentNode && e.parentNode instanceof Element && e.tagName === "SPAN" && e.parentNode.tagName === "LI" && e.outerHTML.length === e.parentNode.innerHTML.length && Y(e);
 }
 //#endregion
 //#region src/plugin/js/functions/get-appearance-arrays.ts
-var de = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter((e) => !e.closest(`.${t}`)), fe = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter((e) => e.closest(`.${t}`) === n), pe = (e, t, n) => {
+var Ee = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter((e) => !e.closest(`.${t}`)), De = (e, t, n) => Array.from(n.querySelectorAll(`.${e}`)).filter((e) => e.closest(`.${t}`) === n), Oe = (e, t, n) => {
 	if (!t) return !1;
-	let r = [de(t, n, e), ...Array.from(e.querySelectorAll(`.${n}`)).map((e) => fe(t, n, e))];
+	let r = [Ee(t, n, e), ...Array.from(e.querySelectorAll(`.${n}`)).map((e) => De(t, n, e))];
 	return r.some((e) => e.length > 0) ? r : !1;
-};
-//#endregion
-//#region src/plugin/js/functions/show-hide-slide.ts
-function me(e) {
+}, { reset: ke } = L;
+function Ae(e) {
 	return {
 		from: e.fromSlide || e.previousSlide || null,
 		to: e.toSlide || e.currentSlide || null
 	};
 }
-function he(e, t) {
+function je(e, t) {
 	e.dataset.appearevent && e.dataset.appearevent === "auto" && (e.dataset.appearevent = "autoanimate");
 	let n = t.appearevent;
 	return n === "auto" && (n = "autoanimate"), e.dataset.appearevent || n;
 }
-function ge(e) {
+function Me(e) {
 	let t = [e, e.parentElement?.matches("section.stack") ? e.parentElement : null].flatMap((e) => e ? e.getAnimations() : []).filter((e) => e.playState === "running");
 	return Promise.all(t.map((e) => e.finished.catch(() => void 0)));
 }
@@ -570,13 +642,13 @@ function X(e, t) {
 function Z(e, t, n) {
 	if (t.hideagain && e?.from) {
 		let t = e.from.querySelectorAll(n.animatecss);
-		if (t) for (let e of t) e.classList.remove("animationended");
+		if (t) for (let e of t) e.classList.remove("animationended"), e instanceof HTMLElement && e.dataset.entrance && ke(e);
 		let r = e.from.querySelectorAll(".fragment.visible");
 		if (r) for (let e of r) e.classList.remove("animationended");
 	}
 }
-function _e(e, t, n, r, i) {
-	let a = r.getViewportElement().classList.contains("reveal-scroll"), o = e.type, s = me(e);
+function Ne(e, t, n, r, i) {
+	let a = r.getViewportElement().classList.contains("reveal-scroll"), o = e.type, s = Ae(e);
 	if (s.to) {
 		if (o === "ready") {
 			let e = s.to.dataset.initdelay ? parseInt(s.to.dataset.initdelay, 10) : t.initdelay || 0;
@@ -584,10 +656,10 @@ function _e(e, t, n, r, i) {
 				s.to && (s.to.dataset.appearanceCanStart = "true"), i.value = !1;
 			}, e) : (s.to.dataset.appearanceCanStart = "true", i.value = !1);
 		}
-		let c = he(s.to, t);
+		let c = je(s.to, t);
 		if (o === c || o === "slidetransitionend" && c === "autoanimate") {
 			let e = s.to;
-			o === "slidetransitionend" ? ge(e).then(() => {
+			o === "slidetransitionend" ? Me(e).then(() => {
 				r.getCurrentSlide() === e && (e.dataset.appearanceCanStart = "true");
 			}) : e.dataset.appearanceCanStart = "true";
 		}
@@ -600,7 +672,7 @@ function _e(e, t, n, r, i) {
 }
 //#endregion
 //#region src/plugin/js/main.ts
-var Q = class e {
+var { announce: Pe, markPending: Fe, reset: Ie } = L, Le = (e) => e.endsWith("ms") ? Number.parseFloat(e) : Number.parseFloat(e) * 1e3 || 0, Q = class e {
 	deck;
 	viewport;
 	slides;
@@ -611,33 +683,37 @@ var Q = class e {
 	appearances;
 	isInitialLoad;
 	constructor(e, t) {
-		this.deck = e, this.options = t, this.isInitialLoad = !0, this.viewport = e.getViewportElement(), this.slides = e.getSlidesElement(), this.consts = G(t.baseclass, t.compatibilitybaseclass, t.compatibility), this.sections = this.slides.querySelectorAll("section"), this.regularSections = Array.from(this.sections).filter((e) => !ae.isStack(e)), this.appearances = [], /receiver/i.test(window.location.search) && this.viewport.classList.add("sv");
+		this.deck = e, this.options = t, this.isInitialLoad = !0, this.viewport = e.getViewportElement(), this.slides = e.getSlidesElement(), this.consts = ve(t.baseclass, t.compatibilitybaseclass, t.compatibility), this.sections = this.slides.querySelectorAll("section"), this.regularSections = Array.from(this.sections).filter((e) => !k.isStack(e)), this.appearances = [], /receiver/i.test(window.location.search) && this.viewport.classList.add("sv");
 	}
 	async prepareElements() {
 		this.appearances = Array.from(this.slides.querySelectorAll(this.consts.animatecss));
-		for (let e of this.regularSections) oe(e, this.options, this.appearances);
-		for (let e of this.appearances) ue(e, this.options, this.consts), se(e, this.consts), e instanceof HTMLElement && e.dataset.split && le(e, e.dataset.split);
+		for (let e of this.regularSections) xe(e, this.options, this.appearances);
+		for (let e of this.appearances) Te(e, this.options, this.consts), Se(e, this.consts), e instanceof HTMLElement && Fe(e), e instanceof HTMLElement && e.dataset.split && we(e, e.dataset.split);
 		for (let e of this.regularSections) {
-			let t = pe(e, this.consts.baseclass, this.consts.fragmentClass);
-			if (t) for (let e of t) ce(e, this.options);
+			let t = Oe(e, this.consts.baseclass, this.consts.fragmentClass);
+			if (t) for (let e of t) Ce(e, this.options);
 		}
 	}
 	setupEventListeners() {
-		D.log("Options:", this.options), D.log("Setting up event listeners");
+		w.log("Options:", this.options), w.log("Setting up event listeners");
 		let e = { value: this.isInitialLoad };
-		for (let t of this.consts.eventnames) D.log(`Adding listener for ${t} event`), this.deck.on(t, (t) => {
-			_e(t, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
+		for (let t of this.consts.eventnames) w.log(`Adding listener for ${t} event`), this.deck.on(t, (t) => {
+			Ne(t, this.options, this.consts, this.deck, e), this.isInitialLoad = e.value;
 		});
-		this.viewport.addEventListener("animationend", (e) => {
+		this.viewport.addEventListener("animationstart", (e) => {
+			let t = e.target;
+			!(t instanceof HTMLElement) || !t.classList.contains(this.consts.baseclass) || Pe(t, { duration: Le(getComputedStyle(t).animationDuration) });
+		}), this.viewport.addEventListener("animationend", (e) => {
 			e.target.classList.add("animationended");
 		}), this.viewport.addEventListener("autoanimate", (e) => {
-			D.log("Autoanimate event triggered:", e);
+			w.log("Autoanimate event triggered:", e);
 		}), this.viewport.addEventListener("fragmenthidden", (e) => {
 			let t = e;
 			if (t.fragment) {
 				t.fragment.classList.remove("animationended");
 				let e = t.fragment.querySelectorAll(".animationended");
 				for (let t of e) t.classList.remove("animationended");
+				for (let e of [t.fragment, ...t.fragment.querySelectorAll(this.consts.animatecss)]) e.dataset.entrance && Ie(e);
 			}
 		});
 	}
@@ -645,8 +721,8 @@ var Q = class e {
 		let r = new e(t, n);
 		return await r.prepareElements(), r.setupEventListeners(), r;
 	}
-}, $ = "appearance", ve = async (e, t, n) => {
-	D && n.debug && D.initialize(!0, $), await ie(e, n), await Q.create(t, n);
-}, ye = () => new x($, ve, W).createInterface();
+}, $ = "appearance", Re = async (e, t, n) => {
+	w && n.debug && w.initialize(!0, $), await O(e, n), await Q.create(t, n);
+}, ze = () => new b($, Re, _e).createInterface();
 //#endregion
-export { ye as default };
+export { ze as default };

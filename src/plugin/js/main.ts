@@ -1,6 +1,9 @@
 import type { RevealApi } from "reveal.js";
 // Helper imports
-import { pluginDebug as debug, sectionTools } from "reveal.js-plugintoolkit";
+// The entrance signal: each element says when it is shown and in, so that what is
+// inside it, such as a chart, can start then. See the README, "Signals for other
+// plugins".
+import { pluginDebug as debug, entranceTools, sectionTools } from "reveal.js-plugintoolkit";
 import type { Config } from "./config";
 import { type AppearanceConsts, initConsts } from "./consts";
 // Function imports
@@ -12,6 +15,12 @@ import { fixListItem } from "./functions/fix-list-item";
 import { getAppearanceArrays } from "./functions/get-appearance-arrays";
 import { showHideSlide } from "./functions/show-hide-slide";
 import type { RevealFragmentEvent, RevealSlideEvent } from "./types";
+
+const { announce, markPending, reset } = entranceTools;
+
+/** A CSS time such as "1s" or "300ms" in milliseconds. */
+const ms = (time: string): number =>
+	time.endsWith("ms") ? Number.parseFloat(time) : Number.parseFloat(time) * 1000 || 0;
 
 export class Appearance {
 	private readonly deck: RevealApi;
@@ -123,6 +132,8 @@ export class Appearance {
 		for (const element of this.appearances) {
 			fixListItem(element, this.options, this.consts);
 			addBaseClass(element, this.consts);
+			// Pending until it starts coming in, so whatever is inside it knows to wait.
+			if (element instanceof HTMLElement) markPending(element);
 
 			if (element instanceof HTMLElement && element.dataset.split) {
 				convertToSpans(element, element.dataset.split);
@@ -165,6 +176,18 @@ export class Appearance {
 			});
 		}
 
+		// An element starts coming in. `animationstart` comes after the element's
+		// delay, so its own duration is all that is left to time.
+		this.viewport.addEventListener("animationstart", (event) => {
+			const target = event.target;
+			if (
+				!(target instanceof HTMLElement) ||
+				!target.classList.contains(this.consts.baseclass)
+			)
+				return;
+			announce(target, { duration: ms(getComputedStyle(target).animationDuration) });
+		});
+
 		// Animation end event
 		this.viewport.addEventListener("animationend", (event) => {
 			const target = event.target as Element;
@@ -184,6 +207,13 @@ export class Appearance {
 				const endedEls = e.fragment.querySelectorAll(".animationended");
 				for (const el of endedEls) {
 					el.classList.remove("animationended");
+				}
+				// Hidden again, so it will come in again.
+				for (const el of [
+					e.fragment,
+					...e.fragment.querySelectorAll<HTMLElement>(this.consts.animatecss),
+				]) {
+					if (el.dataset.entrance) reset(el);
 				}
 			}
 		});

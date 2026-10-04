@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.4] - 2026-10-04
+### Added
+- Every element Appearance animates says when it is shown: `data-entrance` is `pending`, then `shown` half way in (or at its `data-entrance-at`), then `in`, with the events `entranceshown` and `entrancein`. Other plugins, such as Tablechart, start what is inside the element then. See "Signals for other plugins" in the README.
+
+### Changed
+- Built with reveal.js-plugintoolkit 1.2.7, for `entranceTools`.
+
 ## [1.4.3] - 2026-10-04
 ### Fixed
 - With `appearevent: 'slidetransitionend'` (the default), a slide's first appearance could start while the slide was still moving in. Reveal sends `slidetransitionend` for the first transition that ends on any section, and a section elsewhere in the deck can end one straight away. Appearance now waits for the slide itself, and the stack it moves with, to finish moving before it starts.

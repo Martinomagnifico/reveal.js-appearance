@@ -359,6 +359,42 @@ When you have multiple groups of elements in separate containers, `container-del
 </section>
 ```
 
+## Signals for other plugins
+
+Every element that Appearance animates says when it is far enough in, so that what is inside it can start then. A chart from [Tablechart](https://github.com/martinomagnifico/reveal.js-tablechart) in a panel that Appearance animates, for example, builds when the panel is half way in, not while it is still on its way. You do not need to do anything for this.
+
+The element carries its progress as `data-entrance`, and sends an event for each step. Both events bubble.
+
+| `data-entrance` | Event | When |
+| --- | --- | --- |
+| `pending` | | Appearance has prepared it; it has not started coming in |
+| `shown` | `entranceshown` | Half way in |
+| `in` | `entrancein` | Fully in |
+
+When an element is hidden again, it is `pending` again, so the next visit plays again.
+
+To move the `shown` moment of an element, give it `data-entrance-at`, from 0 to 1:
+
+```html
+<div class="panel animate__fadeInUp" data-entrance-at="0.3">…</div>
+```
+
+You can use the state in your own CSS, without any JavaScript:
+
+```css
+[data-entrance="in"] .badge { opacity: 1; }
+```
+
+Or listen for the events in your own code:
+
+```javascript
+deck.getViewportElement().addEventListener('entranceshown', (event) => {
+	console.log('Far enough in:', event.detail.element);
+});
+```
+
+The signal comes from [reveal.js-plugintoolkit](https://github.com/martinomagnifico/reveal.js-plugintoolkit) (`entranceTools`), so other plugins can give it, and wait for it, in the same way.
+
 
 
 
