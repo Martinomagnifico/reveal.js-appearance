@@ -1,7 +1,7 @@
  /*****************************************************************
  *
  * reveal.js-appearance for Reveal.js 
- * Version 1.4.3
+ * Version 1.4.4
  * 
  * @link
  * https://github.com/martinomagnifico/reveal.js-appearance
